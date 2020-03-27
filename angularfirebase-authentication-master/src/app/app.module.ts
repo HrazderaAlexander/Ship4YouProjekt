@@ -28,6 +28,12 @@ import { AuthService } from "./shared/services/auth.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteModule, MatSelectModule } from '@angular/material';
 
+// Create Boad
+import { HttpClientModule } from '@angular/common/http';
+
+import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
+import { UsersListComponent } from './components/newboat/users-list/users-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +42,9 @@ import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteMo
     DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    CreateUserComponent,
+    UsersListComponent
     ],
   imports: [
     BrowserModule,
@@ -51,6 +59,7 @@ import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteMo
     MatInputModule,
     MatAutocompleteModule,
     MatButtonModule,
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

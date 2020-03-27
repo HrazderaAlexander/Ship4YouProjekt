@@ -25,6 +25,12 @@
               <i class="fas fa-ship"></i>Boote
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/add-user">Upload Boat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/users-list">Boat</a>
+          </li>
           <!-- Calling SignOut() Api from AuthService -->
           <li *ngIf="authService.isLoggedIn" class="nav-item">
             <a class="nav-link" (click)="authService.SignOut()">
