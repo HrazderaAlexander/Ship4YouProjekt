@@ -16,12 +16,11 @@ const storage = multer.diskStorage({
   }
 });
 
-// Multer Mime Type Validation
 var upload = multer({
   storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 5
-  },
+  // limits: {
+  //   fileSize: 1024 * 1024 * 5
+  // },
   fileFilter: (req, file, cb) => {
     if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
       cb(null, true);
@@ -32,26 +31,26 @@ var upload = multer({
   }
 });
 
-
 // User model
 let User = require('../models/User');
 
-
-// POST User
-router.post('/create-user', upload.single('avatar'), (req, res, next) => {
+router.post('/create-user', upload.array('avatar', 6), (req, res, next) => {
+  const reqFiles = []
   const url = req.protocol + '://' + req.get('host')
+  for (var i = 0; i < req.files.length; i++) {
+    reqFiles.push(url + '/public/' + req.files[i].filename)
+  }
+
   const user = new User({
     _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    avatar: url + '/public/' + req.file.filename
+    avatar: reqFiles
   });
   user.save().then(result => {
     console.log(result);
     res.status(201).json({
-      message: "User registered successfully!",
+      message: "Done upload!",
       userCreated: {
         _id: result._id,
-        name: result.name,
         avatar: result.avatar
       }
     })
@@ -63,15 +62,13 @@ router.post('/create-user', upload.single('avatar'), (req, res, next) => {
   })
 })
 
-// GET All Users
 router.get("/", (req, res, next) => {
   User.find().then(data => {
     res.status(200).json({
-      message: "Users retrieved successfully!",
+      message: "User list retrieved successfully!",
       users: data
     });
   });
 });
-
 
 module.exports = router;

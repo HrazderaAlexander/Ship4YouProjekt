@@ -31,8 +31,14 @@ import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteMo
 // Create Boad
 import { HttpClientModule } from '@angular/common/http';
 
-import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
+//import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
 import { UsersListComponent } from './components/newboat/users-list/users-list.component';
+
+//FileUpload
+import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
+import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
+
+import { DragDropFileUploadDirective } from './drag-drop-file-upload.directive';
 
 @NgModule({
   declarations: [
@@ -44,7 +50,11 @@ import { UsersListComponent } from './components/newboat/users-list/users-list.c
     VerifyEmailComponent,
     UserDetailsComponent,
     CreateUserComponent,
-    UsersListComponent
+    UsersListComponent,
+    FileSelectDirective,
+    FileDropDirective,
+    DragDropFileUploadDirective,
+    CreateUserComponent
     ],
   imports: [
     BrowserModule,
