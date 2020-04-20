@@ -14,6 +14,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class CreateUserComponent implements OnInit {
   shipInput:String= "";
+  shipTypeInput:String="";
+  shipCode:String = "";
   fileArr = [];
   imgArr = [];
   fileObj = [];
@@ -32,6 +34,11 @@ export class CreateUserComponent implements OnInit {
   }
 
   ngOnInit() { }
+
+  onCheck()
+  {
+    this.shipCode = this.shipTypeInput.concat(this.shipInput.toString())
+  }
 
   upload(e) {
     const fileListAsArray = Array.from(e);

@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
-// Reactive Form
+//Forms
 import { ReactiveFormsModule } from "@angular/forms";
-
+import { FormsModule } from "@angular/forms";
 // App routing modules
 import { AppRoutingModule } from './shared/routing/app-routing.module';
 
@@ -69,7 +69,8 @@ import { DragDropFileUploadDirective } from './drag-drop-file-upload.directive';
     MatInputModule,
     MatAutocompleteModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

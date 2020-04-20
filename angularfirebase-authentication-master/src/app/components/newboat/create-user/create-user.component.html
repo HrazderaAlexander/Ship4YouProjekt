@@ -10,7 +10,14 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
   <br>
   <b>Schiffsname: </b>   
-  
+  <input type="text" placeholder="Boot-Name eingeben" [(ngModel)]="shipInput"/>
+  <br>
+  <b>Schiffstyp:</b>
+  <input type="text" placeholder="Schiffs-Type" [(ngModel)]="shipTypeInput"/>
+  <br>
+  <button (click)="onCheck()">Check</button>
+  <br>
+  <p>Code: {{shipCode}}</p>
   <div class="container fileUploadWrapper">
     <form [formGroup]="form">
         <div class="row">     
