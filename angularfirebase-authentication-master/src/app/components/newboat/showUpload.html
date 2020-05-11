@@ -1,8 +1,21 @@
 <h2>File Upload</h2>
 <input type="text" placeholder="Typ des Bootes" name="boatType" [(ngModel)]="boatType">
 <input type="text" placeholder="Name des Bootes" name="boatName" [(ngModel)]="boatName">
+<input type="text" placeholder="Baujahr" name="boatVintage" [(ngModel)]="boatVintage">
+<input type="text" placeholder="Location" name="boatLocation" [(ngModel)]="boatLocation">
+<input type="text" placeholder="Vermieter" name="boatLessor" [(ngModel)]="boatLessor">
+<input type="text" placeholder="Cajüten" name="boatCabins" [(ngModel)]="boatCabins">
+<input type="text" placeholder="Länge" name="boatLength" [(ngModel)]="boatLength">
+<input type="text" placeholder="Segel" name="boatSails" [(ngModel)]="boatSail">
+<input type="text" placeholder="Personen" name="boatNumberOfPeople" [(ngModel)]="boatNumberOfPeople">
+<input type="text" placeholder="Masten" name="boatMasts" [(ngModel)]="boatMasts">
 
-<!--<input type="text" placeholder="Save with Key" name="id" [(ngModel)]="id">-->
+<!--<div *ngFor="let note of notes | async">
+  <h3>{{note | json}}</h3>
+</div>-->
+
+<button (click)="addData()">Click me!</button>
+
 <br><br>
 <!--<input type="file" (change)="showPreview($event)">-->
 <!--<button (click)="save()">Save</button>-->

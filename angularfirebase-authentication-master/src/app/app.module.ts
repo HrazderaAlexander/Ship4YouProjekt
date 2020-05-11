@@ -73,7 +73,7 @@ import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
     MatAutocompleteModule,
     MatButtonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
