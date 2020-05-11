@@ -12,8 +12,7 @@ import { VerifyEmailComponent } from '../../components/verify-email/verify-email
 import { AuthGuard } from "../../shared/guard/auth.guard";
 import { SecureInnerPagesGuard } from "../../shared/guard/secure-inner-pages.guard";
 import { UserDetailsComponent } from 'src/app/components/user-details/user-details.component';
-import { CreateUserComponent } from '../../components/newboat/create-user/create-user.component';
-import { UsersListComponent } from '../../components/newboat/users-list/users-list.component';
+import {ShowUpload} from 'src/app/components/newboat/showUpload'
 
 // Array mit allen routen
 const routes: Routes = [
@@ -24,8 +23,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user-details', component: UserDetailsComponent},
-  { path: 'add-user', component: CreateUserComponent },
-  { path: 'users-list', component: UsersListComponent }
+  {path: 'showUpload', component: ShowUpload}
 ];
 
 @NgModule({

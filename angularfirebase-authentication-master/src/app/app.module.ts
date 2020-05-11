@@ -23,6 +23,11 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { DropzoneDirective } from './dropzone.directive';
+import { UploadTaskComponent } from './components/newboat/upload-task/upload-task.component';
+
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,13 +37,10 @@ import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteMo
 import { HttpClientModule } from '@angular/common/http';
 
 //import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
-import { UsersListComponent } from './components/newboat/users-list/users-list.component';
+import {ShowUpload} from './components/newboat/showUpload';
 
 //FileUpload
 import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
-import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
-
-import { DragDropFileUploadDirective } from './drag-drop-file-upload.directive';
 
 @NgModule({
   declarations: [
@@ -49,17 +51,18 @@ import { DragDropFileUploadDirective } from './drag-drop-file-upload.directive';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     UserDetailsComponent,
-    CreateUserComponent,
-    UsersListComponent,
     FileSelectDirective,
     FileDropDirective,
-    DragDropFileUploadDirective,
-    CreateUserComponent
+    ShowUpload,
+    UploadTaskComponent,
+    DropzoneDirective
     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
