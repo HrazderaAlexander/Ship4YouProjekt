@@ -54,56 +54,13 @@
                      formControlName="stateGroup"
                      [matAutocomplete]="autoStateGroup" required>
                 <mat-autocomplete #autoStateGroup="matAutocomplete">
+                  
                   <mat-optgroup *ngFor="let group of stateGroupOptions  | async" [label]="group.letter">
-                    <mat-option *ngFor="let name of group.names" [value]="name">
-                      {{name}}
-                    </mat-option>
-                </mat-optgroup>
-              </mat-autocomplete>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input type="text"
-                     matInput
-                     placeholder="Vermieter"
-                     formControlName="vermieterGroup"
-                     [matAutocomplete]="autoVermieterGroup" required>
-              <mat-autocomplete #autoVermieterGroup="matAutocomplete">
-                  <mat-optgroup *ngFor="let group of vermieterGroupOptions | async" [label]="group.letter">
-                    <mat-option *ngFor="let name of group.names" [value]="name">
-                      {{name}}
+                    <mat-option *ngFor="let note of notes | async" [value]="note" >
+                      {{note.location}}
                     </mat-option>
                   </mat-optgroup>
-              </mat-autocomplete>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input type="text"
-                     matInput
-                     placeholder="Schiffstyp"
-                     formControlName="boatTypeGroup"
-                     [matAutocomplete]="autoBoatTypeGroup" required>
-              <mat-autocomplete #autoBoatTypeGroup="matAutocomplete">
-                  <mat-optgroup *ngFor="let group of schiffsTypGroupOptions | async" [label]="group.letter">
-                    <mat-option *ngFor="let name of group.names" [value]="name">
-                      {{name}}
-                    </mat-option>
-                  </mat-optgroup>
-              </mat-autocomplete>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input type="text"
-                     matInput
-                     placeholder="SchiffsName"
-                     formControlName="boatNameGroup"
-                     [matAutocomplete]="autoBoatNameGroup" required>
-              <mat-autocomplete #autoBoatNameGroup="matAutocomplete">
-                  <mat-optgroup *ngFor="let group of schiffsNameGroupOptions | async" [label]="group.letter">
-                    <mat-option *ngFor="let name of group.names" [value]="name">
-                      {{name}}
-                    </mat-option>
-                  </mat-optgroup>
+            
               </mat-autocomplete>
             </mat-form-field>
             <input type="button" class="btn btnPrimary" style="background-color: lightblue;" value="Search">
