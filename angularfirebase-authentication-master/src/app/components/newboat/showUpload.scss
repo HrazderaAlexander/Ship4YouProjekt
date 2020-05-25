@@ -24,3 +24,24 @@
   progress::-webkit-progress-value {
     transition: width 0.1s ease;
   }
+
+  .topnav a {
+    float: right;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: darkgray;
+    color: black;
+    transform: scale(1.1);
+  }
+
+  .topnav {
+    width: 100%;
+    overflow: hidden;
+  }

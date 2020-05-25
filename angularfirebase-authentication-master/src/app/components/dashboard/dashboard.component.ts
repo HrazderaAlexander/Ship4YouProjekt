@@ -1,12 +1,14 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from "../../shared/services/auth.service";
-import {Observable} from 'rxjs';
+import {Subject} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { Boat } from 'src/app/shared/services/boat';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BoatData } from 'src/app/BoatData';
+import { Picture } from 'src/app/Picture';
+import {Observable} from 'rxjs/Rx'
 
 export interface StateGroup {
   letter: string;
@@ -28,78 +30,21 @@ export class DashboardComponent implements OnInit {
 
   notesCollection: AngularFirestoreCollection<BoatData>;
   notes:Observable<BoatData[]>;
+  notesCollectionFiles: AngularFirestoreCollection<Picture>;
+  noteFiles:Observable<Picture[]>;
 
-  stateForm: FormGroup = this._formBuilder.group({
-    stateGroup: ['', Validators.required],
-    vermieterGroup: ['', Validators.required],
-    boatTypeGroup: ['', Validators.required],
-    boatNameGroup: ['', Validators.required]
-  });
+  //////////
+  searchterm: string;
 
-  stateGroups: StateGroup[] = [{
-    letter: 'A',
-    names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
-  }, {
-    letter: 'C',
-    names: ['California', 'Colorado', 'Connecticut']
-  }, {
-    letter: 'D',
-    names: ['Delaware']
-  }, {
-    letter: 'F',
-    names: ['Florida']
-  }, {
-    letter: 'G',
-    names: ['Georgia']
-  }, {
-    letter: 'H',
-    names: ['Hawaii']
-  }, {
-    letter: 'I',
-    names: ['Idaho', 'Illinois', 'Indiana', 'Iowa']
-  }, {
-    letter: 'K',
-    names: ['Kansas', 'Kentucky']
-  }, {
-    letter: 'L',
-    names: ['Louisiana']
-  }, {
-    letter: 'M',
-    names: ['Maine', 'Maryland', 'Massachusetts', 'Michigan',
-      'Minnesota', 'Mississippi', 'Missouri', 'Montana']
-  }, {
-    letter: 'N',
-    names: ['Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-      'New Mexico', 'New York', 'North Carolina', 'North Dakota']
-  }, {
-    letter: 'O',
-    names: ['Ohio', 'Oklahoma', 'Oregon']
-  }, {
-    letter: 'P',
-    names: ['Pennsylvania']
-  }, {
-    letter: 'R',
-    names: ['Rhode Island']
-  }, {
-    letter: 'S',
-    names: ['South Carolina', 'South Dakota']
-  }, {
-    letter: 'T',
-    names: ['Tennessee', 'Texas']
-  }, {
-    letter: 'U',
-    names: ['Utah']
-  }, {
-    letter: 'V',
-    names: ['Vermont', 'Virginia']
-  }, {
-    letter: 'W',
-    names: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
-  }];
+  startAt = new Subject();
+  endAt = new Subject();
 
+  boats;
+  allBoats;
 
-  stateGroupOptions: Observable<StateGroup[]>;
-
+  startobs = this.startAt.asObservable();
+  endobs = this.endAt.asObservable();
+//////////
   constructor(
     public authService: AuthService,
     public router: Router,
@@ -112,19 +57,39 @@ export class DashboardComponent implements OnInit {
     this.notesCollection = this.afs.collection('boatData');
     this.notes = this.notesCollection.valueChanges();
 
-    this.stateGroupOptions = this.stateForm.controls['stateGroup']!.valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this._filterGroup(value))
-        )
+    this.notesCollectionFiles = this.afs.collection('files');
+    this.noteFiles = this.notesCollectionFiles.valueChanges();
+
+    this.getallclubs().subscribe((location) => {
+      this.allBoats = location;
+    })
+    Observable.combineLatest(this.startobs, this.endobs).subscribe((value) => {
+      this.firequery(value[0], value[1]).subscribe((location) => {
+        this.boats = location;
+      })
+    })
 
   }
-  private _filterGroup(value: string): StateGroup[] {
-    if (value) {
-      return this.stateGroups
-        .map(group => ({letter: group.letter, names: _filter(group.names, value)}))
-        .filter(group => group.names.length > 0);
+  files: File[] = [];
+
+
+  search($event) {
+    let q = $event.target.value;
+    if (q != '') {
+      this.startAt.next(q);
+      this.endAt.next(q + "\uf8ff");
     }
-    return this.stateGroups;
-    } 
+    else {
+      this.boats = this.allBoats;
+    }
+  }
+
+  firequery(start, end) {
+    return this.afs.collection('boatData', ref => ref.limit(4).orderBy('location').startAt(start).endAt(end)).valueChanges();
+  }
+
+  getallclubs() {
+    return this.afs.collection('boatData', ref => ref.orderBy('location')).valueChanges();
+  }
+
 }

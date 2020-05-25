@@ -1,28 +1,80 @@
-<h2>File Upload</h2>
-<input type="text" placeholder="Typ des Bootes" name="boatType" [(ngModel)]="boatType">
-<input type="text" placeholder="Name des Bootes" name="boatName" [(ngModel)]="boatName">
-<input type="text" placeholder="Baujahr" name="boatVintage" [(ngModel)]="boatVintage">
-<input type="text" placeholder="Location" name="boatLocation" [(ngModel)]="boatLocation">
-<input type="text" placeholder="Vermieter" name="boatLessor" [(ngModel)]="boatLessor">
-<input type="text" placeholder="Cajüten" name="boatCabins" [(ngModel)]="boatCabins">
-<input type="text" placeholder="Länge" name="boatLength" [(ngModel)]="boatLength">
-<input type="text" placeholder="Segel" name="boatSails" [(ngModel)]="boatSail">
-<input type="text" placeholder="Personen" name="boatNumberOfPeople" [(ngModel)]="boatNumberOfPeople">
-<input type="text" placeholder="Masten" name="boatMasts" [(ngModel)]="boatMasts">
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+  <div class="topnav">
+    <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+    <a class="active" href="http://localhost:4200/dashboard">Home</a>
+  </div>
+  </nav>
 
-<!--<div *ngFor="let note of notes | async">
-  <h3>{{note | json}}</h3>
-</div>-->
+  <!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
 
-<button (click)="addData()">Click me!</button>
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                   Boat Details
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Type in the details
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+            
+                <mat-form-field>
+                  <mat-label>Name des Bootes</mat-label>
+                  <input matInput type="text" placeholder="Name des Bootes" name="boatName" [(ngModel)]="boatName">
+                </mat-form-field>
+            
+                <mat-form-field>
+                  <mat-label>Baujahr</mat-label>
+                  <input matInput type="number" min="1000" placeholder="Baujahr" name="boatVintage" [(ngModel)]="boatVintage">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Land</mat-label>
+                  <input matInput type="text" placeholder="Land" name="boatLocation" [(ngModel)]="boatLocation">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Vermieter</mat-label>
+                  <input matInput type="text" placeholder="Vermieter" name="boatLessor" [(ngModel)]="boatLessor">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Cajüten</mat-label>
+                  <input matInput type="number" min="0" placeholder="Cajüten" name="boatCabins" [(ngModel)]="boatCabins">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Länge</mat-label>
+                  <input matInput type="number" min="1" placeholder="Länge" name="boatLength" [(ngModel)]="boatLength">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Segel</mat-label>
+                  <input matInput type="number" min="0" placeholder="Segel" name="boatSails" [(ngModel)]="boatSail">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Personen</mat-label>
+                  <input matInput type="number" min="1" placeholder="Personen" name="boatNumberOfPeople" [(ngModel)]="boatNumberOfPeople">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Masten</mat-label>
+                  <input matInput type="number" min="0" placeholder="Masten" name="boatMasts" [(ngModel)]="boatMasts">
+                </mat-form-field>
+              </mat-expansion-panel>
+            </mat-accordion>
+        </ul>
+      </div>
+    </nav>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">  
+
+<h2>Upload your boat</h2>
 
 <br><br>
-<!--<input type="file" (change)="showPreview($event)">-->
-<!--<button (click)="save()">Save</button>-->
-
-<!--<h2>File View</h2>
-<input type="text" name="file" [(ngModel)]="file" placeholder="Enter Unique Search Key">
-<button (click)="view()">View</button>-->
 
 <div class="dropzone" 
      dropzone
@@ -33,9 +85,12 @@
      <h3>AngularFire Drop Zone</h3>
      <p>Drag and Drop a File</p>
 </div>
+<button (click)="addData()">Click me!</button>
 
 <h3>Uploads</h3>
 
 <div *ngFor="let file of files">
   <upload-task [file]="file"></upload-task>
 </div>
+</main>
+</div>  
