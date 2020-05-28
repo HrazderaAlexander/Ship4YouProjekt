@@ -42,13 +42,9 @@ import {ShowUpload} from './components/newboat/showUpload';
 //FileUpload
 import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
 
-//AngularFireStuff
-import { AngularFirestore} from 'angularfire2/firestore';
-
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -85,8 +81,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    MatExpansionModule,
-    MatGridListModule
+    MatExpansionModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

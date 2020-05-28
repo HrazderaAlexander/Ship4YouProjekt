@@ -1,9 +1,11 @@
 .dropzone { 
+    float: left;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column; 
-    min-width: 80vw;
+   // width: 30vw;
+    width: 30%;
     font-weight: 200;
     height: 300px;
     border: 2px dashed #f16624;
