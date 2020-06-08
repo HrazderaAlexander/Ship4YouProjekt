@@ -45,6 +45,8 @@ export class DashboardComponent implements OnInit {
   search3:String="";
   search4:String="";
 
+  isUsedBoolean:Boolean = false;
+
   startobs = this.startAt.asObservable();
   endobs = this.endAt.asObservable();
 //////////
@@ -64,10 +66,23 @@ export class DashboardComponent implements OnInit {
       element.forEach(data =>{
         if(!this.allLocations.includes(data.location)){
           this.allLocations[this.arrayCounter]=data.location;
+        }
+        if (!this.allNames.includes(data.name)){
           this.allNames[this.arrayCounter]=data.name;
+          this.isUsedBoolean = true;
+        }
+        if (!this.allBrands.includes(data.brand)){
           this.allBrands[this.arrayCounter]=data.brand;
+          this.isUsedBoolean = true;
+        }
+        if (!this.allLessors.includes(data.lessor)){
           this.allLessors[this.arrayCounter]=data.lessor;
+          this.isUsedBoolean = true;
+        }
+        if (this.isUsedBoolean == true)
+        {
           this.arrayCounter++;  
+          this.isUsedBoolean = false;
         }
       })
     });
