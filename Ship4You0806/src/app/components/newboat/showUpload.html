@@ -1,0 +1,106 @@
+
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+  <div class="topnav">
+    <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+    <a class="active" href="http://localhost:4200/dashboard">Home</a>
+  </div>
+  </nav>
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngIf="authService.isLoggedIn">
+            <a class="nav-link passive" (click)="authService.UserDetails()">
+              <i class="fas fa-user"></i>User Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link passive" (click)="authService.BoatDashboard()">
+              <i class="fas fa-ship"></i>Boote
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLinkActive="active" routerLink="/showUpload">
+              <i class="fas fa-upload"></i>Upload Boat
+            </a>
+          </li>
+          <!-- Calling SignOut() Api from AuthService -->
+          <li *ngIf="authService.isLoggedIn" class="nav-item">
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h2 class="set-heading">Boat Upload</h2>
+        </div>
+        <!--Test-->
+        <form class="form1">
+          <label for="boatname" >Boat name</label>
+          <input id="boatname" type="text" placeholder="The name of the boat" [(ngModel)]="boatName" [ngModelOptions]="{standalone: true}">
+
+          <label for="boattype">Boat type</label>
+          <input id="boattype" type="text" placeholder="The type of the boat" [(ngModel)]="boatType" [ngModelOptions]="{standalone: true}">
+
+          <label for="boattype">Brand</label>
+          <input id="boattype" type="text" placeholder="The brand of the boat" [(ngModel)]="boatBrand" [ngModelOptions]="{standalone: true}">
+
+          <label for="buildboat" >Vintage</label>
+          <input id="buildboat" type="text" placeholder="The year the boat was built" [(ngModel)]="boatVintage" [ngModelOptions]="{standalone: true}">
+
+          <label for="boatlocation">Location</label>
+          <input id="boatlocation" type="text" placeholder="Where?" [(ngModel)]="boatLocation" [ngModelOptions]="{standalone: true}">
+
+          <label for="landloard" >Landlord</label>
+          <input id="landloard" type="text" placeholder="The name of landloard" [(ngModel)]="boatLessor" [ngModelOptions]="{standalone: true}">
+
+          <label for="cabins">Cabins</label>
+          <input id="boattype" type="number" min="0" placeholder="The number of cabins" [(ngModel)]="boatCabins" [ngModelOptions]="{standalone: true}">
+
+          <label for="boatlength" >Boat Length</label>
+          <input id="boatlength" type="number" min="0" placeholder="The length of the boat" [(ngModel)]="boatLength" [ngModelOptions]="{standalone: true}">
+
+          <label for="boatsails">Sails</label>
+          <input id="boatsails" type="number" min="0" placeholder="The number of sails" [(ngModel)]="boatSail" [ngModelOptions]="{standalone: true}">
+
+          <label for="persons" >Persons</label>
+          <input id="persons" type="number" min="1" placeholder="The number of persons" [(ngModel)]="boatNumberOfPeople" [ngModelOptions]="{standalone: true}">
+
+          <label for="masts">Masts</label>
+          <input id="masts" type="number" min="0" placeholder="The number of musts" [(ngModel)]="boatMasts" [ngModelOptions]="{standalone: true}">
+
+          <div class="formGroup">
+            <input type="button" class="btn-btnPrimary" style="background-color: lightgreen;" (click)="addData()" value="Save Boat-Details">
+            <input type="button" class="btn-btnPrimary" style="background-color: red;" (click)="authService.BoatDashboard()" value="Cancel">
+          </div>
+  
+      </form>
+        <div class="dropzone" 
+        dropzone
+        (hovered)="toggleHover($event)"
+        (dropped)="onDrop($event)"
+        [class.hovering]="isHovering">
+
+        <h3>Use pictures from your boat...</h3>
+        <p>Drag and Drop a File</p>
+        </div>
+
+        <h3>Uploads</h3>
+
+        <div *ngFor="let file of files">
+        <upload-task [file]="file"></upload-task>
+        </div>
+       </div>
+    </main>  

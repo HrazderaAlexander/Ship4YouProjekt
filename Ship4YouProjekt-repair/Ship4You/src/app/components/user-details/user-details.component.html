@@ -1,0 +1,62 @@
+<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+  <div class="topnav">
+    <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+    <a class="active" href="http://localhost:4200/dashboard">Home</a>
+  </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+  
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" (click)="authService.UserDetails()">
+                <i class="fas fa-user"></i>User Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link passive" (click)="authService.BoatDashboard()">
+                <i class="fas fa-ship"></i>Boote
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/showUpload">
+              <i class="fas fa-upload"></i>Upload Boat
+              </a>
+            </li>
+            <!-- Calling SignOut() Api from AuthService -->
+            <li *ngIf="authService.isLoggedIn" class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>  
+
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="inner-adjust">
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">User Profile</h1>
+    </div>
+    <!-- Show User data, if you loged in -->
+    <div class="row" *ngIf="authService.userData as user">
+      <div class="col-md-12">
+        <div class="media">
+          <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+            alt="{{user.displayName}}">
+          <div class="media-body">
+            <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

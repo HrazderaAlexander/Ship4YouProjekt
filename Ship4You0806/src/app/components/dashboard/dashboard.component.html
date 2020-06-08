@@ -1,0 +1,124 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+  <div class="topnav">
+    <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+    <a class="active" href="http://localhost:4200/dashboard">Home</a>
+  </div>
+  </nav>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngIf="authService.isLoggedIn">
+            <a class="nav-link" (click)="authService.UserDetails()">
+              <i class="fas fa-user"></i>User Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="authService.BoatDashboard()">
+              <i class="fas fa-ship"></i>Boote
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isLoggedIn">
+            <a class="nav-link" routerLinkActive="active" routerLink="/showUpload">
+              <i class="fas fa-upload"></i>Upload Boat
+            </a>
+          </li>
+          <!-- Calling SignOut() Api from AuthService -->
+          <li *ngIf="authService.isLoggedIn" class="nav-item">
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+      <div class="inner-adjust">
+
+         <!--<input type="search" placeholder="Location" (input)="searchLocation($event)"> --> 
+
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+
+          <form>
+            <mat-form-field>
+              <mat-label>Locations</mat-label>
+              <mat-select [(ngModel)]="search" name="search">
+                <mat-option *ngFor="let boatLocation of allLocations" [value]="boatLocation">
+                  {{boatLocation}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Boatname</mat-label>
+              <mat-select [(ngModel)]="search2" name="search2">
+                <mat-option *ngFor="let boatName of allNames" [value]="boatName">
+                  {{boatName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Lessor</mat-label>
+              <mat-select [(ngModel)]="search3" name="search3">
+                <mat-option *ngFor="let boatLessor of allLessors" [value]="boatLessor">
+                  {{boatLessor}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Brand</mat-label>
+              <mat-select [(ngModel)]="search4" name="search4">
+                <mat-option *ngFor="let boatBrand of allBrands" [value]="boatBrand">
+                  {{boatBrand}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+          
+            <ul *ngFor="let boat of allBoats">
+                <mat-accordion *ngIf="boat.location.toUpperCase().includes(search.toUpperCase())">
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Boat name: {{boat.name}},
+                        Location: {{boat.location}}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Click for more details
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-card>
+                    <mat-list>Boat year: {{boat.vintage}}</mat-list>
+                    <mat-list>Boat type: {{boat.type}}</mat-list>
+                    <mat-list>Boat lessor: {{boat.lessor}}</mat-list>
+                    <mat-list>Boat cabins: {{boat.cabins}}</mat-list>
+                    <mat-list>Boat length: {{boat.length}}</mat-list>
+                    <mat-list>Boat sails: {{boat.sail}}</mat-list>
+                    <mat-list>Number of people: {{boat.numberOfPeople}}</mat-list>
+                    <mat-list>Boat masts: {{boat.masts}}</mat-list>
+                  </mat-card>
+      
+                  </mat-expansion-panel>
+                </mat-accordion>
+            </ul>
+            <div *ngIf="boatsFound()">
+              <p>Sorry, no boats found</p>
+            </div>
+        </div>            
+      </div>
+    </main>
+
+  </div>
+</div>
