@@ -59,6 +59,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
+    //Zugreifen auf die Daten von der Datebnbank
     this.notesCollection = this.afs.collection('boatData');
     this.notes = this.notesCollection.valueChanges();
 
@@ -106,6 +107,7 @@ export class DashboardComponent implements OnInit {
   files: File[] = [];
 
 
+  //Nach Location suchen in der Datenbank
   searchLocation($event) {
   
     let q = $event.target.value;
@@ -119,6 +121,7 @@ export class DashboardComponent implements OnInit {
       this.boats = this.allBoats
   }
 
+  //Gibt eine Collection in der 4 Boot nach Location geordnet sind zurück
   firequery(start, end) {
     return this.afs.collection('boatData', ref => ref.limit(4).orderBy('location').startAt(start).endAt(end)).valueChanges();
   }
@@ -129,6 +132,7 @@ export class DashboardComponent implements OnInit {
     return this.afs.collection('boatData', ref => ref.orderBy('location')).valueChanges();
   }
 
+  //Ob ein Boat an der bestimmten Location gefunden wurde.
   boatsFound(){
     for(let boat of this.allBoats){
         if(boat.location.toUpperCase().includes(this.loc.toUpperCase())){

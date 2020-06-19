@@ -118,6 +118,7 @@ export class AuthService {
     })
   }
 
+  //setze Boot in der Datenbank in boats/boat.uid
   SetBoatData(boat){
     const boatRef: AngularFirestoreDocument<any> = this.afs.doc(`boats/${boat.uid}`);
     const boatData: Boat = {

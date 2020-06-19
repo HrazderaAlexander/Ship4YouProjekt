@@ -14,6 +14,7 @@ export class AuthGuard implements CanActivate {
     public router: Router
   ){ }
 
+  //Wenn man nicht eingeloggt ist kommt man zu sign-in
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
