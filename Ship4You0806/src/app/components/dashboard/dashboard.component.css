@@ -75,5 +75,6 @@ body {
 }
 .mat-form-field {
   background-color: lightgray;
-  width: auto;
+  width: 20%;
+  border-radius: 18px
 }

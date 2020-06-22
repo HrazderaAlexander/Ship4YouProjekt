@@ -45,8 +45,6 @@
 
       <div class="inner-adjust">
 
-         <!--<input type="search" placeholder="Location" (input)="searchLocation($event)"> --> 
-
         <div class="pt-3 pb-2 mb-3 border-bottom">
 
           <form>
@@ -85,10 +83,13 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
+            <button mat-fab color="primary" (click)="resetSearchData()">
+              <mat-icon>delete</mat-icon>
+            </button>
           </form>
-          
+
             <ul *ngFor="let boat of allBoats">
-                <mat-accordion *ngIf="boat.location.toUpperCase().includes(search.toUpperCase())">
+                <mat-accordion  *ngIf="boat.location.toUpperCase().includes(search.toUpperCase()) && boat.name.toUpperCase().includes(search2.toUpperCase()) && boat.lessor.toUpperCase().includes(search3.toUpperCase()) && boat.brand.toUpperCase().includes(search4.toUpperCase())">
                   <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
@@ -109,7 +110,6 @@
                     <mat-list>Number of people: {{boat.numberOfPeople}}</mat-list>
                     <mat-list>Boat masts: {{boat.masts}}</mat-list>
                   </mat-card>
-      
                   </mat-expansion-panel>
                 </mat-accordion>
             </ul>

@@ -45,6 +45,7 @@ import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

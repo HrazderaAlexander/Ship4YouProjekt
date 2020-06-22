@@ -38,6 +38,11 @@ export class DashboardComponent implements OnInit {
   allBoats = [];
 
   loc= ""
+  boatName=""
+
+  //Button
+  locationButtonBool: boolean = true;
+  nameButtonBool: boolean = true;
 
   //////
   search:String="";
@@ -140,5 +145,12 @@ export class DashboardComponent implements OnInit {
         }
     }
     return true;
+  }
+
+  resetSearchData(){
+    this.search = "";
+    this.search2 = "";
+    this.search3 = "";
+    this.search4 = "";
   }
 }
