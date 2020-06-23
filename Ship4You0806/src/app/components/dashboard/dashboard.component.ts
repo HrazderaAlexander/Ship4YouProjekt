@@ -45,10 +45,10 @@ export class DashboardComponent implements OnInit {
   nameButtonBool: boolean = true;
 
   //////
-  search:String="";
-  search2:String="";
-  search3:String="";
-  search4:String="";
+  searchLocationString:String="";
+  searchBoatNameString:String="";
+  searchLessorString:String="";
+  searchBrandString:String="";
 
   isUsedBoolean:Boolean = false;
 
@@ -148,9 +148,9 @@ export class DashboardComponent implements OnInit {
   }
 
   resetSearchData(){
-    this.search = "";
-    this.search2 = "";
-    this.search3 = "";
-    this.search4 = "";
+    this.searchLocationString = "";
+    this.searchBoatNameString = "";
+    this.searchLessorString = "";
+    this.searchBrandString = "";
   }
 }

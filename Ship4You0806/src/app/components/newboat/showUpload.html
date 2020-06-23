@@ -46,43 +46,54 @@
         <div class="pt-3 pb-2 mb-3 border-bottom">
           <h2 class="set-heading">Boat Upload</h2>
         </div>
+        <div *ngIf="checkID()===0" class="alert alert-danger" role="alert">
+          Bootname oder Brand existiert bereits!
+        </div>
+        <div *ngIf="checkID()===1" class="alert alert-danger" role="alert">
+          Bootname oder Brand darf nicht leer sein!
+        </div>
+        <div *ngIf="checkID()===2" class="alert alert-danger" role="alert">
+          Nicht alle Felder wurden ausgefüllt!
+        </div>
+
+
         <!--Test-->
         <form class="form1">
-          <label for="boatname" >Boat name</label>
+          <label for="boatname" >Boat name*</label>
           <input id="boatname" type="text" placeholder="The name of the boat" [(ngModel)]="boatName" [ngModelOptions]="{standalone: true}">
 
-          <label for="boattype">Boat type</label>
+          <label for="boattype">Boat type*</label>
           <input id="boattype" type="text" placeholder="The type of the boat" [(ngModel)]="boatType" [ngModelOptions]="{standalone: true}">
 
-          <label for="boattype">Brand</label>
+          <label for="boattype">Brand*</label>
           <input id="boattype" type="text" placeholder="The brand of the boat" [(ngModel)]="boatBrand" [ngModelOptions]="{standalone: true}">
 
-          <label for="buildboat" >Vintage</label>
+          <label for="buildboat" >Vintage*</label>
           <input id="buildboat" type="text" placeholder="The year the boat was built" [(ngModel)]="boatVintage" [ngModelOptions]="{standalone: true}">
 
-          <label for="boatlocation">Location</label>
+          <label for="boatlocation">Location*</label>
           <input id="boatlocation" type="text" placeholder="Where?" [(ngModel)]="boatLocation" [ngModelOptions]="{standalone: true}">
 
-          <label for="landloard" >Landlord</label>
+          <label for="landloard" >Landlord*</label>
           <input id="landloard" type="text" placeholder="The name of landloard" [(ngModel)]="boatLessor" [ngModelOptions]="{standalone: true}">
 
-          <label for="cabins">Cabins</label>
+          <label for="cabins">Cabins*</label>
           <input id="boattype" type="number" min="0" placeholder="The number of cabins" [(ngModel)]="boatCabins" [ngModelOptions]="{standalone: true}">
 
-          <label for="boatlength" >Boat Length</label>
+          <label for="boatlength" >Boat Length*</label>
           <input id="boatlength" type="number" min="0" placeholder="The length of the boat" [(ngModel)]="boatLength" [ngModelOptions]="{standalone: true}">
 
-          <label for="boatsails">Sails</label>
+          <label for="boatsails">Sails*</label>
           <input id="boatsails" type="number" min="0" placeholder="The number of sails" [(ngModel)]="boatSail" [ngModelOptions]="{standalone: true}">
 
-          <label for="persons" >Persons</label>
+          <label for="persons" >Persons*</label>
           <input id="persons" type="number" min="1" placeholder="The number of persons" [(ngModel)]="boatNumberOfPeople" [ngModelOptions]="{standalone: true}">
 
-          <label for="masts">Masts</label>
+          <label for="masts">Masts*</label>
           <input id="masts" type="number" min="0" placeholder="The number of musts" [(ngModel)]="boatMasts" [ngModelOptions]="{standalone: true}">
 
           <div class="formGroup">
-            <input type="button" class="btn-btnPrimary" style="background-color: lightgreen;" (click)="addData()" value="Save Boat-Details">
+          <input [disabled]="!boolCheck" type="button" class="btn-btnPrimary" style="background-color: lightgreen;" (click)="addData()" value="Save Boat-Details">
             <input type="button" class="btn-btnPrimary" style="background-color: red;" (click)="authService.BoatDashboard()" value="Cancel">
           </div>
   

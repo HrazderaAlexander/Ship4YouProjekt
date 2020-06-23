@@ -19,9 +19,9 @@ import { Observable } from 'rxjs';
 
 export class ShowUpload{
 
-  boatName:string;
+  boatName:string = "";
   boatType:string;
-  boatBrand:string;
+  boatBrand:string = "";
   boatVintage: number;
   boatLocation:string;
   boatLessor:string;
@@ -33,12 +33,16 @@ export class ShowUpload{
 
   selectedImage: any = null;
 
+  ID : string[] = [];
+  IDCounter : number = 0;
+  boolCheck : boolean = false; //0 BoatBrand+Boatname  1 Both is "" -1 Keinen Fehler
+
   url:string;
   //id:string;
   file:string;
   _db:AngularFirestore;
-  //notesCollection: AngularFirestoreCollection<BoatData>
-  //notes: Observable<BoatData[]>;
+  notesCollection: AngularFirestoreCollection<BoatData>
+  notes: Observable<BoatData[]>;
 
   constructor(public authService: AuthService, @Inject(AngularFireStorage) private storage: AngularFireStorage, @Inject(FileService) private fileService: FileService, 
   private db: AngularFirestore, private afs: AngularFirestore) {
@@ -46,8 +50,8 @@ export class ShowUpload{
    }
 
   ngOnInit() {
-    //this.notesCollection = this.afs.collection('boatData');
-    //this.notes = this.notesCollection.valueChanges();
+    this.notesCollection = this.afs.collection('boatData');
+    this.notes = this.notesCollection.valueChanges();
     this.fileService.getImageDetailList();
   }
 
@@ -57,34 +61,7 @@ export class ShowUpload{
     boatDataCollection.add({type: this.boatType, name: this.boatName, vintage: this.boatVintage, brand: this.boatBrand, location: this.boatLocation, 
     lessor: this.boatLessor, cabins: this.boatCabins, length: this.boatLength, sail: this.boatSail, numberOfPeople: this.boatNumberOfPeople,
     masts: this.boatMasts})
-    //this.todos.push({ content: 'value'});
   }
-
-  /*showPreview(event: any) {
-      this.selectedImage = event.target.files[0];
-  }*/
-
-  /*save() {
-      var name = this.selectedImage.name;
-      const fileRef = this.storage.ref(name);
-      this.storage.upload(name, this.selectedImage).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-            this.url = url;
-            Picture.saveFilePath = this.boatType + this.boatName;
-            //Picture.saveFilePath = ;
-        
-            this.fileService.insertImageDetails(Picture.saveFilePath,this.url);
-            alert('Upload Successful');
-          })
-        })
-      ).subscribe();
-  }*/
-
-  /*view()
-  {
-    this.fileService.getImage(this.file);
-  }*/
 
   isHovering: boolean;
 
@@ -99,6 +76,37 @@ export class ShowUpload{
       Picture.saveFilePath = this.boatBrand + this.boatName;
       this.files.push(files.item(i));
     }
+  }
+
+  checkID() : number{
+    this.notes.forEach(element =>{
+      element.forEach(data => {
+        this.ID[this.IDCounter] = data.brand+data.name;
+        this.IDCounter++;
+      })
+    })
+
+    for(var i = 0; i< this.IDCounter; i++){
+      if(this.ID[i] === this.boatBrand+this.boatName){
+        this.boolCheck = false;
+        return 0;
+      }
+      else if(this.boatBrand == "" ||  this.boatName == ""){
+        this.boolCheck = false;
+        return 1;
+      }
+      else if(this.boatBrand == "" ||  this.boatName == ""){
+        this.boolCheck = false;
+        return 2;
+      }
+      else
+        this.boolCheck = true;
+    }
+
+    if(this.boolCheck)
+      return -1;
+    else
+      this.IDCounter = 0;
   }
 
 }

@@ -50,7 +50,7 @@
           <form>
             <mat-form-field>
               <mat-label>Locations</mat-label>
-              <mat-select [(ngModel)]="search" name="search">
+              <mat-select [(ngModel)]="searchLocationString" name="searchLocationString">
                 <mat-option *ngFor="let boatLocation of allLocations" [value]="boatLocation">
                   {{boatLocation}}
                 </mat-option>
@@ -59,7 +59,7 @@
 
             <mat-form-field>
               <mat-label>Boatname</mat-label>
-              <mat-select [(ngModel)]="search2" name="search2">
+              <mat-select [(ngModel)]="searchBoatNameString" name="searchBoatNameString">
                 <mat-option *ngFor="let boatName of allNames" [value]="boatName">
                   {{boatName}}
                 </mat-option>
@@ -68,7 +68,7 @@
 
             <mat-form-field>
               <mat-label>Lessor</mat-label>
-              <mat-select [(ngModel)]="search3" name="search3">
+              <mat-select [(ngModel)]="searchLessorString" name="searchLessorString">
                 <mat-option *ngFor="let boatLessor of allLessors" [value]="boatLessor">
                   {{boatLessor}}
                 </mat-option>
@@ -77,7 +77,7 @@
 
             <mat-form-field>
               <mat-label>Brand</mat-label>
-              <mat-select [(ngModel)]="search4" name="search4">
+              <mat-select [(ngModel)]="searchBrandString" name="searchBrandString">
                 <mat-option *ngFor="let boatBrand of allBrands" [value]="boatBrand">
                   {{boatBrand}}
                 </mat-option>
@@ -89,7 +89,7 @@
           </form>
 
             <ul *ngFor="let boat of allBoats">
-                <mat-accordion  *ngIf="boat.location.toUpperCase().includes(search.toUpperCase()) && boat.name.toUpperCase().includes(search2.toUpperCase()) && boat.lessor.toUpperCase().includes(search3.toUpperCase()) && boat.brand.toUpperCase().includes(search4.toUpperCase())">
+                <mat-accordion  *ngIf="boat.location.toUpperCase().includes(searchLocationString.toUpperCase()) && boat.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && boat.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && boat.brand.toUpperCase().includes(searchBrandString.toUpperCase())">
                   <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
