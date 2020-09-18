@@ -57,8 +57,8 @@ export class ShowUpload{
 
   addData()
   {
-    let boatDataCollection = this._db.collection<BoatData>('boatData');
-    boatDataCollection.add({type: this.boatType, name: this.boatName, vintage: this.boatVintage, brand: this.boatBrand, location: this.boatLocation, 
+    let boatDataCollection = this._db.collection<BoatData>('boatData').doc(this.boatBrand + this.boatName);
+    boatDataCollection.set({type: this.boatType, name: this.boatName, vintage: this.boatVintage, brand: this.boatBrand, location: this.boatLocation, 
     lessor: this.boatLessor, cabins: this.boatCabins, length: this.boatLength, sail: this.boatSail, numberOfPeople: this.boatNumberOfPeople,
     masts: this.boatMasts})
   }
