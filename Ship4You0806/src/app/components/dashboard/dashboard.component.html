@@ -43,50 +43,54 @@
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
-      <div class="inner-adjust">
-
         <div class="pt-3 pb-2 mb-3 border-bottom">
 
           <form>
             <mat-form-field>
               <mat-label>Locations</mat-label>
-              <mat-select [(ngModel)]="searchLocationString" name="searchLocationString">
-                <mat-option *ngFor="let boatLocation of allLocations" [value]="boatLocation">
+              <select matNativeControl required [(ngModel)]="searchLocationString" name="searchLocationString">
+                <option value="" selected></option>
+                <option *ngFor="let boatLocation of allLocations" [value]="boatLocation">
                   {{boatLocation}}
-                </mat-option>
-              </mat-select>
+                </option>
+              </select>
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>Boatname</mat-label>
-              <mat-select [(ngModel)]="searchBoatNameString" name="searchBoatNameString">
-                <mat-option *ngFor="let boatName of allNames" [value]="boatName">
+              <select matNativeControl required [(ngModel)]="searchBoatNameString" name="searchBoatNameString">
+                <option value="" selected></option>
+                <option *ngFor="let boatName of allNames" [value]="boatName">
                   {{boatName}}
-                </mat-option>
-              </mat-select>
+                </option>
+              </select>
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>Lessor</mat-label>
-              <mat-select [(ngModel)]="searchLessorString" name="searchLessorString">
-                <mat-option *ngFor="let boatLessor of allLessors" [value]="boatLessor">
+              <select matNativeControl required [(ngModel)]="searchLessorString" name="searchLessorString">
+                <option value="" selected></option>
+                <option *ngFor="let boatLessor of allLessors" [value]="boatLessor">
                   {{boatLessor}}
-                </mat-option>
-              </mat-select>
+                </option>
+              </select>
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>Brand</mat-label>
-              <mat-select [(ngModel)]="searchBrandString" name="searchBrandString">
-                <mat-option *ngFor="let boatBrand of allBrands" [value]="boatBrand">
+              <select matNativeControl required [(ngModel)]="searchBrandString" name="searchBrandString">
+                <option value="" selected></option>
+                <option *ngFor="let boatBrand of allBrands" [value]="boatBrand">
                   {{boatBrand}}
-                </mat-option>
-              </mat-select>
+                </option>
+              </select>
             </mat-form-field>
             <button mat-fab color="primary" (click)="resetSearchData()">
               <mat-icon>delete</mat-icon>
             </button>
           </form>
+
+        </div>
 
             <ul *ngFor="let boat of allBoats">
                 <mat-accordion  *ngIf="boat.location.toUpperCase().includes(searchLocationString.toUpperCase()) && boat.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && boat.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && boat.brand.toUpperCase().includes(searchBrandString.toUpperCase())">
@@ -115,9 +119,7 @@
             </ul>
             <div *ngIf="boatsFound()">
               <p>Sorry, no boats found</p>
-            </div>
-        </div>            
-      </div>
+            </div>            
     </main>
 
   </div>
