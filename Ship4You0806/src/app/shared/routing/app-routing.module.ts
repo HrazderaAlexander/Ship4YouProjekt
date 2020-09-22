@@ -27,10 +27,9 @@ const routes: Routes = [
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user-details', component: UserDetailsComponent},
   //{path: 'showUpload', component: ShowUpload}
-  {    path: 'image', component: ImagesComponent, children: [
-    { path: 'upload', component: ImageComponent },
-    { path: 'list', component: ImageListComponent }
-  ]}
+  {path: 'image', component: ImagesComponent, children: [
+    { path: 'upload', component: ImageComponent }]},
+    { path: 'list', component: DashboardComponent }
 ];
 
 @NgModule({

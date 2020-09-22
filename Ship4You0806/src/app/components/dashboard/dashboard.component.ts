@@ -8,6 +8,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { BoatData } from 'src/app/BoatData';
 import { Picture } from 'src/app/Picture';
 import {Observable, combineLatest} from 'rxjs'
+import { ImageService } from 'src/app/shared/image.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -59,11 +60,20 @@ export class DashboardComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
-    private afs: AngularFirestore
+    private afs: AngularFirestore, private service: ImageService
   ) { }
 
-  ngOnInit() {
+  imageList: any[];
+  rowIndexArray: any[];
 
+  ngOnInit() {
+    this.service.getImageDetailList();
+    this.service.imageDetailList.snapshotChanges().subscribe(
+      list => {
+        this.imageList = list.map(item => { return item.payload.val(); });
+        this.rowIndexArray =  Array.from(Array(Math.ceil((this.imageList.length+1) / 3)).keys());
+      }
+    );
     //Zugreifen auf die Daten von der Datebnbank
     this.notesCollection = this.afs.collection('boatData');
     this.notes = this.notesCollection.valueChanges();

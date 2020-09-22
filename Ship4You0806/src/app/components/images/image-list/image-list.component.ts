@@ -13,6 +13,7 @@ export class ImageListComponent implements OnInit {
   constructor(private service: ImageService) { }
 
   ngOnInit() {
+    this.service.getImageDetailList();
     this.service.imageDetailList.snapshotChanges().subscribe(
       list => {
         this.imageList = list.map(item => { return item.payload.val(); });
