@@ -13,6 +13,9 @@ import { AuthGuard } from "../../shared/guard/auth.guard";
 import { SecureInnerPagesGuard } from "../../shared/guard/secure-inner-pages.guard";
 import { UserDetailsComponent } from 'src/app/components/user-details/user-details.component';
 import {ShowUpload} from 'src/app/components/newboat/showUpload'
+import { ImagesComponent } from 'src/app/components/images/images.component';
+import { ImageComponent } from 'src/app/components/images/image/image.component';
+import { ImageListComponent } from 'src/app/components/images/image-list/image-list.component';
 
 // Array mit allen routen
 const routes: Routes = [
@@ -23,7 +26,11 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user-details', component: UserDetailsComponent},
-  {path: 'showUpload', component: ShowUpload}
+  //{path: 'showUpload', component: ShowUpload}
+  {    path: 'image', component: ImagesComponent, children: [
+    { path: 'upload', component: ImageComponent },
+    { path: 'list', component: ImageListComponent }
+  ]}
 ];
 
 @NgModule({

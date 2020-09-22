@@ -46,6 +46,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
+import { ImagesComponent } from './components/images/images.component';
+import { ImageComponent } from './components/images/image/image.component';
+import { ImageListComponent } from './components/images/image-list/image-list.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import {MatIconModule} from '@angular/material/icon';
     FileDropDirective,
     ShowUpload,
     UploadTaskComponent,
-    DropzoneDirective
+    DropzoneDirective,
+    ImagesComponent,
+    ImageComponent,
+    ImageListComponent
     ],
   imports: [
     BrowserModule,

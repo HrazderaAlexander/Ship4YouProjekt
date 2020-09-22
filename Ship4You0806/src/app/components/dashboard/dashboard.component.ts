@@ -96,7 +96,6 @@ export class DashboardComponent implements OnInit {
     this.notesCollectionFiles = this.afs.collection('files');
     this.noteFiles = this.notesCollectionFiles.valueChanges();
 
-
     this.getallclubs().subscribe((location) => {
       this.allBoats = location;
       this.boats = this.allBoats;
@@ -109,7 +108,7 @@ export class DashboardComponent implements OnInit {
       })
     })
   }
-  files: File[] = [];
+  files = [];
 
 
   //Nach Location suchen in der Datenbank
@@ -135,6 +134,10 @@ export class DashboardComponent implements OnInit {
   getallclubs() {
 
     return this.afs.collection('boatData', ref => ref.orderBy('location')).valueChanges();
+  }
+
+  getallFiles(){
+    return this.afs.collection('files').valueChanges();
   }
 
   //Ob ein Boat an der bestimmten Location gefunden wurde.
