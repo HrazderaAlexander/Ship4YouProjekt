@@ -26,7 +26,7 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="authService.isLoggedIn">
-            <a class="nav-link" routerLinkActive="active" routerLink="/showUpload">
+            <a class="nav-link" routerLinkActive="active" routerLink="/add">
               <i class="fas fa-upload"></i>Upload Boat
             </a>
           </li>
@@ -92,7 +92,14 @@
 
         </div>
 
-            <ul *ngFor="let boat of allBoats">
+        <div *ngFor="let customer of customers" style="width: 300px;">
+          <!--<div *ngIf="customer.name === 'Robert'">-->
+            <div>
+          <app-customer-details [customer]='customer'></app-customer-details>
+        </div>
+      </div>
+
+            <!--<ul *ngFor="let boat of allBoats">
                 <mat-accordion  *ngIf="boat.location.toUpperCase().includes(searchLocationString.toUpperCase()) && boat.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && boat.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && boat.brand.toUpperCase().includes(searchBrandString.toUpperCase())">
                   <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -113,40 +120,17 @@
                     <mat-list>Boat sails: {{boat.sail}}</mat-list>
                     <mat-list>Number of people: {{boat.numberOfPeople}}</mat-list>
                     <mat-list>Boat masts: {{boat.masts}}</mat-list>
+
                   </mat-card>
                   </mat-expansion-panel>
                 </mat-accordion>
-            </ul>
+            </ul>-->
             <div *ngIf="boatsFound()">
               <p>Sorry, no boats found</p>
-            </div>  
-            <table *ngIf="imageList">
-              <tr *ngFor="let i of rowIndexArray">
-                <td>
-                  <div class="imagebox" *ngIf="i==0">
-                    <a routerLink="/image/upload">
-                      <img src="/assets/img/new_image.jpg" class="img-fluid">
-                      <span class="imagebox-desc">Insert New Image</span></a>
-                  </div>
-                  <div class="imagebox" *ngIf="i!=0">
-                    <img [src]="imageList[3*i-1].imageUrl" class="img-fluid">
-                    <span class="imagebox-desc">{{imageList[3*i-1].caption}}</span>
-                  </div>
-                </td>
-                <td *ngIf="imageList[3*i]">
-                  <div class="imagebox">
-                    <img [src]="imageList[3*i].imageUrl" class="img-fluid">
-                    <span class="imagebox-desc">{{imageList[3*i].caption}}</span>
-                  </div>
-                </td>
-                <td *ngIf="imageList[3*i+1]">
-                  <div class="imagebox">
-                    <img [src]="imageList[3*i+1].imageUrl" class="img-fluid">
-                    <span class="imagebox-desc">{{imageList[3*i+1].caption}}</span>
-                  </div>
-                </td>
-              </tr>
-            </table>
+            </div>
+            <div style="margin-top:20px;">
+              <button type="button" class="button btn-danger" (click)='deleteCustomers()'>Delete All</button>
+            </div>
     </main>
 
   </div>

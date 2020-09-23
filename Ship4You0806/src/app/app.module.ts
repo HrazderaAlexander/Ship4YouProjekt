@@ -46,9 +46,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
-import { ImagesComponent } from './components/images/images.component';
-import { ImageComponent } from './components/images/image/image.component';
-import { ImageListComponent } from './components/images/image-list/image-list.component';
+import { CustomersListComponent } from './components/customers/customers-list/customers-list.component';
+import { CreateCustomerComponent } from './components/customers/create-customer/create-customer.component';
+import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 
 @NgModule({
   declarations: [
@@ -64,9 +64,9 @@ import { ImageListComponent } from './components/images/image-list/image-list.co
     ShowUpload,
     UploadTaskComponent,
     DropzoneDirective,
-    ImagesComponent,
-    ImageComponent,
-    ImageListComponent
+    CustomersListComponent,
+    CustomerDetailsComponent,
+    CreateCustomerComponent
     ],
   imports: [
     BrowserModule,

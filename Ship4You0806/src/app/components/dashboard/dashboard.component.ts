@@ -9,6 +9,7 @@ import { BoatData } from 'src/app/BoatData';
 import { Picture } from 'src/app/Picture';
 import {Observable, combineLatest} from 'rxjs'
 import { ImageService } from 'src/app/shared/image.service';
+import { CustomerService } from '../customers/customer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +17,8 @@ import { ImageService } from 'src/app/shared/image.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  customers: any;
 
   notesCollection: AngularFirestoreCollection<BoatData>;
   notes:Observable<BoatData[]>;
@@ -60,20 +63,14 @@ export class DashboardComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
-    private afs: AngularFirestore, private service: ImageService
+    private afs: AngularFirestore, private service: ImageService, private customerService: CustomerService
   ) { }
 
   imageList: any[];
   rowIndexArray: any[];
 
   ngOnInit() {
-    this.service.getImageDetailList();
-    this.service.imageDetailList.snapshotChanges().subscribe(
-      list => {
-        this.imageList = list.map(item => { return item.payload.val(); });
-        this.rowIndexArray =  Array.from(Array(Math.ceil((this.imageList.length+1) / 3)).keys());
-      }
-    );
+    this.getCustomersList();
     //Zugreifen auf die Daten von der Datebnbank
     this.notesCollection = this.afs.collection('boatData');
     this.notes = this.notesCollection.valueChanges();
@@ -119,6 +116,22 @@ export class DashboardComponent implements OnInit {
     })
   }
   files = [];
+
+  getCustomersList() {
+    this.customerService.getCustomersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(customers => {
+      this.customers = customers;
+    });
+  }
+
+  deleteCustomers() {
+    this.customerService.deleteAll().catch(err => console.log(err));
+  }
 
 
   //Nach Location suchen in der Datenbank

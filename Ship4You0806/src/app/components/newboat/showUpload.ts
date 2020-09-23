@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-showUpload',
   templateUrl: './showUpload.html',
   styleUrls: ['./showUpload.scss']
 })

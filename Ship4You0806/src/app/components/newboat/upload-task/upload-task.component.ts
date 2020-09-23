@@ -48,7 +48,10 @@ export class UploadTaskComponent implements OnInit {
       // The file's download URL
       finalize( async() =>  {
         this.downloadURL = await ref.getDownloadURL().toPromise();
-
+        console.log(this.downloadURL);
+        //Picture.saveDownloadUrl = this.downloadURL;
+        //console.log("PictureURL: " + Picture.saveDownloadUrl);
+        localStorage.setItem('downloadUrl', this.downloadURL);
         this.db.collection('files').doc(Picture.saveFilePath).set( { downloadURL: this.downloadURL, path });
       }),
     );
