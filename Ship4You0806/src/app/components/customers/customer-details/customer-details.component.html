@@ -1,12 +1,21 @@
 <div *ngIf="customer">
+  <mat-accordion>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Boat name: {{customer.name}},
-        Location: {{customer.location}}
+        <img src="{{customer.imageUrl}}" width="100px" height="50px">
       </mat-panel-title>
       <mat-panel-description>
-        Click for more details
+        <div>
+
+          <div>
+            Boat name: {{customer.name}}
+          </div>
+          <div>
+            Location: {{customer.location}}
+          </div>
+        </div>
+        <!--Click for more details-->
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-card>
@@ -18,10 +27,10 @@
     <mat-list>Boat sails: {{customer.sail}}</mat-list>
     <mat-list>Number of people: {{customer.numberOfPeople}}</mat-list>
     <mat-list>Boat masts: {{customer.masts}}</mat-list>
-    <img src="{{customer.imageUrl}}" width="200" height="200">
 
   </mat-card>
   </mat-expansion-panel>
+</mat-accordion>
   <!--<div>
     <p>Boat Name: {{customer.name}}</p>
   </div>
