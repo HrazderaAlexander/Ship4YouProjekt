@@ -50,18 +50,18 @@
               <mat-label>Locations</mat-label>
               <select matNativeControl required [(ngModel)]="searchLocationString" name="searchLocationString">
                 <option value="" selected></option>
-                <option *ngFor="let boatLocation of allLocations" [value]="boatLocation">
-                  {{boatLocation}}
+                <option *ngFor="let boat of customers" [value]="boat">
+                  {{boat.location}}
                 </option>
               </select>
             </mat-form-field>
-
+            
             <mat-form-field>
               <mat-label>Boatname</mat-label>
               <select matNativeControl required [(ngModel)]="searchBoatNameString" name="searchBoatNameString">
                 <option value="" selected></option>
-                <option *ngFor="let boatName of allNames" [value]="boatName">
-                  {{boatName}}
+                <option *ngFor="let boat of customers" [value]="boat.name">
+                  {{boat.name}}
                 </option>
               </select>
             </mat-form-field>
@@ -70,8 +70,8 @@
               <mat-label>Lessor</mat-label>
               <select matNativeControl required [(ngModel)]="searchLessorString" name="searchLessorString">
                 <option value="" selected></option>
-                <option *ngFor="let boatLessor of allLessors" [value]="boatLessor">
-                  {{boatLessor}}
+                <option *ngFor="let boat of customers" [value]="boat.lessor">
+                  {{boat.lessor}}
                 </option>
               </select>
             </mat-form-field>
@@ -80,8 +80,8 @@
               <mat-label>Brand</mat-label>
               <select matNativeControl required [(ngModel)]="searchBrandString" name="searchBrandString">
                 <option value="" selected></option>
-                <option *ngFor="let boatBrand of allBrands" [value]="boatBrand">
-                  {{boatBrand}}
+                <option *ngFor="let boat of customers" [value]="boat.brand">
+                  {{boat.brand}}
                 </option>
               </select>
             </mat-form-field>
@@ -95,7 +95,11 @@
         <div *ngFor="let customer of customers" style="width: 300px;">
           <!--<div *ngIf="customer.name === 'Robert'">-->
             <div>
-          <app-customer-details [customer]='customer'></app-customer-details>
+              <ul *ngIf="customer.name === searchBoatNameString || customer.location === searchLocationString || customer.lessor === searchLessorString || customer.brand === searchBrandString" >
+              <!--<mat-accordion  *ngIf="customer.location.toUpperCase().includes(searchLocationString.toUpperCase()) && customer.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && customer.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && customer.brand.toUpperCase().includes(searchBrandString.toUpperCase())">-->
+              <app-customer-details [customer]='customer'></app-customer-details>
+            </ul>
+            <!--</mat-accordion>-->
         </div>
       </div>
 

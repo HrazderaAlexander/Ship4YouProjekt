@@ -19,6 +19,7 @@ import { CustomerService } from '../customers/customer.service';
 export class DashboardComponent implements OnInit {
 
   customers: any;
+  selected = 'option2';
 
   notesCollection: AngularFirestoreCollection<BoatData>;
   notes:Observable<BoatData[]>;
@@ -49,10 +50,10 @@ export class DashboardComponent implements OnInit {
   nameButtonBool: boolean = true;
 
   //////
-  searchLocationString:String="";
-  searchBoatNameString:String="";
-  searchLessorString:String="";
-  searchBrandString:String="";
+  searchLocationString:string="";
+  searchBoatNameString:string="";
+  searchLessorString:string="";
+  searchBrandString:string="";
 
   isUsedBoolean:Boolean = false;
 
