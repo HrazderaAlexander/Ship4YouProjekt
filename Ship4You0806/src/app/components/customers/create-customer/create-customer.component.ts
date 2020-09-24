@@ -1,5 +1,7 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Picture } from 'src/app/Picture';
 
 import { Customer } from '../customer';
@@ -8,14 +10,14 @@ import { CustomerService } from '../customer.service';
 @Component({
   selector: 'app-create-customer',
   templateUrl: './create-customer.component.html',
-  styleUrls: ['./create-customer.component.css']
+  styleUrls: ['./create-customer.component.scss']
 })
 export class CreateCustomerComponent implements OnInit {
 
   customer: Customer = new Customer();
   submitted = false;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,9 +34,25 @@ export class CreateCustomerComponent implements OnInit {
     this.customer = new Customer();
   }
 
+  isHovering: boolean;
+
+  files: File[] = [];
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
+  onDrop(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      //Picture.saveFilePath = this.boatBrand + this.boatName;
+      this.files.push(files.item(i));
+    }
+  }
+
   onSubmit() {
     this.submitted = true;
     this.save();
+    this.router.navigateByUrl("/dashboard");
   }
 
 }

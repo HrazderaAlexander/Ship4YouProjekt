@@ -1,4 +1,4 @@
-<h3>Create Customer</h3>
+<h3>Create Boat</h3>
 <p>{{submitted}}</p>
 <!--<div [hidden]="submitted" style="width: 300px;">-->
   <form (ngSubmit)="onSubmit()">
@@ -24,11 +24,25 @@
 
     <!--<app-showUpload></app-showUpload>-->
 
+    <div class="dropzone" 
+dropzone
+(hovered)="toggleHover($event)"
+(dropped)="onDrop($event)"
+[class.hovering]="isHovering">
+
+<h3>Upload pictures</h3>
+<p>Drag and Drop a File</p>
+</div>
+
+<div *ngFor="let file of files">
+  <upload-task [file]="file"></upload-task>
+  </div>
+
     <button type="submit" class="btn btn-success">Submit</button>
   </form>
 <!--</div>-->
 
 <div [hidden]="!submitted">
   <h4>You submitted successfully!</h4>
-  <button class="btn btn-success" (click)="newCustomer()">Add</button>
+  <!--<button class="btn btn-success" (click)="newCustomer()">Add</button>-->
 </div>
