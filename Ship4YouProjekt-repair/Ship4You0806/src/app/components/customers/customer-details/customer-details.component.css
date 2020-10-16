@@ -1,0 +1,13 @@
+.mat-expansion-panel{
+    min-width: 800px;
+    min-height: 50px;
+    padding: 28%;
+}
+
+.disable_ripple:hover{
+    background: white !important;
+}
+
+.mat-card{
+    margin-top: 10%;
+}

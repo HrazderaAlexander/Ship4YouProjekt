@@ -1,0 +1,203 @@
+<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+  <div class="topnav">
+    <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+    <a class="active" href="http://localhost:4200/dashboard">Home</a>
+  </div>
+  </nav>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngIf="authService.isLoggedIn">
+            <a class="nav-link" (click)="authService.UserDetails()">
+              <i class="fas fa-user"></i>User Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link passive" (click)="authService.BoatDashboard()">
+              <i class="fas fa-ship"></i>Boote
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isLoggedIn">
+            <a class="nav-link" routerLinkActive="active" routerLink="/add">
+              <i class="fas fa-upload"></i>Upload Boat
+            </a>
+          </li>
+          <!-- Calling SignOut() Api from AuthService -->
+          <li *ngIf="authService.isLoggedIn" class="nav-item">
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+<h3 class="title">Create Boat</h3>
+<!--<div [hidden]="submitted" style="width: 300px;">-->
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+
+      <div *ngIf="checkID()===0" class="alert alert-danger" role="alert">
+        Bootname oder Brand existiert bereits!
+      </div>
+      <div *ngIf="checkID()===1" class="alert alert-danger" role="alert">
+        Bootname oder Brand darf nicht leer sein!
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput id="name" [(ngModel)]="customer.name" name="name">
+        <mat-icon class="material-icons color_green" *ngIf="customer.name != '' && customer.name != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.name == '' || customer.name == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+        <mat-hint>Hint: Stern</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Cabins</mat-label>
+        <input matInput id="cabins" [(ngModel)]="customer.cabins" name="cabins">
+        <mat-icon class="material-icons color_green" *ngIf="customer.cabins > 0 && customer.cabins != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.cabins <= 0 || customer.cabins == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+          <mat-hint>Hint: 3</mat-hint>
+      </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Masts</mat-label>
+      <input matInput id="masts" [(ngModel)]="customer.masts" name="masts">
+      <mat-icon class="material-icons color_green" *ngIf="customer.masts > 0 && customer.masts != null" matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-icon class="material-icons color_red" *ngIf="customer.masts <= 0 || customer.masts == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+    <mat-hint>Hint: 1</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Vintage</mat-label>
+      <input matInput id="vintage" [(ngModel)]="customer.vintage" name="vintage">
+      <mat-icon class="material-icons color_green" *ngIf="customer.vintage > 0 && customer.vintage != null" matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-icon class="material-icons color_red" *ngIf="customer.vintage <= 0 || customer.vintage == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+    <mat-hint>Hint: 2020</mat-hint>
+    </mat-form-field>
+    </div>
+
+    <div class="form-group">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Brand</mat-label>
+        <input matInput id="brand" [(ngModel)]="customer.brand" name="brand">
+        <mat-icon class="material-icons color_green" *ngIf="customer.brand != '' && customer.brand != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.brand == '' || customer.brand == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+        <mat-hint>Hint: Laser</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Length</mat-label>
+        <input matInput id="length" [(ngModel)]="customer.length" name="length">
+        <mat-icon class="material-icons color_green" *ngIf="customer.length > 0 && customer.length != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.length <= 0 || customer.length == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+        <mat-hint>Hint: 20</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Lessor</mat-label>
+        <input matInput id="lessor" [(ngModel)]="customer.lessor" name="lessor">
+        <mat-icon class="material-icons color_green" *ngIf="customer.lessor != '' && customer.lessor != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.lessor == '' || customer.lessor == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+        <mat-hint>Hint: Mustermann</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput id="type" [(ngModel)]="customer.type" name="type">
+        <mat-icon class="material-icons color_green" *ngIf="customer.type != '' && customer.type != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.type == '' || customer.type == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+        <mat-hint>Hint: Segelboot</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput id="location" [(ngModel)]="customer.location" name="location">
+        <mat-icon class="material-icons color_green" *ngIf="customer.location != '' && customer.location != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.location == '' || customer.location == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+          <mat-hint>Hint: Attersee</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sails</mat-label>
+        <input matInput id="sail" [(ngModel)]="customer.sail" name="sail">
+        <mat-icon class="material-icons color_green" *ngIf="customer.sail > 0 && customer.sail != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.sail <= 0 || customer.sail == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+        <mat-hint>Hint: 3</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Number of people</mat-label>
+        <input matInput id="numberOfPeople" [(ngModel)]="customer.numberOfPeople" name="numberOfPeople">
+        <mat-icon class="material-icons color_green" *ngIf="customer.numberOfPeople > 0 && customer.numberOfPeople != null" matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon class="material-icons color_red" *ngIf="customer.numberOfPeople <= 0 || customer.numberOfPeople == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+          <mat-hint>Hint: 4</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+<div>
+  <div class="dropzone" 
+  dropzone
+  
+  (hovered)="toggleHover($event)"
+  (dropped)="onDrop($event)"
+  [class.hovering]="isHovering">
+  
+  <h3>Upload title picture</h3>
+  <p>Drag and Drop a File</p>
+  </div>
+  <div class="dropzone-document" 
+dropzone
+
+(hovered)="toggleHover($event)"
+(dropped)="onDropDocument($event)"
+[class.hovering]="isHovering">
+
+<h3>Upload document</h3>
+<p>Drag and Drop a File</p>
+</div>
+<div class="dropzone-multi-pic" 
+  dropzone
+  
+  (hovered)="toggleHover($event)"
+  (dropped)="onDrop($event)"
+  [class.hovering]="isHovering">
+  
+  <h3>Upload more pictures</h3>
+  <p>Drag and Drop a File</p>
+  </div>
+
+</div>
+    
+
+
+
+<div *ngFor="let file of files">
+  <upload-task [file]="file"></upload-task>
+  </div>
+
+    <button [disabled]="checkID()===0||checkID()===1||checkID()===2" type="submit" class="btn btn-success">Submit</button>
+  </form>
+<!--</div>-->
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!--<button class="btn btn-success" (click)="newCustomer()">Add</button>-->
+</div>
+    </main>
