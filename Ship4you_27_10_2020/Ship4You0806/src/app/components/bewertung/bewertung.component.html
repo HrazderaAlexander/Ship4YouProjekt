@@ -1,0 +1,52 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+    <div class="topnav">
+      <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
+      <a href="">About</a>
+      <a href="">Contact</a>
+      <a class="active" href="http://localhost:4200/dashboard">Home</a>
+    </div>
+</nav>
+
+<mat-grid-list class="mat-grid-test" cols="2" rowHeight="2:1">
+    <div class="row">
+    </div>
+</mat-grid-list>
+       
+    <hr/>
+        <div id="content">
+            <h2 id="headline">Rating of {{boat.name}}</h2>
+            <!--
+            <mat-list class="mat-list-design">
+              <mat-list-item>Boat brand: {{boat.brand}}</mat-list-item>
+              <mat-list-item>Boat year: {{boat.vintage}}</mat-list-item>
+              <mat-list-item>Boat type: {{boat.type}}</mat-list-item>
+              <mat-list-item>Boat lessor: {{boat.lessor}}</mat-list-item>
+              <mat-list-item>Boat cabins: {{boat.cabins}}</mat-list-item>
+              <mat-list-item>Boat length: {{boat.length}}</mat-list-item>
+              <mat-list-item>Boat sails: {{boat.sail}}</mat-list-item>
+              <mat-list-item>Number of people: {{boat.numberOfPeople}}</mat-list-item>
+              <mat-list-item>Boat masts: {{boat.masts}}</mat-list-item>
+            </mat-list>      
+            -->
+            <mat-card class="create-card">
+              <mat-card-content>          
+          <div class="input-full-width" fxFlex="25%">
+            <ngb-rating [(rate)]="currentRate">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 4">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+            <hr>
+            <pre>Rate: <b>{{currentRate}}</b></pre>
+          <mat-form-field class="width-grey">
+            <mat-label aria-ar>Rating-Text</mat-label>
+            <textarea matInput type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="form-footer" fxFlex="25%">
+          <button mat-flat-button color="primary" class="btn-create" (click)="addFeedback()">Create Feedback</button>
+        </div>
+      </mat-card-content>
+      </mat-card>
+      </div>

@@ -1,0 +1,45 @@
+<div *ngIf="customer">
+  <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="disable_ripple">
+      <mat-panel-title>
+        <img src="{{customer.imageUrl}}" width="180px" height="180px">
+      </mat-panel-title>
+      <mat-panel-description>
+        <div>
+
+          <div>
+            Boat name: {{customer.name}}
+          </div>
+          <div>
+            Location: {{customer.location}}
+          </div>
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  
+    <mat-card>
+      <mat-list>Boat brand: {{customer.brand}}</mat-list>
+      <mat-list>Boat year: {{customer.vintage}}</mat-list>
+      <mat-list>Boat type: {{customer.type}}</mat-list>
+      <mat-list>Boat lessor: {{customer.lessor}}</mat-list>
+      <mat-list>Boat cabins: {{customer.cabins}}</mat-list>
+      <mat-list>Boat length: {{customer.length}}</mat-list>
+      <mat-list>Boat sails: {{customer.sail}}</mat-list>
+      <mat-list>Number of people: {{customer.numberOfPeople}}</mat-list>
+      <mat-list>Boat masts: {{customer.masts}}</mat-list>
+    </mat-card>
+  <div class="example-button-container">
+    <button (click)="clickRating()" type="submit" class="btn btn-success">Bewertung</button>
+    <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+      <mat-icon>chat</mat-icon>
+    </button>
+
+  </div>
+  
+  </mat-expansion-panel>
+  
+</mat-accordion>
+   
+  <hr/>
+</div>
