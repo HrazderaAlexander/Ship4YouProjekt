@@ -28,8 +28,10 @@ export class CustomerDetailsComponent implements OnInit {
       .deleteCustomer(this.customer.key)
       .catch(err => console.log(err));
   }
-  clickRating(){
-    localStorage.setItem('boatForRating', this.customer.key)
+  clickRating(brand, name){
+    localStorage.setItem('boatForRating', this.customer.key);
+    localStorage.setItem('boatForRatingName', name);
+    localStorage.setItem('boatForRatingBrand', brand)
     this.router.navigateByUrl('/bewertung');
   }
 

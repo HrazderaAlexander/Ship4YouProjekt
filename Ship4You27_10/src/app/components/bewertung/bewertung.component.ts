@@ -6,6 +6,9 @@ import { CustomerService } from '../customers/customer.service';
 import { Rating } from './rating';
 import { DatePipe } from '@angular/common';
 import { MaxLengthValidator } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bewertung',
@@ -22,7 +25,7 @@ export class BewertungComponent implements OnInit {
   isChosen:boolean = false;
   newRating:Rating = new Rating();
 
-  constructor(private customerService: CustomerService, public authService: AuthService, private datePipe:DatePipe) { 
+  constructor(private customerService: CustomerService, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
@@ -61,15 +64,26 @@ export class BewertungComponent implements OnInit {
     }
   }
 
+  SetFeedbackData() {
+    let ratingId = localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName') + localStorage.getItem('userUid');
+
+    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`feedback/${ratingId}`);
+
+    const feedbackData: Rating = {
+      idRating: ratingId,
+      username: localStorage.getItem('userDisplayname'),
+      date: this.mydate,
+      ratingStars: this.currentRate,
+      text: this.feedback
+    }
+    return feedbackRef.set(feedbackData, {
+      merge: true
+    })
+  }
+
   addFeedback(){
-    const user = JSON.parse(localStorage.getItem('user'));
-    this.newRating.username = user.displayName;
-    this.newRating.date = this.mydate;
-    this.newRating.ratingStars = this.currentRate;
-    this.newRating.text = this.feedback;
-
-    this.customersRef.push(customer);
-
+    this.SetFeedbackData();
+    this.router.navigateByUrl('/dashboard')
   }
 
   choosePhoto(){

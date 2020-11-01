@@ -43,9 +43,8 @@
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
-        <div class="pt-3 pb-2 mb-3 border-bottom">
+      <div class="container custom-container-2">
 
-          <form>
             <mat-form-field>
               <mat-label>Locations</mat-label>
               <select matNativeControl required [(ngModel)]="searchLocationString" name="searchLocationString">
@@ -88,7 +87,6 @@
             <button mat-fab color="primary" (click)="resetSearchData()">
               <mat-icon>delete</mat-icon>
             </button>
-          </form>
 
         </div>
 

@@ -28,6 +28,9 @@ export class AuthService {
         this.userData = user; //user - Variable (Das File user.ts wird aufgerufen)
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
+        localStorage.setItem('userUid', this.userData.uid);
+        localStorage.setItem('userDisplayname', this.userData.displayName);
+        console.log("User Uid: " + this.userData.uid);
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));

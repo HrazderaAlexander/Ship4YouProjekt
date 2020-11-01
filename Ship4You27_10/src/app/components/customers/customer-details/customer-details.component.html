@@ -30,7 +30,7 @@
       <mat-list>Boat masts: {{customer.masts}}</mat-list>
     </mat-card>
   <div class="example-button-container">
-    <button (click)="clickRating()" type="submit" class="btn btn-success">Bewertung</button>
+    <button (click)="clickRating(customer.brand, customer.name)" type="submit" class="btn btn-success">Bewertung</button>
     <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
       <mat-icon>chat</mat-icon>
     </button>
