@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Customer } from '../customers/customer';
@@ -9,11 +9,14 @@ import { MaxLengthValidator } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bewertung',
   templateUrl: './bewertung.component.html',
-  styleUrls: ['./bewertung.component.css']
+  styleUrls: ['./bewertung.component.scss']
 })
 export class BewertungComponent implements OnInit {
   currentRate = 6;
@@ -24,13 +27,70 @@ export class BewertungComponent implements OnInit {
   feedback:string="";
   isChosen:boolean = false;
   newRating:Rating = new Rating();
+  isHovering: boolean;
 
-  constructor(private customerService: CustomerService, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
+  //UploadTask
+  //@Input() file: File;
+
+  task: AngularFireUploadTask;
+
+  percentage: Observable<number>;
+  snapshot: Observable<any>;
+  downloadURL: string;
+  //------------------
+
+  constructor(private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
+  }
+
+  files: File[] = [];
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
+  onDrop(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      this.files.push(files.item(i));
+      //this.file = files.item(i);
+      this.startUpload(files.item(i))
+    }
+    //if (this.file != null){
+      //this.startUpload(file);
+    //}
   }
 
   ngOnInit() {
     this.getCustomersList();
+  }
+
+  startUpload(file) {
+
+    // The storage path
+    const path = `test/${Date.now()}_${file.name}`;
+
+    // Reference to storage bucket
+    const ref = this.storage.ref(path);
+
+    // The main task
+    this.task = this.storage.upload(path, file);
+
+    // Progress monitoring
+    this.percentage = this.task.percentageChanges();
+
+    this.snapshot   = this.task.snapshotChanges().pipe(
+      tap(console.log),
+      // The file's download URL
+      finalize( async() =>  {
+        this.downloadURL = await ref.getDownloadURL().toPromise();
+
+        this.afs.collection('files').add( { downloadURL: this.downloadURL, path });
+      }),
+    );
+  }
+
+  isActive(snapshot) {
+    return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
   getCustomersList() {

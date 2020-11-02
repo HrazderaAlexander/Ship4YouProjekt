@@ -53,6 +53,7 @@ import { BewertungComponent } from './components/bewertung/bewertung.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { UploaderComponent } from './uploader/uploader.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { DatePipe } from '@angular/common';
     CustomersListComponent,
     CustomerDetailsComponent,
     CreateCustomerComponent,
-    BewertungComponent
+    BewertungComponent,
+    UploaderComponent
     ],
   imports: [
     BrowserModule,
