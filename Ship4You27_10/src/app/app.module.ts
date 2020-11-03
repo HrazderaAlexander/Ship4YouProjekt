@@ -26,7 +26,6 @@ import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { DropzoneDirective } from './dropzone.directive';
-import { UploadTaskComponent } from './components/newboat/upload-task/upload-task.component';
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
@@ -40,7 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {ShowUpload} from './components/newboat/showUpload';
 
 //FileUpload
-import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
+//import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
 
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -53,7 +52,7 @@ import { BewertungComponent } from './components/bewertung/bewertung.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
-import { UploaderComponent } from './uploader/uploader.component';
+import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.component';
 
 @NgModule({
   declarations: [
@@ -64,16 +63,13 @@ import { UploaderComponent } from './uploader/uploader.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     UserDetailsComponent,
-    FileSelectDirective,
-    FileDropDirective,
     ShowUpload,
-    UploadTaskComponent,
     DropzoneDirective,
     CustomersListComponent,
     CustomerDetailsComponent,
     CreateCustomerComponent,
     BewertungComponent,
-    UploaderComponent
+    UploadTaskComponent
     ],
   imports: [
     BrowserModule,

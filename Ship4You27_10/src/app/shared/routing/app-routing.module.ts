@@ -17,7 +17,6 @@ import { SecureInnerPagesGuard } from "../../shared/guard/secure-inner-pages.gua
 import { UserDetailsComponent } from 'src/app/components/user-details/user-details.component';
 import {ShowUpload} from 'src/app/components/newboat/showUpload'
 import { BewertungComponent } from 'src/app/components/bewertung/bewertung.component';
-import { UploaderComponent } from 'src/app/uploader/uploader.component';
 
 // Array mit allen routen
 const routes: Routes = [
@@ -31,8 +30,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'add', component: CreateCustomerComponent },
   {path: 'showUpload', component: ShowUpload},
-  {path: 'bewertung', component: BewertungComponent},
-  {path: 'uploader', component: UploaderComponent}
+  {path: 'bewertung', component: BewertungComponent}
   //{path: 'showUpload', component: ShowUpload}
 ];
 
