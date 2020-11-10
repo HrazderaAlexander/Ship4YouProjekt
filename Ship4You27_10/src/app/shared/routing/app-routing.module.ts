@@ -30,12 +30,12 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'add', component: CreateCustomerComponent },
   {path: 'showUpload', component: ShowUpload},
-  {path: 'bewertung', component: BewertungComponent}
+  {path: 'bewertung', component: BewertungComponent, runGuardsAndResolvers: 'always'}
   //{path: 'showUpload', component: ShowUpload}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation:'reload'})],
   exports: [RouterModule]
 })
 

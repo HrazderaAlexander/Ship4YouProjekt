@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from "../../shared/services/auth.service";
 import {Subject} from 'rxjs';
 import {startWith, map, window} from 'rxjs/operators';
-import { Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BoatData } from 'src/app/BoatData';
 import { Picture } from 'src/app/Picture';
@@ -60,12 +60,14 @@ export class DashboardComponent implements OnInit {
   startobs = this.startAt.asObservable();
   endobs = this.endAt.asObservable();
 //////////
+navigationSubscription;
+
   constructor(
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
     private afs: AngularFirestore, private service: ImageService, private customerService: CustomerService
-  ) { }
+  ) {  }
 
   imageList: any[];
   rowIndexArray: any[];

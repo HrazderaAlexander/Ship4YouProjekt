@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../customer';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-customer-details',
@@ -12,7 +13,7 @@ export class CustomerDetailsComponent implements OnInit {
 
   @Input() customer: Customer;
 
-  constructor(private customerService: CustomerService, private router: Router) { }
+  constructor(private customerService: CustomerService, private router: Router, private afs: AngularFirestore) {  }
 
   ngOnInit() {
   }
@@ -31,7 +32,7 @@ export class CustomerDetailsComponent implements OnInit {
   clickRating(brand, name){
     localStorage.setItem('boatForRating', this.customer.key);
     localStorage.setItem('boatForRatingName', name);
-    localStorage.setItem('boatForRatingBrand', brand)
+    localStorage.setItem('boatForRatingBrand', brand);
     this.router.navigateByUrl('/bewertung');
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Customer } from '../customers/customer';
@@ -8,10 +8,11 @@ import { DatePipe } from '@angular/common';
 import { MaxLengthValidator } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Route } from '@angular/compiler/src/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-bewertung',
@@ -26,8 +27,12 @@ export class BewertungComponent implements OnInit {
   id:string = localStorage.getItem('boatForRating');
   feedback:string="";
   isChosen:boolean = false;
-  newRating:Rating = new Rating();
   isHovering: boolean;
+  ratingId:string="";
+  feedbackDb:any[] = []; 
+  feedbackRef: AngularFirestoreDocument<any>[] = [];
+
+  feedbackButtonPressed = false;
 
   //UploadTask
   //@Input() file: File;
@@ -42,6 +47,8 @@ export class BewertungComponent implements OnInit {
   constructor(private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
+
+  //reload page
 
   files: File[] = [];
 
@@ -61,6 +68,7 @@ export class BewertungComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
     this.getCustomersList();
   }
 
@@ -125,12 +133,10 @@ export class BewertungComponent implements OnInit {
   }
 
   SetFeedbackData() {
-    let ratingId = localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName') + localStorage.getItem('userUid');
-
-    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`feedback/${ratingId}`);
+    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${this.ratingId}`);
 
     const feedbackData: Rating = {
-      idRating: ratingId,
+      idRating: this.ratingId.toLocaleString(),
       username: localStorage.getItem('userDisplayname'),
       date: this.mydate,
       ratingStars: this.currentRate,
@@ -141,13 +147,17 @@ export class BewertungComponent implements OnInit {
     })
   }
 
+  getFeedbackData() {
+    for(let i =0; i < parseInt(this.ratingId); i++){
+      this.feedbackRef[i] = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${i}`);
+      this.feedbackRef[i].valueChanges().subscribe(item => this.feedbackDb[i] = item);
+    }
+    this.feedbackButtonPressed = true;
+  }
+
   addFeedback(){
     this.SetFeedbackData();
     this.router.navigateByUrl('/dashboard')
-  }
-
-  choosePhoto(){
-
   }
 
 }
