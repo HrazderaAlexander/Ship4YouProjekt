@@ -30,7 +30,7 @@ import { DropzoneDirective } from './dropzone.directive';
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteModule, MatSelectModule, MatMenuModule } from '@angular/material';
+import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteModule, MatSelectModule, MatMenuModule, MatSliderModule } from '@angular/material';
 
 // Create Boad
 import { HttpClientModule } from '@angular/common/http';
@@ -87,6 +87,7 @@ import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.
     MatAutocompleteModule,
     MatGridListModule,
     MatButtonModule,
+    MatSliderModule,
     NgbModule,
     HttpClientModule,
     FormsModule,

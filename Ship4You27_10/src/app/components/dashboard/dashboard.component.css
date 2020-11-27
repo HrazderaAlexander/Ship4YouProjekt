@@ -85,5 +85,17 @@ body {
   padding-top: 4%;
   padding-bottom: 4%;
   width: 94%;
+}
+.mat-slider {
+  width: 180px;
+}
 
+.labelSize{
+  font-size: 20px;
+}
+.mat-card{
+  margin-top: 10%;
+}
+.mat-expansion-panel{
+  background-color: whitesmoke;
 }

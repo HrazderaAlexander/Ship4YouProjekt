@@ -12,6 +12,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class CustomerDetailsComponent implements OnInit {
 
   @Input() customer: Customer;
+  favButtonPressed:boolean = false;
 
   constructor(private customerService: CustomerService, private router: Router, private afs: AngularFirestore) {  }
 
@@ -34,6 +35,10 @@ export class CustomerDetailsComponent implements OnInit {
     localStorage.setItem('boatForRatingName', name);
     localStorage.setItem('boatForRatingBrand', brand);
     this.router.navigateByUrl('/bewertung');
+  }
+
+  clickFavButton(brand, name){
+    
   }
 
 }
