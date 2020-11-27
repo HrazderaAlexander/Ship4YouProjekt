@@ -1,42 +1,93 @@
 <!-- Top navigation -->
 <nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+  <h1>Ship4You</h1>
   <div class="topnav">
     <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
-    <a href="">About</a>
-    <a href="">Contact</a>
-    <a class="active" href="http://localhost:4200/dashboard">Home</a>
+      <a *ngIf="authService.isLoggedIn" class="nav-link" (click)="authService.UserDetails()">
+        <i class="fas fa-user"></i>User Profile
+      </a>
+      <a class="nav-link active" (click)="authService.BoatDashboard()">
+        <i class="fas fa-ship"></i>Dashboard
+      </a>
+      <a *ngIf="authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/add">
+        <i class="fas fa-upload"></i>Upload Boat
+      </a>
+    <!-- Calling SignOut() Api from AuthService -->
+      <a *ngIf="authService.isLoggedIn" class="nav-link" (click)="authService.SignOut()">
+        <i class="fas fa-sign-out-alt"></i>Log out
+      </a>
   </div>
   </nav>
-
 <!-- Sidebar navigation -->
 <div class="container-fluid">
   <div class="row">
 
     <nav class="col-md-2 d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item" *ngIf="authService.isLoggedIn">
-            <a class="nav-link" (click)="authService.UserDetails()">
-              <i class="fas fa-user"></i>User Profile
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" (click)="authService.BoatDashboard()">
-              <i class="fas fa-ship"></i>Boote
-            </a>
-          </li>
-          <li class="nav-item" *ngIf="authService.isLoggedIn">
-            <a class="nav-link" routerLinkActive="active" routerLink="/add">
-              <i class="fas fa-upload"></i>Upload Boat
-            </a>
-          </li>
-          <!-- Calling SignOut() Api from AuthService -->
-          <li *ngIf="authService.isLoggedIn" class="nav-item">
-            <a class="nav-link" (click)="authService.SignOut()">
-              <i class="fas fa-sign-out-alt"></i>Log out
-            </a>
-          </li>
-        </ul>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header class="disable_ripple">
+                <mat-panel-title>
+                  <h6>Filter:</h6>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <br>
+                <label class="labelSize"><strong>Boat length</strong></label>
+                <mat-slider *ngIf="authService.isLoggedIn"
+                  thumbLabel
+                  [displayWith]="formatLabel"
+                  min="1"
+                  max="100">
+                </mat-slider>
+              <hr>
+                <label class="labelSize"><strong>Boat sails</strong></label>
+                <mat-slider *ngIf="authService.isLoggedIn"
+                  thumbLabel
+                  [displayWith]="formatLabelYear"
+                  min="1"
+                  max="20">
+                </mat-slider>
+              <hr>
+                <label class="labelSize"><strong>Boat masts</strong></label>
+                <mat-slider *ngIf="authService.isLoggedIn"
+                  thumbLabel
+                  [displayWith]="formatLabelYear"
+                  min="1"
+                  max="20">
+                </mat-slider>
+              <hr>
+                <label class="labelSize"><strong>Boat cabins</strong></label>
+                <mat-slider *ngIf="authService.isLoggedIn"
+                  thumbLabel
+                  [displayWith]="formatLabelYear"
+                  min="1"
+                  max="50">
+                </mat-slider>
+              <hr>
+                <label class="labelSize"><strong>Boat year</strong></label>
+                <mat-slider *ngIf="authService.isLoggedIn"
+                  thumbLabel
+                  [displayWith]="formatLabelYear"
+                  min="1980"
+                  max="2020">
+                </mat-slider>
+              <hr>
+                <label class="labelSize"><strong>Amount of People</strong></label>
+                <mat-slider *ngIf="authService.isLoggedIn"
+                  thumbLabel
+                  [displayWith]="formatLabelYear"
+                  min="1"
+                  max="35">
+                </mat-slider>
+        </mat-expansion-panel>
+      <br>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="disable_ripple">
+            <mat-panel-title>
+              <h6>Favourite Boats:</h6>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
       </div>
     </nav>
 
@@ -44,7 +95,8 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
       <div class="container custom-container-2">
-
+        <mat-icon>search</mat-icon>
+      
             <mat-form-field>
               <mat-label>Locations</mat-label>
               <select matNativeControl required [(ngModel)]="searchLocationString" name="searchLocationString">
@@ -84,8 +136,7 @@
                 </option>
               </select>
             </mat-form-field>
-            <button mat-fab color="primary" (click)="resetSearchData()">
-              <mat-icon>delete</mat-icon>
+            <button mat-button color="primary" (click)="resetSearchData()">Refresh Search
             </button>
 
         </div>

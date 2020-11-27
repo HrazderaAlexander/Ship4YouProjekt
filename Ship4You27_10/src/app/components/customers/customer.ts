@@ -14,4 +14,5 @@ export class Customer {
   sail:number;
   numberOfPeople:number; //Anzahl der Personen am Boot
   masts:number;
+  rating:number;
 }
