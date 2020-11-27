@@ -1,0 +1,65 @@
+<div *ngIf="customer">
+  <mat-accordion>
+    <button mat-icon-button color="" (click)="clickFavButton(customer.brand, customer.name)">
+      <mat-icon>favorite</mat-icon>
+    </button>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="disable_ripple">
+      <mat-panel-title>
+        <img src="{{customer.imageUrl}}" width="180px" height="180px">
+      </mat-panel-title>
+      <mat-panel-description>
+        <div>
+
+          <div>
+            Boat name: {{customer.name}}
+          </div>
+          <div>
+            Location: {{customer.location}}
+          </div>
+        </div>
+      </mat-panel-description>
+      <div class="example-button-container">
+        <button (click)="clickRating(customer.brand, customer.name)" type="submit" class="btn btn-success">Bewertung</button>
+        <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+          <mat-icon>chat</mat-icon>
+        </button>
+      </div>  
+    </mat-expansion-panel-header>
+    <mat-card>
+      <h6>Boat Information:</h6>
+      <table>
+        <tr>
+          <th>Brand</th>
+          <th>Type</th>
+          <th>Lessor</th>
+          <th>Cabins</th>
+        </tr>
+      
+        <tr>
+          <td>{{customer.brand}}</td>
+          <td>{{customer.type}}</td>
+          <td>{{customer.lessor}}</td>
+          <td>{{customer.cabins}}</td>
+        </tr>
+        <tr>
+          <th>Length</th>
+          <th>Sails</th>
+          <th>Amount of people</th>
+          <th>Masts</th>
+        </tr>
+        <tr>
+          <td>{{customer.length}}</td>
+          <td>{{customer.sail}}</td>
+          <td>{{customer.numberOfPeople}}</td>
+          <td>{{customer.masts}}</td>
+        </tr>
+      </table>
+    </mat-card>
+  
+  </mat-expansion-panel>
+  
+</mat-accordion>
+   
+  <hr/>
+</div>

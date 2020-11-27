@@ -1,0 +1,96 @@
+<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
+  <div class="topnav">
+    <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+    <a class="active" href="http://localhost:4200/dashboard">Home</a>
+  </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+  
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" (click)="authService.UserDetails()">
+                <i class="fas fa-user"></i>User Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link passive" (click)="authService.BoatDashboard()">
+                <i class="fas fa-ship"></i>Boote
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/add">
+              <i class="fas fa-upload"></i>Upload Boat
+              </a>
+            </li>
+            <!-- Calling SignOut() Api from AuthService -->
+            <li *ngIf="authService.isLoggedIn" class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>  
+
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="inner-adjust">
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">User Profile</h1>
+    </div>
+    <!-- Show User data, if you loged in -->
+    <div class="row" *ngIf="authService.userData as user">
+      <div class="col-md-12">
+        <div class="media">
+          <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+            alt="{{user.displayName}}">
+          <div class="media-body">
+            <h1>{{(user.displayName) ? user.displayName : 'User'}}</h1>
+          </div>
+        </div>
+      </div>
+      <div>
+        <br>
+        <br>
+        <h5>Change Password:</h5>
+        <mat-form-field hidden>
+          <input matInput placeholder="OldPassword" [ngModel]="oldUserpassword" [type]="hide ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-hint *ngIf="!oldUserpassword">Enter your old password</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="OldPassword" [ngModel]="oldUserpassword" [type]="hide ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-hint *ngIf="!oldUserpassword">Enter your old password</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="NewPassword" [ngModel]="newPassword" [type]="hide2 ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-hint *ngIf="!newPassword">Enter your new password</mat-hint>
+        </mat-form-field>  
+        <button mat-button color="primary" (click)="authService.ChangePassword(oldUserpassword,newPassword,user.email)">Save Changes</button>
+        <br>
+        <br>
+        <h5>Change Email:</h5>
+        <mat-form-field>
+          <input matInput type="email" placeholder="OldEmail" [ngModel]="oldEmail" required>
+          <mat-hint *ngIf="!oldEmail">Enter your old Email</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="email" placeholder="NewEmail" [ngModel]="newEmail" required>
+          <mat-hint *ngIf="!newEmail">Enter your new password</mat-hint>
+        </mat-form-field>  
+        <button mat-button color="primary" (click)="authService.ChangeEmail(user.password, newEmail, oldEmail)">Save Changes</button>
+
+      </div>
+    </div>
+  </div>
+
+</main>
