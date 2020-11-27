@@ -3,11 +3,21 @@
   <h1>Ship4You</h1>
   <div class="topnav">
     <a *ngIf="!authService.isLoggedIn" href="http://vm135.htl-leonding.ac.at:8080/sign-in">Login</a>
-    <a href="">About</a>
-    <a href="">Contact</a>
-    <a class="active" href="http://vm135.htl-leonding.ac.at:8080/dashboard">Home</a>
-  </div>
-  </nav>
+    <a *ngIf="authService.isLoggedIn" class="nav-link" (click)="authService.UserDetails()">
+      <i class="fas fa-user"></i>User Profile
+    </a>
+    <a class="nav-link active" (click)="authService.BoatDashboard()">
+      <i class="fas fa-ship"></i>Dashboard
+    </a>
+    <a *ngIf="authService.isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/add">
+      <i class="fas fa-upload"></i>Upload Boat
+    </a>
+  <!-- Calling SignOut() Api from AuthService -->
+    <a *ngIf="authService.isLoggedIn" class="nav-link" (click)="authService.SignOut()">
+      <i class="fas fa-sign-out-alt"></i>Log out
+    </a>
+</div>
+</nav>
 <!-- Sidebar navigation -->
 <div class="container-fluid">
   <div class="row">
