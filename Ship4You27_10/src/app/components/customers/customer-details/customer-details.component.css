@@ -10,4 +10,17 @@
 
 .mat-card{
     margin-top: 10%;
+    margin-bottom: -10%;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

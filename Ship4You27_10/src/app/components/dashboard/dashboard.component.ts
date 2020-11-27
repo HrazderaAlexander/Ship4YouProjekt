@@ -18,6 +18,13 @@ import { CustomerService } from '../customers/customer.service';
 })
 export class DashboardComponent implements OnInit {
 
+  formatLabel(value: number) {
+    return value + 'm';
+  }
+  formatLabelYear(value: number) {
+    return value;
+  }
+
   customers: any;
   selected = 'option2';
 
@@ -62,6 +69,8 @@ export class DashboardComponent implements OnInit {
 //////////
 navigationSubscription;
 
+feedbackData : any;
+
   constructor(
     public authService: AuthService,
     public router: Router,
@@ -74,6 +83,8 @@ navigationSubscription;
 
   ngOnInit() {
     this.getCustomersList();
+
+    
     //Zugreifen auf die Daten von der Datebnbank
     this.notesCollection = this.afs.collection('boatData');
     this.notes = this.notesCollection.valueChanges();
