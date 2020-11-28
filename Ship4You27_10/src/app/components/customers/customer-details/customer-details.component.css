@@ -20,7 +20,7 @@ table {
 
 th, td {
   overflow: hidden;
-  width: 200px;
+  width: 180px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

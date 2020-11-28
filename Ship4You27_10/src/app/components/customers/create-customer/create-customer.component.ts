@@ -23,8 +23,7 @@ export class CreateCustomerComponent implements OnInit {
 
   ID : string[] = [];
   IDCounter : number = 0;
-  boolCheck : boolean = false; //0 BoatBrand+Boatname  1 Both is "" -1 Keinen Fehler
-
+  boolCheck : boolean = false;
 
   constructor(private customerService: CustomerService, private router: Router, public authService: AuthService,
     public ngZone: NgZone,
@@ -43,6 +42,7 @@ export class CreateCustomerComponent implements OnInit {
   save() {
     //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
     this.customer.imageUrl = localStorage.getItem('downloadUrl');
+    this.customer.userId = localStorage.getItem('userUid');
     this.customerService.createCustomer(this.customer);
     this.customer = new Customer();
   }
@@ -134,13 +134,14 @@ validateDocument(name: String) {
 
 
     checkID() : number{
+      this.IDCounter = 0;
       for(let i = 0; i < this.customers.length; i++)
       {
         console.log(this.customers[i].brand+this.customers[i].name);
         this.ID[this.IDCounter] = this.customers[i].brand+this.customers[i].name;
         this.IDCounter++;  
       }
-      console.log(this.ID + "    " + this.IDCounter);
+      console.log(this.IDCounter);
 
     for(var i = 0; i< this.IDCounter; i++){
       if(this.ID[i] === this.customer.brand+this.customer.name){
@@ -151,13 +152,13 @@ validateDocument(name: String) {
         this.boolCheck = false;
         return 1;
       }
-      else if(this.customer.brand == null ||  this.customer.name == null || this.customer.cabins == null ||this.customer.length == null || this.customer.lessor == null
-       || this.customer.location == null || this.customer.masts == null || this.customer.numberOfPeople == null || this.customer.vintage == null || this.customer.sail == null){
+      else
+        this.boolCheck = true;
+    }
+    if(this.customer.brand == null ||  this.customer.name == null || this.customer.cabins == null ||this.customer.length == null || this.customer.lessor == null
+      || this.customer.location == null || this.customer.masts == null || this.customer.numberOfPeople == null || this.customer.vintage == null || this.customer.sail == null){
         this.boolCheck = false;
         return 2;
-      }
-      else
-        return -1;
     }
 
     if(this.boolCheck)

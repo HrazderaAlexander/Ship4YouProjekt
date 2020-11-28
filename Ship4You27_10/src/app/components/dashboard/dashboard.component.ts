@@ -4,12 +4,14 @@ import { AuthService } from "../../shared/services/auth.service";
 import {Subject} from 'rxjs';
 import {startWith, map, window} from 'rxjs/operators';
 import { NavigationEnd, Router } from "@angular/router";
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BoatData } from 'src/app/BoatData';
 import { Picture } from 'src/app/Picture';
 import {Observable, combineLatest} from 'rxjs'
 import { ImageService } from 'src/app/shared/image.service';
 import { CustomerService } from '../customers/customer.service';
+import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +27,7 @@ export class DashboardComponent implements OnInit {
     return value;
   }
 
+  menuOpen:boolean = false;
   customers: any;
   selected = 'option2';
 
@@ -32,6 +35,8 @@ export class DashboardComponent implements OnInit {
   notes:Observable<BoatData[]>;
   notesCollectionFiles: AngularFirestoreCollection<Picture>;
   noteFiles:Observable<Picture[]>;
+
+  favRef: AngularFirestoreDocument<any>;
 
   //Safe all locations from firebase
   allLocations:String[] = [];
@@ -72,6 +77,7 @@ navigationSubscription;
 feedbackData : any;
 
   constructor(
+    public dialog: MatDialog,
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
@@ -81,10 +87,11 @@ feedbackData : any;
   imageList: any[];
   rowIndexArray: any[];
 
+  fav:boolean[]=[];
+
   ngOnInit() {
     this.getCustomersList();
 
-    
     //Zugreifen auf die Daten von der Datebnbank
     this.notesCollection = this.afs.collection('boatData');
     this.notes = this.notesCollection.valueChanges();
@@ -220,6 +227,14 @@ feedbackData : any;
     return this.afs.collection('files').valueChanges();
   }
 
+  getAllFavBoats(){
+    for(let i =0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
+    {
+      //this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.customer.brand + this.customer.name}`);
+      //this.favRef.valueChanges().subscribe(item => this.favButtonPressed = item.favourite);  
+    }
+  }
+
   //Ob ein Boat an der bestimmten Location gefunden wurde.
   boatsFound(){
     for(let boat of this.allBoats){
@@ -235,5 +250,34 @@ feedbackData : any;
     this.searchBoatNameString = "";
     this.searchLessorString = "";
     this.searchBrandString = "";
+  }
+
+  confirmDialog(): void {
+    const message = `Do you wanna login now?`;
+ 
+    const dialogData = new ConfirmDialogModel("Not logged in!", message);
+ 
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+ 
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if(dialogResult){
+        this.router.navigateByUrl('sign-in');
+      }
+    });
+  }
+
+  openMenu(){
+    if(!this.authService.isLoggedIn){
+      this.confirmDialog();
+    }
+    else{
+      if(!this.menuOpen)
+        this.menuOpen = true;
+      else
+        this.menuOpen = false;
+    }
   }
 }

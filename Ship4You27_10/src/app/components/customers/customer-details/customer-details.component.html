@@ -1,8 +1,22 @@
 <div *ngIf="customer">
   <mat-accordion>
-    <button mat-icon-button color="" (click)="clickFavButton(customer.brand, customer.name)">
-      <mat-icon>favorite</mat-icon>
-    </button>
+    <div >
+      <button *ngIf="!favButtonPressed" mat-fab color="" title="Add to Favourite" (click)="clickFavButton(customer, true)">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button *ngIf="favButtonPressed" mat-fab color="warn" title="Remove from Favourites" (click)="clickFavButton(customer, false)">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button *ngIf="customer.userId == userId" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="customer.userId == userId" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button title="Feedback" mat-fab color="accent" (click)="clickRating(customer.brand, customer.name)">
+        <mat-icon>feedback</mat-icon>
+      </button>
+    </div>  
   <mat-expansion-panel>
     <mat-expansion-panel-header class="disable_ripple">
       <mat-panel-title>
@@ -11,20 +25,14 @@
       <mat-panel-description>
         <div>
 
-          <div>
+          <h5>
             Boat name: {{customer.name}}
-          </div>
-          <div>
+          </h5>
+          <h5>
             Location: {{customer.location}}
-          </div>
+          </h5>
         </div>
       </mat-panel-description>
-      <div class="example-button-container">
-        <button (click)="clickRating(customer.brand, customer.name)" type="submit" class="btn btn-success">Bewertung</button>
-        <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
-          <mat-icon>chat</mat-icon>
-        </button>
-      </div>  
     </mat-expansion-panel-header>
     <mat-card>
       <h6>Boat Information:</h6>
@@ -37,10 +45,10 @@
         </tr>
       
         <tr>
-          <td>{{customer.brand}}</td>
-          <td>{{customer.type}}</td>
-          <td>{{customer.lessor}}</td>
-          <td>{{customer.cabins}}</td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.brand" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.type" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.lessor" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.cabins" class="form-control"></td>
         </tr>
         <tr>
           <th>Length</th>
@@ -49,17 +57,20 @@
           <th>Masts</th>
         </tr>
         <tr>
-          <td>{{customer.length}}</td>
-          <td>{{customer.sail}}</td>
-          <td>{{customer.numberOfPeople}}</td>
-          <td>{{customer.masts}}</td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.length" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.sail" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.numberOfPeople" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.masts" class="form-control"></td>
         </tr>
       </table>
+      <button *ngIf="customer.userId == userId" [disabled]="!isEdit" title="Save information" class="btn btn-success" type="submit" (click)="saveUpdateList(customer)">
+        Save Changes
+      </button>  
+      <button *ngIf="customer.userId == userId" [disabled]="!isEdit" title="Cancel" mat-button color="warn" (click)="cancelEdit()">
+        Cancel
+      </button>  
     </mat-card>
   
   </mat-expansion-panel>
-  
 </mat-accordion>
-   
-  <hr/>
 </div>

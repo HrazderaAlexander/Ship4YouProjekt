@@ -43,6 +43,8 @@ import {ShowUpload} from './components/newboat/showUpload';
 
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import { CustomersListComponent } from './components/customers/customers-list/customers-list.component';
@@ -53,6 +55,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -69,7 +73,8 @@ import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.
     CustomerDetailsComponent,
     CreateCustomerComponent,
     BewertungComponent,
-    UploadTaskComponent
+    UploadTaskComponent,
+    ConfirmDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -82,8 +87,11 @@ import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSelectModule,
+    MatStepperModule,
+    MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     MatAutocompleteModule,
     MatGridListModule,
     MatButtonModule,
@@ -97,6 +105,9 @@ import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.
     MatExpansionModule,
     MatButtonModule,
     MatIconModule
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   providers: [AuthService, DatePipe],
   bootstrap: [AppComponent]

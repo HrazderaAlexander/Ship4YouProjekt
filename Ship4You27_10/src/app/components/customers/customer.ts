@@ -15,4 +15,6 @@ export class Customer {
   numberOfPeople:number; //Anzahl der Personen am Boot
   masts:number;
   rating:number;
+  favourite:boolean;
+  userId:string;
 }

@@ -1,12 +1,13 @@
 <!-- Top navigation -->
-<nav class="navbar navbar-dark fixed-top bg-secondary flex-md-nowrap p-0 shadow">
-    <div class="topnav">
-      <a *ngIf="!authService.isLoggedIn" href="http://localhost:4200/sign-in">Login</a>
-      <a href="">About</a>
-      <a href="">Contact</a>
-      <a class="active" href="http://localhost:4200/dashboard">Home</a>
-    </div>
-</nav>
+<mat-toolbar class="mat-toolbar" color="primary">
+ <span>Ship4You</span>
+ <span class="example-spacer"></span>
+ <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
+ <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
+ <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
+ <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
+</mat-toolbar>
+
 
 <mat-grid-list class="mat-grid-test" cols="2" rowHeight="2:1">
     <div class="row">
