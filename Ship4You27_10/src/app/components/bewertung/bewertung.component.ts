@@ -31,6 +31,10 @@ export class BewertungComponent implements OnInit {
   ratingId:string="";
   feedbackDb:any[] = []; 
   feedbackRef: AngularFirestoreDocument<any>[] = [];
+  ratingBoat: number[];
+
+  //@Input() customer: Customer;
+  boatKey: string="";
 
   feedbackButtonPressed = false;
 
@@ -122,6 +126,10 @@ export class BewertungComponent implements OnInit {
       for(let i = 0; i < counter;i++){
         if(this.id == this.customers[i].key){
           this.boat = this.customers[i];
+          console.log("BoatWithRating " + this.boat.allReatings);
+          this.ratingBoat = this.boat.allReatings;
+          this.boatKey = this.boat.key;
+          console.log("BoatKey " + this.boatKey);
         }
       }
       return this.boat;  
@@ -147,6 +155,8 @@ export class BewertungComponent implements OnInit {
     })
   }
 
+  tmp:number = 0;
+
   getFeedbackData() {
     for(let i =0; i < parseInt(this.ratingId); i++){
       this.feedbackRef[i] = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${i}`);
@@ -155,7 +165,51 @@ export class BewertungComponent implements OnInit {
     this.feedbackButtonPressed = true;
   }
 
+  /*setAllRatingsToBoat(){
+    this.customerService.getCustomersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(customers => {
+      
+      if ((customers[this.tmp].brand + customers[this.tmp].name) == (localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName'))){
+        this.ratingBoat = this.customers[this.tmp].rating;
+      }
+    })
+  }*/
+
+  updateRatingArray(ratingBoat: any) {
+    this.customerService
+      .updateCustomer(this.boatKey, { allReatings: ratingBoat })
+      .catch(err => console.log(err));
+  }
+
+  updateRatingSum(ratingDiv: any)
+  {
+    this.customerService
+    .updateCustomer(this.boatKey, { rating: ratingDiv })
+    .catch(err => console.log(err));
+  }
+
+  updateBoatStats(){
+    this.ratingBoat.push(this.currentRate);
+    this.updateRatingArray(this.ratingBoat); 
+
+    var sum = this.ratingBoat.reduce((acc, cur) => acc + cur, 0);
+    console.log("Sum: " + sum);
+
+    var div = sum/ (this.ratingBoat.length - 1);
+    console.log("Div " + div);
+
+
+    this.updateRatingSum(div)
+  }
+
   addFeedback(){
+    //this.setAllRatingsToBoat();
+    this.updateBoatStats();
     this.SetFeedbackData();
     this.router.navigateByUrl('/dashboard')
   }

@@ -43,6 +43,8 @@ export class CreateCustomerComponent implements OnInit {
     //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
     this.customer.imageUrl = localStorage.getItem('downloadUrl');
     this.customer.userId = localStorage.getItem('userUid');
+    this.customer.allReatings = [0];
+    this.customer.rating = 0;
     this.customerService.createCustomer(this.customer);
     this.customer = new Customer();
   }
@@ -131,7 +133,6 @@ validateDocument(name: String) {
       this.customers = customers;
     });
   }
-
 
     checkID() : number{
       this.IDCounter = 0;

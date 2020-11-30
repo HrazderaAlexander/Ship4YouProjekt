@@ -19,6 +19,7 @@ export class CustomerDetailsComponent implements OnInit {
   @Input() customer: Customer;
   favButtonPressed:boolean;
   favRef: AngularFirestoreDocument<any>;
+  currentRate = 0;
 
   constructor(public dialog: MatDialog, public authService: AuthService, private customerService: CustomerService, private router: Router, private afs: AngularFirestore) {  }
 

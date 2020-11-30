@@ -17,4 +17,5 @@ export class Customer {
   rating:number;
   favourite:boolean;
   userId:string;
+  allReatings:number[]
 }

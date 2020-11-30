@@ -31,6 +31,11 @@
           <h5>
             Location: {{customer.location}}
           </h5>
+          <br>
+          <h2>
+            <!--<h>Rate {{customer.ratingStars}}</h>-->
+            <ngb-rating [rate]="customer.rating" [readonly]="true"></ngb-rating>
+        </h2>
         </div>
       </mat-panel-description>
     </mat-expansion-panel-header>
