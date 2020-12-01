@@ -32,10 +32,15 @@
             Location: {{customer.location}}
           </h5>
           <br>
-          <h2>
+          <p>
+            <ng-template #t let-fill="fill">
+              <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+              </span>
+            </ng-template>
             <!--<h>Rate {{customer.ratingStars}}</h>-->
-            <ngb-rating [rate]="customer.rating" [readonly]="true"></ngb-rating>
-        </h2>
+            <ngb-rating [(rate)]="customer.rating" [starTemplate]="t" [readonly]="true"></ngb-rating>
+          </p>
         </div>
       </mat-panel-description>
     </mat-expansion-panel-header>

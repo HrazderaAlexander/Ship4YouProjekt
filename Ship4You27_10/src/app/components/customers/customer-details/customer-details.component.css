@@ -28,15 +28,15 @@ th, td {
 .star {
   position: relative;
   display: inline-block;
-  font-size: 3rem;
+  font-size: 200%;
   color: #d3d3d3;
 }
 .full {
-  color: red;
+  color: blue;
 }
 .half {
   position: absolute;
   display: inline-block;
   overflow: hidden;
-  color: red;
+  color: blue;
 }
