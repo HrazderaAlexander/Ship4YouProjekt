@@ -26,12 +26,9 @@
               </mat-expansion-panel-header>
               <br>
                 <label class="labelSize"><strong>Boat length</strong></label>
-                <mat-slider *ngIf="authService.isLoggedIn"
-                  thumbLabel
-                  [displayWith]="formatLabel"
-                  min="1"
-                  max="100">
-                </mat-slider>
+                <div class="custom-slider">
+                  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" (click)="getValues(value, highValue)"></ngx-slider>
+                </div>
               <hr>
                 <label class="labelSize"><strong>Boat sails</strong></label>
                 <mat-slider *ngIf="authService.isLoggedIn"
@@ -135,8 +132,18 @@
 
         </div>
 
+        <!--<ul *ngFor="let customer of customers" style="width: 300px;">
+          <mat-accordion *ngIf="customer.length > value-1 && customer.length < highValue+1">
+              <app-customer-details [customer]='customer'></app-customer-details>
+              <br>
+              <br>
+          </mat-accordion>
+        </ul>-->
+
+
+        <!--Dies ist das für die Suchleiste oben-->
         <ul *ngFor="let customer of customers" style="width: 300px;">
-              <mat-accordion *ngIf="customer.location.toUpperCase().includes(searchLocationString.toUpperCase()) && customer.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && customer.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && customer.brand.toUpperCase().includes(searchBrandString.toUpperCase())" >
+              <mat-accordion *ngIf="customer.location.toUpperCase().includes(searchLocationString.toUpperCase()) && customer.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && customer.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && customer.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && customer.length > value-1 && customer.length < highValue+1" >
                   <app-customer-details [customer]='customer'></app-customer-details>
                   <br>
                   <br>

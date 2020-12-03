@@ -12,11 +12,12 @@ import { ImageService } from 'src/app/shared/image.service';
 import { CustomerService } from '../customers/customer.service';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
+import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
@@ -88,6 +89,19 @@ feedbackData : any;
   rowIndexArray: any[];
 
   fav:boolean[]=[];
+
+  //Slider
+  value: number = 5;
+  highValue: number = 30;
+  options: Options = {
+    floor: 0,
+    ceil: 100
+  };
+
+  getValues(value, highValue){
+    console.log(value);
+    console.log(highValue);
+  }
 
   ngOnInit() {
     this.getCustomersList();
@@ -189,6 +203,7 @@ feedbackData : any;
         else 
           i++;
       }
+
       localStorage.setItem('numberOfBoats', this.customers.length);
     });
   }

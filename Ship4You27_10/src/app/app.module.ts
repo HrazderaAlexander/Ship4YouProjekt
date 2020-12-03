@@ -58,6 +58,9 @@ import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
+//Slider
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +107,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatMenuModule,
     MatExpansionModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgxSliderModule
   ],
   entryComponents: [
     ConfirmDialogComponent
