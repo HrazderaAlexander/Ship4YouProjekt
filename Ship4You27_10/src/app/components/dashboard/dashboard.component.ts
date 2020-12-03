@@ -90,11 +90,52 @@ feedbackData : any;
 
   fav:boolean[]=[];
 
-  //Slider
-  value: number = 5;
-  highValue: number = 30;
+  //length-Slider
+  value: number = 0;
+  highValue: number = 100;
+
   options: Options = {
     floor: 0,
+    ceil: 100
+  };
+  //sails-Slider
+  sailsValue: number = 0;
+  sailsHighValue: number = 10;
+
+  optionsSails: Options = {
+    floor: 0,
+    ceil: 10
+  };
+  //masts-Slider
+  mastsValue: number = 0;
+  mastsHighValue: number = 10;
+
+  optionsMasts: Options = {
+    floor: 0,
+    ceil: 10
+  };
+  //cabins-Slider
+  cabinsValue: number = 0;
+  cabinsHighValue: number = 100;
+
+  optionsCabins: Options = {
+    floor: 0,
+    ceil: 100
+  };
+  //year-Slider
+  yearValue: number = 1800;
+  yearHighValue: number = 2030;
+
+  optionsYear: Options = {
+    floor: 1800,
+    ceil: 2030
+  }
+  //amountPeople-Slider
+  amountPeopleValue: number = 1;
+  amountPeopleHighValue: number = 100;
+
+  optionsAmountPeople: Options = {
+    floor: 1,
     ceil: 100
   };
 

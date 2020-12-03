@@ -31,44 +31,29 @@
                 </div>
               <hr>
                 <label class="labelSize"><strong>Boat sails</strong></label>
-                <mat-slider *ngIf="authService.isLoggedIn"
-                  thumbLabel
-                  [displayWith]="formatLabelYear"
-                  min="1"
-                  max="20">
-                </mat-slider>
+                <div class="custom-slider">
+                  <ngx-slider [(value)]="sailsValue" [(highValue)]="sailsHighValue" [options]="optionsSails" (click)="getValues(sailsValue, sailsHighValue)"></ngx-slider>
+                </div>
               <hr>
                 <label class="labelSize"><strong>Boat masts</strong></label>
-                <mat-slider *ngIf="authService.isLoggedIn"
-                  thumbLabel
-                  [displayWith]="formatLabelYear"
-                  min="1"
-                  max="20">
-                </mat-slider>
+                <div class="custom-slider">
+                  <ngx-slider [(value)]="mastsValue" [(highValue)]="mastsHighValue" [options]="optionsMasts" (click)="getValues(mastsValue, mastsHighValue)"></ngx-slider>
+              </div>
               <hr>
                 <label class="labelSize"><strong>Boat cabins</strong></label>
-                <mat-slider *ngIf="authService.isLoggedIn"
-                  thumbLabel
-                  [displayWith]="formatLabelYear"
-                  min="1"
-                  max="50">
-                </mat-slider>
+                <div class="custom-slider">
+                  <ngx-slider [(value)]="cabinsValue" [(highValue)]="cabinsHighValue" [options]="optionsCabins" (click)="getValues(cabinsValue, cabinsHighValue)"></ngx-slider>
+              </div>
               <hr>
                 <label class="labelSize"><strong>Boat year</strong></label>
-                <mat-slider *ngIf="authService.isLoggedIn"
-                  thumbLabel
-                  [displayWith]="formatLabelYear"
-                  min="1980"
-                  max="2020">
-                </mat-slider>
+                <div class="custom-slider">
+                  <ngx-slider [(value)]="yearValue" [(highValue)]="yearHighValue" [options]="optionsYear" (click)="getValues(yearValue, yearHighValue)"></ngx-slider>
+              </div>
               <hr>
                 <label class="labelSize"><strong>Amount of People</strong></label>
-                <mat-slider *ngIf="authService.isLoggedIn"
-                  thumbLabel
-                  [displayWith]="formatLabelYear"
-                  min="1"
-                  max="35">
-                </mat-slider>
+                <div class="custom-slider">
+                  <ngx-slider [(value)]="amountPeopleValue" [(highValue)]="amountPeopleHighValue" [options]="optionsAmountPeople" (click)="getValues(amountPeopleValue, amountPeopleHighValue)"></ngx-slider>
+              </div>
         </mat-expansion-panel>
       <br>
         <mat-expansion-panel>
