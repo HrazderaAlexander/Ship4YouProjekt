@@ -197,10 +197,10 @@ export class BewertungComponent implements OnInit {
     this.ratingBoat.push(this.currentRate);
     this.updateRatingArray(this.ratingBoat); 
 
-    let sum = this.ratingBoat.reduce((acc, cur) => acc + cur, 0);
+    var sum = this.ratingBoat.reduce((acc, cur) => acc + cur, 0);
     console.log("Sum: " + sum);
 
-    let div = sum/ (this.ratingBoat.length - 1);
+    var div = sum/ (this.ratingBoat.length - 1);
     console.log("Div " + div);
 
 

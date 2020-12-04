@@ -20,8 +20,12 @@ export class CustomerDetailsComponent implements OnInit {
   favButtonPressed:boolean;
   favRef: AngularFirestoreDocument<any>;
   currentRate = 0;
+  userIds : string[] = JSON.parse(localStorage.getItem('userIds'));
+  feedbackLength = 0;
 
-  constructor(public dialog: MatDialog, public authService: AuthService, private customerService: CustomerService, private router: Router, private afs: AngularFirestore) {  }
+  constructor(public dialog: MatDialog, public authService: AuthService, private customerService: CustomerService, private router: Router, private afs: AngularFirestore) 
+  {
+  }
 
   ngOnInit() {
     for(let i =0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
@@ -30,6 +34,7 @@ export class CustomerDetailsComponent implements OnInit {
       this.favRef.valueChanges().subscribe(item => this.favButtonPressed = item.favourite);  
     }
     this.userId = localStorage.getItem('userUid');
+    this.afs.collection(`${this.customer.brand + this.customer.name}`).valueChanges().subscribe(s => this.feedbackLength = s.length);
   }
 
   confirmDialog(): void {
@@ -80,10 +85,18 @@ export class CustomerDetailsComponent implements OnInit {
     this.refreshPage();
   }
 
-  deleteCustomer() {
+  async deleteCustomer() {
+    const length = this.feedbackLength;
     if(this.customer.userId == localStorage.getItem('userUid'))
     {
-      if(confirm("Are you sure to delete "+this.customer.name + "?")) {
+      if(confirm("Are you sure to delete "+this.customer.name + "?")) 
+      {
+        for(let i = 0; i < this.userIds.length; i++){
+          await this.afs.collection(this.userIds[i]).doc(`${this.customer.brand + this.customer.name}`).delete();
+        }  
+        for(let i = 0; i < length; i++){
+          await this.afs.doc(`${this.customer.brand + this.customer.name}/${i}`).delete();
+        }
         this.customerService
         .deleteCustomer(this.customer.key)
         .catch(err => console.log(err));
@@ -109,7 +122,7 @@ export class CustomerDetailsComponent implements OnInit {
       const favRef: AngularFirestoreDocument<any> = this.afs.doc(`${localStorage.getItem('userUid')}/${c.brand + c.name}`);
       const favouriteData: any = {
         favourite: fav,
-        boatId: localStorage.getItem('boatForRating'),
+        boatId: c.key,
         userId: localStorage.getItem('userUid')
       };
   

@@ -44,6 +44,7 @@ import {ShowUpload} from './components/newboat/showUpload';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
@@ -57,9 +58,8 @@ import { DatePipe } from '@angular/common';
 import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
-//Slider
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -97,18 +97,19 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     MatDialogModule,
     MatAutocompleteModule,
     MatGridListModule,
+    MatSlideToggleModule,
     MatButtonModule,
-    MatSliderModule,
+    NgxSliderModule,
     NgbModule,
     HttpClientModule,
     FormsModule,
     MatListModule,
+    MatBadgeModule,
     MatCardModule,
     MatMenuModule,
     MatExpansionModule,
     MatButtonModule,
-    MatIconModule,
-    NgxSliderModule
+    MatIconModule
   ],
   entryComponents: [
     ConfirmDialogComponent

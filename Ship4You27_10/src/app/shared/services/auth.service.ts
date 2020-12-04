@@ -128,7 +128,7 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      displayName: user.email,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
@@ -154,11 +154,12 @@ export class AuthService {
   // Der user wird aus dem LocalStorage gelöscht, weil er sich ausloggt
   //Wird zur Log in seite weitergeleitet
   SignOut() {
-    return this.afAuth.auth.signOut().then(() => {
+    this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
       localStorage.removeItem('userUid');
       this.router.navigate(['dashboard']);
     })
+    window.location.reload();
   }
 
   UserDetails(){

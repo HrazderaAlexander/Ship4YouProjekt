@@ -20,8 +20,6 @@ export class UserDetailsComponent implements OnInit {
   hide2 = true;
   oldUserpassword:string="";
   newPassword:string = "";
-  oldEmail:string ="";
-  newEmail:string="";
   ngOnInit() { }
 
 }

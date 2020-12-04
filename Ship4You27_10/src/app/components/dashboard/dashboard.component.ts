@@ -13,6 +13,7 @@ import { CustomerService } from '../customers/customer.service';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Options } from '@angular-slider/ngx-slider';
+import { FavModel } from 'src/app/shared/services/favModel';
 
 @Component({
   selector: 'app-dashboard',
@@ -70,12 +71,19 @@ export class DashboardComponent implements OnInit {
 
   isUsedBoolean:Boolean = false;
 
+  favModel: any;
+
   startobs = this.startAt.asObservable();
   endobs = this.endAt.asObservable();
 //////////
 navigationSubscription;
 
 feedbackData : any;
+favCustomer: any[] = [];
+favCustomerSort: any[] = [];
+countFav = 0;
+
+showFav: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -90,10 +98,11 @@ feedbackData : any;
 
   fav:boolean[]=[];
 
+  size = 0;
+  
   //length-Slider
   value: number = 0;
   highValue: number = 100;
-
   options: Options = {
     floor: 0,
     ceil: 100
@@ -101,7 +110,6 @@ feedbackData : any;
   //sails-Slider
   sailsValue: number = 0;
   sailsHighValue: number = 10;
-
   optionsSails: Options = {
     floor: 0,
     ceil: 10
@@ -109,7 +117,6 @@ feedbackData : any;
   //masts-Slider
   mastsValue: number = 0;
   mastsHighValue: number = 10;
-
   optionsMasts: Options = {
     floor: 0,
     ceil: 10
@@ -117,7 +124,6 @@ feedbackData : any;
   //cabins-Slider
   cabinsValue: number = 0;
   cabinsHighValue: number = 100;
-
   optionsCabins: Options = {
     floor: 0,
     ceil: 100
@@ -125,7 +131,6 @@ feedbackData : any;
   //year-Slider
   yearValue: number = 1800;
   yearHighValue: number = 2030;
-
   optionsYear: Options = {
     floor: 1800,
     ceil: 2030
@@ -133,20 +138,32 @@ feedbackData : any;
   //amountPeople-Slider
   amountPeopleValue: number = 1;
   amountPeopleHighValue: number = 100;
-
   optionsAmountPeople: Options = {
     floor: 1,
     ceil: 100
   };
-
   getValues(value, highValue){
     console.log(value);
     console.log(highValue);
   }
+  allUserIds : string[] = [];
+  userIdCounter = 0;
 
   ngOnInit() {
     this.getCustomersList();
+    this.afs.collection('users').valueChanges().subscribe(s => localStorage.setItem('size', `${s.length}`));
 
+    const ref = this.afs.collection('users');
+    const snapshot = ref.get();
+    snapshot.forEach(doc => {
+      doc.forEach(d => {
+        this.allUserIds[this.userIdCounter] = d.id;
+        console.log('insert ' + this.userIdCounter + ': ' + d.id);
+        this.userIdCounter++;
+      })
+      console.log(this.allUserIds);
+      localStorage.setItem('userIds', JSON.stringify(this.allUserIds));
+    });
     //Zugreifen auf die Daten von der Datebnbank
     this.notesCollection = this.afs.collection('boatData');
     this.notes = this.notesCollection.valueChanges();
@@ -184,12 +201,6 @@ feedbackData : any;
       this.boats = this.allBoats;
       console.log(this.allBoats);
     })
-
-    combineLatest(this.startobs, this.endobs).subscribe((value) => {
-      this.firequery(value[0], value[1]).subscribe((location) => {
-        this.boats = location;
-      })
-    })
   }
   files = [];
 
@@ -202,7 +213,18 @@ feedbackData : any;
       )
     ).subscribe(customers => {
 
-      this.customers = customers;
+      this.customers = customers.sort((n1, n2)=> 
+      {
+        if (n1.rating < n2.rating) {
+          return 1;
+        }
+
+        if (n1.rating > n2.rating) {
+          return -1;
+        }
+
+        return 0;
+      });    
 
       for(let i = 0; i < this.customers.length;){
         if(!this.allLocations.includes(this.customers[i].location)){
@@ -244,7 +266,6 @@ feedbackData : any;
         else 
           i++;
       }
-
       localStorage.setItem('numberOfBoats', this.customers.length);
     });
   }
@@ -284,10 +305,39 @@ feedbackData : any;
   }
 
   getAllFavBoats(){
-    for(let i =0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
+    if(!this.showFav)
     {
-      //this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.customer.brand + this.customer.name}`);
-      //this.favRef.valueChanges().subscribe(item => this.favButtonPressed = item.favourite);  
+      this.showFav = true;
+      for(let i = 0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
+      {
+        this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.customers[i].brand + this.customers[i].name}`);
+        this.favRef.valueChanges().subscribe(item => 
+          {
+            this.favModel = item;
+              if(!this.favCustomer.includes(this.customers[i]) && this.favModel.boatId == this.customers[i].key && this.favModel.favourite){
+                this.favCustomer[this.countFav] = this.customers[i];
+                this.countFav++;
+                this.favCustomerSort = this.favCustomer.sort((n1,n2) => {          
+                  if (n1.rating < n2.rating) {
+                      return 1;
+                  }
+              
+                  if (n1.rating > n2.rating) {
+                      return -1;
+                  }
+              
+                  return 0;
+                });    
+      
+              }
+          }); 
+      } 
+    }
+    else{
+      this.showFav = false;
+      this.favCustomer= []; 
+      this.favModel = null;
+      this.countFav = 0;    
     }
   }
 
