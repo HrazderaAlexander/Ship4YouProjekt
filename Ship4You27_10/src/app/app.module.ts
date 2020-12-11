@@ -61,6 +61,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import {MatBadgeModule} from '@angular/material/badge';
 import { UploadTaskDocumentComponent } from './components/newboat/upload-task-document/upload-task-document.component';
+import { UploadTaskMultiplePicturesComponent } from './components/newboat/upload-task-multiple-pictures/upload-task-multiple-pictures.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { UploadTaskDocumentComponent } from './components/newboat/upload-task-do
     BewertungComponent,
     UploadTaskComponent,
     ConfirmDialogComponent,
-    UploadTaskDocumentComponent
+    UploadTaskDocumentComponent,
+    UploadTaskMultiplePicturesComponent
     ],
   imports: [
     BrowserModule,

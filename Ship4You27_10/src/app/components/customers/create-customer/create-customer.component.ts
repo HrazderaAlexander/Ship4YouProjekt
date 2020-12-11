@@ -43,6 +43,7 @@ export class CreateCustomerComponent implements OnInit {
     //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
     this.customer.imageUrl = localStorage.getItem('downloadUrl');
     this.customer.documentUrl = localStorage.getItem('downloadDocumentUrl');
+    this.customer.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
     this.customer.userId = localStorage.getItem('userUid');
     this.customer.allReatings = [0];
     this.customer.rating = 0;
@@ -54,6 +55,7 @@ export class CreateCustomerComponent implements OnInit {
 
   files: File[] = [];
   filesDocuments: File[] = [];
+  filesPictures: File[] = [];
 
   toggleHover(event: boolean) {
     this.isHovering = event;
@@ -70,6 +72,25 @@ export class CreateCustomerComponent implements OnInit {
       else{
         if(this.checkID() == -1){
           this.files.push(files.item(i));
+        }
+        else{
+          alert("All fields are required!");
+        }
+      }
+    }
+  }
+
+  onDropMult(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      //Picture.saveFilePath = this.boatBrand + this.boatName;
+      if (!this.validateFile(files[0].name)) {
+        console.log('Selected file format is not supported');
+        alert("Selected file format is not supported! (Allowed: .jpeg, .jpg, .png)");
+        return false;
+      }
+      else{
+        if(this.checkID() == -1){
+          this.filesPictures.push(files.item(i));
         }
         else{
           alert("All fields are required!");

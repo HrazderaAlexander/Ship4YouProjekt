@@ -1,10 +1,13 @@
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
+
 export class Customer {
   key: string;
   name: string;
   age: number;
   active = true;
   imageUrl: string;
-  documentUrl: string;
+  documentUrl?: string;
+  picturesUrl?: string[];
   vintage:number; //Baujahr
   type:string;
   brand:string; //Marke
