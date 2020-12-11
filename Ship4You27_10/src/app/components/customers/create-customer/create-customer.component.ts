@@ -42,6 +42,7 @@ export class CreateCustomerComponent implements OnInit {
   save() {
     //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
     this.customer.imageUrl = localStorage.getItem('downloadUrl');
+    this.customer.documentUrl = localStorage.getItem('downloadDocumentUrl');
     this.customer.userId = localStorage.getItem('userUid');
     this.customer.allReatings = [0];
     this.customer.rating = 0;
@@ -52,6 +53,7 @@ export class CreateCustomerComponent implements OnInit {
   isHovering: boolean;
 
   files: File[] = [];
+  filesDocuments: File[] = [];
 
   toggleHover(event: boolean) {
     this.isHovering = event;
@@ -81,12 +83,12 @@ export class CreateCustomerComponent implements OnInit {
       //Picture.saveFilePath = this.boatBrand + this.boatName;
       if (!this.validateDocument(files[0].name)) {
         console.log('Selected file format is not supported');
-        alert("Selected file format is not supported! (Allowed: .docx, .pdf, .xlsx)");
+        alert("Selected file format is not supported! (Allowed: .docx, .pdf, .xlsx, .txt)");
         return false;
       }
       else{
         if(this.checkID() == -1){
-          this.files.push(files.item(i));
+          this.filesDocuments.push(files.item(i));
         }
         else{
           alert("All fields are required!");

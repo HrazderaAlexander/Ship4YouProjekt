@@ -60,6 +60,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import {MatBadgeModule} from '@angular/material/badge';
+import { UploadTaskDocumentComponent } from './components/newboat/upload-task-document/upload-task-document.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     CreateCustomerComponent,
     BewertungComponent,
     UploadTaskComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    UploadTaskDocumentComponent
     ],
   imports: [
     BrowserModule,

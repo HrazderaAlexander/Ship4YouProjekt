@@ -4,6 +4,7 @@ export class Customer {
   age: number;
   active = true;
   imageUrl: string;
+  documentUrl: string;
   vintage:number; //Baujahr
   type:string;
   brand:string; //Marke
