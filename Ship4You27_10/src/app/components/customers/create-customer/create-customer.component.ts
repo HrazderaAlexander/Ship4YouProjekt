@@ -44,6 +44,7 @@ export class CreateCustomerComponent implements OnInit {
     this.customer.imageUrl = localStorage.getItem('downloadUrl');
     this.customer.documentUrl = localStorage.getItem('downloadDocumentUrl');
     this.customer.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
+    localStorage.removeItem("downloadMultiPictures");
     this.customer.userId = localStorage.getItem('userUid');
     this.customer.allReatings = [0];
     this.customer.rating = 0;

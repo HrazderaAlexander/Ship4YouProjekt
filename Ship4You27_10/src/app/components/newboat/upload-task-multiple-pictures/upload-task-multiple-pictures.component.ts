@@ -22,15 +22,17 @@ export class UploadTaskMultiplePicturesComponent implements OnInit { //UploadTas
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
-  picturesArray: pictureArrayInterface;
+  picturesArray: string[];
 
   constructor(private storage: AngularFireStorage, private db: AngularFirestore) {
     if ((JSON.parse(localStorage.getItem("downloadMultiPictures"))) == null){
-      this.picturesArray.picturePathString = [];
+      console.log("Is null");
+      this.picturesArray = [];
     }
     else
     {
-    this.picturesArray.picturePathString = JSON.parse(localStorage.getItem("downloadMultiPictures"));
+      console.log("is not null");
+      this.picturesArray = JSON.parse(localStorage.getItem("downloadMultiPictures"));
     }
    }
 
@@ -57,12 +59,21 @@ export class UploadTaskMultiplePicturesComponent implements OnInit { //UploadTas
       // The file's download URL
       finalize( async() =>  {
         this.downloadURL = await ref.getDownloadURL().toPromise();
-        console.log(this.downloadURL);
         //Picture.saveDownloadUrl = this.downloadURL;
         //console.log("PictureURL: " + Picture.saveDownloadUrl);
         //localStorage.setItem('downloadMultPictures', this.downloadURL);
-        this.picturesArray.picturePathString.push(this.downloadURL);
-        localStorage.setItem("downloadMultiPictures", JSON.stringify(this.picturesArray.picturePathString));
+        console.log("is not null");
+
+        if (localStorage.getItem("downloadMultiPictures").length == 0){
+          this.picturesArray = [];
+        }
+        else{
+          this.picturesArray = JSON.parse(localStorage.getItem("downloadMultiPictures"));
+        }
+        this.picturesArray.push(this.downloadURL);
+        console.log("PicturesArrayStringify " + JSON.stringify(this.picturesArray));
+        //this.picturesArray = ["Test", "Hi"];
+        localStorage.setItem("downloadMultiPictures", JSON.stringify(this.picturesArray));
         this.db.collection('files').doc(Picture.saveFilePath).set( { downloadURL: this.downloadURL, path });
       }),
     );
