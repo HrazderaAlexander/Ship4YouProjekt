@@ -1,3 +1,3 @@
 export interface pictureArrayInterface{
-    picturePathString: string;
+    picturePathString: string[];
 }

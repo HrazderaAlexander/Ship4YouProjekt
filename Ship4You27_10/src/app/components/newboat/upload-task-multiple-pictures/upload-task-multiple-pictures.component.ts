@@ -22,10 +22,16 @@ export class UploadTaskMultiplePicturesComponent implements OnInit { //UploadTas
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
-  picturesArray: pictureArrayInterface[];
+  picturesArray: pictureArrayInterface;
 
   constructor(private storage: AngularFireStorage, private db: AngularFirestore) {
-
+    if ((JSON.parse(localStorage.getItem("downloadMultiPictures"))) == null){
+      this.picturesArray.picturePathString = [];
+    }
+    else
+    {
+    this.picturesArray.picturePathString = JSON.parse(localStorage.getItem("downloadMultiPictures"));
+    }
    }
 
   ngOnInit() {
@@ -55,8 +61,8 @@ export class UploadTaskMultiplePicturesComponent implements OnInit { //UploadTas
         //Picture.saveDownloadUrl = this.downloadURL;
         //console.log("PictureURL: " + Picture.saveDownloadUrl);
         //localStorage.setItem('downloadMultPictures', this.downloadURL);
-        this.picturesArray.push({picturePathString: this.downloadURL});
-        localStorage.setItem("downloadMultiPictures", JSON.stringify(this.picturesArray));
+        this.picturesArray.picturePathString.push(this.downloadURL);
+        localStorage.setItem("downloadMultiPictures", JSON.stringify(this.picturesArray.picturePathString));
         this.db.collection('files').doc(Picture.saveFilePath).set( { downloadURL: this.downloadURL, path });
       }),
     );
