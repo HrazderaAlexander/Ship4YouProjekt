@@ -10,6 +10,21 @@ body {
   overflow: hidden;
 }
 
+.mat-button.mat-accent, .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
+  color: white;
+}
+
+.inner-adjust{
+  position: relative;
+  margin: 50vh,50vh,50vh,50vh;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 30%;
+  margin-left: 30%;
+}
 
 .topnav a {
   float: right;

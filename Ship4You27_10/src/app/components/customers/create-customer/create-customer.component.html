@@ -3,7 +3,7 @@
   <span class="example-spacer"></span>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
-  <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
+  <!--<a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>-->
  
  </mat-toolbar>
 

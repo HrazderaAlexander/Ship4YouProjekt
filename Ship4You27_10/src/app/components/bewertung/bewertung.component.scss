@@ -3,6 +3,10 @@
   overflow: hidden;
 }
 
+.mat-button.mat-accent, .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
+  color: white;
+}
+
 .dropzone { 
   display: flex;
   align-items: center;
@@ -286,4 +290,8 @@ img.hover-shadow {
   font-size: 18px;
   width: 10%;
   margin-right: 15px;
+}
+
+#headline{
+  color:black;
 }

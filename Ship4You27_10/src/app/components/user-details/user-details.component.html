@@ -3,18 +3,13 @@
  <span class="example-spacer"></span>
  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
- <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
+ <!--<a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut() && router.navigateByUrl('/dashboard')"><strong>Log Out</strong></a>-->
 
 </mat-toolbar>
 
 
-<main role="main" class="col-md-8 ml-sm-auto col-lg-12 px-4">
+<main role="main" class="centerView">
   <div class="inner-adjust">
-      <div class="col-md-8 ml-sm-auto col-lg-12 px-4">
-        <br>
-        <h3>User Profile</h3>
-      </div>
-      <hr>
     <!-- Show User data, if you loged in -->
     <div class="row" *ngIf="authService.userData as user">
       <div class="col-md-12">
@@ -22,7 +17,7 @@
           <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
             alt="{{user.displayName}}">
           <div class="media-body">
-            <h1>{{(user.displayName) ? user.displayName : 'User'}}</h1>
+            <h1>{{(userDisplayName) ? userDisplayName : 'User'}}</h1>
           </div>
         </div>
       </div>

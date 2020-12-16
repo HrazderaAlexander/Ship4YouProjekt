@@ -59,6 +59,8 @@ export class DashboardComponent implements OnInit {
   loc= ""
   boatName=""
 
+  isLoaded: boolean = false;
+
   //Button
   locationButtonBool: boolean = true;
   nameButtonBool: boolean = true;
@@ -150,6 +152,7 @@ showFav: boolean = false;
   userIdCounter = 0;
 
   ngOnInit() {
+
     this.getCustomersList();
     this.afs.collection('users').valueChanges().subscribe(s => localStorage.setItem('size', `${s.length}`));
 

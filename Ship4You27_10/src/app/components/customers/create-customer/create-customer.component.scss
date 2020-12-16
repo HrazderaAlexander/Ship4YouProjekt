@@ -89,6 +89,11 @@ transform: scale(1.1);
 .topnav a.active {
 color: black;
 }
+
+.mat-button.mat-accent, .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
+  color: white;
+}
+
 .topnav .search-container {
 float: left;
 }

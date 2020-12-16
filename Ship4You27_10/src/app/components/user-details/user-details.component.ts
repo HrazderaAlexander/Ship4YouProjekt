@@ -14,7 +14,11 @@ export class UserDetailsComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone
-  ) { }
+  ) {
+    this.userDisplayName = localStorage.getItem('userDisplayname');
+   }
+
+  userDisplayName: string;
 
   hide = true;
   hide2 = true;

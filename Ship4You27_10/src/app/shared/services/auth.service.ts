@@ -157,7 +157,9 @@ export class AuthService {
     this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
       localStorage.removeItem('userUid');
-      this.router.navigate(['dashboard']);
+      localStorage.removeItem('userDisplayName');
+     // this.router.navigate(['dashboard']);
+     this.router.navigateByUrl('/dashboard');
     })
     window.location.reload();
   }
