@@ -14,7 +14,7 @@
 
       <!--btn btnPrimary sind die Buttons von Bootstrap-->
       <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Sign Up" style="background-color: grey;" (click)="authService.SignUp(userEmail.value, userPwd.value)"> 
+        <input type="button" class="btn btnPrimary" value="Sign Up" style="background-color: grey;" (click)="onSignUp(userEmail.value, userPwd.value)"> 
       </div>
 
       <div class="formGroup">
@@ -23,16 +23,10 @@
 
       <!-- Registrieren mit Google -->
       <div class="formGroup">
-        <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
+        <button type="button" class="btn googleBtn" (click)="onDismiss()">
           <i class="fab fa-google-plus-g"></i>
           Continue with Google
         </button>
-      </div>
-      <button mat-button color="primary" routerLink="/dashboard">Back to Dashboard?</button>    
-      <div class="redirectToLogin"> <!--Weiter zur Log-In Seite mit route mittels sign-in-->
-        <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
-      </div>  
-    </div>
   </div>
 
 </div>

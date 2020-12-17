@@ -14,6 +14,9 @@ import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dial
 import { MatDialog } from '@angular/material';
 import { Options } from '@angular-slider/ngx-slider';
 import { FavModel } from 'src/app/shared/services/favModel';
+import { SignInComponent } from '../sign-in/sign-in.component';
+import { auth } from 'firebase';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -58,7 +61,6 @@ export class DashboardComponent implements OnInit {
 
   loc= ""
   boatName=""
-
   isLoaded: boolean = false;
 
   //Button
@@ -152,7 +154,6 @@ showFav: boolean = false;
   userIdCounter = 0;
 
   ngOnInit() {
-
     this.getCustomersList();
     this.afs.collection('users').valueChanges().subscribe(s => localStorage.setItem('size', `${s.length}`));
 
@@ -378,15 +379,29 @@ showFav: boolean = false;
     });
   }
 
+  confirmSignIn(): void{
+    const dialogRef = this.dialog.open(SignInComponent, {
+      maxWidth: "400px",
+    });
+    dialogRef.afterClosed().subscribe(x => {
+      if(!x && this.authService.isLoggedIn)
+        location.reload();
+    })
+  }
+  confirmSignUp():void {
+    const dialogRef = this.dialog.open(SignUpComponent, {
+      maxWidth: "400px",
+    });
+    dialogRef.afterClosed().subscribe(x => {
+      if(!x && !this.authService.isLoggedIn)
+        location.reload();
+    })
+  }
+
   openMenu(){
-    if(!this.authService.isLoggedIn){
-      this.confirmDialog();
-    }
-    else{
-      if(!this.menuOpen)
-        this.menuOpen = true;
-      else
-        this.menuOpen = false;
-    }
+    if(!this.menuOpen)
+      this.menuOpen = true;
+    else
+      this.menuOpen = false;
   }
 }

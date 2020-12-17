@@ -27,11 +27,9 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user-details', component: UserDetailsComponent, canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'add', component: CreateCustomerComponent },
+  { path: 'add', component: CreateCustomerComponent, canActivate: [AuthGuard]},
   {path: 'showUpload', component: ShowUpload},
   {path: 'bewertung', component: BewertungComponent, runGuardsAndResolvers: 'always'}
-  //{path: 'showUpload', component: ShowUpload}
 ];
 
 @NgModule({

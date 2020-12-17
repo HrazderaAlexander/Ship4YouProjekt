@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
@@ -7,12 +8,20 @@ import { AuthService } from "../../shared/services/auth.service";
   styleUrls: ['./sign-up.component.css']
 })
 
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService, public dialogRef: MatDialogRef<SignUpComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit() { }
+  onDismiss(): void {
+    this.dialogRef.close(true);
+    this.authService.GoogleAuth();
+  }
 
+  onSignUp(email:string, password:string): void{
+    this.authService.SignUp(email, password);
+    this.dialogRef.close(true);
+  }
 }

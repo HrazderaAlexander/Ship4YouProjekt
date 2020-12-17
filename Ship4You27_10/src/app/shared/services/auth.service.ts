@@ -115,6 +115,7 @@ export class AuthService {
           this.router.navigate(['dashboard']);//Navigation zur Seite
         })
       this.SetUserData(result.user);
+      window.location.reload();
     }).catch((error) => { 
       window.alert(error)//Error Meldung
     })
