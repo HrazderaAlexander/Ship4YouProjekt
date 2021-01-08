@@ -41,6 +41,9 @@ import {ShowUpload} from './components/newboat/showUpload';
 //FileUpload
 //import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
 
+//Elevation
+import { MaterialElevationDirective } from './material-elevation.directive';
+
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -81,7 +84,8 @@ import { UploadTaskMultiplePicturesComponent } from './components/newboat/upload
     UploadTaskComponent,
     ConfirmDialogComponent,
     UploadTaskDocumentComponent,
-    UploadTaskMultiplePicturesComponent
+    UploadTaskMultiplePicturesComponent,
+    MaterialElevationDirective
     ],
   imports: [
     BrowserModule,

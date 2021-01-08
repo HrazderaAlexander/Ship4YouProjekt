@@ -23,6 +23,9 @@ export class CustomerDetailsComponent implements OnInit {
   userIds : string[] = JSON.parse(localStorage.getItem('userIds'));
   feedbackLength = 0;
 
+  //defaultElevation
+  defaultElevation = 2;
+
   constructor(public dialog: MatDialog, public authService: AuthService, private customerService: CustomerService, private router: Router, private afs: AngularFirestore) 
   {
   }

@@ -1,23 +1,23 @@
 <div *ngIf="customer">
   <mat-accordion>
     <div >
-      <button *ngIf="!favButtonPressed" mat-mini-fab color="" title="Add to Favourite" (click)="clickFavButton(customer, true)">
+      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="!favButtonPressed" mat-mini-fab color="" title="Add to Favourite" (click)="clickFavButton(customer, true)">
         <mat-icon>favorite</mat-icon>
       </button>
-      <button *ngIf="favButtonPressed" mat-mini-fab color="warn" title="Remove from Favourites" (click)="clickFavButton(customer, false)">
+      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="favButtonPressed" mat-mini-fab color="warn" title="Remove from Favourites" (click)="clickFavButton(customer, false)">
         <mat-icon>favorite</mat-icon>
       </button>
-        <button matBadge="{{feedbackLength}}" [matBadgeHidden]="!authService.isLoggedIn" matBadgeColor="accent" matBadgeSize="medium" title="Feedback" mat-fab color="accent" (click)="clickRating(customer.brand, customer.name)">
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" matBadge="{{feedbackLength}}" [matBadgeHidden]="!authService.isLoggedIn" matBadgeColor="accent" matBadgeSize="medium" title="Feedback" mat-fab color="accent" (click)="clickRating(customer.brand, customer.name)">
           <mat-icon>feedback</mat-icon>
         </button>
-        <button *ngIf="customer.userId == userId" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="customer.userId == userId" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">
           <mat-icon>edit</mat-icon>
         </button>
-        <button *ngIf="customer.userId == userId" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="customer.userId == userId" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-  <mat-expansion-panel>
+  <mat-expansion-panel appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20">
     <mat-expansion-panel-header class="disable_ripple">
       <mat-panel-title>
         <img src="{{customer.imageUrl}}" width="180px" height="180px">
