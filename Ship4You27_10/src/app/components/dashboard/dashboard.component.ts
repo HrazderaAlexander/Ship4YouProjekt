@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from "../../shared/services/auth.service";
 import {Subject} from 'rxjs';
 import {startWith, map, window} from 'rxjs/operators';
@@ -44,14 +44,14 @@ export class DashboardComponent implements OnInit {
   favRef: AngularFirestoreDocument<any>;
 
   //Safe all locations from firebase
-  allLocations:String[] = [];
+  allLocations:string[] = [];
   arrayCounter:number=0;
 
-  allNames:String[] = [];
+  allNames:string[] = [];
 
-  allBrands:String[] = [];
+  allBrands:string[] = [];
 
-  allLessors:String[] = []; //Vermieter
+  allLessors:string[] = []; //Vermieter
 
   startAt = new Subject();
   endAt = new Subject();
@@ -153,7 +153,96 @@ showFav: boolean = false;
   allUserIds : string[] = [];
   userIdCounter = 0;
 
+  myControl = new FormControl();
+  namesControl = new FormControl();
+  lessorControl = new FormControl();
+  brandControl = new FormControl();
+  //optionsArray: string[] = this.allLocations;
+  filteredOptions: Observable<string[]>;
+  filteredLocations: Observable<string[]>;
+  filteredLessors: Observable<string[]>;
+  filteredBrand: Observable<string[]>;
+
+
+  /*private _filerName(value: string): string[]{
+    const filterValue = value.toLowerCase();
+
+    return this.allNames.filter(allNames => allNames.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allLocations.filter(allLocations => allLocations.toLowerCase().indexOf(filterValue) === 0);
+  }*/
+
+  /*filterNameBoolean: boolean = false;
+  filterName(){
+    console.log("inFilterName");
+    this.filterLocationBoolean = false;
+    this.filterNameBoolean = true;
+    this.ngOnInit();
+  }
+
+  filterLocationBoolean: boolean = false;
+  filterLocation(){
+    console.log("inFilterLocation");
+    this.filterNameBoolean = false;
+    this.filterLocationBoolean = true;
+    this.ngOnInit();
+  }*/
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allNames.filter(allNames => allNames.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterLocations(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allLocations.filter(allLocations => allLocations.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterLessors(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allLessors.filter(allLessors => allLessors.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private _filterBrand(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allBrands.filter(allBrands => allBrands.toLowerCase().indexOf(filterValue) === 0);
+  }
+
   ngOnInit() {
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+
+     this.filteredLocations = this.namesControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterLocations(value))
+      );
+
+      this.filteredLessors = this.lessorControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterLessors(value))
+      );
+
+      this.filteredBrand = this.brandControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterBrand(value))
+      );
+  
+
     this.getCustomersList();
     this.afs.collection('users').valueChanges().subscribe(s => localStorage.setItem('size', `${s.length}`));
 
@@ -272,6 +361,8 @@ showFav: boolean = false;
       }
       localStorage.setItem('numberOfBoats', this.customers.length);
     });
+
+    //this.optionsArray = this.allLocations;
   }
 
   deleteCustomers() {
