@@ -7,6 +7,7 @@ import { DOCUMENT } from '@angular/common';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { SignInComponent } from '../../sign-in/sign-in.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -52,7 +53,7 @@ export class CustomerDetailsComponent implements OnInit {
  
     dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult){
-        this.router.navigateByUrl('sign-in');
+        this.confirmSignIn();
       }
     });
   }
@@ -61,6 +62,12 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerService
       .updateCustomer(this.customer.key, { active: isActive })
       .catch(err => console.log(err));
+  }
+
+  confirmSignIn(): void{
+    const dialogRef = this.dialog.open(SignInComponent, {
+      maxWidth: "400px",
+    });
   }
 
   changeEditButton(){
