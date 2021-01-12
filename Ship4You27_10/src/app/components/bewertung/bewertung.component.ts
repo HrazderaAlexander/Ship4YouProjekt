@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Customer } from '../customers/customer';
@@ -33,6 +33,10 @@ export class BewertungComponent implements OnInit {
   feedbackRef: AngularFirestoreDocument<any>[] = [];
   ratingBoat: number[];
 
+  dataLoaded: boolean = false;
+
+  clicks: number = 0;
+
   //@Input() customer: Customer;
   boatKey: string="";
 
@@ -51,6 +55,13 @@ export class BewertungComponent implements OnInit {
   constructor(private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
+
+
+  // Simulate click function 
+   clickButton() { 
+    document.getElementById('btn1').click(); 
+    
+  } 
 
   //reload page
 
@@ -116,6 +127,9 @@ export class BewertungComponent implements OnInit {
       this.customers = customers; 
       this.getSingleBoat();     
     });
+
+    this.dataLoaded = true;
+    console.log("Data" + this.dataLoaded);
   }
 
   getSingleBoat(): any{               //SingleCustomer

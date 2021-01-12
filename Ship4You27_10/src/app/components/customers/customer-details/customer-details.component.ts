@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { SignInComponent } from '../../sign-in/sign-in.component';
+import { map } from 'rxjs/internal/operators/map';
 
 @Component({
   selector: 'app-customer-details',
@@ -39,6 +40,46 @@ export class CustomerDetailsComponent implements OnInit {
     }
     this.userId = localStorage.getItem('userUid');
     this.afs.collection(`${this.customer.brand + this.customer.name}`).valueChanges().subscribe(s => this.feedbackLength = s.length);
+  }
+
+  customers: any = [];
+  getCustomersFeedbackList() {
+    this.customerService.getCustomersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(customers => {
+      this.customers = customers; 
+      this.getSingleBoat();     
+    });
+  }
+
+  boat: any = new Customer;
+  id:string = localStorage.getItem('boatForRating');
+  ratingBoat: number[];
+  boatKey: string="";
+  getSingleBoat(): any{               //SingleCustomer
+    
+    var c = localStorage.getItem('numberOfBoats');
+    if(!isNaN(Number(c))){
+      var counter = Number(c);
+      for(let i = 0; i < counter;i++){
+        if(this.id == this.customers[i].key){
+          this.boat = this.customers[i];
+          console.log("BoatWithRating " + this.boat.allReatings);
+          this.ratingBoat = this.boat.allReatings;
+          this.boatKey = this.boat.key;
+          console.log("BoatKey " + this.boatKey);
+        }
+      }
+      return this.boat;  
+    }
+    else{
+      console.log("Not a number!");
+      return null;
+    }
   }
 
   confirmDialog(): void {
@@ -118,6 +159,7 @@ export class CustomerDetailsComponent implements OnInit {
       localStorage.setItem('boatForRating', this.customer.key);
       localStorage.setItem('boatForRatingName', name);
       localStorage.setItem('boatForRatingBrand', brand);
+      this.getCustomersFeedbackList();
       this.router.navigateByUrl('/bewertung');  
     }
     else

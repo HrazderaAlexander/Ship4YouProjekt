@@ -10,7 +10,7 @@
  </mat-toolbar>
  
  
- <mat-grid-list class="mat-grid-test" cols="2" rowHeight="2:1">
+ <!--<mat-grid-list class="mat-grid-test" cols="2" rowHeight="2:1">
  </mat-grid-list>
          <div id="content">
            <h2 id="headline">Rating of {{boat.name}}</h2>
@@ -54,7 +54,7 @@
          </div>
        </mat-card-content>
        </mat-card>
-       </div>
+       </div>-->
  
        <!--
      <h3>Uploads</h3>
@@ -62,7 +62,8 @@
    <upload-task [file]="file"></upload-task>
  </div>-->
  
- <button title="Show Feedbacks" [disabled]="feedbackButtonPressed" mat-button color="primary" (click)="getFeedbackData()">Show Feedbacks</button>
+ <!--<button id="btn1" title="Show Feedbacks" [disabled]="feedbackButtonPressed" mat-button color="primary" (click)="getFeedbackData()">Show Feedbacks</button>-->
+ <div *ngIf="dataLoaded == true"> {{getFeedbackData()}}
  <ul *ngFor="let f of feedbackDb" >
    <hr/>
      <mat-accordion>
@@ -78,4 +79,5 @@
        <label> <strong>{{f.date}}</strong></label>
      </mat-accordion>
  </ul>
+</div>
  
