@@ -1,83 +1,81 @@
 <!-- Top navigation -->
-<mat-toolbar class="mat-toolbar" color="primary">
- <span>Ship4You</span>
- <span class="example-spacer"></span>
- <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
- <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
- <!--<a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>-->
+<mat-toolbar class="mat-toolbar">
+  <span>Ship4You</span>
+  <span class="example-spacer"></span>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
+  <!--<a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>-->
  
- <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
-</mat-toolbar>
-
-
-<mat-grid-list class="mat-grid-test" cols="2" rowHeight="2:1">
-    <div class="row">
-    </div>
-</mat-grid-list>
-        <div id="content">
-          <h2 id="headline">Rating of {{boat.name}}</h2>
-          <br>
-            <mat-card class="create-card">
-              <mat-card-content>         
-          <div class="input-full-width" fxFlex="25%">
-            <ngb-rating [(rate)]="currentRate">
-              <ng-template let-fill="fill" let-index="index">
-                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 4">&#9733;</span>
-              </ng-template>
-            </ngb-rating>
-            <hr>
-            <pre>Rate: <b>{{currentRate}}</b></pre>
-          <mat-form-field class="width-grey">
-            <mat-label aria-ar>Rating-Text</mat-label>
-            <textarea matInput type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>
-          </mat-form-field>
-          <div class="dropzone" 
-            dropzone
-            (hovered)="toggleHover($event)"
-            (dropped)="onDrop($event)"
-            [class.hovering]="isHovering">
-
-
-            <h3>AngularFire Drop Zone</h3>
-            <p>Drag and Drop a File</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="uploadView">
-          <div *ngIf="percentage | async as pct">
-            <progress [value]="pct" max="100"></progress>
-            {{ pct | number }}%
-          </div>
-      </div>
-    </div>
-
-        <div class="form-footer" fxFlex="25%">
-          <button mat-flat-button color="primary" class="btn-create" (click)="addFeedback()">Create Feedback</button>
-        </div>
-      </mat-card-content>
-      </mat-card>
-      </div>
-          
-      <!--
-    <h3>Uploads</h3>
-<div *ngFor="let file of files">
-  <upload-task [file]="file"></upload-task>
-</div>-->
-
-<button title="Show Feedbacks" [disabled]="feedbackButtonPressed" mat-button color="accent" (click)="getFeedbackData()">Show Feedbacks</button>
-<ul *ngFor="let f of feedbackDb" >
-  <hr/>
-    <mat-accordion>
-      <mat-card-title>
-        {{f.username}} 
-      </mat-card-title>
-      <mat-card-subtitle>
-          <div>
-            Rating ({{f.ratingStars}}/10)
-          </div>
-      </mat-card-subtitle>
-      <mat-card-content>{{f.text}}</mat-card-content>
-      <label> <strong>{{f.date}}</strong></label>
-    </mat-accordion>
-</ul>
+  <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
+ </mat-toolbar>
+ 
+ 
+ <mat-grid-list class="mat-grid-test" cols="2" rowHeight="2:1">
+ </mat-grid-list>
+         <div id="content">
+           <h2 id="headline">Rating of {{boat.name}}</h2>
+             <mat-card>
+               <mat-card-content>
+           <div class="input-full-width" fxFlex="25%">
+             <ngb-rating [(rate)]="currentRate">
+               <ng-template let-fill="fill" let-index="index">
+                 <span class="star" [class.filled]="fill === 100" [class.bad]="index < 4">&#9733;</span>
+               </ng-template>
+             </ngb-rating>
+             <hr>
+             <pre>Rate: <b>{{currentRate}}</b></pre>
+           <mat-form-field class="width-grey">
+             <mat-label aria-ar>Rating-Text</mat-label>
+             <textarea matInput type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>
+           </mat-form-field>
+         </div>
+         <div class="dropzone"
+         dropzone
+         (hovered)="toggleHover($event)"
+         (dropped)="onDrop($event)"
+         [class.hovering]="isHovering">
+ 
+ 
+         <h3>Upload picture</h3>
+         <p>Drag and Drop a File</p>
+       </div>
+ 
+         <div>
+           <div class="uploadView">
+           <div *ngIf="percentage | async as pct">
+             <progress [value]="pct" max="100"></progress>
+             {{ pct | number }}%
+           </div>
+       </div>
+     </div>
+ 
+         <div class="form-footer" fxFlex="25%">
+           <button mat-flat-button class="btn-create" (click)="addFeedback()">Create Feedback</button>
+         </div>
+       </mat-card-content>
+       </mat-card>
+       </div>
+ 
+       <!--
+     <h3>Uploads</h3>
+ <div *ngFor="let file of files">
+   <upload-task [file]="file"></upload-task>
+ </div>-->
+ 
+ <button title="Show Feedbacks" [disabled]="feedbackButtonPressed" mat-button color="primary" (click)="getFeedbackData()">Show Feedbacks</button>
+ <ul *ngFor="let f of feedbackDb" >
+   <hr/>
+     <mat-accordion>
+       <mat-card-title>
+         {{f.username}}
+       </mat-card-title>
+       <mat-card-subtitle>
+           <div>
+             Rating ({{f.ratingStars}}/10)
+           </div>
+       </mat-card-subtitle>
+       <mat-card-content>{{f.text}}</mat-card-content>
+       <label> <strong>{{f.date}}</strong></label>
+     </mat-accordion>
+ </ul>
+ 

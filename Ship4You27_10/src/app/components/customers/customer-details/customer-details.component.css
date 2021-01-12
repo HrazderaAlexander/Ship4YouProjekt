@@ -2,15 +2,18 @@
     min-width: 800px;
     min-height: 50px;
     padding: 28%;
+    background-color: #A19682;
 }
 
 .disable_ripple:hover{
-    background: white !important;
+    background: #A19682 !important;
 }
 
 .mat-card{
     margin-top: 10%;
     margin-bottom: -10%;
+    background-color: #ffffff22;
+    color: white;
 }
 
 table {
@@ -29,14 +32,19 @@ th, td {
   position: relative;
   display: inline-block;
   font-size: 200%;
-  color: #d3d3d3;
+  color: white;
 }
+
+.boat-data{
+  color: white;
+}
+
 .full {
-  color: blue;
+  color: #ffd740;
 }
 .half {
   position: absolute;
   display: inline-block;
   overflow: hidden;
-  color: blue;
+  color: #ffd740;
 }
