@@ -198,8 +198,7 @@ float: right;
 }
 
 /* Next & previous buttons */
-.prev,
-.next {
+/*.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -213,18 +212,12 @@ float: right;
   border-radius: 0 3px 3px 0;
   user-select: none;
   -webkit-user-select: none;
-}
+}*/
 
 /* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Number text (1/3 etc) */
@@ -242,15 +235,6 @@ float: right;
   background-color: black;
   padding: 2px 16px;
   color: white;
-}
-
-img.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
 }
 
 img.hover-shadow {
@@ -311,4 +295,160 @@ b, strong {
 #headline{
   color:black;
   margin-bottom: 1vh !important;
+}
+
+.card-background{
+  margin: 4px;
+}
+
+#matCardList {
+  margin-top: 10%;
+  width: 80%;
+  margin:0 10% 0;
+}
+
+.mat-card-content{
+  margin-top: 3vh;
+}
+
+.example-card {
+  max-width: 400vh;
+  border: solid 0.2em #8d7260;
+}
+
+.example-card:hover {
+  max-width: 400vh;
+  border: solid 0.2em darkgray;
+}
+
+#content{
+  margin-left: 0%;
+  margin-right: 30%;
+  width: 80%;
+  height: 80%;
+}
+
+.ul-pagination li{
+  list-style-type: none;
+  float: left;
+  padding: 1%
+}
+
+.active {
+  color: #f6f7f9;
+  background-color: #8d7260;
+  border-radius: 10%;
+}
+
+.right-side{
+  position: absolute;
+  right: 10vh;
+  font-weight: 300;
+}
+
+.left-side{
+  margin-right: 15vh;
+  font-weight: 300;
+}
+
+.arrows{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+
+div.scroll { 
+  height: 64vh; 
+  overflow-x: hidden; 
+  overflow-y: auto; 
+  text-align:justify;
+  
+} 
+.ul-pagination{
+  height: 5vh;
+  display: inline;
+}
+.paginationDiv {
+  width: 50%;
+  height: 5%;
+}
+
+.paginationSelect {
+  width: 3%;
+  height: 5vh;
+  position: absolute;
+  top: 6.15vh;
+  right: 35vw;
+}
+
+#pagination-content {
+  height: 5vh;
+  width: 65%;
+  margin-right: 30%;
+  margin-left: 30%;
+  margin-top: 5vh;
+}
+
+.page-item{
+  cursor: pointer;
+}
+
+.first{
+  cursor: pointer;
+}
+
+.last{
+  cursor: pointer; 
+}
+
+.page-item active{
+  cursor: pointer;
+}
+
+.disabled {
+  pointer-events:none; 
+  opacity:0.6;         
+}
+
+.paginationSelect-disabled{
+  pointer-events:none; 
+  opacity:0.6;  
+  width: 3%;
+  position: absolute;
+  top: 14.5vh;
+  right: 40vw;
+}
+
+.header-image {
+  /*background-image: url("");
+  background-size: cover;*/
+}
+
+.full {
+  color: #ffd740;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffd740;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 200%;
+  border-color: black !important;
+  color: white !important;
+}
+
+#t{
+  size: medium;
+}
+
+span {
+  content: "\2605";
 }

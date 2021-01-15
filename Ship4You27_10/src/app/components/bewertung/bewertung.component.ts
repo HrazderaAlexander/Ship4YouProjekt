@@ -51,9 +51,88 @@ export class BewertungComponent implements OnInit {
   snapshot: Observable<any>;
   downloadURL: string;
   //------------------
+  defaultElevation = 2;
+
+  feedbackArray=[];
+  currentPage = 1
+  pageSizes = [4,10,50,100]
+  feedbackArraySize = this.pageSizes[0];
+
+  pageIsLoaded: boolean = false; //boolean if page is loaded
+  nextPage: boolean = false; //is there a next Page
+  behindPage: boolean = false; //is there a Page behind
+
+  //------------------
 
   constructor(private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
+  }
+
+  feedbackFunct(){
+    this.feedbackArray = [];
+    for (let i = 0; i < this.feedbackArraySize; i++){
+      this.feedbackArray.push(i);
+    }
+
+  }
+
+  changePage(pageNum){
+    if(pageNum>=1 && (this.feedbackDb.length-1)/this.feedbackArraySize) {
+      this.currentPage = pageNum;
+
+      if (pageNum == 1){
+        this.behindPage = true;
+
+      }
+
+      if (this.nextPage == true){
+        this.nextPage = false;
+      }
+
+    }
+
+  }
+
+  getMaxPage(){
+    return Math.ceil((this.feedbackDb.length-1)/this.feedbackArraySize);
+  }
+
+  changeToLastPage(){
+    this.currentPage =  this.getMaxPage()//Get Max
+    this.nextPage = true;
+
+    if (this.behindPage == true){
+      this.behindPage = false;
+    }
+  }
+
+  minusPage(minus) {
+    if(this.currentPage-minus>=1 && this.currentPage-minus<=(this.feedbackDb.length-1)/this.feedbackArraySize) {
+      this.currentPage = this.currentPage-minus
+
+      if (this.currentPage == 1){ //currentPage = 1
+        this.behindPage = true;
+      }
+
+      if (this.nextPage == true){
+        this.nextPage = false;
+      }
+
+    }
+  }
+
+  plusPage(plus) {
+    if(this.currentPage+plus>=1 && this.currentPage+plus<=Math.ceil((this.feedbackDb.length)/this.feedbackArraySize)) {
+      this.currentPage = this.currentPage+plus;
+
+      if (this.currentPage == this.getMaxPage()){
+        this.nextPage = true;
+      }
+
+      if (this.behindPage == true){
+        this.behindPage = false;
+      }
+    }
   }
 
 
@@ -85,6 +164,8 @@ export class BewertungComponent implements OnInit {
   ngOnInit() {
     this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
     this.getCustomersList();
+    this.feedbackFunct();
+    this.behindPage = true;
   }
 
   startUpload(file) {
@@ -177,6 +258,7 @@ export class BewertungComponent implements OnInit {
       this.feedbackRef[i].valueChanges().subscribe(item => this.feedbackDb[i] = item);
     }
     this.feedbackButtonPressed = true;
+    this.pageIsLoaded = true; //set to true if page is loaded
   }
 
   /*setAllRatingsToBoat(){
