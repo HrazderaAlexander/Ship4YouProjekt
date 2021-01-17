@@ -12,7 +12,9 @@ import { NavigationEnd, Router } from '@angular/router';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { PageEvent } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback.component';
 
 @Component({
   selector: 'app-bewertung',
@@ -64,7 +66,7 @@ export class BewertungComponent implements OnInit {
 
   //------------------
 
-  constructor(private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
+  constructor(public dialog: MatDialog,private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
@@ -74,6 +76,23 @@ export class BewertungComponent implements OnInit {
       this.feedbackArray.push(i);
     }
 
+  }
+
+  confirmDialog(): void {
+    const message = `Do you wanna login now?`;
+ 
+    const dialogData = new ConfirmDialogModel("Not logged in!", message);
+ 
+    const dialogRef = this.dialog.open(CreateFeedbackComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+ 
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if(dialogResult){
+        this.router.navigateByUrl('create-feedback');
+      }
+    });
   }
 
   changePage(pageNum){
@@ -166,6 +185,7 @@ export class BewertungComponent implements OnInit {
     this.getCustomersList();
     this.feedbackFunct();
     this.behindPage = true;
+    this.confirmDialog();
   }
 
   startUpload(file) {

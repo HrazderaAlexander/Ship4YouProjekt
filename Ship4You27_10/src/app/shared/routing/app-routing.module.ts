@@ -17,6 +17,7 @@ import { SecureInnerPagesGuard } from "../../shared/guard/secure-inner-pages.gua
 import { UserDetailsComponent } from 'src/app/components/user-details/user-details.component';
 import {ShowUpload} from 'src/app/components/newboat/showUpload'
 import { BewertungComponent } from 'src/app/components/bewertung/bewertung.component';
+import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback.component';
 
 // Array mit allen routen
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'user-details', component: UserDetailsComponent, canActivate: [AuthGuard]},
   { path: 'add', component: CreateCustomerComponent, canActivate: [AuthGuard]},
   {path: 'showUpload', component: ShowUpload},
-  {path: 'bewertung', component: BewertungComponent, runGuardsAndResolvers: 'always'}
+  {path: 'bewertung', component: BewertungComponent, runGuardsAndResolvers: 'always'},
+  {path: 'create-feedback', component: CreateFeedbackComponent}
 ];
 
 @NgModule({

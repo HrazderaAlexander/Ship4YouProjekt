@@ -1,0 +1,54 @@
+  <div mat-dialog-content>
+    <mat-grid-list class="mat-grid-test" cols="2" rowHeight="2:1">
+    </mat-grid-list>
+            <div id="content">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h2 id="headline">Rating of {{boat.name}}</h2>
+                        </mat-card-title>
+                    </mat-card-header>
+                  <mat-card-content>
+              <div class="input-full-width" fxFlex="25%">
+                <ngb-rating [(rate)]="currentRate">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 4">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+                <hr>
+                <pre>Rate: <b>{{currentRate}}</b></pre>
+              <mat-form-field class="width-grey">
+                <mat-label aria-ar>Rating-Text</mat-label>
+                <textarea matInput type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="dropzone"
+            dropzone
+            (hovered)="toggleHover($event)"
+            (dropped)="onDrop($event)"
+            [class.hovering]="isHovering">
+    
+    
+            <h3>Upload picture</h3>
+            <p>Drag and Drop a File</p>
+          </div>
+    
+            <div>
+              <div class="uploadView">
+              <div *ngIf="percentage | async as pct">
+                <progress [value]="pct" max="100"></progress>
+                {{ pct | number }}%
+              </div>
+          </div>
+        </div>
+    
+            <div class="form-footer" fxFlex="25%">
+              <button mat-raised-button color="primary" (click)="onConfirm()" class="btn-create" (click)="addFeedback()">Create Feedback</button>
+              <button mat-button (click)="onDismiss()">Cancle</button>
+            </div>
+          </mat-card-content>
+          </mat-card>
+          </div>
+  </div>
+
+
