@@ -5,6 +5,10 @@
       <h3>Sign Up</h3>
 
       <div class="formGroup">
+        <input type="text" class="formControl" placeholder="Username" #userName required>
+      </div>
+
+      <div class="formGroup">
         <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
       </div>
 
@@ -14,7 +18,7 @@
 
       <!--btn btnPrimary sind die Buttons von Bootstrap-->
       <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Sign Up" style="background-color: grey;" (click)="onSignUp(userEmail.value, userPwd.value)"> 
+        <input type="button" class="btn btnPrimary" value="Sign Up" style="background-color: grey;" (click)="onSignUp(userEmail.value, userPwd.value, userName.value)">
       </div>
 
       <div class="formGroup">

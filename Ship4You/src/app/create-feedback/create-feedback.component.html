@@ -1,0 +1,32 @@
+<div class="displayTable">
+  <div class="displayTableCell">
+    <mat-card>
+      <mat-card-header>
+      <mat-card-title>
+        <h2 id="headline">Write a Feedback</h2>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <ngb-rating [(rate)]="currentRate">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 4">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+      <mat-card-content>
+        <textarea type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>
+      </mat-card-content>
+      <mat-card-footer>
+        <div class="form-footer" fxFlex="25%">
+          <span class="left-side">
+          <button mat-button (click)="onDismiss()">Cancle</button>
+          </span>
+        <span class="right-side">
+          <button mat-raised-button class="create-btn" (click)="addFeedback()">Create Feedback</button>
+        </span>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

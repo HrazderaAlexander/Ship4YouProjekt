@@ -6,44 +6,58 @@
 
 </mat-toolbar>
 
-
 <main role="main" class="centerView">
+
   <div class="inner-adjust">
+
     <!-- Show User data, if you loged in -->
     <div class="row" *ngIf="authService.userData as user">
       <div class="col-md-12">
-        <div class="media">
-          <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
-            alt="{{user.displayName}}">
-          <div class="media-body">
-            <h1>{{(userDisplayName) ? userDisplayName : 'User'}}</h1>
-          </div>
-        </div>
+        <label class="hoverable" for="fileInput">
+          <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+          <div class="hover-text">Choose file</div>
+          <div class="background"></div>
+        </label>
+        <h1 style="margin-top: 50px;">{{displayName ? displayName : 'User'}}</h1>
+        <br/>
+        <input id="fileInput" type='file' (change)="onSelectFile($event)">
       </div>
-      <div>
+      <div [hidden]="googleSignIn=='true'">
         <br>
         <br>
         <h5>Change Password:</h5>
         <mat-form-field hidden>
-          <input matInput placeholder="OldPassword" [ngModel]="oldUserpassword" [type]="hide ? 'password' : 'text'" required>
+          <input matInput placeholder="OldPassword" [(ngModel)]="oldUserpassword" [type]="hide ? 'password' : 'text'" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-hint *ngIf="!oldUserpassword">Enter your old password</mat-hint>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="OldPassword" [ngModel]="oldUserpassword" [type]="hide ? 'password' : 'text'" required>
+          <input matInput placeholder="OldPassword" [(ngModel)]="oldUserpassword" [type]="hide ? 'password' : 'text'" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-hint *ngIf="!oldUserpassword">Enter your old password</mat-hint>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="NewPassword" [ngModel]="newPassword" [type]="hide2 ? 'password' : 'text'" required>
+          <input matInput placeholder="NewPassword" [(ngModel)]="newPassword" [type]="hide2 ? 'password' : 'text'" required>
           <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-hint *ngIf="!newPassword">Enter your new password</mat-hint>
-        </mat-form-field>  
-        <button mat-button color="primary" (click)="authService.ChangePassword(oldUserpassword,newPassword,user.email)">Save Changes</button>
+        </mat-form-field>
         <br>
         <br>
       </div>
     </div>
+    <div >
+      <ul *ngFor="let customer of userCustomers" style="width: 300px; margin-left: 20%;">
+        <hr>
+          <app-customer-details [customer]='customer'></app-customer-details>
+          <br>
+          <br>
+      </ul>
+    </div>
+    <button name="save" class="example-margin" mat-button color="primary" (click)="onSave()">Save Changes
+    </button>
   </div>
-
 </main>
+<mat-progress-spinner [hidden]="!check" title="Saving" class="spinner-location"
+    [color]="color"
+    [mode]="mode">
+</mat-progress-spinner>

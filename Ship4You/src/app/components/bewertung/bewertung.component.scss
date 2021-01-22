@@ -360,13 +360,13 @@ b, strong {
   outline:none;
 }
 
-div.scroll { 
-  height: 64vh; 
-  overflow-x: hidden; 
-  overflow-y: auto; 
+div.scroll {
+  height: 64vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   text-align:justify;
-  
-} 
+
+}
 .ul-pagination{
   height: 5vh;
   display: inline;
@@ -401,7 +401,7 @@ div.scroll {
 }
 
 .last{
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .page-item active{
@@ -409,13 +409,13 @@ div.scroll {
 }
 
 .disabled {
-  pointer-events:none; 
-  opacity:0.6;         
+  pointer-events:none;
+  opacity:0.6;
 }
 
 .paginationSelect-disabled{
-  pointer-events:none; 
-  opacity:0.6;  
+  pointer-events:none;
+  opacity:0.6;
   width: 3%;
   position: absolute;
   top: 14.5vh;

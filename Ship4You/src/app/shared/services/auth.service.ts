@@ -14,14 +14,16 @@ import * as firebase from 'firebase';
 export class AuthService {
   userData: any; // Speicher die Userdaten
   boatData: any; // Speichert Informationen über Boote
+  verificationMailSent:boolean = false;
+  googleLogin:boolean = false;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public router: Router,  
+    public router: Router,
     public ngZone: NgZone // NgZone-Dienst zur Entfernung der Warnung außerhalb des Bereichs
-  ) {    
-    /* Speichert User-Daten in localStorage wenn er  
+  ) {
+    /* Speichert User-Daten in localStorage wenn er
     eingeloggt ist sonst wird null gespeichert */
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -30,7 +32,6 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
         localStorage.setItem('userUid', this.userData.uid);
         localStorage.setItem('userDisplayname', this.userData.displayName);
-        console.log("User Uid: " + this.userData.uid);
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
@@ -40,23 +41,28 @@ export class AuthService {
 
   // Einloggen mit email/password
   SignIn(email, password) {
+    localStorage.setItem('googleSignIn', `${false}`);
+
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then((result) => {
           this.ngZone.run(() => {
+            localStorage.setItem('user', JSON.stringify(this.getUserDetails(result.user.uid)));
+            localStorage.setItem('userUid', result.user.uid);
+
              this.router.navigate(['dashboard']);
            })
-         this.SetUserData(result.user);
+         location.reload();
       }).catch((error) => {
         window.alert(error.message)
       })
   }
 
   // Registrieren mit email/password
-  SignUp(email, password) {
+  SignUp(email, password, username) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SendVerificationMail(); //ruft die Methode SendVerificationMail auf
-        this.SetUserData(result.user);
+        this.SetUserDataNormalLogin(result.user, username);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -66,6 +72,7 @@ export class AuthService {
   SendVerificationMail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
     .then(() => {
+      this.verificationMailSent = true;
       this.router.navigate(['verify-email-address']);
     })
   }
@@ -103,7 +110,14 @@ export class AuthService {
 
   // Einloggen mittels GoogelAuth
   GoogleAuth() {
+    localStorage.setItem('googleSignIn', `${true}`);
     return this.AuthLogin(new auth.GoogleAuthProvider());
+  }
+
+  getUserDetails(userId:string){
+    console.log('USERID!!!! : ' + userId);
+    const userRef: AngularFirestoreDocument<any> = this.afs.collection('users').doc(`${userId}`);
+    userRef.get().subscribe(u => {return u});
   }
 
   // Methode die Oben aufgerufen wird
@@ -115,21 +129,34 @@ export class AuthService {
           this.router.navigate(['dashboard']);//Navigation zur Seite
         })
       this.SetUserData(result.user);
-      window.location.reload();
-    }).catch((error) => { 
+      location.reload();
+    }).catch((error) => {
       window.alert(error)//Error Meldung
     })
   }
 
   /* Einrichten von Benutzerdaten bei der Anmeldung mit Benutzername/Passwort
-  Anmelden mit Sozialen Medien (Googel Account) 
+  Anmelden mit Sozialen Medien (Googel Account)
   Jeder User bekommt eine Uid*/
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
+  SetUserDataNormalLogin(user, username) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: username,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }

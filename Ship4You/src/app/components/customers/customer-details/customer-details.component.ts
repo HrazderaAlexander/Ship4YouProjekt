@@ -28,7 +28,7 @@ export class CustomerDetailsComponent implements OnInit {
   //defaultElevation
   defaultElevation = 2;
 
-  constructor(public dialog: MatDialog, public authService: AuthService, private customerService: CustomerService, private router: Router, private afs: AngularFirestore) 
+  constructor(public dialog: MatDialog, public authService: AuthService, private customerService: CustomerService, private router: Router, private afs: AngularFirestore)
   {
   }
 
@@ -36,7 +36,10 @@ export class CustomerDetailsComponent implements OnInit {
     for(let i =0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
     {
       this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.customer.brand + this.customer.name}`);
-      this.favRef.valueChanges().subscribe(item => this.favButtonPressed = item.favourite);  
+      this.favRef.valueChanges().subscribe(item => {
+        if(item != null)
+          this.favButtonPressed = item.favourite
+      });
     }
     this.userId = localStorage.getItem('userUid');
     this.afs.collection(`${this.customer.brand + this.customer.name}`).valueChanges().subscribe(s => this.feedbackLength = s.length);
@@ -51,8 +54,8 @@ export class CustomerDetailsComponent implements OnInit {
         )
       )
     ).subscribe(customers => {
-      this.customers = customers; 
-      this.getSingleBoat();     
+      this.customers = customers;
+      this.getSingleBoat();
     });
   }
 
@@ -61,7 +64,7 @@ export class CustomerDetailsComponent implements OnInit {
   ratingBoat: number[];
   boatKey: string="";
   getSingleBoat(): any{               //SingleCustomer
-    
+
     var c = localStorage.getItem('numberOfBoats');
     if(!isNaN(Number(c))){
       var counter = Number(c);
@@ -74,7 +77,7 @@ export class CustomerDetailsComponent implements OnInit {
           console.log("BoatKey " + this.boatKey);
         }
       }
-      return this.boat;  
+      return this.boat;
     }
     else{
       console.log("Not a number!");
@@ -84,14 +87,14 @@ export class CustomerDetailsComponent implements OnInit {
 
   confirmDialog(): void {
     const message = `Do you wanna login now?`;
- 
+
     const dialogData = new ConfirmDialogModel("Not logged in!", message);
- 
+
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: dialogData
     });
- 
+
     dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult){
         this.confirmSignIn();
@@ -122,7 +125,7 @@ export class CustomerDetailsComponent implements OnInit {
     if(this.customer.userId == localStorage.getItem('userUid')){
         this.customerService
         .updateCustomer(cus.key, cus)
-        .catch(err => console.log(err));  
+        .catch(err => console.log(err));
     }
     this.refreshPage();
   }
@@ -140,11 +143,11 @@ export class CustomerDetailsComponent implements OnInit {
     const length = this.feedbackLength;
     if(this.customer.userId == localStorage.getItem('userUid'))
     {
-      if(confirm("Are you sure to delete "+this.customer.name + "?")) 
+      if(confirm("Are you sure to delete "+this.customer.name + "?"))
       {
         for(let i = 0; i < this.userIds.length; i++){
           await this.afs.collection(this.userIds[i]).doc(`${this.customer.brand + this.customer.name}`).delete();
-        }  
+        }
         for(let i = 0; i < length; i++){
           await this.afs.doc(`${this.customer.brand + this.customer.name}/${i}`).delete();
         }
@@ -160,7 +163,7 @@ export class CustomerDetailsComponent implements OnInit {
       localStorage.setItem('boatForRatingName', name);
       localStorage.setItem('boatForRatingBrand', brand);
       this.getCustomersFeedbackList();
-      this.router.navigateByUrl('/bewertung');  
+      this.router.navigateByUrl('/bewertung');
     }
     else
       this.confirmDialog();
@@ -177,9 +180,9 @@ export class CustomerDetailsComponent implements OnInit {
         boatId: c.key,
         userId: localStorage.getItem('userUid')
       };
-  
+
       this.favButtonPressed = fav;
-  
+
       favRef.set(favouriteData, {
         merge:true
       });

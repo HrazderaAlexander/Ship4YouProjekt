@@ -72,6 +72,7 @@
 
 
     <form class="form-center">
+      <mat-icon>search</mat-icon>
       <mat-form-field class="break-between">
         <input type="text" placeholder="Boatname" aria-label="Boatname" [(ngModel)]="searchBoatNameString" matInput [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
@@ -80,7 +81,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-    
+
       <mat-form-field class="break-between">
         <input type="text" placeholder="Locations" aria-label="Locations" [(ngModel)]="searchLocationString" matInput [formControl]="namesControl" [matAutocomplete]="auto1">
         <mat-autocomplete #auto1="matAutocomplete">
@@ -144,7 +145,7 @@
 
     <!-- <div class="container custom-container-2">
        <mat-icon>search</mat-icon>
-     
+
            <mat-form-field>
              <mat-label>Locations</mat-label>
              <select matNativeControl [(ngModel)]="searchLocationString" name="searchLocationString">
@@ -154,7 +155,7 @@
                </option>
              </select>
            </mat-form-field>
-           
+
            <mat-form-field>
              <mat-label>Boatname</mat-label>
              <select matNativeControl [(ngModel)]="searchBoatNameString" name="searchBoatNameString">
@@ -188,11 +189,12 @@
            </button>
 
        </div>-->
-
+<br>
+<br>
        <div *ngIf="!showFav">
         <ul *ngFor="let customer of customers" style="width: 300px;">
           <mat-accordion *ngIf="customer.location.toUpperCase().includes(searchLocationString.toUpperCase()) && customer.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && customer.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && customer.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && customer.length > value-1 && customer.length < highValue+1 && customer.sail > sailsValue-1 && customer.sail < sailsHighValue+1 && customer.masts > mastsValue-1 && customer.masts < mastsHighValue+1 && customer.cabins > cabinsValue-1 && customer.cabins < cabinsHighValue+1 && customer.vintage > yearValue-1 && customer.vintage < yearHighValue+1 && customer.numberOfPeople > amountPeopleValue-1 && customer.numberOfPeople < amountPeopleHighValue+1" >
-            <app-customer-details [customer]='customer'></app-customer-details>  
+            <app-customer-details [customer]='customer'></app-customer-details>
             <br>
             <br>
           </mat-accordion>

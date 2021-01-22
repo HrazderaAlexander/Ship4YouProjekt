@@ -36,21 +36,26 @@ export class CreateFeedbackComponent implements OnInit {
   title: string;
   message: string;
 
+  url:string = "";
+  displayName:string ="";
+
   constructor(public dialogRef: MatDialogRef<CreateFeedbackComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private customerService: CustomerService, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
-    this.title = data.title;
-    this.message = data.message;
   }
 
   onConfirm(): void {
     this.dialogRef.close(true);
   }
- 
+
   onDismiss(): void {
     this.dialogRef.close(false);
   }
 
   ngOnInit() {
+    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
+
+    feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
+    feedbackRef.valueChanges().subscribe(x => this.displayName = x.displayName);
     this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
     this.getCustomersList();
   }
@@ -103,7 +108,7 @@ export class CreateFeedbackComponent implements OnInit {
 
 
   getSingleBoat(): any{               //SingleCustomer
-    
+
     var c = localStorage.getItem('numberOfBoats');
     if(!isNaN(Number(c))){
       var counter = Number(c);
@@ -116,7 +121,7 @@ export class CreateFeedbackComponent implements OnInit {
           console.log("BoatKey " + this.boatKey);
         }
       }
-      return this.boat;  
+      return this.boat;
     }
     else{
       console.log("Not a number!");
@@ -132,8 +137,8 @@ export class CreateFeedbackComponent implements OnInit {
         )
       )
     ).subscribe(customers => {
-      this.customers = customers; 
-      this.getSingleBoat();     
+      this.customers = customers;
+      this.getSingleBoat();
     });
 
     this.dataLoaded = true;
@@ -145,7 +150,7 @@ export class CreateFeedbackComponent implements OnInit {
 
     const feedbackData: Rating = {
       idRating: this.ratingId.toLocaleString(),
-      username: localStorage.getItem('userDisplayname'),
+      username: this.displayName,
       date: this.mydate,
       ratingStars: this.currentRate,
       text: this.feedback
@@ -157,7 +162,7 @@ export class CreateFeedbackComponent implements OnInit {
 
   updateBoatStats(){
     this.ratingBoat.push(this.currentRate);
-    this.updateRatingArray(this.ratingBoat); 
+    this.updateRatingArray(this.ratingBoat);
 
     var sum = this.ratingBoat.reduce((acc, cur) => acc + cur, 0);
     console.log("Sum: " + sum);
@@ -184,6 +189,7 @@ export class CreateFeedbackComponent implements OnInit {
 
   addFeedback(){
     //this.setAllRatingsToBoat();
+    this.dialogRef.close(true);
     this.updateBoatStats();
     this.SetFeedbackData();
     this.router.navigateByUrl('/dashboard')

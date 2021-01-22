@@ -31,7 +31,7 @@ export class BewertungComponent implements OnInit {
   isChosen:boolean = false;
   isHovering: boolean;
   ratingId:string="";
-  feedbackDb:any[] = []; 
+  feedbackDb:any[] = [];
   feedbackRef: AngularFirestoreDocument<any>[] = [];
   ratingBoat: number[];
 
@@ -64,9 +64,11 @@ export class BewertungComponent implements OnInit {
   nextPage: boolean = false; //is there a next Page
   behindPage: boolean = false; //is there a Page behind
 
+  url:string = "";
+  displayName:string ="";
   //------------------
 
-  constructor(public dialog: MatDialog,private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) { 
+  constructor(public dialog: MatDialog,private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
@@ -79,18 +81,13 @@ export class BewertungComponent implements OnInit {
   }
 
   confirmDialog(): void {
-    const message = `Do you wanna login now?`;
- 
-    const dialogData = new ConfirmDialogModel("Not logged in!", message);
- 
     const dialogRef = this.dialog.open(CreateFeedbackComponent, {
-      maxWidth: "400px",
-      data: dialogData
+      maxWidth: "400px"
     });
- 
+
     dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult){
-        this.router.navigateByUrl('create-feedback');
+        this.router.navigateByUrl('/dashboard');
       }
     });
   }
@@ -155,11 +152,11 @@ export class BewertungComponent implements OnInit {
   }
 
 
-  // Simulate click function 
-   clickButton() { 
-    document.getElementById('btn1').click(); 
-    
-  } 
+  // Simulate click function
+   clickButton() {
+    document.getElementById('btn1').click();
+
+  }
 
   //reload page
 
@@ -183,6 +180,11 @@ export class BewertungComponent implements OnInit {
   ngOnInit() {
     this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
     this.getCustomersList();
+    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
+
+    feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
+    feedbackRef.valueChanges().subscribe(x => this.displayName = x.displayName);
+
     this.feedbackFunct();
     this.behindPage = true;
     this.confirmDialog();
@@ -225,8 +227,8 @@ export class BewertungComponent implements OnInit {
         )
       )
     ).subscribe(customers => {
-      this.customers = customers; 
-      this.getSingleBoat();     
+      this.customers = customers;
+      this.getSingleBoat();
     });
 
     this.dataLoaded = true;
@@ -234,7 +236,7 @@ export class BewertungComponent implements OnInit {
   }
 
   getSingleBoat(): any{               //SingleCustomer
-    
+
     var c = localStorage.getItem('numberOfBoats');
     if(!isNaN(Number(c))){
       var counter = Number(c);
@@ -247,7 +249,7 @@ export class BewertungComponent implements OnInit {
           console.log("BoatKey " + this.boatKey);
         }
       }
-      return this.boat;  
+      return this.boat;
     }
     else{
       console.log("Not a number!");
@@ -289,7 +291,7 @@ export class BewertungComponent implements OnInit {
         )
       )
     ).subscribe(customers => {
-      
+
       if ((customers[this.tmp].brand + customers[this.tmp].name) == (localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName'))){
         this.ratingBoat = this.customers[this.tmp].rating;
       }
@@ -311,7 +313,7 @@ export class BewertungComponent implements OnInit {
 
   updateBoatStats(){
     this.ratingBoat.push(this.currentRate);
-    this.updateRatingArray(this.ratingBoat); 
+    this.updateRatingArray(this.ratingBoat);
 
     var sum = this.ratingBoat.reduce((acc, cur) => acc + cur, 0);
     console.log("Sum: " + sum);

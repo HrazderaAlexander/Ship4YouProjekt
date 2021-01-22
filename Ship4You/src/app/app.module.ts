@@ -44,6 +44,7 @@ import {ShowUpload} from './components/newboat/showUpload';
 //Elevation
 import { MaterialElevationDirective } from './material-elevation.directive';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -104,6 +105,7 @@ import { CreateFeedbackComponent } from './create-feedback/create-feedback.compo
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
+	MatProgressSpinnerModule,
     MatDialogModule,
     MatAutocompleteModule,
     MatGridListModule,

@@ -20,8 +20,8 @@ export class SignUpComponent {
     this.authService.GoogleAuth();
   }
 
-  onSignUp(email:string, password:string): void{
-    this.authService.SignUp(email, password);
+  onSignUp(email:string, password:string, username:string): void{
+    this.authService.SignUp(email, password, username);
     this.dialogRef.close(true);
   }
 }
