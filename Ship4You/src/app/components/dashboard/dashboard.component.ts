@@ -160,6 +160,10 @@ showFav: boolean = false;
   filteredLessors: Observable<string[]>;
   filteredBrand: Observable<string[]>;
 
+  goToMultUpload(){
+    this.router.navigateByUrl("multiple-upload");
+  }
+
   ngOnInit() {
 
     

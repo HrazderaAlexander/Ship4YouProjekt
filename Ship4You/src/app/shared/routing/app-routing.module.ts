@@ -17,6 +17,7 @@ import { UserDetailsComponent } from 'src/app/components/user-details/user-detai
 import {ShowUpload} from 'src/app/components/newboat/showUpload'
 import { BewertungComponent } from 'src/app/components/bewertung/bewertung.component';
 import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback.component';
+import { MultiplePicturesComponent } from 'src/app/multiple-pictures/multiple-pictures.component';
 
 // Array mit allen routen
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'add', component: CreateCustomerComponent, canActivate: [AuthGuard]},
   {path: 'showUpload', component: ShowUpload},
   {path: 'bewertung', component: BewertungComponent, runGuardsAndResolvers: 'always'},
-  {path: 'create-feedback', component: CreateFeedbackComponent}
+  {path: 'create-feedback', component: CreateFeedbackComponent},
+  {path: 'multiple-upload', component: MultiplePicturesComponent}
 ];
 
 @NgModule({

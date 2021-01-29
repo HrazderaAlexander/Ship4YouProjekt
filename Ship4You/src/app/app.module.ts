@@ -66,6 +66,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { UploadTaskDocumentComponent } from './components/newboat/upload-task-document/upload-task-document.component';
 import { UploadTaskMultiplePicturesComponent } from './components/newboat/upload-task-multiple-pictures/upload-task-multiple-pictures.component';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
+import { MultiplePicturesComponent } from './multiple-pictures/multiple-pictures.component';
+
+import { FirebaseService } from '../app/shared/services/firebase.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +89,8 @@ import { CreateFeedbackComponent } from './create-feedback/create-feedback.compo
     UploadTaskDocumentComponent,
     UploadTaskMultiplePicturesComponent,
     MaterialElevationDirective,
-    CreateFeedbackComponent
+    CreateFeedbackComponent,
+    MultiplePicturesComponent
     ],
   imports: [
     BrowserModule,
@@ -124,7 +128,7 @@ import { CreateFeedbackComponent } from './create-feedback/create-feedback.compo
   entryComponents: [
     ConfirmDialogComponent
   ],
-  providers: [AuthService, DatePipe],
+  providers: [AuthService, DatePipe, FirebaseService],
   bootstrap: [AppComponent]
 })
 
