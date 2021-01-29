@@ -48,3 +48,8 @@ th, td {
   overflow: hidden;
   color: #ffd740;
 }
+
+.downloadButton{
+  margin-left: 50%;
+  color: rgba(0,0,0,.26);
+}

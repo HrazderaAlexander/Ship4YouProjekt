@@ -9,7 +9,6 @@ import { ForgotPasswordComponent } from '../../components/forgot-password/forgot
 import { VerifyEmailComponent } from '../../components/verify-email/verify-email.component';
 
 import { CreateCustomerComponent } from '../../components/customers/create-customer/create-customer.component';
-import { CustomersListComponent } from '../../components/customers/customers-list/customers-list.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "../../shared/guard/auth.guard";

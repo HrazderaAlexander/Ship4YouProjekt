@@ -79,7 +79,10 @@
       </button>  
       <button *ngIf="customer.userId == userId" [disabled]="!isEdit" title="Cancel" mat-button color="warn" (click)="cancelEdit()">
         Cancel
-      </button>  
+      </button>
+      <a class="downloadButton" *ngIf="customer.documentUrl != null" href="{{customer.documentUrl}}" download>
+        <button mat-button>Show Document</button>
+      </a>
     </mat-card>
   </mat-expansion-panel>
 </mat-accordion>

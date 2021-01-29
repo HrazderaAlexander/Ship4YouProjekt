@@ -52,7 +52,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
-import { CustomersListComponent } from './components/customers/customers-list/customers-list.component';
 import { CreateCustomerComponent } from './components/customers/create-customer/create-customer.component';
 import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 import { BewertungComponent } from './components/bewertung/bewertung.component';
@@ -79,7 +78,6 @@ import { CreateFeedbackComponent } from './create-feedback/create-feedback.compo
     UserDetailsComponent,
     ShowUpload,
     DropzoneDirective,
-    CustomersListComponent,
     CustomerDetailsComponent,
     CreateCustomerComponent,
     BewertungComponent,

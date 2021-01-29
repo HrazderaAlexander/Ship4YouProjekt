@@ -8,7 +8,7 @@
  <a class="tool-but2" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
  <a class="tool-but" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="confirmSignIn()"><strong>Login</strong></a>
  <a class="tool-but" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="confirmSignUp()"><strong>Sign Up</strong></a>
- <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
+ <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Add Boat</strong></a>
  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
  <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
 
@@ -55,15 +55,6 @@
                  <ngx-slider [(value)]="amountPeopleValue" [(highValue)]="amountPeopleHighValue" [options]="optionsAmountPeople" (click)="getValues(amountPeopleValue, amountPeopleHighValue)"></ngx-slider>
              </div>
        </mat-expansion-panel>
-     <br>
-     <mat-expansion-panel [hidden]="!authService.isLoggedIn">
-      <mat-expansion-panel-header class="disable_ripple">
-        <mat-panel-title>
-          <h6>Favourite Boats:</h6>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-slide-toggle (click)="getAllFavBoats()"></mat-slide-toggle>
-    </mat-expansion-panel>
 
      </div>
 
@@ -108,87 +99,8 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
+    <mat-slide-toggle (click)="getAllFavBoats()"></mat-slide-toggle>
   </form>
-
-    <!--<form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input type="text"
-        (input)="filterLocation()"
-               placeholder="Location"
-               aria-label="Number"
-               matInput
-               [formControl]="myControl"
-               [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let allLocations of filteredOptions | async" [value]="allLocations">
-            {{allLocations}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <input type="text"
-        (input)="filterName()"
-               placeholder="Name"
-               aria-label="Number"
-               matInput
-               [formControl]="myControl"
-               [matAutocomplete]="auto1">
-        <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
-          <mat-option *ngFor="let allNames of filteredOptions | async" [value]="allNames">
-            {{allNames}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>-->
-
-    <!-- <div class="container custom-container-2">
-       <mat-icon>search</mat-icon>
-
-           <mat-form-field>
-             <mat-label>Locations</mat-label>
-             <select matNativeControl [(ngModel)]="searchLocationString" name="searchLocationString">
-               <option value="" selected></option>
-               <option *ngFor="let location of allLocations" [value]="location">
-                 {{location}}
-               </option>
-             </select>
-           </mat-form-field>
-
-           <mat-form-field>
-             <mat-label>Boatname</mat-label>
-             <select matNativeControl [(ngModel)]="searchBoatNameString" name="searchBoatNameString">
-               <option value="" selected></option>
-               <option *ngFor="let name of allNames" [value]="name">
-                 {{name}}
-               </option>
-             </select>
-           </mat-form-field>
-
-           <mat-form-field>
-             <mat-label>Lessor</mat-label>
-             <select matNativeControl [(ngModel)]="searchLessorString" name="searchLessorString">
-               <option value="" selected></option>
-               <option *ngFor="let lessor of allLessors" [value]="lessor">
-                 {{lessor}}
-               </option>
-             </select>
-           </mat-form-field>
-
-           <mat-form-field>
-             <mat-label>Brand</mat-label>
-             <select matNativeControl [(ngModel)]="searchBrandString" name="searchBrandString">
-               <option value="" selected></option>
-               <option *ngFor="let brand of allBrands" [value]="brand">
-                 {{brand}}
-               </option>
-             </select>
-           </mat-form-field>
-           <button mat-button color="primary" (click)="resetSearchData()">Refresh Search
-           </button>
-
-       </div>-->
 <br>
 <br>
        <div *ngIf="!showFav">

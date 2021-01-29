@@ -72,6 +72,11 @@ export class BewertungComponent implements OnInit {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
+  goToDashboard(){
+    //localStorage.setItem("leaveFromFeedback", "true"); 
+    this.router.navigateByUrl("/dashboard");
+  }
+
   feedbackFunct(){
     this.feedbackArray = [];
     for (let i = 0; i < this.feedbackArraySize; i++){
@@ -87,7 +92,7 @@ export class BewertungComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult){
-        this.router.navigateByUrl('/dashboard');
+       //this.router.navigateByUrl('/bewertung');
       }
     });
   }
@@ -283,21 +288,6 @@ export class BewertungComponent implements OnInit {
     this.pageIsLoaded = true; //set to true if page is loaded
   }
 
-  /*setAllRatingsToBoat(){
-    this.customerService.getCustomersList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
-        )
-      )
-    ).subscribe(customers => {
-
-      if ((customers[this.tmp].brand + customers[this.tmp].name) == (localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName'))){
-        this.ratingBoat = this.customers[this.tmp].rating;
-      }
-    })
-  }*/
-
   updateRatingArray(ratingBoat: any) {
     this.customerService
       .updateCustomer(this.boatKey, { allReatings: ratingBoat })
@@ -326,7 +316,7 @@ export class BewertungComponent implements OnInit {
   }
 
   addFeedback(){
-    //this.setAllRatingsToBoat();
+   
     this.updateBoatStats();
     this.SetFeedbackData();
     this.router.navigateByUrl('/dashboard')
