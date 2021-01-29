@@ -164,6 +164,8 @@ validateDocument(name: String) {
       {
         console.log(this.customers[i].brand+this.customers[i].name);
         this.ID[this.IDCounter] = this.customers[i].brand+this.customers[i].name;
+        localStorage.setItem("createBoatId", this.ID[this.IDCounter]);
+        console.log(localStorage.getItem("createBoatId"));
         this.IDCounter++;  
       }
       console.log(this.IDCounter);

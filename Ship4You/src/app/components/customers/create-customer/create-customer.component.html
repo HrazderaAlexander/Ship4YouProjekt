@@ -145,23 +145,7 @@
           </form>
         </mat-step>
         <mat-step label="Upload more pictures">
-          <form>
-            <div class="dropzone-multi-pic" 
-              dropzone
-              (hovered)="toggleHover($event)"
-              (dropped)="onDropMult($event)"
-              [class.hovering]="isHovering">
-              <h3>Upload more pictures</h3>
-              <p>Drag and Drop a File</p>
-            </div>
-            <div *ngFor="let file of filesPictures">
-              <app-upload-task-multiple-pictures [file]="file"></app-upload-task-multiple-pictures>
-              </div>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
+          <app-multiple-pictures></app-multiple-pictures>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>

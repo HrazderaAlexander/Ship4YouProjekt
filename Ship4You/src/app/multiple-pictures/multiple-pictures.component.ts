@@ -23,6 +23,8 @@ export class MultiplePicturesComponent implements OnInit {
   forma: FormGroup;
   tests: Observable<any[]>;
 
+  tmp: string = "";
+
   constructor(fb: FormBuilder, private storage: AngularFireStorage, private afs: AngularFirestore, private fs: FirebaseService ) { 
     this.forma = fb.group ({
       categoria: ['myCategoria'],
@@ -39,7 +41,8 @@ export class MultiplePicturesComponent implements OnInit {
   }
 
   uploadFile() {
-    const myTest = this.afs.collection('test7').ref.doc();
+    this.tmp = localStorage.getItem("createBoatId");
+    const myTest = this.afs.collection(this.tmp).ref.doc();
     console.log(myTest.id)
 
     const file = this.selectedFile
