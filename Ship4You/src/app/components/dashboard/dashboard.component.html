@@ -1,25 +1,20 @@
 <!-- Top navigation -->
 <mat-toolbar class="mat-toolbar">
-  <button mat-icon-button (click)="openMenu()">
-   <mat-icon>menu</mat-icon>
- </button>
  <span>Ship4You</span>
  <span class="example-spacer"></span>
  <a class="tool-but2" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
  <a class="tool-but" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="confirmSignIn()"><strong>Login</strong></a>
  <a class="tool-but" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="confirmSignUp()"><strong>Sign Up</strong></a>
- <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Add Boat</strong></a>
+ <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Add Boate</strong></a>
  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
  <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
 
 </mat-toolbar>
 
-<button (click)="goToMultUpload()">TestMultUpload</button>
-
 <div class="container-fluid">
  <div class="row">
 
-     <div *ngIf="this.menuOpen" class="sidebar-sticky">
+     <div class="sidebar-sticky">
            <mat-expansion-panel>
              <mat-expansion-panel-header class="disable_ripple">
                <mat-panel-title>
@@ -52,12 +47,12 @@
                  <ngx-slider [(value)]="yearValue" [(highValue)]="yearHighValue" [options]="optionsYear" (click)="getValues(yearValue, yearHighValue)"></ngx-slider>
              </div>
              <hr>
-               <label class="labelSize"><strong>Amount of People</strong></label>
+               <label class="labelSize"><strong>Max. People</strong></label>
                <div class="custom-slider">
                  <ngx-slider [(value)]="amountPeopleValue" [(highValue)]="amountPeopleHighValue" [options]="optionsAmountPeople" (click)="getValues(amountPeopleValue, amountPeopleHighValue)"></ngx-slider>
              </div>
        </mat-expansion-panel>
-
+     <br>
      </div>
 
    <!-- Main content -->
@@ -101,14 +96,14 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <mat-slide-toggle (click)="getAllFavBoats()"></mat-slide-toggle>
+    <mat-slide-toggle title="Show All Favorites" class="mat-slide-toggle-thumb" (click)="getAllFavBoats()"></mat-slide-toggle>
   </form>
 <br>
 <br>
        <div *ngIf="!showFav">
-        <ul *ngFor="let customer of customers" style="width: 300px;">
-          <mat-accordion *ngIf="customer.location.toUpperCase().includes(searchLocationString.toUpperCase()) && customer.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && customer.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && customer.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && customer.length > value-1 && customer.length < highValue+1 && customer.sail > sailsValue-1 && customer.sail < sailsHighValue+1 && customer.masts > mastsValue-1 && customer.masts < mastsHighValue+1 && customer.cabins > cabinsValue-1 && customer.cabins < cabinsHighValue+1 && customer.vintage > yearValue-1 && customer.vintage < yearHighValue+1 && customer.numberOfPeople > amountPeopleValue-1 && customer.numberOfPeople < amountPeopleHighValue+1" >
-            <app-customer-details [customer]='customer'></app-customer-details>
+        <ul *ngFor="let c of customers" style="width: 300px;">
+          <mat-accordion *ngIf="c.location.toUpperCase().includes(searchLocationString.toUpperCase()) && c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && c.lessor.toUpperCase().includes(searchLessorString.toUpperCase()) && c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && c.length > value-1 && c.length < highValue+1 && c.sail > sailsValue-1 && c.sail < sailsHighValue+1 && c.masts > mastsValue-1 && c.masts < mastsHighValue+1 && c.cabins > cabinsValue-1 && c.cabins < cabinsHighValue+1 && c.vintage > yearValue-1 && c.vintage < yearHighValue+1 && c.numberOfPeople > amountPeopleValue-1 && c.numberOfPeople < amountPeopleHighValue+1">
+            <app-customer-details [customer]='c'></app-customer-details>
             <br>
             <br>
           </mat-accordion>

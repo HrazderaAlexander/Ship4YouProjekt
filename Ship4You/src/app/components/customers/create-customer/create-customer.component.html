@@ -3,11 +3,11 @@
   <span class="example-spacer"></span>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
- 
+
  </mat-toolbar>
 
 <main role="main" class="col-md-2 ml-sm-auto col-lg-11 px-4">
-<h3 class="title">Create Boat</h3>
+<h3 class="title">Add Boat</h3>
 <!--<div [hidden]="submitted" style="width: 300px;">-->
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -17,10 +17,7 @@
       <div *ngIf="checkID()===1" class="alert alert-danger" role="alert">
         Bootname oder Brand darf nicht leer sein!
       </div>
-      <mat-horizontal-stepper [linear]="checkID()>0" #stepper>
-        <mat-step >
           <form >
-            <ng-template matStepLabel>Fill out all fields</ng-template>
             <mat-form-field appearance="outline">
               <mat-label>Name</mat-label>
               <input matInput id="name" [(ngModel)]="customer.name" name="name" required>
@@ -70,13 +67,19 @@
             <mat-icon class="material-icons color_red" *ngIf="customer.lessor == '' || customer.lessor == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
             <mat-hint>Must not be empty</mat-hint>
           </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>Type</mat-label>
-            <input matInput id="type" [(ngModel)]="customer.type" name="type" required>
+            <mat-select [(value)]="customer.type">
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
             <mat-icon class="material-icons color_green" *ngIf="customer.type != '' && customer.type != null" matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-icon class="material-icons color_red" *ngIf="customer.type == '' || customer.type == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
             <mat-hint>Must not be empty</mat-hint>
           </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>Location</mat-label>
             <input matInput id="location" [(ngModel)]="customer.location" name="location" required>
@@ -101,61 +104,36 @@
     <br>
     <br>
     <br>
-            <div>
-              <button [disabled]="checkID()===2" mat-button matStepperNext>Next</button>
-            </div>
+    <form>
+      <div class="dropzone"
+      dropzone required
+      (hovered)="toggleHover($event)"
+      (dropped)="onDrop($event)"
+      [class.hovering]="isHovering">
+      <h3>Upload title picture</h3>
+      <p>Drag and Drop a File</p>
+      </div>
+      <div *ngFor="let file of files">
+        <upload-task [file]="file"></upload-task>
+      </div>
+
+      <div class="dropzone-document"
+      dropzone
+      (hovered)="toggleHover($event)"
+      (dropped)="onDropDocument($event)"
+      [class.hovering]="isHovering">
+      <h3>Upload document</h3>
+      <p>Drag and Drop a File</p>
+      </div>
+      <div *ngFor="let file of filesDocuments">
+        <app-upload-task-document [file]="file"></app-upload-task-document>
+        </div>
+
+    </form>
+    <div>
+      <button [disabled]="checkID()===2" mat-button (click)="goToMultUpload()" >Next</button>
+    </div>
           </form>
-        </mat-step>
-        <mat-step label="Upload a title picture">
-          <form>
-            <div class="dropzone" 
-            dropzone required
-            (hovered)="toggleHover($event)"
-            (dropped)="onDrop($event)"
-            [class.hovering]="isHovering">
-            <h3>Upload title picture</h3>
-            <p>Drag and Drop a File</p>
-            </div>
-            <div *ngFor="let file of files">
-              <upload-task [file]="file"></upload-task>
-            </div>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step label="Upload a document">
-          <form>
-            <div class="dropzone-document" 
-            dropzone
-            (hovered)="toggleHover($event)"
-            (dropped)="onDropDocument($event)"
-            [class.hovering]="isHovering">
-            <h3>Upload document</h3>
-            <p>Drag and Drop a File</p>
-            </div>
-            <div *ngFor="let file of filesDocuments">
-              <app-upload-task-document [file]="file"></app-upload-task-document>
-              </div>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step label="Upload more pictures">
-          <app-multiple-pictures></app-multiple-pictures>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <button [disabled]="checkID()===0||checkID()===1||checkID()===2" type="submit" class="btn btn-success">Submit</button>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.steps.first">Reset</button>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper>
     </div>
   </form>
 <!--</div>-->

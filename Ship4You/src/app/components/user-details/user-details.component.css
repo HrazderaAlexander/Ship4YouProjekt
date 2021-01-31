@@ -95,9 +95,15 @@ body {
 }
 
 .mat-toolbar{
+  height: 80px;
+  font-size: 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background-color: #8d7260;
   color: white;
 }
+
 
 .tool-but{
   height: 50%;

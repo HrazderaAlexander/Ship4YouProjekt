@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { Component, OnInit  } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -5,6 +6,9 @@ import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseService } from '../../app/shared/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Router } from '@angular/router';
+import { Customer } from '../components/customers/customer';
+import { CustomerService } from '../components/customers/customer.service';
 
 export interface Test {
   imagenDestacada: string;
@@ -23,9 +27,11 @@ export class MultiplePicturesComponent implements OnInit {
   forma: FormGroup;
   tests: Observable<any[]>;
 
+  newBoat: Customer = new Customer();
+
   tmp: string = "";
 
-  constructor(fb: FormBuilder, private storage: AngularFireStorage, private afs: AngularFirestore, private fs: FirebaseService ) { 
+  constructor(fb: FormBuilder, private boatService: CustomerService, private router: Router, public authService: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, private fs: FirebaseService ) {
     this.forma = fb.group ({
       categoria: ['myCategoria'],
 
@@ -33,7 +39,27 @@ export class MultiplePicturesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.newBoat = this.boatService.tmpBoat;
+    console.log("NewBoatInit " + this.newBoat);
     this.mostrarImagenes();
+  }
+
+  save() {
+    //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
+    this.newBoat.imageUrl = localStorage.getItem('downloadUrl');
+    this.newBoat.documentUrl = localStorage.getItem('downloadDocumentUrl');
+    this.newBoat.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
+    localStorage.removeItem("downloadMultiPictures");
+    this.newBoat.userId = localStorage.getItem('userUid');
+    this.newBoat.allReatings = [0];
+    this.newBoat.rating = 0;
+    this.boatService.createCustomer(this.newBoat);
+    this.newBoat = new Customer();
+  }
+
+  onSubmit() {
+    this.save();
+    this.router.navigateByUrl("/dashboard");
   }
 
   detectFiles(event) {
@@ -41,8 +67,8 @@ export class MultiplePicturesComponent implements OnInit {
   }
 
   uploadFile() {
-    this.tmp = localStorage.getItem("createBoatId");
-    const myTest = this.afs.collection(this.tmp).ref.doc();
+    console.log('TEST createBoatId: ', localStorage.getItem("createBoatId"));
+    const myTest = this.afs.collection(localStorage.getItem("createBoatId")).ref.doc();
     console.log(myTest.id)
 
     const file = this.selectedFile
@@ -50,22 +76,22 @@ export class MultiplePicturesComponent implements OnInit {
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
-    this.uploadPercent = task.percentageChanges();  
+    this.uploadPercent = task.percentageChanges();
 
     task.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().toPromise().then( (url) => {
           this.downloadURL = url;
-          
+
           myTest.set({
             categoria: this.forma.value.categoria,
             imagenes : this.downloadURL,
             myId : myTest.id
           })
 
-          console.log( this.downloadURL ) 
+          console.log( this.downloadURL )
         }).catch(err=> { console.log(err) });
-      })    
+      })
     )
     .subscribe()
   }

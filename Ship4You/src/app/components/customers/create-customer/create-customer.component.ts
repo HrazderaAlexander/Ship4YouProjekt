@@ -10,6 +10,11 @@ import { map } from 'rxjs/operators';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 
+interface Types {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-create-customer',
   templateUrl: './create-customer.component.html',
@@ -34,11 +39,6 @@ export class CreateCustomerComponent implements OnInit {
     this.getCustomer();
   }
 
-  newCustomer(): void {
-    this.submitted = false;
-    this.customer = new Customer();
-  }
-
   save() {
     //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
     this.customer.imageUrl = localStorage.getItem('downloadUrl');
@@ -61,6 +61,11 @@ export class CreateCustomerComponent implements OnInit {
   toggleHover(event: boolean) {
     this.isHovering = event;
   }
+
+  types: Types[] = [
+    {value: 'Sailingboat', viewValue: 'Sailingboat'},
+    {value: 'Motorboat', viewValue: 'Motorboat'}
+  ]
 
   onDrop(files: FileList) {
     for (let i = 0; i < files.length; i++) {
@@ -119,7 +124,6 @@ export class CreateCustomerComponent implements OnInit {
     }
   }
 
-
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
     if (ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpeg' || ext.toLowerCase() == 'jpg') {
@@ -164,9 +168,8 @@ validateDocument(name: String) {
       {
         console.log(this.customers[i].brand+this.customers[i].name);
         this.ID[this.IDCounter] = this.customers[i].brand+this.customers[i].name;
-        localStorage.setItem("createBoatId", this.ID[this.IDCounter]);
         console.log(localStorage.getItem("createBoatId"));
-        this.IDCounter++;  
+        this.IDCounter++;
       }
       console.log(this.IDCounter);
 
@@ -193,5 +196,13 @@ validateDocument(name: String) {
     else
       this.IDCounter = 0;
 
+  }
+
+  goToMultUpload(){
+    this.customerService.tmpBoat = this.customer;
+    console.log("TmpBoat " + this.customerService.tmpBoat)
+    localStorage.setItem('createBoatId', this.customer.brand+this.customer.name);
+    console.log(localStorage.getItem("createBoatId"));
+    this.router.navigateByUrl("multiple-upload");
   }
 }

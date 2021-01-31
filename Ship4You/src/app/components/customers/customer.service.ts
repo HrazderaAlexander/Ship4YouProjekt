@@ -9,6 +9,8 @@ export class CustomerService {
 
   public dbPath = '/customers';
 
+  public tmpBoat: Customer = new Customer();
+
   customersRef: AngularFireList<Customer> = null;
 
 

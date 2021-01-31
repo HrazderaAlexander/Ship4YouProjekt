@@ -77,7 +77,7 @@ body {
     padding: 14px;
   }
   .topnav input[type=text] {
-    border: 1px solid #ccc;  
+    border: 1px solid #ccc;
   }
 }
 .mat-form-field {
@@ -131,13 +131,13 @@ body {
   color: white;
   height: 100%;
   width: 16%;
-  position: absolute; 
+  position: absolute;
   z-index: 1;
   top: 10vh;
   left: 0;
   overflow-x: hidden;
   padding-top: 60px;
-  transition: 0.5s; 
+  transition: 0.5s;
 }
 
 .tool-but2{
@@ -197,4 +197,13 @@ body {
 .mat-toolbar{
   background-color: #8d7260;
   color: white;
+}
+
+.mat-slide-toggle-thumb {
+  width: 18px !important;
+  height: 18px !important;
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Herz_Neu.svg/2000px-Herz_Neu.svg.png) !important;
+background-origin: content-box;
+background-size: contain;
+background-position: center center;
 }

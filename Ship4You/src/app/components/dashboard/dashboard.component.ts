@@ -77,22 +77,10 @@ showFav: boolean = false;
     public router: Router,
     public ngZone: NgZone,
     private afs: AngularFirestore, private service: ImageService, private customerService: CustomerService
-  ) { 
-    this.getCustomersList();
-
-    /*if(localStorage.getItem("leaveFromFeedback") == "true"){
-      this.reloadComponent();
-      localStorage.setItem("leaveFromFeedback", "false"); 
-    }*/
-   }
-
-   /*reloadComponent(){
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([currentUrl]);
-    localStorage.setItem("leaveFromFeedback", "false"); 
-  }*/
+  )
+  {
+      this.getCustomersList();
+  }
 
   imageList: any[];
   rowIndexArray: any[];
@@ -160,13 +148,7 @@ showFav: boolean = false;
   filteredLessors: Observable<string[]>;
   filteredBrand: Observable<string[]>;
 
-  goToMultUpload(){
-    this.router.navigateByUrl("multiple-upload");
-  }
-
   ngOnInit() {
-
-    
     this.afs.collection('users').valueChanges().subscribe(s => localStorage.setItem('size', `${s.length}`));
 
     const ref = this.afs.collection('users');
@@ -174,10 +156,8 @@ showFav: boolean = false;
     snapshot.forEach(doc => {
       doc.forEach(d => {
         this.allUserIds[this.userIdCounter] = d.id;
-        console.log('insert ' + this.userIdCounter + ': ' + d.id);
         this.userIdCounter++;
       })
-      console.log(this.allUserIds);
       localStorage.setItem('userIds', JSON.stringify(this.allUserIds));
     });
   }
@@ -205,11 +185,10 @@ showFav: boolean = false;
         return 0;
       });
       localStorage.setItem('numberOfBoats', this.customers.length);
-    })
-  }
-
-  deleteCustomers() {
-    this.customerService.deleteAll().catch(err => console.log(err));
+      localStorage.setItem('customerArray', JSON.stringify(this.customers));
+      console.log('size: ', this.customers.length);
+      console.log('customers: ', this.customers);
+    });
   }
 
   getAllFavBoats(){
