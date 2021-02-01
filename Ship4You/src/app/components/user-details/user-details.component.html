@@ -6,13 +6,13 @@
 
 </mat-toolbar>
 
-<main role="main" class="centerView">
+<main role="main">
 
   <div class="inner-adjust">
     <mat-progress-spinner [hidden]="!check" title="Saving" class="spinner-location"
     [color]="color"
     [mode]="mode">
-  </mat-progress-spinner>
+    </mat-progress-spinner>
     <!-- Show User data, if you loged in -->
     <div class="row" *ngIf="authService.userData as user">
       <div class="col-md-12">
@@ -21,7 +21,7 @@
           <div class="hover-text">Choose file</div>
           <div class="background"></div>
         </label>
-        <h1 style="margin-top: 50px;">{{displayName ? displayName : 'User'}}</h1>
+        <h4 class="username" style="margin-top: 50px;">{{displayName ? displayName : 'User'}}</h4>
         <br/>
         <input id="fileInput" type='file' (change)="onSelectFile($event)">
       </div>

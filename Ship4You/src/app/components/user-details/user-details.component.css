@@ -129,12 +129,20 @@ p {
   width: 100% !important;
   border-radius: 50% !important;
 }
+
+.username{
+  position: absolute;
+  font-size: 20px;
+  margin-left: 35%;
+  top: 10%;
+}
+
 .hoverable{
   position: relative;
   display: block;
   cursor: pointer;
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border: 5px solid #000;
   border-radius: 50%;
 }
