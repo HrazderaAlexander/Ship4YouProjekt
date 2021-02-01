@@ -4,4 +4,5 @@ export class Rating{
     text:string;
     date:string;
     ratingStars:number;
+    picturesId:string;
 }

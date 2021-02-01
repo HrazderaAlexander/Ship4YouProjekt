@@ -124,10 +124,10 @@ p {
   font-family: Lato;
 }
 
-img {
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
+.profile-img {
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 50% !important;
 }
 .hoverable{
   position: relative;

@@ -1,6 +1,6 @@
 <!-- Top navigation -->
 <mat-toolbar class="mat-toolbar">
- <span>Ship4You</span>
+ <img height="70px" src="../../../assets/img/ship4youWeiss.png">
  <span class="example-spacer"></span>
  <a class="tool-but2" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
  <a class="tool-but" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="confirmSignIn()"><strong>Login</strong></a>

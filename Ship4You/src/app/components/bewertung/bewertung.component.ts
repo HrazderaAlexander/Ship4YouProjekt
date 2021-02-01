@@ -73,9 +73,8 @@ export class BewertungComponent implements OnInit {
   showNoResult:boolean=true;
   //------------------
 
-  constructor(public dialog: MatDialog,private customerService: CustomerService, private fs: FirebaseService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
+  constructor(public dialog: MatDialog,private customerService: CustomerService, public fs: FirebaseService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
-    this.mostrarImagenes();
   }
 
   feedbackFunct(){
@@ -86,8 +85,8 @@ export class BewertungComponent implements OnInit {
 
   }
 
-  mostrarImagenes() {
-    this.tests = this.fs.getTestFeedback(this.displayName);
+  mostrarImagenes(username:string) {
+    this.tests = this.fs.getTestFeedback(username);
   }
 
   confirmDialog(): void {
@@ -269,21 +268,6 @@ export class BewertungComponent implements OnInit {
     }
   }
 
-  SetFeedbackData() {
-    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${this.ratingId}`);
-
-    const feedbackData: Rating = {
-      idRating: this.ratingId.toLocaleString(),
-      username: localStorage.getItem('userDisplayname'),
-      date: this.mydate,
-      ratingStars: this.currentRate,
-      text: this.feedback
-    }
-    return feedbackRef.set(feedbackData, {
-      merge: true
-    })
-  }
-
   tmp:number = 0;
 
   getFeedbackData() {
@@ -292,7 +276,7 @@ export class BewertungComponent implements OnInit {
       this.feedbackRef[i].valueChanges().subscribe(item =>
         {
           this.feedbackDb[i] = item
-          console.log('ITEM; ', item);
+          this.mostrarImagenes(item.username);
         });
     }
     //this.feedbackButtonPressed = true;
@@ -329,7 +313,6 @@ export class BewertungComponent implements OnInit {
   addFeedback(){
 
     this.updateBoatStats();
-    this.SetFeedbackData();
     this.router.navigateByUrl('/dashboard')
   }
 

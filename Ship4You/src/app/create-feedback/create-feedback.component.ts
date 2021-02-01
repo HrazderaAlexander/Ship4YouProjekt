@@ -215,7 +215,8 @@ export class CreateFeedbackComponent implements OnInit {
       username: this.displayName,
       date: this.mydate,
       ratingStars: this.currentRate,
-      text: this.feedback
+      text: this.feedback,
+      picturesId: localStorage.getItem("feedbackBoatId")+"MultFeedback" + this.displayName
     }
     return feedbackRef.set(feedbackData, {
       merge: true

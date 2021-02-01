@@ -1,6 +1,6 @@
 <!-- Top navigation -->
 <mat-toolbar class="mat-toolbar">
-  <span>Ship4You</span>
+  <img height="70px" src="../../../assets/img/ship4youWeiss.png">
   <span class="example-spacer"></span>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
@@ -79,12 +79,14 @@
           <div class ="left-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].text}}</div>
 
           <div class="row">
-            <div class="col-lg-2 col-6" *ngFor="let test of tests | async">
-              <div class="card">
-                <img class="card-img-top" src="{{ test.imagenes }}" width="100%">
-              </div>
+                <img class="card-img-top" src="{{(feedbackDb[(currentPage-1)*feedbackArraySize+i].picturesId)}}" width="100%">
             </div>
-          </div>
+            <!--
+
+
+            <img class="card-img-top" src="{{(fs.getTestFeedback(feedbackDb[(currentPage-1)*feedbackArraySize+i].username))}}" width="20%">
+-->
+
 
         </mat-card-content>
         <mat-card-footer>

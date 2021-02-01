@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-toolbar">
- <span>Ship4You</span>
+  <img height="70px" src="../../../assets/img/ship4youWeiss.png">
  <span class="example-spacer"></span>
  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
@@ -17,7 +17,7 @@
     <div class="row" *ngIf="authService.userData as user">
       <div class="col-md-12">
         <label class="hoverable" for="fileInput">
-          <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+          <img class="profile-img" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
           <div class="hover-text">Choose file</div>
           <div class="background"></div>
         </label>
