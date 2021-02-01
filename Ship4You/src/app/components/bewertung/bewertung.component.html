@@ -1,0 +1,98 @@
+<!-- Top navigation -->
+<mat-toolbar class="mat-toolbar">
+  <img height="70px" src="../../../assets/img/ship4youWeiss.png">
+  <span class="example-spacer"></span>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
+
+  <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
+</mat-toolbar>
+
+<div class="label-middle" [hidden]="showNoResult" *ngIf="feedbackDb.length == 0">
+  <br>
+  <h2>No Feedbacks written</h2>
+  <button class="button-middle" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" title="Add Feedback" mat-fab color="primary" (click)="confirmDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+ <!--<div *ngIf="pageIsLoaded" id="content">-->
+  <!--<mat-paginator [length]="100" [pageSize]="8" [pageSizeOptions]="[2, 4, 6, 8, 10, 100]" (page)="pageEvent = $event; onPaginateChange($event)"></mat-paginator>-->
+  <div *ngIf="feedbackDb.length != 0" id="pagination-content">
+
+    <mat-select *ngIf="nextPage == false" class="paginationSelect" (selectionChange)="feedbackFunct()" [(ngModel)]=feedbackArraySize>
+      <mat-option *ngFor="let pageSize of pageSizes" [value]="pageSize">{{pageSize}}</mat-option>
+    </mat-select>
+
+    <mat-select *ngIf="nextPage == true" class="paginationSelect-disabled" class="paginationSelect" (selectionChange)="feedbackFunct()" [(ngModel)]=feedbackArraySize>
+      <mat-option *ngFor="let pageSize of pageSizes" [value]="pageSize">{{pageSize}}</mat-option>
+    </mat-select>
+
+    <ul class="ul-pagination pagination-circle pg-blue">
+      <li *ngIf="behindPage == false" class="first" (click)="changePage(1)">First</li>
+      <li *ngIf="behindPage == true" class="disabled">First</li>
+      <li class="privious">
+        <button class="arrows" [disabled]="behindPage" (click)="minusPage(1)">&laquo;</button>
+      </li>
+      <li *ngIf="currentPage-2 >= 1" (click)="minusPage(2)" class="page-item">{{currentPage-2}}</li>
+      <li *ngIf="currentPage-1 >= 1" (click)="minusPage(1)" class="page-item">{{currentPage-1}}</li>
+      <li class="page-item active">{{currentPage}}</li>
+      <li *ngIf="currentPage+1 <= getMaxPage()" (click)="plusPage(1)" class="page-item">{{currentPage+1}}</li>
+      <li *ngIf="currentPage+2 <= getMaxPage()" (click)="plusPage(2)" class="page-item">{{currentPage+2}}</li>
+      <li class="next">
+        <button class="arrows" [disabled]="nextPage" (click)="plusPage(1)">&raquo;</button>
+      </li>
+      <li *ngIf="nextPage == false" class="last" (click)="changeToLastPage()">Last</li>
+      <li *ngIf="nextPage == true" class="disabled">Last</li>
+    </ul>
+  </div>
+<br><br>
+ <div id="matCardList" class="scroll" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="15px">
+  <div *ngIf="feedbackDb.length > 0;" class="card-background">
+    <div *ngFor="let ltd of feedbackArray; let i = index">
+      <mat-card appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" class="example-card" matTooltip="View arguments or create one" *ngIf="feedbackDb.length>(currentPage-1)*feedbackArraySize+i">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image">
+            <img width="50" height="50" [src]="'https://www.w3schools.com/howto/img_avatar.png'">
+          </div>
+
+          <mat-card-title>
+            <div class="container-card">
+              <div>{{feedbackDb[(currentPage-1)*feedbackArraySize+i].username}}</div>
+              <div class="fill"></div>
+
+              <div class ="right-side-stars">
+                <ng-template #t let-fill="fill">
+                  <!--<span class="star" [class.full]="fill === 100">-->
+                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                  <!--</span>-->
+                </ng-template>
+                <!--<h>Rate {{customer.ratingStars}}</h>-->
+                <ngb-rating [max]="5" [(rate)]="feedbackDb[(currentPage-1)*feedbackArraySize+i].ratingStars" title="{{feedbackDb[(currentPage-1)*feedbackArraySize+i].ratingStars | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class ="right-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].date}}</div>
+
+          <div class ="left-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].text}}</div>
+
+            <span *ngFor="let image of feedbackDb[(currentPage-1)*feedbackArraySize+i].picturesId">
+              <img class="myImg" src="{{image}}">
+            </span>
+            <!--
+
+
+            <img class="card-img-top" src="{{(fs.getTestFeedback(feedbackDb[(currentPage-1)*feedbackArraySize+i].username))}}" width="20%">
+-->
+
+
+        </mat-card-content>
+        <mat-card-footer>
+          <div class ="middle-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].followingArgumentCount}}</div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>
