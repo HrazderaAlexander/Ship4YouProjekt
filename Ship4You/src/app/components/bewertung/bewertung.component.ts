@@ -15,6 +15,7 @@ import { finalize, tap } from 'rxjs/operators';
 import { MatDialog, PageEvent } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback.component';
+import { FirebaseService } from 'src/app/shared/services/firebase.service';
 
 @Component({
   selector: 'app-bewertung',
@@ -67,11 +68,14 @@ export class BewertungComponent implements OnInit {
   url:string = "";
   displayName:string ="";
 
+  tests: Observable<any[]>;
+
   showNoResult:boolean=true;
   //------------------
 
-  constructor(public dialog: MatDialog,private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
+  constructor(public dialog: MatDialog,private customerService: CustomerService, private fs: FirebaseService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
+    this.mostrarImagenes();
   }
 
   feedbackFunct(){
@@ -80,6 +84,10 @@ export class BewertungComponent implements OnInit {
       this.feedbackArray.push(i);
     }
 
+  }
+
+  mostrarImagenes() {
+    this.tests = this.fs.getTestFeedback(this.displayName);
   }
 
   confirmDialog(): void {
@@ -181,6 +189,8 @@ export class BewertungComponent implements OnInit {
 
   ngOnInit() {
     this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
+    localStorage.setItem("feedbackBoatId", localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName'));
+    console.log("FeedbackBoatId " + localStorage.getItem("feedbackBoatId"));
     this.getCustomersList();
     const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
 

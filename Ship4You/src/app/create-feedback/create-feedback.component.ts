@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,6 +10,11 @@ import { finalize, map, tap } from 'rxjs/operators';
 import { Rating } from '../components/bewertung/rating';
 import { Customer } from '../components/customers/customer';
 import { CustomerService } from '../components/customers/customer.service';
+import { FirebaseService } from '../shared/services/firebase.service';
+
+export interface Test {
+  imagenDestacada: string;
+}
 
 @Component({
   selector: 'app-create-feedback',
@@ -39,7 +45,19 @@ export class CreateFeedbackComponent implements OnInit {
   url:string = "";
   displayName:string ="";
 
-  constructor(public dialogRef: MatDialogRef<CreateFeedbackComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private customerService: CustomerService, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
+  //
+  uploadPercent: Observable<number>;
+  downloadURLObservable: Observable<string>;
+  selectedFile: FileList | null;
+  forma: FormGroup;
+  tests: Observable<any[]>;
+
+  newBoat: Customer = new Customer();
+
+  tmp: string = "";
+  //
+
+  constructor(fb: FormBuilder, private boatService: CustomerService, private fs: FirebaseService, public dialogRef: MatDialogRef<CreateFeedbackComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private customerService: CustomerService, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
@@ -57,8 +75,52 @@ export class CreateFeedbackComponent implements OnInit {
     feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
     feedbackRef.valueChanges().subscribe(x => this.displayName = x.displayName);
     this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
+    localStorage.setItem("feedbackBoatId", localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName'));
     this.getCustomersList();
+
+    this.newBoat = this.boatService.tmpBoat;
+    console.log("NewBoatInit " + this.newBoat);
+    this.mostrarImagenes();
   }
+
+  //
+  detectFiles(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadFile() {
+    console.log('TEST createBoatId: ', localStorage.getItem("feedbackBoatId"));
+    const myTest = this.afs.collection(localStorage.getItem("feedbackBoatId")+"MultFeedback" + this.displayName).ref.doc();
+    console.log(myTest.id)
+
+    const file = this.selectedFile
+    const filePath = `${myTest.id}/name1`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    this.uploadPercent = task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().toPromise().then( (url) => {
+          this.downloadURLObservable = url;
+
+          myTest.set({
+            imagenes : this.downloadURLObservable,
+            myId : myTest.id
+          })
+
+          console.log( this.downloadURLObservable )
+        }).catch(err=> { console.log(err) });
+      })
+    )
+    .subscribe()
+  }
+
+  mostrarImagenes() {
+    this.tests = this.fs.getTestFeedback(this.displayName);
+  }
+  //
 
   files: File[] = [];
 

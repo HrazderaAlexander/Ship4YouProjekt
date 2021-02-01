@@ -14,4 +14,10 @@ export class FirebaseService {
     this.tests = this.afs.collection(localStorage.getItem("createBoatId")+"Mult").valueChanges();
     return this.tests;
   }
+
+  getTestFeedback(name){
+    console.log("Feedback " +localStorage.getItem("feedbackBoatId")+"MultFeedback" + name);
+    this.tests = this.afs.collection(localStorage.getItem("feedbackBoatId")+"MultFeedback" + name).valueChanges();
+    return this.tests;
+  }
 }

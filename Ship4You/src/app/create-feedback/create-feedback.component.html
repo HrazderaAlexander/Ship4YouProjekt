@@ -12,7 +12,7 @@
           </ng-template>
         </ngb-rating>
       </mat-card-subtitle>
-    </mat-card-header>
+      </mat-card-header>
 
       <mat-card-content>
         <textarea type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>
@@ -26,6 +26,21 @@
           <button mat-raised-button class="create-btn" (click)="addFeedback()">Create Feedback</button>
         </span>
         </div>
+
+        <input type="file" multiple (change)="detectFiles($event)">
+        <button (click)="uploadFile()" class="btn btn-primary">UPLOAD</button>
+        <div>{{ uploadPercent | async }}</div>
+        <a [href]="downloadURL">{{ downloadURL }}</a>
+    
+        <hr>-->
+        <div class="row">
+          <div class="col-lg-2 col-6" *ngFor="let test of tests | async">
+            <div class="card">
+              <img class="card-img-top" src="{{ test.imagenes }}" width="100%">
+            </div>
+          </div>
+        </div>
+
       </mat-card-footer>
     </mat-card>
   </div>
