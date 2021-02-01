@@ -11,7 +11,7 @@ export class FirebaseService {
   constructor( private afs: AngularFirestore ) { }
 
   getTests() {
-    this.tests = this.afs.collection(localStorage.getItem("createBoatId")).valueChanges();
+    this.tests = this.afs.collection(localStorage.getItem("createBoatId")+"Mult").valueChanges();
     return this.tests;
   }
 }

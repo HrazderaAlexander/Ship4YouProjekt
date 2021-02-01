@@ -3,13 +3,19 @@
   <span>Ship4You</span>
   <span class="example-spacer"></span>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Create Boate</strong></a>
-  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="goToDashboard()">Dashboard</a>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
   <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
 
   <a class="tool-but" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.SignOut()"><strong>Log Out</strong></a>
 </mat-toolbar>
 
- <div *ngIf="dataLoaded == true"> {{getFeedbackData()}}
+<div class="label-middle" [hidden]="showNoResult" *ngIf="feedbackDb.length == 0">
+  <br>
+  <h2>No Feedbacks written</h2>
+  <button class="button-middle" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" title="Add Feedback" mat-fab color="primary" (click)="confirmDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
  <!--<div *ngIf="pageIsLoaded" id="content">-->
   <!--<mat-paginator [length]="100" [pageSize]="8" [pageSizeOptions]="[2, 4, 6, 8, 10, 100]" (page)="pageEvent = $event; onPaginateChange($event)"></mat-paginator>-->
   <div *ngIf="feedbackDb.length != 0" id="pagination-content">
@@ -55,14 +61,14 @@
               <div>{{feedbackDb[(currentPage-1)*feedbackArraySize+i].username}}</div>
               <div class="fill"></div>
 
-              <div class ="right-side">
+              <div class ="right-side-stars">
                 <ng-template #t let-fill="fill">
                   <!--<span class="star" [class.full]="fill === 100">-->
                     <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
                   <!--</span>-->
                 </ng-template>
                 <!--<h>Rate {{customer.ratingStars}}</h>-->
-                <ngb-rating [(rate)]="feedbackDb[(currentPage-1)*feedbackArraySize+i].ratingStars" title="{{feedbackDb[(currentPage-1)*feedbackArraySize+i].ratingStars | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
+                <ngb-rating [max]="5" [(rate)]="feedbackDb[(currentPage-1)*feedbackArraySize+i].ratingStars" title="{{feedbackDb[(currentPage-1)*feedbackArraySize+i].ratingStars | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
               </div>
             </div>
           </mat-card-title>
@@ -80,22 +86,3 @@
     </div>
   </div>
 </div>
-</div>
-
- <!--<div *ngIf="dataLoaded == true"> {{getFeedbackData()}}
- <ul *ngFor="let f of feedbackDb" >
-   <hr/>
-     <mat-accordion>
-       <mat-card-title>
-         {{f.username}}
-       </mat-card-title>
-       <mat-card-subtitle>
-           <div>
-             Rating ({{f.ratingStars}}/10)
-           </div>
-       </mat-card-subtitle>
-       <mat-card-content>{{f.text}}</mat-card-content>
-       <label> <strong>{{f.date}}</strong></label>
-     </mat-accordion>
- </ul>
- </div>-->

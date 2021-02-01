@@ -9,7 +9,10 @@
 <main role="main" class="centerView">
 
   <div class="inner-adjust">
-
+    <mat-progress-spinner [hidden]="!check" title="Saving" class="spinner-location"
+    [color]="color"
+    [mode]="mode">
+  </mat-progress-spinner>
     <!-- Show User data, if you loged in -->
     <div class="row" *ngIf="authService.userData as user">
       <div class="col-md-12">
@@ -41,6 +44,7 @@
           <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-hint *ngIf="!newPassword">Enter your new password</mat-hint>
         </mat-form-field>
+        <button name="save" class="example-margin" mat-button color="primary" (click)="onSave()">Save Changes</button>
         <br>
         <br>
       </div>
@@ -48,16 +52,10 @@
     <div >
       <ul *ngFor="let customer of userCustomers" style="width: 300px; margin-left: 20%;">
         <hr>
-          <app-customer-details [customer]='customer'></app-customer-details>
+          <app-customer-details [customer]='customer' [showButtons]='true'></app-customer-details>
           <br>
           <br>
       </ul>
     </div>
-    <button name="save" class="example-margin" mat-button color="primary" (click)="onSave()">Save Changes
-    </button>
   </div>
 </main>
-<mat-progress-spinner [hidden]="!check" title="Saving" class="spinner-location"
-    [color]="color"
-    [mode]="mode">
-</mat-progress-spinner>

@@ -31,7 +31,7 @@ export class CreateFeedbackComponent implements OnInit {
   ratingBoat: number[];
   dataLoaded: boolean = false;
   feedback:string="";
-  currentRate = 6;
+  currentRate = 2;
 
   title: string;
   message: string;

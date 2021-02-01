@@ -19,6 +19,7 @@ export class CustomerDetailsComponent implements OnInit {
   userId:string = "";
   isEdit:boolean = false;
   @Input() customer: Customer;
+  @Input() showButtons:string;
   favButtonPressed:boolean;
   favRef: AngularFirestoreDocument<any>;
   currentRate = 0;

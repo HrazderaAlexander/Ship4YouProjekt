@@ -81,7 +81,7 @@ export class UserDetailsComponent implements OnInit {
     });
     setTimeout(()=>{
       location.reload();
-    }, 3000);
+    }, 4000);
   }
 
   startLoading(){

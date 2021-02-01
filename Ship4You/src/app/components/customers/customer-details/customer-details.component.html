@@ -10,10 +10,10 @@
         <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" matBadge="{{feedbackLength}}" [matBadgeHidden]="!authService.isLoggedIn" matBadgeColor="accent" matBadgeSize="medium" title="Feedback" mat-fab color="accent" (click)="clickRating(customer.brand, customer.name)">
           <mat-icon>feedback</mat-icon>
         </button>
-        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="customer.userId == userId" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="customer.userId == userId && showButtons" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">
           <mat-icon>edit</mat-icon>
         </button>
-        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="customer.userId == userId" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="customer.userId == userId && showButtons" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
@@ -39,7 +39,7 @@
               </span>
             </ng-template>
             <!--<h>Rate {{customer.ratingStars}}</h>-->
-            <ngb-rating [(rate)]="customer.rating" title="{{customer.rating | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
+            <ngb-rating [(rate)]="customer.rating" [max]="5" title="{{customer.rating | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
           </p>
         </div>
       </mat-panel-description>
@@ -54,7 +54,7 @@
           <th>Lessor</th>
           <th>Cabins</th>
         </tr>
-      
+
         <tr>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.brand" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.type" class="form-control"></td>
@@ -64,7 +64,7 @@
         <tr>
           <th>Length</th>
           <th>Sails</th>
-          <th>Amount of people</th>
+          <th>Max. people</th>
           <th>Masts</th>
         </tr>
         <tr>
@@ -74,13 +74,17 @@
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="customer.masts" class="form-control"></td>
         </tr>
       </table>
-      <button *ngIf="customer.userId == userId" [disabled]="!isEdit" title="Save information" class="btn btn-success" type="submit" (click)="saveUpdateList(customer)">
+      <br>
+      <button *ngIf="customer.userId == userId && showButtons" [disabled]="!isEdit" title="Save information" class="btn btn-success" type="submit" (click)="saveUpdateList(customer)">
         Save Changes
-      </button>  
-      <button *ngIf="customer.userId == userId" [disabled]="!isEdit" title="Cancel" mat-button color="warn" (click)="cancelEdit()">
+      </button>
+      <button *ngIf="customer.userId == userId && showButtons" [disabled]="!isEdit" title="Cancel" mat-button color="warn" (click)="cancelEdit()">
         Cancel
       </button>
-      <a class="downloadButton" *ngIf="customer.documentUrl != null" href="{{customer.documentUrl}}" download>
+      <a class="downloadButton" *ngIf="customer.documentUrl != null && showButtons" href="{{customer.documentUrl}}" download>
+        <button mat-button>Show Document</button>
+      </a>
+      <a class="downloadButton2" *ngIf="customer.documentUrl != null && !showButtons" href="{{customer.documentUrl}}" download>
         <button mat-button>Show Document</button>
       </a>
     </mat-card>

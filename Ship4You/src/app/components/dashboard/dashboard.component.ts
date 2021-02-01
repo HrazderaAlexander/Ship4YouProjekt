@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
   searchBoatNameString:string="";
   searchLessorString:string="";
   searchBrandString:string="";
+  searchPortString:string="";
 
   isUsedBoolean:Boolean = false;
 
@@ -79,7 +80,7 @@ showFav: boolean = false;
     private afs: AngularFirestore, private service: ImageService, private customerService: CustomerService
   )
   {
-      this.getCustomersList();
+
   }
 
   imageList: any[];
@@ -142,13 +143,16 @@ showFav: boolean = false;
   namesControl = new FormControl();
   lessorControl = new FormControl();
   brandControl = new FormControl();
+  portControl = new FormControl();
   //optionsArray: string[] = this.allLocations;
   filteredOptions: Observable<string[]>;
   filteredLocations: Observable<string[]>;
   filteredLessors: Observable<string[]>;
   filteredBrand: Observable<string[]>;
+  filteredPort: Observable<string[]>;
 
   ngOnInit() {
+    this.getCustomersList();
     this.afs.collection('users').valueChanges().subscribe(s => localStorage.setItem('size', `${s.length}`));
 
     const ref = this.afs.collection('users');

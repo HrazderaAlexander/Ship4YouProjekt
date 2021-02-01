@@ -21,5 +21,6 @@ export class Customer {
   rating:number;
   favourite:boolean;
   userId:string;
-  allReatings:number[]
+  allReatings:number[];
+  port: string;
 }

@@ -6,9 +6,9 @@
         <h2 id="headline">Write a Feedback</h2>
       </mat-card-title>
       <mat-card-subtitle>
-        <ngb-rating [(rate)]="currentRate">
+        <ngb-rating [(rate)]="currentRate" [max]="5">
           <ng-template let-fill="fill" let-index="index">
-            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 4">&#9733;</span>
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
           </ng-template>
         </ngb-rating>
       </mat-card-subtitle>

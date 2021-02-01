@@ -344,6 +344,13 @@ b, strong {
   position: absolute;
   right: 10vh;
   font-weight: 300;
+  font-size: 1.5rem;
+}
+.right-side-stars{
+  position: absolute;
+  right: 10vh;
+  font-weight: 300;
+  font-size: 2rem;
 }
 
 .left-side{
@@ -439,4 +446,16 @@ div.scroll {
   font-size: 200%;
   border-color: black !important;
   color: white !important;
+}
+
+.label-middle{
+  position: absolute;
+  left: 40%;
+  top: 40%;
+}
+.button-middle{
+  position: absolute;
+  left: 40%;
+  top: 100%;
+  background-color: #8d7260;
 }

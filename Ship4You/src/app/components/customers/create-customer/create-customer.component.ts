@@ -39,19 +39,6 @@ export class CreateCustomerComponent implements OnInit {
     this.getCustomer();
   }
 
-  save() {
-    //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
-    this.customer.imageUrl = localStorage.getItem('downloadUrl');
-    this.customer.documentUrl = localStorage.getItem('downloadDocumentUrl');
-    this.customer.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
-    localStorage.removeItem("downloadMultiPictures");
-    this.customer.userId = localStorage.getItem('userUid');
-    this.customer.allReatings = [0];
-    this.customer.rating = 0;
-    this.customerService.createCustomer(this.customer);
-    this.customer = new Customer();
-  }
-
   isHovering: boolean;
 
   files: File[] = [];
@@ -143,12 +130,6 @@ validateDocument(name: String) {
   }
 }
 
-  onSubmit() {
-    this.submitted = true;
-    this.save();
-    this.router.navigateByUrl("/dashboard");
-  }
-
   getCustomer(){
     this.customerService.getCustomersList().snapshotChanges().pipe(
       map(changes =>
@@ -186,7 +167,7 @@ validateDocument(name: String) {
         this.boolCheck = true;
     }
     if(this.customer.brand == null ||  this.customer.name == null || this.customer.cabins == null ||this.customer.length == null || this.customer.lessor == null
-      || this.customer.location == null || this.customer.masts == null || this.customer.numberOfPeople == null || this.customer.vintage == null || this.customer.sail == null){
+      || this.customer.location == null || this.customer.masts == null || this.customer.numberOfPeople == null || this.customer.vintage == null || this.customer.sail == null || this.customer.port == null){
         this.boolCheck = false;
         return 2;
     }

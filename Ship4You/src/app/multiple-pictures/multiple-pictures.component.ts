@@ -50,6 +50,8 @@ export class MultiplePicturesComponent implements OnInit {
     this.newBoat.documentUrl = localStorage.getItem('downloadDocumentUrl');
     this.newBoat.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
     localStorage.removeItem("downloadMultiPictures");
+    localStorage.removeItem("downloadDocumentUrl");
+    localStorage.removeItem('downloadUrl');
     this.newBoat.userId = localStorage.getItem('userUid');
     this.newBoat.allReatings = [0];
     this.newBoat.rating = 0;
@@ -68,7 +70,7 @@ export class MultiplePicturesComponent implements OnInit {
 
   uploadFile() {
     console.log('TEST createBoatId: ', localStorage.getItem("createBoatId"));
-    const myTest = this.afs.collection(localStorage.getItem("createBoatId")).ref.doc();
+    const myTest = this.afs.collection(localStorage.getItem("createBoatId")+"Mult").ref.doc();
     console.log(myTest.id)
 
     const file = this.selectedFile

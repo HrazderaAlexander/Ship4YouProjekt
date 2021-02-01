@@ -170,10 +170,12 @@ img {
 }
 
 .example-margin{
-  margin-left: 35%;
+  position: absolute;
+  margin-left: 2%;
+  margin-top: 1%;
 }
 
 .spinner-location{
-  margin-top: 5%;
+  position: absolute;
   margin-left: 90%;
 }

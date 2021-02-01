@@ -9,7 +9,6 @@
 <main role="main" class="col-md-2 ml-sm-auto col-lg-11 px-4">
 <h3 class="title">Add Boat</h3>
 <!--<div [hidden]="submitted" style="width: 300px;">-->
-  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <div *ngIf="checkID()===0" class="alert alert-danger" role="alert">
         Bootname oder Brand existiert bereits!
@@ -81,6 +80,13 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
+            <mat-label>Port</mat-label>
+            <input matInput id="port" [(ngModel)]="customer.port" name="port" required>
+            <mat-icon class="material-icons color_green" *ngIf="customer.port != '' && customer.port != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="customer.port == '' || customer.port == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+              <mat-hint>Must not be empty</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Location</mat-label>
             <input matInput id="location" [(ngModel)]="customer.location" name="location" required>
             <mat-icon class="material-icons color_green" *ngIf="customer.location != '' && customer.location != null" matSuffix>sentiment_very_satisfied</mat-icon>
@@ -135,6 +141,5 @@
     </div>
           </form>
     </div>
-  </form>
 <!--</div>-->
     </main>

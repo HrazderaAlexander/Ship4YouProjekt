@@ -66,15 +66,12 @@ export class BewertungComponent implements OnInit {
 
   url:string = "";
   displayName:string ="";
+
+  showNoResult:boolean=true;
   //------------------
 
   constructor(public dialog: MatDialog,private customerService: CustomerService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
-  }
-
-  goToDashboard(){
-    //localStorage.setItem("leaveFromFeedback", "true"); 
-    this.router.navigateByUrl("/dashboard");
   }
 
   feedbackFunct(){
@@ -89,11 +86,11 @@ export class BewertungComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateFeedbackComponent, {
       maxWidth: "400px"
     });
-
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if(dialogResult){
-       //this.router.navigateByUrl('/bewertung');
+      if(!dialogResult){
+       this.getFeedbackData();
       }
+      this.showNoResult = false;
     });
   }
 
@@ -282,9 +279,13 @@ export class BewertungComponent implements OnInit {
   getFeedbackData() {
     for(let i =0; i < parseInt(this.ratingId); i++){
       this.feedbackRef[i] = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${i}`);
-      this.feedbackRef[i].valueChanges().subscribe(item => this.feedbackDb[i] = item);
+      this.feedbackRef[i].valueChanges().subscribe(item =>
+        {
+          this.feedbackDb[i] = item
+          console.log('ITEM; ', item);
+        });
     }
-    this.feedbackButtonPressed = true;
+    //this.feedbackButtonPressed = true;
     this.pageIsLoaded = true; //set to true if page is loaded
   }
 
@@ -316,7 +317,7 @@ export class BewertungComponent implements OnInit {
   }
 
   addFeedback(){
-   
+
     this.updateBoatStats();
     this.SetFeedbackData();
     this.router.navigateByUrl('/dashboard')
