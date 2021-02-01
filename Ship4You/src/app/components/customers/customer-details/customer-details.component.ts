@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { SignInComponent } from '../../sign-in/sign-in.component';
 import { map } from 'rxjs/internal/operators/map';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-customer-details',
@@ -44,6 +45,7 @@ export class CustomerDetailsComponent implements OnInit {
     }
     this.userId = localStorage.getItem('userUid');
     this.afs.collection(`${this.customer.brand + this.customer.name}`).valueChanges().subscribe(s => this.feedbackLength = s.length);
+
   }
 
   customers: any = [];
