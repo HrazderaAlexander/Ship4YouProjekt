@@ -59,3 +59,17 @@
   background-blend-mode: darken;
   background-color: white;
 }
+
+.label{
+  padding: 10px;
+  color: #fff;
+}
+
+
+
+input[type="file"] {
+  display: none;
+  :hover{
+    box-shadow: lightgray;
+  }
+}

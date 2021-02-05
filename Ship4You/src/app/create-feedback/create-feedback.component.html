@@ -21,12 +21,16 @@
 
 
         <form method="post" enctype="multipart/form-data">
-          <div>
-            <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
-            <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple (change)="detectFiles($event)">
-          </div>
+
+            <label for="image_uploads">
+              <mat-icon appMaterialElevation [defaultElevation]="0" raisedElevation="20" title="PNG, JPG" style="font-size: 30px; cursor: pointer;"> photo_library</mat-icon>
+              <input style="position: absolute;" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple (change)="detectFiles($event)">
+            </label>
+            <label style="margin-top: -15%; margin-left: 15%;">
+              Choose images to upload (PNG, JPG)
+            </label>
+
         </form>
-        <hr>
         <div [hidden]="uploadPercent==null">{{ uploadPercent | async }}%</div>
 
         <span *ngFor="let image of uploadUrlArray">
@@ -40,7 +44,7 @@
           </div>
         </div>-->
 
-        <div class="form-footer" fxFlex="25%">
+        <div style="margin-top: 15%;" class="form-footer" fxFlex="25%">
           <span class="left-side">
           <button mat-button (click)="onDismiss()">Cancel</button>
           </span>
