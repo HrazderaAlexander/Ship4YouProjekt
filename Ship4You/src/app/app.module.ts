@@ -69,6 +69,8 @@ import { CreateFeedbackComponent } from './create-feedback/create-feedback.compo
 import { MultiplePicturesComponent } from './multiple-pictures/multiple-pictures.component';
 
 import { FirebaseService } from '../app/shared/services/firebase.service';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { FirebaseService } from '../app/shared/services/firebase.service';
     UploadTaskMultiplePicturesComponent,
     MaterialElevationDirective,
     CreateFeedbackComponent,
-    MultiplePicturesComponent
+    MultiplePicturesComponent,
+    ContactUsComponent,
+    AboutUsComponent,
     ],
   imports: [
     BrowserModule,

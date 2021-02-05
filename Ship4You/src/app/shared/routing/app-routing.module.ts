@@ -18,6 +18,8 @@ import {ShowUpload} from 'src/app/components/newboat/showUpload'
 import { BewertungComponent } from 'src/app/components/bewertung/bewertung.component';
 import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback.component';
 import { MultiplePicturesComponent } from 'src/app/multiple-pictures/multiple-pictures.component';
+import { ContactUsComponent } from 'src/app/components/contact-us/contact-us.component';
+import { AboutUsComponent } from 'src/app/components/about-us/about-us.component';
 
 // Array mit allen routen
 const routes: Routes = [
@@ -32,7 +34,9 @@ const routes: Routes = [
   {path: 'showUpload', component: ShowUpload},
   {path: 'bewertung', component: BewertungComponent, runGuardsAndResolvers: 'always'},
   {path: 'create-feedback', component: CreateFeedbackComponent},
-  {path: 'multiple-upload', component: MultiplePicturesComponent}
+  {path: 'multiple-upload', component: MultiplePicturesComponent},
+  {path: 'contact-us', component: ContactUsComponent},
+  {path: 'about-us', component: AboutUsComponent}
 ];
 
 @NgModule({
