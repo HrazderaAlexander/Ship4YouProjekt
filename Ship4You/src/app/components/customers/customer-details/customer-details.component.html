@@ -1,5 +1,5 @@
 <div *ngIf="customer">
-  <mat-accordion>
+  <mat-accordion class="example-headers-align">
     <div >
       <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="!favButtonPressed" mat-mini-fab color="" title="Add to Favourite" (click)="clickFavButton(customer, true)">
         <mat-icon>favorite</mat-icon>
@@ -47,7 +47,7 @@
               </span>
             </ng-template>
             <!--<h>Rate {{customer.ratingStars}}</h>-->
-            <ngb-rating [(rate)]="customer.rating" [max]="5" title="{{customer.rating | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
+            <ngb-rating style="outline:none !important" [(rate)]="customer.rating" [max]="5" title="{{customer.rating | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
           </p>
         </div>
       </mat-panel-description>

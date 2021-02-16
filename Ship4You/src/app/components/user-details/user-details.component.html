@@ -1,9 +1,27 @@
 <mat-toolbar class="mat-toolbar">
   <img height="70px" src="../../../assets/img/ship4youWeiss.png">
  <span class="example-spacer"></span>
- <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/add')"><strong>Add Boate</strong></a>
- <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
-
+ <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button style="outline:none !important" *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl('/user-details')" mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>User profil</span>
+  </button>
+  <button (click)="authService.router.navigateByUrl('/dashboard')" mat-menu-item>
+   <mat-icon>home</mat-icon>
+   <span>Dashboard</span>
+ </button>
+  <button *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl('/add')" mat-menu-item>
+    <mat-icon>add</mat-icon>
+    <span>Add new Boat</span>
+  </button>
+  <button (click)="authService.router.navigateByUrl('/about-us')" mat-menu-item>
+    <mat-icon>group</mat-icon>
+    <span>About us</span>
+  </button>
+</mat-menu>
 </mat-toolbar>
 
 <main role="main">

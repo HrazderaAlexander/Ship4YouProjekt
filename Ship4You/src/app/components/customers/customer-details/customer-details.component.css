@@ -9,7 +9,14 @@
     background: #A19682 !important;
 }
 
+.mat-card-content{
+  flex-grow: 1;
+  overflow: auto;
+}
+
 .mat-card{
+    display:flex;
+    flex-direction: column;
     margin-top: 10%;
     margin-bottom: -10%;
     background-color: #ffffff22;
@@ -112,3 +119,16 @@ th, td {
   display: none;
 }
 
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
