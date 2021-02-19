@@ -20,6 +20,7 @@ import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback
 import { MultiplePicturesComponent } from 'src/app/multiple-pictures/multiple-pictures.component';
 import { ContactUsComponent } from 'src/app/components/contact-us/contact-us.component';
 import { AboutUsComponent } from 'src/app/components/about-us/about-us.component';
+import { ImageSliderComponent } from 'src/app/image-slider/image-slider.component';
 
 // Array mit allen routen
 const routes: Routes = [
@@ -36,11 +37,12 @@ const routes: Routes = [
   {path: 'create-feedback', component: CreateFeedbackComponent},
   {path: 'multiple-upload', component: MultiplePicturesComponent},
   {path: 'contact-us', component: ContactUsComponent},
-  {path: 'about-us', component: AboutUsComponent}
+  {path: 'about-us', component: AboutUsComponent},
+  {path: 'image-slider',  component: ImageSliderComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation:'reload'})],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 

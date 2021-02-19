@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { MultiplePicturesComponent } from './multiple-pictures.component';
+import { ImageSliderComponent } from './image-slider.component';
 
-describe('MultiplePicturesComponent', () => {
-  let component: MultiplePicturesComponent;
-  let fixture: ComponentFixture<MultiplePicturesComponent>;
+describe('ImageSliderComponent', () => {
+  let component: ImageSliderComponent;
+  let fixture: ComponentFixture<ImageSliderComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MultiplePicturesComponent ]
+      declarations: [ ImageSliderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MultiplePicturesComponent);
+    fixture = TestBed.createComponent(ImageSliderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

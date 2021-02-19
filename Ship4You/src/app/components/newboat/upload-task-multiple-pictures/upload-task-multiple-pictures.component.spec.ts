@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UploadTaskMultiplePicturesComponent } from './upload-task-multiple-pictures.component';
 
@@ -6,7 +6,7 @@ describe('UploadTaskMultiplePicturesComponent', () => {
   let component: UploadTaskMultiplePicturesComponent;
   let fixture: ComponentFixture<UploadTaskMultiplePicturesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ UploadTaskMultiplePicturesComponent ]
     })

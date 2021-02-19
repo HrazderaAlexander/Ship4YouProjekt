@@ -44,6 +44,9 @@ import {ShowUpload} from './components/newboat/showUpload';
 //Elevation
 import { MaterialElevationDirective } from './material-elevation.directive';
 
+//Image Slider
+import { NgImageSliderModule } from 'ng-image-slider';
+
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -71,6 +74,7 @@ import { MultiplePicturesComponent } from './multiple-pictures/multiple-pictures
 import { FirebaseService } from '../app/shared/services/firebase.service';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ImageSliderComponent } from './image-slider/image-slider.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +99,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     MultiplePicturesComponent,
     ContactUsComponent,
     AboutUsComponent,
+    ImageSliderComponent,
     ],
   imports: [
     BrowserModule,
@@ -111,7 +116,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-	MatProgressSpinnerModule,
+	  MatProgressSpinnerModule,
+    NgImageSliderModule,
     MatDialogModule,
     MatAutocompleteModule,
     MatGridListModule,

@@ -4,7 +4,6 @@ import { AuthService } from "../../shared/services/auth.service";
 import { finalize } from "rxjs/operators";
 import { FileService } from './Services/file.service';
 import { Picture } from '../../Picture';
-import { compileBaseDefFromMetadata } from '@angular/compiler';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore'
 import { BoatData } from 'src/app/BoatData';
