@@ -4,31 +4,31 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  provider: 'gmail',
-  port: 465,
-  secure: true,
-  auth: {
-    user: 'ship4you.business@gmail.com', // Enter here email address from which you want to send emails
-    pass: 'Ship4You' // Enter here password for email account from which you want to send emails
-  },
-  tls: {
-  rejectUnauthorized: false
-  }
-});
-
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
 
-  res.header("Access-Control-Allow-Origin", "http://localhost:4200/");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
 app.post('/send', function (req, res) {
-  console.log('TEST');
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    provider: 'gmail',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'ship4you.business@gmail.com', // Enter here email address from which you want to send emails
+      pass: 'Ship4You' // Enter here password for email account from which you want to send emails
+    },
+    tls: {
+    rejectUnauthorized: false
+    }
+  });
+
   let senderName = req.body.contactFormName;
   let senderEmail = req.body.contactFormEmail;
   let messageSubject = req.body.contactFormSubjects;
@@ -36,9 +36,9 @@ app.post('/send', function (req, res) {
 
   let mailOptions = {
     to: ['ship4you.business@gmail.com'], // Enter here the email address on which you want to send emails from your customers
-    from: senderName,
+    from: senderEmail,
     subject: messageSubject,
-    text: messageText,
+    text: messageText + "\n" + 'from: ' + senderName + "\n" + senderEmail,
     replyTo: senderEmail
   };
 
