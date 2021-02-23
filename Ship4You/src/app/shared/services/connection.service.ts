@@ -13,4 +13,4 @@ export class ConnectionService {
     JSON.stringify(messageContent),
     { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' });
   }
-  }
+}

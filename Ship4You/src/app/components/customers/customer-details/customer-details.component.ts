@@ -88,6 +88,10 @@ export class CustomerDetailsComponent implements OnInit {
     }
   }
 
+  openImageSlider(){
+    this.router.navigateByUrl("/image-slider");
+  }
+
   confirmDialog(): void {
     const message = `Do you wanna login now?`;
 
