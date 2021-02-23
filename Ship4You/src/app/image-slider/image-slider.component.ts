@@ -65,7 +65,8 @@ export class ImageSliderComponent implements OnInit {
   getImageData(){
     console.log("In Image Data")
     for(let i =0; i < 3; i++){
-      this.boatImageRef[i] = this.afs.doc(`${localStorage.getItem('boatForShowPicturesBrand') + localStorage.getItem('boatForShowPicturesName')}/${i}`);
+      this.boatImageRef[i] = this.afs.doc(`${localStorage.getItem('boatForShowPicturesBrand') + localStorage.getItem('boatForShowPicturesName')}/
+      IJGFZInczCs9c7ZpMBpk`);
       this.boatImageRef[i].valueChanges().subscribe(item =>
       {
         this.boatImageDb[i] = item
