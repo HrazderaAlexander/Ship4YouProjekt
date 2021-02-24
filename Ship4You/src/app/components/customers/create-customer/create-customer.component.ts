@@ -181,6 +181,7 @@ validateDocument(name: String) {
 
   goToMultUpload(){
     this.customerService.tmpBoat = this.customer;
+    localStorage.setItem('tmpBoat', JSON.stringify(this.customer));
     console.log("TmpBoat " + this.customerService.tmpBoat)
     localStorage.setItem('createBoatId', this.customer.brand+this.customer.name);
     console.log(localStorage.getItem("createBoatId"));

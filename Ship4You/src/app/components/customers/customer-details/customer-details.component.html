@@ -23,7 +23,7 @@
       <mat-panel-title>
         <div  class="col-md-12">
           <label class="hoverable" for="{{customer.key}}">
-            <img class="boat-img" [src]="url ? url : customer.imageUrl ? customer.imageUrl : '../../../assets/Bild1.png'" (click)="openImageSlider(customer.imageUrl, customer.brand, customer.name); $event.stopPropagation()">
+            <app-image-slider [customer]='customer'></app-image-slider>
             <div *ngIf="customer.userId == userId && showButtons" class="hover-text">Choose file</div>
             <div class="background"></div>
           </label>

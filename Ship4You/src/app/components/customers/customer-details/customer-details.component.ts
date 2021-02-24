@@ -88,12 +88,7 @@ export class CustomerDetailsComponent implements OnInit {
     }
   }
 
-  openImageSlider(titlePictureUrl, brand, name){
-
-    localStorage.setItem("boatForShowPicturesBrand", brand);
-    localStorage.setItem("boatForShowPicturesName", name);
-    localStorage.setItem("titlePictureUrl", titlePictureUrl);
-
+  openImageSlider(){
     this.router.navigateByUrl("/image-slider");
   }
 

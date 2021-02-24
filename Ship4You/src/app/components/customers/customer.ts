@@ -1,4 +1,5 @@
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { Observable } from 'rxjs';
 
 export class Customer {
   key: string;
@@ -7,7 +8,7 @@ export class Customer {
   active = true;
   imageUrl: string;
   documentUrl?: string;
-  picturesUrl?: string[];
+  picturesUrl: Observable<string>[];
   vintage:number; //Baujahr
   type:string;
   brand:string; //Marke

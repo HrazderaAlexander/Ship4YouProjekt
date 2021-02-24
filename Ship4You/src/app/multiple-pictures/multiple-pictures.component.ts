@@ -22,7 +22,7 @@ export interface Test {
 export class MultiplePicturesComponent implements OnInit {
 
   uploadPercent: Observable<number>;
-  downloadURL: Observable<string>;
+  downloadURL: Observable<string>[] = [];
   selectedFile: FileList | null;
   forma: FormGroup;
   tests: Observable<any[]>;
@@ -39,7 +39,7 @@ export class MultiplePicturesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newBoat = this.boatService.tmpBoat;
+    this.newBoat = JSON.parse(localStorage.getItem('tmpBoat'));
     console.log("NewBoatInit " + this.newBoat);
     this.mostrarImagenes();
   }
@@ -48,15 +48,17 @@ export class MultiplePicturesComponent implements OnInit {
     //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
     this.newBoat.imageUrl = localStorage.getItem('downloadUrl');
     this.newBoat.documentUrl = localStorage.getItem('downloadDocumentUrl');
-    this.newBoat.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
+    //this.newBoat.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
     localStorage.removeItem("downloadMultiPictures");
     localStorage.removeItem("downloadDocumentUrl");
     localStorage.removeItem('downloadUrl');
     this.newBoat.userId = localStorage.getItem('userUid');
     this.newBoat.allReatings = [0];
+    this.newBoat.picturesUrl = this.downloadURL;
     this.newBoat.rating = 0;
     this.boatService.createCustomer(this.newBoat);
     this.newBoat = new Customer();
+    this.downloadURL = [];
   }
 
   onSubmit() {
@@ -83,14 +85,12 @@ export class MultiplePicturesComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().toPromise().then( (url) => {
-          this.downloadURL = url;
-
+          this.downloadURL.push(url);
           myTest.set({
             categoria: this.forma.value.categoria,
             imagenes : this.downloadURL,
             myId : myTest.id
           })
-
           console.log( this.downloadURL )
         }).catch(err=> { console.log(err) });
       })
