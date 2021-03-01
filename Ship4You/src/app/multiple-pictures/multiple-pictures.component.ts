@@ -56,7 +56,7 @@ export class MultiplePicturesComponent implements OnInit {
     this.newBoat.allReatings = [0];
     this.newBoat.picturesUrl = this.downloadURL;
     this.newBoat.rating = 0;
-    this.boatService.createCustomer(this.newBoat);
+    this.boatService.createBoat(this.newBoat);
     this.newBoat = new BoatDTO();
     this.downloadURL = [];
   }

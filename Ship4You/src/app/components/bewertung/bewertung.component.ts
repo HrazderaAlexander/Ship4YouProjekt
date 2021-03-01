@@ -1,19 +1,15 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BoatDTO } from '../boats/boat';
 import { BoatService } from '../boats/boat.service';
-import { Rating } from './rating';
 import { DatePipe } from '@angular/common';
-import { MaxLengthValidator } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Route } from '@angular/compiler/src/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { MatDialog, PageEvent } from '@angular/material';
-import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
 import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback.component';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
 
@@ -25,7 +21,7 @@ import { FirebaseService } from 'src/app/shared/services/firebase.service';
 export class BewertungComponent implements OnInit {
   currentRate = 6;
   mydate:string="";
-  customers: any = [];
+  boats: any = [];
   boat: any = new BoatDTO;
   id:string = localStorage.getItem('boatForRating');
   feedback:string="";
@@ -191,7 +187,7 @@ export class BewertungComponent implements OnInit {
     this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
     localStorage.setItem("feedbackBoatId", localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName'));
     console.log("FeedbackBoatId " + localStorage.getItem("feedbackBoatId"));
-    this.getCustomersList();
+    this.getBoatsList();
     const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
 
     feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
@@ -231,15 +227,15 @@ export class BewertungComponent implements OnInit {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
-  getCustomersList() {
-    this.boatService.getCustomersList().snapshotChanges().pipe(
+  getBoatsList() {
+    this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(customers => {
-      this.customers = customers;
+    ).subscribe(boats => {
+      this.boats = boats;
       this.getSingleBoat();
     });
 
@@ -253,8 +249,8 @@ export class BewertungComponent implements OnInit {
     if(!isNaN(Number(c))){
       var counter = Number(c);
       for(let i = 0; i < counter;i++){
-        if(this.id == this.customers[i].key){
-          this.boat = this.customers[i];
+        if(this.id == this.boats[i].key){
+          this.boat = this.boats[i];
           console.log("BoatWithRating " + this.boat.allReatings);
           this.ratingBoat = this.boat.allReatings;
           this.boatKey = this.boat.key;
@@ -285,14 +281,14 @@ export class BewertungComponent implements OnInit {
 
   updateRatingArray(ratingBoat: any) {
     this.boatService
-      .updateCustomer(this.boatKey, { allReatings: ratingBoat })
+      .updateBoat(this.boatKey, { allReatings: ratingBoat })
       .catch(err => console.log(err));
   }
 
   updateRatingSum(ratingDiv: any)
   {
     this.boatService
-    .updateCustomer(this.boatKey, { rating: ratingDiv })
+    .updateBoat(this.boatKey, { rating: ratingDiv })
     .catch(err => console.log(err));
   }
 
@@ -311,7 +307,6 @@ export class BewertungComponent implements OnInit {
   }
 
   addFeedback(){
-
     this.updateBoatStats();
     this.router.navigateByUrl('/dashboard')
   }

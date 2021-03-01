@@ -168,7 +168,7 @@ showFav: boolean = false;
   files = [];
 
   getCustomersList() {
-    this.boatService.getCustomersList().snapshotChanges().pipe(
+    this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })

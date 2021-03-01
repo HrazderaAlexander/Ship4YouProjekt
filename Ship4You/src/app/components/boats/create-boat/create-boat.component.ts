@@ -33,7 +33,7 @@ export class CreateBoatComponent implements OnInit {
 ) { }
 
   ngOnInit() {
-    this.getCustomer();
+    this.getBoat();
   }
 
   isHovering: boolean;
@@ -127,16 +127,16 @@ validateDocument(name: String) {
   }
 }
 
-  getCustomer(){
-    this.boatService.getCustomersList().snapshotChanges().pipe(
+  getBoat(){
+    this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(customers => {
+    ).subscribe(boats => {
 
-      this.boats = customers;
+      this.boats = boats;
     });
   }
 

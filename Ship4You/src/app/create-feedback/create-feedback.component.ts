@@ -196,7 +196,7 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   getCustomersList() {
-    this.boatService.getCustomersList().snapshotChanges().pipe(
+    this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
@@ -244,14 +244,14 @@ export class CreateFeedbackComponent implements OnInit {
 
   updateRatingArray(ratingBoat: any) {
     this.boatService
-      .updateCustomer(this.boatKey, { allReatings: ratingBoat })
+      .updateBoat(this.boatKey, { allReatings: ratingBoat })
       .catch(err => console.log(err));
   }
 
   updateRatingSum(ratingDiv: any)
   {
     this.boatService
-    .updateCustomer(this.boatKey, { rating: ratingDiv })
+    .updateBoat(this.boatKey, { rating: ratingDiv })
     .catch(err => console.log(err));
   }
 

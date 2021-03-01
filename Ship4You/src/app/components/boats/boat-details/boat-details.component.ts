@@ -48,16 +48,16 @@ export class BoatDetailsComponent implements OnInit {
 
   }
 
-  customers: any = [];
-  getCustomersFeedbackList() {
-    this.boatService.getCustomersList().snapshotChanges().pipe(
+  boats: any = [];
+  getBoatsFeedbackList() {
+    this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(customers => {
-      this.customers = customers;
+    ).subscribe(boats => {
+      this.boats = boats;
       this.getSingleBoat();
     });
   }
@@ -72,8 +72,8 @@ export class BoatDetailsComponent implements OnInit {
     if(!isNaN(Number(c))){
       var counter = Number(c);
       for(let i = 0; i < counter;i++){
-        if(this.id == this.customers[i].key){
-          this.boatNew = this.customers[i];
+        if(this.id == this.boats[i].key){
+          this.boatNew = this.boats[i];
           console.log("BoatWithRating " + this.boatNew.allReatings);
           this.ratingBoat = this.boatNew.allReatings;
           this.boatKey = this.boatNew.key;
@@ -111,7 +111,7 @@ export class BoatDetailsComponent implements OnInit {
 
   updateActive(isActive: boolean) {
     this.boatService
-      .updateCustomer(this.boat.key, { active: isActive })
+      .updateBoat(this.boat.key, { active: isActive })
       .catch(err => console.log(err));
   }
 
@@ -131,7 +131,7 @@ export class BoatDetailsComponent implements OnInit {
   saveUpdateList(cus:BoatDTO) {
     if(this.boat.userId == localStorage.getItem('userUid')){
         this.boatService
-        .updateCustomer(cus.key, cus)
+        .updateBoat(cus.key, cus)
         .catch(err => console.log(err));
     }
     this.refreshPage();
@@ -159,7 +159,7 @@ export class BoatDetailsComponent implements OnInit {
           await this.afs.doc(`${this.boat.brand + this.boat.name}/${i}`).delete();
         }
         this.boatService
-        .deleteCustomer(this.boat.key)
+        .deleteBoat(this.boat.key)
         .catch(err => console.log(err));
       }
     }
@@ -169,7 +169,7 @@ export class BoatDetailsComponent implements OnInit {
       localStorage.setItem('boatForRating', this.boat.key);
       localStorage.setItem('boatForRatingName', name);
       localStorage.setItem('boatForRatingBrand', brand);
-      this.getCustomersFeedbackList();
+      this.getBoatsFeedbackList();
       this.router.navigateByUrl('/bewertung');
     }
     else
@@ -206,9 +206,9 @@ export class BoatDetailsComponent implements OnInit {
       reader.onload = (event) => { // called once readAsDataURL is completed
          this.url= (event.target as FileReader).result;  //event.target.result.toString();
          this.boat.imageUrl = this.url;
-         console.log('Customer.imageUrl: ', this.boat.imageUrl);
+         console.log('Boat.imageUrl: ', this.boat.imageUrl);
          console.log('KEY: ', this.boat.key);
-         this.boatService.updateCustomer(this.boat.key, this.boat);
+         this.boatService.updateBoat(this.boat.key, this.boat);
 
       }
 

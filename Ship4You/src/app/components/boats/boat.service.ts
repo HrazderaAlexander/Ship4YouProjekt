@@ -11,32 +11,32 @@ export class BoatService {
 
   public tmpBoat: BoatDTO = new BoatDTO();
 
-  customersRef: AngularFireList<BoatDTO> = null;
+  boatsRef: AngularFireList<BoatDTO> = null;
 
 
   constructor(public db: AngularFireDatabase) {
-    this.customersRef = db.list(this.dbPath);
+    this.boatsRef = db.list(this.dbPath);
   }
 
-  createCustomer(boat: BoatDTO): void {
+  createBoat(boat: BoatDTO): void {
     //this.customersRef = this.db.list(this.dbPath)
     //customer.key = customer.name;
-    this.customersRef.push(boat);
+    this.boatsRef.push(boat);
   }
 
-  updateCustomer(key: string, value: any): Promise<void> {
-    return this.customersRef.update(key, value);
+  updateBoat(key: string, value: any): Promise<void> {
+    return this.boatsRef.update(key, value);
   }
 
-  deleteCustomer(key: string): Promise<void> {
-    return this.customersRef.remove(key);
+  deleteBoat(key: string): Promise<void> {
+    return this.boatsRef.remove(key);
   }
 
-  getCustomersList(): AngularFireList<BoatDTO> {
-    return this.customersRef;
+  getBoatsList(): AngularFireList<BoatDTO> {
+    return this.boatsRef;
   }
 
   deleteAll(): Promise<void> {
-    return this.customersRef.remove();
+    return this.boatsRef.remove();
   }
 }
