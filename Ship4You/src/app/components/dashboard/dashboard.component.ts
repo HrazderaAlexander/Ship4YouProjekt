@@ -9,7 +9,7 @@ import { BoatData } from 'src/app/BoatData';
 import { Picture } from 'src/app/Picture';
 import {Observable, combineLatest} from 'rxjs'
 import { ImageService } from 'src/app/shared/image.service';
-import { CustomerService } from '../customers/customer.service';
+import { BoatService } from '../boats/boat.service';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Options } from '@angular-slider/ngx-slider';
@@ -77,7 +77,7 @@ showFav: boolean = false;
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
-    private afs: AngularFirestore, private service: ImageService, private customerService: CustomerService
+    private afs: AngularFirestore, private service: ImageService, private boatService: BoatService
   )
   {
 
@@ -168,7 +168,7 @@ showFav: boolean = false;
   files = [];
 
   getCustomersList() {
-    this.customerService.getCustomersList().snapshotChanges().pipe(
+    this.boatService.getCustomersList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })

@@ -1,7 +1,7 @@
 import { createOfflineCompileUrlResolver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Customer } from '../components/customers/customer';
+import { BoatDTO } from '../components/boats/boat';
 
 @Component({
   selector: 'app-image-slider',
@@ -10,7 +10,7 @@ import { Customer } from '../components/customers/customer';
 })
 export class ImageSliderComponent implements OnInit {
 
-  @Input() customer: Customer;
+  @Input() boat: BoatDTO;
   ratingId:string="";
   boatImageDb:any[] = [];
   boatImageRef: AngularFirestoreDocument<any>[] = [];
@@ -25,17 +25,17 @@ export class ImageSliderComponent implements OnInit {
     //this.ratingId = localStorage.getItem('boatForShowPicturesBrand')+localStorage.getItem('boatForShowPicturesName');
     //this.afs.collection(localStorage.getItem('boatForShowPicturesBrand')+localStorage.getItem('boatForShowPicturesName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
     this.imageObject = [{
-      image: this.customer.imageUrl,
-      thumbImage: this.customer.imageUrl,
+      image: this.boat.imageUrl,
+      thumbImage: this.boat.imageUrl,
       alt: 'alt of image',
       title: 'title of image'
     }]
-    if(this.customer.picturesUrl != undefined){
-      for(let i = 0; i< this.customer.picturesUrl.length; i++)
+    if(this.boat.picturesUrl != undefined){
+      for(let i = 0; i< this.boat.picturesUrl.length; i++)
       {
         let img = {
-          image: this.customer.picturesUrl[i],
-          thumbImage: this.customer.picturesUrl[i],
+          image: this.boat.picturesUrl[i],
+          thumbImage: this.boat.picturesUrl[i],
           alt: 'alt of image',
           title: 'title of image'
         }

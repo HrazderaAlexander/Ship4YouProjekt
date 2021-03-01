@@ -1,14 +1,11 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Picture } from 'src/app/Picture';
 import { ImageService } from 'src/app/shared/image.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { map } from 'rxjs/operators';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
+import { BoatDTO } from '../boat';
+import { BoatService } from '../boat.service';
 
 interface Types {
   value: string;
@@ -16,21 +13,21 @@ interface Types {
 }
 
 @Component({
-  selector: 'app-create-customer',
-  templateUrl: './create-customer.component.html',
-  styleUrls: ['./create-customer.component.scss']
+  selector: 'app-create-boat',
+  templateUrl: './create-boat.component.html',
+  styleUrls: ['./create-boat.component.scss']
 })
-export class CreateCustomerComponent implements OnInit {
+export class CreateBoatComponent implements OnInit {
 
-  customer: Customer = new Customer();
+  boat: BoatDTO = new BoatDTO();
   submitted = false;
-  customers: Customer[] = [];
+  boats: BoatDTO[] = [];
 
   ID : string[] = [];
   IDCounter : number = 0;
   boolCheck : boolean = false;
 
-  constructor(private customerService: CustomerService, private router: Router, public authService: AuthService,
+  constructor(private boatService: BoatService, private router: Router, public authService: AuthService,
     public ngZone: NgZone,
     private afs: AngularFirestore, private service: ImageService
 ) { }
@@ -131,7 +128,7 @@ validateDocument(name: String) {
 }
 
   getCustomer(){
-    this.customerService.getCustomersList().snapshotChanges().pipe(
+    this.boatService.getCustomersList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
@@ -139,35 +136,35 @@ validateDocument(name: String) {
       )
     ).subscribe(customers => {
 
-      this.customers = customers;
+      this.boats = customers;
     });
   }
 
     checkID() : number{
       this.IDCounter = 0;
-      for(let i = 0; i < this.customers.length; i++)
+      for(let i = 0; i < this.boats.length; i++)
       {
-        console.log(this.customers[i].brand+this.customers[i].name);
-        this.ID[this.IDCounter] = this.customers[i].brand+this.customers[i].name;
+        console.log(this.boats[i].brand+this.boats[i].name);
+        this.ID[this.IDCounter] = this.boats[i].brand+this.boats[i].name;
         console.log(localStorage.getItem("createBoatId"));
         this.IDCounter++;
       }
       console.log(this.IDCounter);
 
     for(var i = 0; i< this.IDCounter; i++){
-      if(this.ID[i] === this.customer.brand+this.customer.name){
+      if(this.ID[i] === this.boat.brand+this.boat.name){
         this.boolCheck = false;
         return 0;
       }
-      else if(this.customer.brand == "" ||  this.customer.name == ""){
+      else if(this.boat.brand == "" ||  this.boat.name == ""){
         this.boolCheck = false;
         return 1;
       }
       else
         this.boolCheck = true;
     }
-    if(this.customer.brand == null ||  this.customer.name == null || this.customer.cabins == null ||this.customer.length == null || this.customer.lessor == null
-      || this.customer.location == null || this.customer.masts == null || this.customer.numberOfPeople == null || this.customer.vintage == null || this.customer.sail == null || this.customer.port == null){
+    if(this.boat.brand == null ||  this.boat.name == null || this.boat.cabins == null ||this.boat.length == null || this.boat.lessor == null
+      || this.boat.location == null || this.boat.masts == null || this.boat.numberOfPeople == null || this.boat.vintage == null || this.boat.sail == null || this.boat.port == null){
         this.boolCheck = false;
         return 2;
     }
@@ -180,10 +177,10 @@ validateDocument(name: String) {
   }
 
   goToMultUpload(){
-    this.customerService.tmpBoat = this.customer;
-    localStorage.setItem('tmpBoat', JSON.stringify(this.customer));
-    console.log("TmpBoat " + this.customerService.tmpBoat)
-    localStorage.setItem('createBoatId', this.customer.brand+this.customer.name);
+    this.boatService.tmpBoat = this.boat;
+    localStorage.setItem('tmpBoat', JSON.stringify(this.boat));
+    console.log("TmpBoat " + this.boatService.tmpBoat)
+    localStorage.setItem('createBoatId', this.boat.brand+this.boat.name);
     console.log(localStorage.getItem("createBoatId"));
     this.router.navigateByUrl("multiple-upload");
   }

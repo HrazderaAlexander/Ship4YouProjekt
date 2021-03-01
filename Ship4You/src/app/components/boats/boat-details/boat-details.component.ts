@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy, Inject } from '@angular/core';
-import { CustomerService } from '../customer.service';
-import { Customer } from '../customer';
+import { BoatService } from '../boat.service';
+import { BoatDTO } from '../boat';
 import { NavigationEnd, Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { DOCUMENT } from '@angular/common';
@@ -12,14 +12,14 @@ import { map } from 'rxjs/internal/operators/map';
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-customer-details',
-  templateUrl: './customer-details.component.html',
-  styleUrls: ['./customer-details.component.css']
+  selector: 'app-boat-details',
+  templateUrl: './boat-details.component.html',
+  styleUrls: ['./boat-details.component.css']
 })
-export class CustomerDetailsComponent implements OnInit {
+export class BoatDetailsComponent implements OnInit {
   userId:string = "";
   isEdit:boolean = false;
-  @Input() customer: Customer;
+  @Input() boat: BoatDTO;
   @Input() showButtons:string;
   favButtonPressed:boolean;
   favRef: AngularFirestoreDocument<any>;
@@ -30,27 +30,27 @@ export class CustomerDetailsComponent implements OnInit {
   //defaultElevation
   defaultElevation = 2;
 
-  constructor(public dialog: MatDialog, public authService: AuthService, private customerService: CustomerService, private router: Router, private afs: AngularFirestore)
+  constructor(public dialog: MatDialog, public authService: AuthService, private boatService: BoatService, private router: Router, private afs: AngularFirestore)
   {
   }
 
   ngOnInit() {
     for(let i =0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
     {
-      this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.customer.brand + this.customer.name}`);
+      this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.boat.brand + this.boat.name}`);
       this.favRef.valueChanges().subscribe(item => {
         if(item != null)
           this.favButtonPressed = item.favourite
       });
     }
     this.userId = localStorage.getItem('userUid');
-    this.afs.collection(`${this.customer.brand + this.customer.name}`).valueChanges().subscribe(s => this.feedbackLength = s.length);
+    this.afs.collection(`${this.boat.brand + this.boat.name}`).valueChanges().subscribe(s => this.feedbackLength = s.length);
 
   }
 
   customers: any = [];
   getCustomersFeedbackList() {
-    this.customerService.getCustomersList().snapshotChanges().pipe(
+    this.boatService.getCustomersList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
@@ -62,7 +62,7 @@ export class CustomerDetailsComponent implements OnInit {
     });
   }
 
-  boat: any = new Customer;
+  boatNew: any = new BoatDTO;
   id:string = localStorage.getItem('boatForRating');
   ratingBoat: number[];
   boatKey: string="";
@@ -73,14 +73,14 @@ export class CustomerDetailsComponent implements OnInit {
       var counter = Number(c);
       for(let i = 0; i < counter;i++){
         if(this.id == this.customers[i].key){
-          this.boat = this.customers[i];
-          console.log("BoatWithRating " + this.boat.allReatings);
-          this.ratingBoat = this.boat.allReatings;
-          this.boatKey = this.boat.key;
+          this.boatNew = this.customers[i];
+          console.log("BoatWithRating " + this.boatNew.allReatings);
+          this.ratingBoat = this.boatNew.allReatings;
+          this.boatKey = this.boatNew.key;
           console.log("BoatKey " + this.boatKey);
         }
       }
-      return this.boat;
+      return this.boatNew;
     }
     else{
       console.log("Not a number!");
@@ -110,8 +110,8 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   updateActive(isActive: boolean) {
-    this.customerService
-      .updateCustomer(this.customer.key, { active: isActive })
+    this.boatService
+      .updateCustomer(this.boat.key, { active: isActive })
       .catch(err => console.log(err));
   }
 
@@ -128,9 +128,9 @@ export class CustomerDetailsComponent implements OnInit {
       this.isEdit = true;
   }
 
-  saveUpdateList(cus:Customer) {
-    if(this.customer.userId == localStorage.getItem('userUid')){
-        this.customerService
+  saveUpdateList(cus:BoatDTO) {
+    if(this.boat.userId == localStorage.getItem('userUid')){
+        this.boatService
         .updateCustomer(cus.key, cus)
         .catch(err => console.log(err));
     }
@@ -148,25 +148,25 @@ export class CustomerDetailsComponent implements OnInit {
 
   async deleteCustomer() {
     const length = this.feedbackLength;
-    if(this.customer.userId == localStorage.getItem('userUid'))
+    if(this.boat.userId == localStorage.getItem('userUid'))
     {
-      if(confirm("Are you sure to delete "+this.customer.name + "?"))
+      if(confirm("Are you sure to delete "+this.boat.name + "?"))
       {
         for(let i = 0; i < this.userIds.length; i++){
-          await this.afs.collection(this.userIds[i]).doc(`${this.customer.brand + this.customer.name}`).delete();
+          await this.afs.collection(this.userIds[i]).doc(`${this.boat.brand + this.boat.name}`).delete();
         }
         for(let i = 0; i < length; i++){
-          await this.afs.doc(`${this.customer.brand + this.customer.name}/${i}`).delete();
+          await this.afs.doc(`${this.boat.brand + this.boat.name}/${i}`).delete();
         }
-        this.customerService
-        .deleteCustomer(this.customer.key)
+        this.boatService
+        .deleteCustomer(this.boat.key)
         .catch(err => console.log(err));
       }
     }
   }
   clickRating(brand, name){
     if(this.authService.isLoggedIn){
-      localStorage.setItem('boatForRating', this.customer.key);
+      localStorage.setItem('boatForRating', this.boat.key);
       localStorage.setItem('boatForRatingName', name);
       localStorage.setItem('boatForRatingBrand', brand);
       this.getCustomersFeedbackList();
@@ -176,7 +176,7 @@ export class CustomerDetailsComponent implements OnInit {
       this.confirmDialog();
   }
 
-  clickFavButton(c:Customer, fav:boolean){
+  clickFavButton(c:BoatDTO, fav:boolean){
     if(!this.authService.isLoggedIn){
       this.confirmDialog();
     }
@@ -205,10 +205,10 @@ export class CustomerDetailsComponent implements OnInit {
 
       reader.onload = (event) => { // called once readAsDataURL is completed
          this.url= (event.target as FileReader).result;  //event.target.result.toString();
-         this.customer.imageUrl = this.url;
-         console.log('Customer.imageUrl: ', this.customer.imageUrl);
-         console.log('KEY: ', this.customer.key);
-         this.customerService.updateCustomer(this.customer.key, this.customer);
+         this.boat.imageUrl = this.url;
+         console.log('Customer.imageUrl: ', this.boat.imageUrl);
+         console.log('KEY: ', this.boat.key);
+         this.boatService.updateCustomer(this.boat.key, this.boat);
 
       }
 

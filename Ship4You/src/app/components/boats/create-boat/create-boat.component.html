@@ -1,0 +1,163 @@
+<mat-toolbar class="mat-toolbar">
+  <img height="70px" src="../../../assets/img/ship4youWeiss.png">
+  <span class="example-spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button style="outline:none !important" *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl('/user-details')" mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>User profil</span>
+    </button>
+    <button (click)="authService.router.navigateByUrl('/dashboard')" mat-menu-item>
+      <mat-icon>home</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button (click)="authService.router.navigateByUrl('/contact-us')" mat-menu-item>
+      <mat-icon>contacts</mat-icon>
+      <span>Support</span>
+    </button>
+    <button (click)="authService.router.navigateByUrl('/about-us')" mat-menu-item>
+      <mat-icon>group</mat-icon>
+      <span>About us</span>
+    </button>
+  </mat-menu>
+   </mat-toolbar>
+
+<main role="main" class="col-md-2 ml-sm-auto col-lg-11 px-4">
+<h3 class="title">Add Boat</h3>
+<!--<div [hidden]="submitted" style="width: 300px;">-->
+    <div class="form-group">
+      <div *ngIf="checkID()===0" class="alert alert-danger" role="alert">
+        Bootname oder Brand existiert bereits!
+      </div>
+      <div *ngIf="checkID()===1" class="alert alert-danger" role="alert">
+        Bootname oder Brand darf nicht leer sein!
+      </div>
+          <form >
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput id="name" [(ngModel)]="boat.name" name="name" required>
+              <mat-icon class="material-icons color_green" *ngIf="boat.name != '' && boat.name != null" matSuffix>sentiment_very_satisfied</mat-icon>
+              <mat-icon class="material-icons color_red" *ngIf="boat.name == '' || boat.name == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+              <mat-hint>Must not be empty</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Cabins</mat-label>
+              <input matInput id="cabins" [(ngModel)]="boat.cabins" name="cabins" required>
+              <mat-icon class="material-icons color_green" *ngIf="boat.cabins >= 0 && boat.cabins <= 30 && boat.cabins != null" matSuffix>sentiment_very_satisfied</mat-icon>
+              <mat-icon class="material-icons color_red" *ngIf="boat.cabins < 0 || boat.cabins > 30 || boat.cabins == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+                <mat-hint>0-30</mat-hint>
+            </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Masts</mat-label>
+            <input matInput id="masts" [(ngModel)]="boat.masts" name="masts" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.masts >= 0 && boat.masts <= 10 && boat.masts != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.masts < 0 || boat.masts > 10 || boat.masts == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+          <mat-hint>0-10</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Vintage</mat-label>
+            <input matInput id="vintage" [(ngModel)]="boat.vintage" name="vintage" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.vintage >= 1980 && boat.vintage <= 2020 && boat.vintage != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.vintage < 1980 || boat.vintage > 2020 || boat.vintage == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+          <mat-hint>1980 - 2020</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Brand</mat-label>
+            <input matInput id="brand" [(ngModel)]="boat.brand" name="brand" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.brand != '' && boat.brand != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.brand == '' || boat.brand == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+            <mat-hint>Must not be empty</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Length</mat-label>
+            <input matInput id="length" [(ngModel)]="boat.length" name="length" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.length >= 0 && boat.length <= 40 && boat.length != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.length < 0 || boat.length > 40 || boat.length == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+            <mat-hint>0m-40m</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Lessor</mat-label>
+            <input matInput id="lessor" [(ngModel)]="boat.lessor" name="lessor" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.lessor != '' && boat.lessor != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.lessor == '' || boat.lessor == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+            <mat-hint>Must not be empty</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select [(value)]="boat.type">
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-icon class="material-icons color_green" *ngIf="boat.type != '' && boat.type != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.type == '' || boat.type == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+            <mat-hint>Must not be empty</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Port</mat-label>
+            <input matInput id="port" [(ngModel)]="boat.port" name="port" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.port != '' && boat.port != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.port == '' || boat.port == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+              <mat-hint>Must not be empty</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+            <input matInput id="location" [(ngModel)]="boat.location" name="location" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.location != '' && boat.location != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.location == '' || boat.location == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+              <mat-hint>Must not be empty</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Sails</mat-label>
+            <input matInput id="sail" [(ngModel)]="boat.sail" name="sail" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.sail >= 0 && boat.sail <= 10 && boat.sail != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.sail < 0 || boat.sail > 10 || boat.sail == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+            <mat-hint>0-10</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Number of people</mat-label>
+            <input matInput id="numberOfPeople" [(ngModel)]="boat.numberOfPeople" name="numberOfPeople" required>
+            <mat-icon class="material-icons color_green" *ngIf="boat.numberOfPeople > 0 && boat.numberOfPeople <= 30 && boat.numberOfPeople != null" matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon class="material-icons color_red" *ngIf="boat.numberOfPeople <= 0 || boat.numberOfPeople > 30 || boat.numberOfPeople == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
+              <mat-hint>1-30</mat-hint>
+          </mat-form-field>
+    <br>
+    <br>
+    <br>
+    <form>
+      <div class="dropzone"
+      dropzone required
+      (hovered)="toggleHover($event)"
+      (dropped)="onDrop($event)"
+      [class.hovering]="isHovering">
+      <h3>Upload title picture</h3>
+      <p>Drag and Drop a File</p>
+      </div>
+      <div *ngFor="let file of files">
+        <upload-task [file]="file"></upload-task>
+      </div>
+
+      <div class="dropzone-document"
+      dropzone
+      (hovered)="toggleHover($event)"
+      (dropped)="onDropDocument($event)"
+      [class.hovering]="isHovering">
+      <h3>Upload document</h3>
+      <p>Drag and Drop a File</p>
+      </div>
+      <div *ngFor="let file of filesDocuments">
+        <app-upload-task-document [file]="file"></app-upload-task-document>
+        </div>
+
+    </form>
+    <div>
+      <button [disabled]="checkID()===2" mat-button (click)="goToMultUpload()" >Next</button>
+    </div>
+          </form>
+    </div>
+<!--</div>-->
+    </main>

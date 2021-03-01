@@ -7,8 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseService } from '../../app/shared/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-import { Customer } from '../components/customers/customer';
-import { CustomerService } from '../components/customers/customer.service';
+import { BoatDTO } from '../components/boats/boat';
+import { BoatService } from '../components/boats/boat.service';
 
 export interface Test {
   imagenDestacada: string;
@@ -27,11 +27,11 @@ export class MultiplePicturesComponent implements OnInit {
   forma: FormGroup;
   tests: Observable<any[]>;
 
-  newBoat: Customer = new Customer();
+  newBoat: BoatDTO = new BoatDTO();
 
   tmp: string = "";
 
-  constructor(fb: FormBuilder, private boatService: CustomerService, private router: Router, public authService: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, private fs: FirebaseService ) {
+  constructor(fb: FormBuilder, private boatService: BoatService, private router: Router, public authService: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, private fs: FirebaseService ) {
     this.forma = fb.group ({
       categoria: ['myCategoria'],
 
@@ -57,7 +57,7 @@ export class MultiplePicturesComponent implements OnInit {
     this.newBoat.picturesUrl = this.downloadURL;
     this.newBoat.rating = 0;
     this.boatService.createCustomer(this.newBoat);
-    this.newBoat = new Customer();
+    this.newBoat = new BoatDTO();
     this.downloadURL = [];
   }
 

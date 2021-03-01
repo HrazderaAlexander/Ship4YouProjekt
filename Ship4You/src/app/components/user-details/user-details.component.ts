@@ -1,9 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
 import { Router } from "@angular/router";
-import { CustomerService } from '../customers/customer.service';
-import { map } from 'rxjs/operators';
-import { Customer } from '../customers/customer';
+import { BoatDTO } from '../boats/boat';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
@@ -22,12 +20,11 @@ export class UserDetailsComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
-    private customerService: CustomerService,
     public afs: AngularFirestore
   ) {
    }
 
-  userCustomers: Customer[] = [];
+  userCustomers: BoatDTO[] = [];
   googleSignIn = localStorage.getItem('googleSignIn');
   user = JSON.parse(localStorage.getItem('user'));
 

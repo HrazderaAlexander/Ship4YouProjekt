@@ -1,7 +1,7 @@
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { Observable } from 'rxjs';
 
-export class Customer {
+export class BoatDTO {
   key: string;
   name: string;
   age: number;

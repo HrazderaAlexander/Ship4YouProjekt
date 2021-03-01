@@ -8,7 +8,7 @@ import { DashboardComponent } from '../../components/dashboard/dashboard.compone
 import { ForgotPasswordComponent } from '../../components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from '../../components/verify-email/verify-email.component';
 
-import { CreateCustomerComponent } from '../../components/customers/create-customer/create-customer.component';
+import { CreateBoatComponent } from '../../components/boats/create-boat/create-boat.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "../../shared/guard/auth.guard";
@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'user-details', component: UserDetailsComponent, canActivate: [AuthGuard]},
-  { path: 'add', component: CreateCustomerComponent, canActivate: [AuthGuard]},
+  { path: 'add', component: CreateBoatComponent, canActivate: [AuthGuard]},
   {path: 'showUpload', component: ShowUpload},
   {path: 'bewertung', component: BewertungComponent, runGuardsAndResolvers: 'always'},
   {path: 'create-feedback', component: CreateFeedbackComponent},

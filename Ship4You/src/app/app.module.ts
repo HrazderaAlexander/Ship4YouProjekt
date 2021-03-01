@@ -55,8 +55,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
-import { CreateCustomerComponent } from './components/customers/create-customer/create-customer.component';
-import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
+import { CreateBoatComponent } from './components/boats/create-boat/create-boat.component';
+import { BoatDetailsComponent } from './components/boats/boat-details/boat-details.component';
 import { BewertungComponent } from './components/bewertung/bewertung.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -87,8 +87,8 @@ import { ImageSliderComponent } from './image-slider/image-slider.component';
     UserDetailsComponent,
     ShowUpload,
     DropzoneDirective,
-    CustomerDetailsComponent,
-    CreateCustomerComponent,
+    BoatDetailsComponent,
+    CreateBoatComponent,
     BewertungComponent,
     UploadTaskComponent,
     ConfirmDialogComponent,

@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Customer } from '../customers/customer';
-import { CustomerService } from '../customers/customer.service';
+import { BoatDTO } from '../boats/boat';
+import { BoatService } from '../boats/boat.service';
 import { Rating } from './rating';
 import { DatePipe } from '@angular/common';
 import { MaxLengthValidator } from '@angular/forms';
@@ -26,7 +26,7 @@ export class BewertungComponent implements OnInit {
   currentRate = 6;
   mydate:string="";
   customers: any = [];
-  boat: any = new Customer;
+  boat: any = new BoatDTO;
   id:string = localStorage.getItem('boatForRating');
   feedback:string="";
   isChosen:boolean = false;
@@ -73,7 +73,7 @@ export class BewertungComponent implements OnInit {
   showNoResult:boolean=true;
   //------------------
 
-  constructor(public dialog: MatDialog,private customerService: CustomerService, public fs: FirebaseService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
+  constructor(public dialog: MatDialog,private boatService: BoatService, public fs: FirebaseService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
@@ -232,7 +232,7 @@ export class BewertungComponent implements OnInit {
   }
 
   getCustomersList() {
-    this.customerService.getCustomersList().snapshotChanges().pipe(
+    this.boatService.getCustomersList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
@@ -284,14 +284,14 @@ export class BewertungComponent implements OnInit {
   }
 
   updateRatingArray(ratingBoat: any) {
-    this.customerService
+    this.boatService
       .updateCustomer(this.boatKey, { allReatings: ratingBoat })
       .catch(err => console.log(err));
   }
 
   updateRatingSum(ratingDiv: any)
   {
-    this.customerService
+    this.boatService
     .updateCustomer(this.boatKey, { rating: ratingDiv })
     .catch(err => console.log(err));
   }

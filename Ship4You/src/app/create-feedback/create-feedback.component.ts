@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map, tap } from 'rxjs/operators';
 import { Rating } from '../components/bewertung/rating';
-import { Customer } from '../components/customers/customer';
-import { CustomerService } from '../components/customers/customer.service';
+import { BoatDTO } from '../components/boats/boat';
+import { BoatService } from '../components/boats/boat.service';
 import { FirebaseService } from '../shared/services/firebase.service';
 
 export interface Test {
@@ -23,7 +23,7 @@ export interface Test {
 })
 export class CreateFeedbackComponent implements OnInit {
 
-  boat: any = new Customer;
+  boat: any = new BoatDTO;
   isHovering: boolean;
   ratingId:string="";
   mydate:string="";
@@ -52,12 +52,12 @@ export class CreateFeedbackComponent implements OnInit {
   forma: FormGroup;
   tests: Observable<any[]>;
 
-  newBoat: Customer = new Customer();
+  newBoat: BoatDTO = new BoatDTO();
 
   tmp: string = "";
   //
 
-  constructor(fb: FormBuilder, private boatService: CustomerService, private fs: FirebaseService, public dialogRef: MatDialogRef<CreateFeedbackComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private customerService: CustomerService, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
+  constructor(fb: FormBuilder, private boatService: BoatService, private fs: FirebaseService, public dialogRef: MatDialogRef<CreateFeedbackComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
@@ -196,7 +196,7 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   getCustomersList() {
-    this.customerService.getCustomersList().snapshotChanges().pipe(
+    this.boatService.getCustomersList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
@@ -243,14 +243,14 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   updateRatingArray(ratingBoat: any) {
-    this.customerService
+    this.boatService
       .updateCustomer(this.boatKey, { allReatings: ratingBoat })
       .catch(err => console.log(err));
   }
 
   updateRatingSum(ratingDiv: any)
   {
-    this.customerService
+    this.boatService
     .updateCustomer(this.boatKey, { rating: ratingDiv })
     .catch(err => console.log(err));
   }
