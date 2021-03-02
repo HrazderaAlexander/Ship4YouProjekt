@@ -36,8 +36,8 @@ export class ImageSliderComponent implements OnInit {
         let img = {
           image: this.boat.picturesUrl[i],
           thumbImage: this.boat.picturesUrl[i],
-          alt: 'alt of image',
-          title: 'title of image'
+          alt: this.boat.pictureDescriptionArray[i],
+          title: this.boat.pictureDescriptionArray[i]
         }
         this.imageObject.push(img);
       }

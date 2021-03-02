@@ -24,4 +24,5 @@ export class BoatDTO {
   userId:string;
   allReatings:number[];
   port: string;
+  pictureDescriptionArray?: string[];
 }

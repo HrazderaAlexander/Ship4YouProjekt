@@ -30,6 +30,9 @@ export class MultiplePicturesComponent implements OnInit {
   newBoat: BoatDTO = new BoatDTO();
 
   tmp: string = "";
+  description: string;
+
+  pictureDescriptionArray: string[] = [];
 
   constructor(fb: FormBuilder, private boatService: BoatService, private router: Router, public authService: AuthService, private storage: AngularFireStorage, private afs: AngularFirestore, private fs: FirebaseService ) {
     this.forma = fb.group ({
@@ -55,6 +58,7 @@ export class MultiplePicturesComponent implements OnInit {
     this.newBoat.userId = localStorage.getItem('userUid');
     this.newBoat.allReatings = [0];
     this.newBoat.picturesUrl = this.downloadURL;
+    this.newBoat.pictureDescriptionArray = this.pictureDescriptionArray;
     this.newBoat.rating = 0;
     this.boatService.createBoat(this.newBoat);
     this.newBoat = new BoatDTO();
@@ -62,6 +66,7 @@ export class MultiplePicturesComponent implements OnInit {
   }
 
   onSubmit() {
+    this.pictureDescriptionArray.push(this.description);
     this.save();
     this.router.navigateByUrl("/dashboard");
   }
