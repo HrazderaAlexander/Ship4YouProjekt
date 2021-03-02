@@ -21,15 +21,11 @@
   <mat-expansion-panel appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20">
     <mat-expansion-panel-header class="disable_ripple">
       <mat-panel-title>
-        <div  class="col-md-12">
           <label class="hoverable" for="{{boat.key}}">
             <app-image-slider [boat]='boat'></app-image-slider>
-            <!--<div *ngIf="customer.userId == userId && showButtons" class="hover-text">Choose file</div>-->
             <div class="background"></div>
           </label>
           <br/>
-          <!--<input *ngIf="customer.userId == userId && showButtons" style="display: none;" id="{{customer.key}}" type='file' (change)="onSelectFile($event)">-->
-        </div>
       </mat-panel-title>
       <mat-panel-description>
         <div>

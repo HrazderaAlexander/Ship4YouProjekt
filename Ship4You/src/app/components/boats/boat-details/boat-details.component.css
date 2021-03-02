@@ -1,8 +1,10 @@
 .mat-expansion-panel{
     min-width: 800px;
     min-height: 50px;
-    padding: 28%;
     background-color:#A19682;
+    padding-left: 0%;
+    padding-top: 28%;
+    padding-bottom: 28%;
 }
 
 .disable_ripple{
@@ -86,33 +88,7 @@ th, td {
   display: block;
   cursor: pointer;
   height: 150px;
-  width: 150px;
-  border-radius: 100%;
-}
-.hoverable .hover-text{
-  position: absolute;
-  display: none;
-  top: 50%;
-  left:  50%;
-  transform: translate(-50%,-50%);
-  z-index: 2;
-}
-.hoverable .background{
-  position: absolute;
-  display: none;
-  top: 0;
-  left:  0;
-  bottom: 0;
-  right: 0;
-  pointer-events: none;
-  border-radius: 100%;
-  z-index: 1;
-}
-.hoverable:hover .hover-text{
-  display: block;
-}
-.hoverable:hover .background{
-  display: block;
+  width: 100%;
 }
 
 #fileInput2{
