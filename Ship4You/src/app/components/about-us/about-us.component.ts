@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as $ from "jquery";
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class AboutUsComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     $(document).ready(function(){
@@ -27,6 +28,10 @@ export class AboutUsComponent implements OnInit {
       });
        }
    });
+  }
+
+  goToDashboard(){
+    this.router.navigateByUrl("/dashboard");
   }
 
 }

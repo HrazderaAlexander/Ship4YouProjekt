@@ -49,4 +49,8 @@ optionsSelect: Array<any>;
       console.log('Error', error);
     });
   }
+
+  goToDashboard(){
+    this.router.navigateByUrl("/dashboard");
+  }
 }

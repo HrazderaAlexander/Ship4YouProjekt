@@ -9,6 +9,10 @@
     background-color: #8d7260;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .example-spacer {
     flex: 1 1 auto;
     display: flex;

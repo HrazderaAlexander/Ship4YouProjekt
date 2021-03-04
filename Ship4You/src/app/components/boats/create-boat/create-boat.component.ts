@@ -184,4 +184,8 @@ validateDocument(name: String) {
     console.log(localStorage.getItem("createBoatId"));
     this.router.navigateByUrl("multiple-upload");
   }
+
+  goToDashboard(){
+    this.router.navigateByUrl("/dashboard");
+  }
 }

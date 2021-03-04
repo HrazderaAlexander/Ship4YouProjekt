@@ -306,9 +306,8 @@ export class BewertungComponent implements OnInit {
     this.updateRatingSum(div)
   }
 
-  addFeedback(){
-    this.updateBoatStats();
-    this.router.navigateByUrl('/dashboard')
+  goToDashboard(){
+    this.router.navigateByUrl("/dashboard");
   }
 
 }

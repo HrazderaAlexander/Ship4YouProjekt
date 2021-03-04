@@ -85,4 +85,8 @@ export class UserDetailsComponent implements OnInit {
     this.check=true;
     console.log('check: ', this.check);
   }
+
+  goToDashboard(){
+    this.router.navigateByUrl("/dashboard");
+  }
 }

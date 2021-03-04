@@ -137,6 +137,10 @@ p {
   top: 10%;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 .hoverable{
   position: relative;
   display: block;
