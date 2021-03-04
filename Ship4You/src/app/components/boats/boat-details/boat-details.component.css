@@ -1,14 +1,14 @@
 .mat-expansion-panel{
-    min-width: 1000px;
-    min-height: 160px;
-    background-color:#A19682;
-    padding-left: 0%;
-    padding-top: 28% !important;
-    padding-bottom: 28%;
+  min-width: 1000px;
+  min-height: 160px;
+  background-color:#A19682;
+  padding-left: 0%;
+  padding-top: 28% !important;
+  padding-bottom: 28%;
 }
 
 .disable_ripple{
-    background: #A19682 !important;
+  background: #A19682 !important;
 }
 
 .mat-card-content{
@@ -17,11 +17,11 @@
 }
 
 .mat-card{
-    display:flex;
-    flex-direction: column;
-    margin-top: 20%;
-    background-color: #ffffff22;
-    color: white;
+  display:flex;
+  flex-direction: column;
+  margin-top: 20%;
+  background-color: #ffffff22;
+  color: white;
 }
 
 table {

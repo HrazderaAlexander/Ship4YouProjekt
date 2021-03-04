@@ -42,7 +42,7 @@
                 <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
               </span>
             </ng-template>
-            <!--<h>Rate {{customer.ratingStars}}</h>-->
+            
             <ngb-rating style="outline:none !important" [(rate)]="boat.rating" [max]="5" title="{{boat.rating | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
           </p>
         </div>

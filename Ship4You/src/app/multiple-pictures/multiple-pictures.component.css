@@ -96,6 +96,19 @@ p {
     display: flex;
   }
 
+  .btn{
+    color: white;
+    background-color: #8d7260;
+  }
+
+  #btn-submit{
+    margin-top: 1%;
+  }
+
+  .card-text{
+    margin-top: 5%;
+  }
+
   .mat-toolbar{
     height: 80px;
     font-size: 40px;
