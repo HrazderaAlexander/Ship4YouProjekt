@@ -62,7 +62,7 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   onConfirm(): void {
-    this.dialogRef.close(true);
+    this.dialogRef.close(false);
   }
 
   onDismiss(): void {
@@ -256,10 +256,10 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   addFeedback(){
-    this.dialogRef.close(true);
+    this.dialogRef.close(false);
     this.updateBoatStats();
     this.SetFeedbackData();
-    this.router.navigateByUrl('/dashboard')
+    this.router.navigateByUrl('/bewertung')
     //this.setAllRatingsToBoat();
   }
 
