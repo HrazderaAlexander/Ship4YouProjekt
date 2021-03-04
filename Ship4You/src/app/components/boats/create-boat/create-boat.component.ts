@@ -164,7 +164,7 @@ validateDocument(name: String) {
         this.boolCheck = true;
     }
     if(this.boat.brand == null ||  this.boat.name == null || this.boat.cabins == null ||this.boat.length == null || this.boat.lessor == null
-      || this.boat.location == null || this.boat.masts == null || this.boat.numberOfPeople == null || this.boat.vintage == null || this.boat.sail == null || this.boat.port == null){
+      || this.boat.location == null || this.boat.masts == null || this.boat.numberOfPeople == null || this.boat.vintage == null || this.boat.sail == null || this.boat.port == null || this.boat.linkToRentSide == null || this.boat.creatorEmail == null){
         this.boolCheck = false;
         return 2;
     }

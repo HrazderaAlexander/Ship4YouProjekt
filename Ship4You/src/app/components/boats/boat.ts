@@ -25,4 +25,6 @@ export class BoatDTO {
   allReatings:number[];
   port: string;
   pictureDescriptionArray?: string[];
+  linkToRentSide: string;
+  creatorEmail: string;
 }

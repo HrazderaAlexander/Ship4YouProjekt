@@ -22,8 +22,6 @@ export class ImageSliderComponent implements OnInit {
    }
 
   ngOnInit() {
-    //this.ratingId = localStorage.getItem('boatForShowPicturesBrand')+localStorage.getItem('boatForShowPicturesName');
-    //this.afs.collection(localStorage.getItem('boatForShowPicturesBrand')+localStorage.getItem('boatForShowPicturesName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
     this.imageObject = [{
       image: this.boat.imageUrl,
       thumbImage: this.boat.imageUrl,

@@ -123,41 +123,51 @@
             <input matInput id="numberOfPeople" [(ngModel)]="boat.numberOfPeople" name="numberOfPeople" required>
             <mat-icon class="material-icons color_green" *ngIf="boat.numberOfPeople > 0 && boat.numberOfPeople <= 30 && boat.numberOfPeople != null" matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-icon class="material-icons color_red" *ngIf="boat.numberOfPeople <= 0 || boat.numberOfPeople > 30 || boat.numberOfPeople == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-              <mat-hint>1-30</mat-hint>
+            <mat-hint>1-30</mat-hint>
           </mat-form-field>
-    <br>
-    <br>
-    <br>
-    <form>
-      <div class="dropzone"
-      dropzone required
-      (hovered)="toggleHover($event)"
-      (dropped)="onDrop($event)"
-      [class.hovering]="isHovering">
-      <h3>Upload title picture</h3>
-      <p>Drag and Drop a File</p>
-      </div>
-      <div *ngFor="let file of files">
-        <upload-task [file]="file"></upload-task>
-      </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Link to the rent side</mat-label>
+            <input matInput id="BoatRentSide" [(ngModel)]="boat.linkToRentSide" name="boatRentSide" required>
+            <mat-hint>https://exampleboat.com</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>email of the creator</mat-label>
+            <input matInput id="BoatCreatorEmail" [(ngModel)]="boat.creatorEmail" name="BoatCreatorEmail" required>
+            <mat-hint>max.mustermann@gmail.com</mat-hint>
+          </mat-form-field>
+        <br>
+        <br>
+        <br>
+        <form>
+          <div class="dropzone"
+          dropzone required
+          (hovered)="toggleHover($event)"
+          (dropped)="onDrop($event)"
+          [class.hovering]="isHovering">
+          <h3>Upload title picture</h3>
+          <p>Drag and Drop a File</p>
+          </div>
+          <div *ngFor="let file of files">
+            <upload-task [file]="file"></upload-task>
+          </div>
 
-      <div class="dropzone-document"
-      dropzone
-      (hovered)="toggleHover($event)"
-      (dropped)="onDropDocument($event)"
-      [class.hovering]="isHovering">
-      <h3>Upload document</h3>
-      <p>Drag and Drop a File</p>
-      </div>
-      <div *ngFor="let file of filesDocuments">
-        <app-upload-task-document [file]="file"></app-upload-task-document>
+          <div class="dropzone-document"
+          dropzone
+          (hovered)="toggleHover($event)"
+          (dropped)="onDropDocument($event)"
+          [class.hovering]="isHovering">
+          <h3>Upload document</h3>
+          <p>Drag and Drop a File</p>
+          </div>
+          <div *ngFor="let file of filesDocuments">
+            <app-upload-task-document [file]="file"></app-upload-task-document>
+            </div>
+
+        </form>
+        <div>
+          <button [disabled]="checkID()===2" mat-button (click)="goToMultUpload()" >Next</button>
         </div>
-
-    </form>
-    <div>
-      <button [disabled]="checkID()===2" mat-button (click)="goToMultUpload()" >Next</button>
-    </div>
-          </form>
-    </div>
-<!--</div>-->
-    </main>
+              </form>
+        </div>
+    <!--</div>-->
+        </main>

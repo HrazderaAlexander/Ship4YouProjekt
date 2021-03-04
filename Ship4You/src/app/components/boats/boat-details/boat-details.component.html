@@ -56,6 +56,7 @@
           <th>Type</th>
           <th>Lessor</th>
           <th>Cabins</th>
+          <th>Link to Boat</th>
         </tr>
 
         <tr>
@@ -63,18 +64,21 @@
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.type" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.lessor" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.cabins" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.linkToRentSide" class="form-control"></td>
         </tr>
         <tr>
           <th>Length</th>
           <th>Sails</th>
           <th>Max. people</th>
           <th>Masts</th>
+          <th>Uploader-Email</th>
         </tr>
         <tr>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.length" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.sail" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.numberOfPeople" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.masts" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.creatorEmail" class="form-control"></td>
         </tr>
       </table>
       <br>
