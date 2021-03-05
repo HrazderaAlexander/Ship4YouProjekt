@@ -44,7 +44,12 @@
             </ng-template>
             
             <ngb-rating style="outline:none !important" [(rate)]="boat.rating" [max]="5" title="{{boat.rating | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
-          </p>
+          </p> 
+<div>
+  <h3 >Lessor Infos:</h3>
+  Email:<h6 style="color: white;">{{boat.creatorEmail}}</h6>
+  Link to rent the boat:<h6 style="color: white;"> {{boat.linkToRentSide}}</h6>
+</div>
         </div>
       </mat-panel-description>
     </mat-expansion-panel-header>
@@ -56,7 +61,6 @@
           <th>Type</th>
           <th>Lessor</th>
           <th>Cabins</th>
-          <th>Link to Boat</th>
         </tr>
 
         <tr>
@@ -64,21 +68,18 @@
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.type" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.lessor" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.cabins" class="form-control"></td>
-          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.linkToRentSide" class="form-control"></td>
         </tr>
         <tr>
           <th>Length</th>
           <th>Sails</th>
           <th>Max. people</th>
           <th>Masts</th>
-          <th>Uploader-Email</th>
         </tr>
         <tr>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.length" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.sail" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.numberOfPeople" class="form-control"></td>
           <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.masts" class="form-control"></td>
-          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.creatorEmail" class="form-control"></td>
         </tr>
       </table>
       <br>
@@ -94,7 +95,9 @@
       <a class="downloadButton2" *ngIf="boat.documentUrl != null && !showButtons" href="{{boat.documentUrl}}" download>
         <button mat-button>Show Document</button>
       </a>
-    </mat-card>
+      
+
+    </mat-card>      
   </mat-expansion-panel>
 </mat-accordion>
 </div>

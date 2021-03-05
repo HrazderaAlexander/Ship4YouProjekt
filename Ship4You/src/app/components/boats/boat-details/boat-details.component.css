@@ -1,10 +1,10 @@
 .mat-expansion-panel{
   min-width: 1000px;
-  min-height: 160px;
+  min-height: 180px;
   background-color:#A19682;
   padding-left: 0%;
-  padding-top: 28% !important;
-  padding-bottom: 28%;
+  padding-top: 50%;
+  padding-bottom: 15%;
 }
 
 .disable_ripple{

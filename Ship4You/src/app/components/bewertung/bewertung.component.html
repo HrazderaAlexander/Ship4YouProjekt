@@ -37,6 +37,12 @@
     <mat-icon>add</mat-icon>
   </button>
 </div>
+<div class="label-top" [hidden]="showNoResult" *ngIf="feedbackDb.length > 0">
+  <br>
+  <button class="button-middle" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" title="Add Feedback" mat-fab color="primary" (click)="confirmDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
  <!--<div *ngIf="pageIsLoaded" id="content">-->
   <!--<mat-paginator [length]="100" [pageSize]="8" [pageSizeOptions]="[2, 4, 6, 8, 10, 100]" (page)="pageEvent = $event; onPaginateChange($event)"></mat-paginator>-->
   <div *ngIf="feedbackDb.length != 0" id="pagination-content">

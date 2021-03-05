@@ -138,7 +138,6 @@
           <mat-accordion *ngIf="c.location.toUpperCase().includes(searchLocationString.toUpperCase()) && c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && c.port.toUpperCase().includes(searchPortString.toUpperCase()) && c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && c.length > value-1 && c.length < highValue+1 && c.sail > sailsValue-1 && c.sail < sailsHighValue+1 && c.masts > mastsValue-1 && c.masts < mastsHighValue+1 && c.cabins > cabinsValue-1 && c.cabins < cabinsHighValue+1 && c.vintage > yearValue-1 && c.vintage < yearHighValue+1 && c.numberOfPeople > amountPeopleValue-1 && c.numberOfPeople < amountPeopleHighValue+1">
             <app-boat-details [boat]='c' [showButtons]='false'></app-boat-details>
             <br>
-            <br>
           </mat-accordion>
         </ul>
       </div>
