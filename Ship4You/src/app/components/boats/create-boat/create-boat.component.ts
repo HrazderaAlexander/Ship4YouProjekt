@@ -3,9 +3,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ImageService } from 'src/app/shared/image.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { BoatDTO } from '../boat';
 import { BoatService } from '../boat.service';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { FormGroup } from '@angular/forms';
+import { FirebaseService } from 'src/app/shared/services/firebase.service';
+import { stringify } from '@angular/compiler/src/util';
 
 interface Types {
   value: string;
@@ -27,13 +32,21 @@ export class CreateBoatComponent implements OnInit {
   IDCounter : number = 0;
   boolCheck : boolean = false;
 
+  selectedFile: FileList | null;
+  uploadPercent: Observable<number>;
+  downloadURLObservable: Observable<string>;
+  forma: FormGroup;
+  tests: Observable<any[]>;
+  description: string;
+
   constructor(private boatService: BoatService, private router: Router, public authService: AuthService,
-    public ngZone: NgZone,
+    public ngZone: NgZone, private storage: AngularFireStorage, private fs: FirebaseService,
     private afs: AngularFirestore, private service: ImageService
 ) { }
 
   ngOnInit() {
     this.getBoat();
+    this.mostrarImagenes();
   }
 
   isHovering: boolean;
@@ -177,6 +190,14 @@ validateDocument(name: String) {
   }
 
   goToMultUpload(){
+    //
+    console.log("Desc " + this.description);
+    if (this.description != null){
+      localStorage.setItem("titlePictureDescription", this.description);
+    }
+    //
+
+
     this.boatService.tmpBoat = this.boat;
     localStorage.setItem('tmpBoat', JSON.stringify(this.boat));
     console.log("TmpBoat " + this.boatService.tmpBoat)
@@ -187,5 +208,48 @@ validateDocument(name: String) {
 
   goToDashboard(){
     this.router.navigateByUrl("/dashboard");
+  }
+
+  detectFiles(event) {
+    this.selectedFile = event.target.files[0];
+    this.uploadFile();
+  }
+
+  uploadUrlArray: Observable<String>[] = [];
+
+  uploadFile() {
+
+    const myTest = this.afs.collection("test76").ref.doc();
+    console.log(myTest.id)
+
+    const file = this.selectedFile
+    const filePath = `${myTest.id}/name1`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    this.uploadPercent = task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().toPromise().then( (url) => {
+          this.downloadURLObservable = url;
+          this.uploadUrlArray.push(this.downloadURLObservable);
+          localStorage.setItem("downloadUrl", url);
+
+          myTest.set({
+            imagenes : this.downloadURLObservable,
+            myId : myTest.id
+          })
+
+          
+          
+        }).catch(err=> { console.log(err) });
+      })
+    )
+    .subscribe()
+  }
+
+  mostrarImagenes() {
+    this.tests = this.fs.getTestCreate();
   }
 }

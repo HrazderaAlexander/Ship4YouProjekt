@@ -25,8 +25,8 @@ export class ImageSliderComponent implements OnInit {
     this.imageObject = [{
       image: this.boat.imageUrl,
       thumbImage: this.boat.imageUrl,
-      alt: 'alt of image',
-      title: 'title of image'
+      alt: this.boat.titlePictureDescription,
+      title: this.boat.titlePictureDescription
     }]
     if(this.boat.picturesUrl != undefined){
       for(let i = 0; i< this.boat.picturesUrl.length; i++)

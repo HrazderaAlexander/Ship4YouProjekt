@@ -58,7 +58,15 @@ export class MultiplePicturesComponent implements OnInit {
     this.newBoat.userId = localStorage.getItem('userUid');
     this.newBoat.allReatings = [0];
     this.newBoat.picturesUrl = this.downloadURL;
-    this.newBoat.pictureDescriptionArray = this.pictureDescriptionArray;
+    if (this.pictureDescriptionArray != null){
+      this.newBoat.pictureDescriptionArray = this.pictureDescriptionArray;
+    }
+
+    console.log("IsLocNull " + localStorage.getItem("titlePictureDescription"))
+    if (localStorage.getItem("titlePictureDescription") != null){
+      this.newBoat.titlePictureDescription = localStorage.getItem("titlePictureDescription");
+      console.log("TitlePicture " + this.newBoat.titlePictureDescription);
+    }
     this.newBoat.rating = 0;
     this.boatService.createBoat(this.newBoat);
     this.newBoat = new BoatDTO();
@@ -66,7 +74,9 @@ export class MultiplePicturesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.pictureDescriptionArray.push(this.description);
+    if (this.description != null){
+      this.pictureDescriptionArray.push(this.description);
+    }
     this.save();
     this.router.navigateByUrl("/dashboard");
   }

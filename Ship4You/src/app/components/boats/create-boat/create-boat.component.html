@@ -139,6 +139,27 @@
         <br>
         <br>
         <form>
+          <form method="post" enctype="multipart/form-data">
+
+            <label for="image_uploads">
+              <mat-icon appMaterialElevation [defaultElevation]="0" raisedElevation="20" title="PNG, JPG" style="font-size: 30px; cursor: pointer;"> photo_library</mat-icon>
+              <input style="position: absolute;" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" onselect (change)="detectFiles($event)">
+            </label>
+            <label style="margin-top: -2.5%; margin-left: 3%;">
+              Choose images to upload (PNG, JPG)
+            </label>
+          </form>
+
+          <div [hidden]="uploadPercent==null">{{ uploadPercent | async }}%</div>
+
+          <div *ngFor="let image of uploadUrlArray; let i = index">
+            <img *ngIf="i == uploadUrlArray.length-1" class="myImg" src="{{image}}">
+            <div *ngIf="i == uploadUrlArray.length-1">
+              <input class="myImg" [(ngModel)]="description" placeholder="What can you see?">
+            </div>
+          </div>
+  
+          
           <!--<div class="dropzone"
           dropzone required
           (hovered)="toggleHover($event)"

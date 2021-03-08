@@ -27,4 +27,5 @@ export class BoatDTO {
   pictureDescriptionArray?: string[];
   linkToRentSide: string;
   creatorEmail: string;
+  titlePictureDescription: string;
 }

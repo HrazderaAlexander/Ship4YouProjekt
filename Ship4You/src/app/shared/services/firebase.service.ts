@@ -19,4 +19,9 @@ export class FirebaseService {
     this.tests = this.afs.collection(localStorage.getItem("feedbackBoatId")+"MultFeedback" + name).valueChanges();
     return this.tests;
   }
+
+  getTestCreate(){
+    this.tests = this.afs.collection("test76").valueChanges();
+    return this.tests;
+  }
 }
