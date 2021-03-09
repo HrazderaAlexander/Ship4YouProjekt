@@ -34,110 +34,65 @@
       <div *ngIf="checkID()===1" class="alert alert-danger" role="alert">
         Bootname oder Brand darf nicht leer sein!
       </div>
-          <form >
-            <mat-form-field appearance="outline">
-              <mat-label>Name</mat-label>
-              <input matInput id="name" [(ngModel)]="boat.name" name="name" required>
-              <mat-icon class="material-icons color_green" *ngIf="boat.name != '' && boat.name != null" matSuffix>sentiment_very_satisfied</mat-icon>
-              <mat-icon class="material-icons color_red" *ngIf="boat.name == '' || boat.name == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-              <mat-hint>Must not be empty</mat-hint>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Cabins</mat-label>
-              <input matInput id="cabins" [(ngModel)]="boat.cabins" name="cabins" required>
-              <mat-icon class="material-icons color_green" *ngIf="boat.cabins >= 0 && boat.cabins <= 30 && boat.cabins != null" matSuffix>sentiment_very_satisfied</mat-icon>
-              <mat-icon class="material-icons color_red" *ngIf="boat.cabins < 0 || boat.cabins > 30 || boat.cabins == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-                <mat-hint>0-30</mat-hint>
-            </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Masts</mat-label>
-            <input matInput id="masts" [(ngModel)]="boat.masts" name="masts" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.masts >= 0 && boat.masts <= 10 && boat.masts != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.masts < 0 || boat.masts > 10 || boat.masts == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-          <mat-hint>0-10</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Vintage</mat-label>
-            <input matInput id="vintage" [(ngModel)]="boat.vintage" name="vintage" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.vintage >= 1980 && boat.vintage <= 2020 && boat.vintage != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.vintage < 1980 || boat.vintage > 2020 || boat.vintage == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-          <mat-hint>1980 - 2020</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Brand</mat-label>
-            <input matInput id="brand" [(ngModel)]="boat.brand" name="brand" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.brand != '' && boat.brand != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.brand == '' || boat.brand == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-            <mat-hint>Must not be empty</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Length</mat-label>
-            <input matInput id="length" [(ngModel)]="boat.length" name="length" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.length >= 0 && boat.length <= 40 && boat.length != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.length < 0 || boat.length > 40 || boat.length == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-            <mat-hint>0m-40m</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Lessor</mat-label>
-            <input matInput id="lessor" [(ngModel)]="boat.lessor" name="lessor" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.lessor != '' && boat.lessor != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.lessor == '' || boat.lessor == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-            <mat-hint>Must not be empty</mat-hint>
-          </mat-form-field>
+        <div class="form-group">
+          <label for="name" class ="labelSize">Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="boat.name" name="name" required placeholder="Must not be empty">
 
-          <mat-form-field appearance="outline">
-            <mat-label>Type</mat-label>
-            <mat-select [(value)]="boat.type">
-              <mat-option *ngFor="let type of types" [value]="type.value">
-                {{type.viewValue}}
-              </mat-option>
-            </mat-select>
-            <mat-icon class="material-icons color_green" *ngIf="boat.type != '' && boat.type != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.type == '' || boat.type == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-            <mat-hint>Must not be empty</mat-hint>
-          </mat-form-field>
+          <label for="location" class ="labelSize">Location</label>
+          <input type="text" class="form-control" id="location" [(ngModel)]="boat.location" name="location" required placeholder="Must not be empty">
 
-          <mat-form-field appearance="outline">
-            <mat-label>Port</mat-label>
-            <input matInput id="port" [(ngModel)]="boat.port" name="port" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.port != '' && boat.port != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.port == '' || boat.port == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-              <mat-hint>Must not be empty</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Location</mat-label>
-            <input matInput id="location" [(ngModel)]="boat.location" name="location" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.location != '' && boat.location != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.location == '' || boat.location == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-              <mat-hint>Must not be empty</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Sails</mat-label>
-            <input matInput id="sail" [(ngModel)]="boat.sail" name="sail" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.sail >= 0 && boat.sail <= 10 && boat.sail != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.sail < 0 || boat.sail > 10 || boat.sail == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-            <mat-hint>0-10</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Number of people</mat-label>
-            <input matInput id="numberOfPeople" [(ngModel)]="boat.numberOfPeople" name="numberOfPeople" required>
-            <mat-icon class="material-icons color_green" *ngIf="boat.numberOfPeople > 0 && boat.numberOfPeople <= 30 && boat.numberOfPeople != null" matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-icon class="material-icons color_red" *ngIf="boat.numberOfPeople <= 0 || boat.numberOfPeople > 30 || boat.numberOfPeople == null" matSuffix>sentiment_very_dissatisfied</mat-icon>
-            <mat-hint>1-30</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Link to the rent side</mat-label>
-            <input matInput id="BoatRentSide" [(ngModel)]="boat.linkToRentSide" name="boatRentSide" required>
-            <mat-hint>https://exampleboat.com</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>email of the creator</mat-label>
-            <input matInput id="BoatCreatorEmail" [(ngModel)]="boat.creatorEmail" name="BoatCreatorEmail" required>
-            <mat-hint>max.mustermann@gmail.com</mat-hint>
-          </mat-form-field>
-        <br>
-        <br>
-        <br>
+          <label for="sail">Sails</label>
+          <input type="number" class="form-control" id="sail" [(ngModel)]="boat.sail" name="sail" required placeholder="0-10">
+        </div>
+
+        <div class="form-group">
+          <label for="cabins">Cabins</label>
+          <input type="number" class="form-control" id="cabins" [(ngModel)]="boat.cabins" name="cabins" required placeholder="0-30">
+
+          <label for="port">Port</label>
+          <input type="text" class="form-control" id="port" [(ngModel)]="boat.port" name="port" required placeholder="Must not be empty">
+
+          <label for="numberOfPeople">Number of people</label>
+          <input type="number" class="form-control" id="numberOfPeople" [(ngModel)]="boat.numberOfPeople" name="numberOfPeople" required placeholder="1-30">
+        </div>
+
+        <div class="form-group">
+          <label for="masts">Masts</label>
+          <input type="number" class="form-control" id="masts" [(ngModel)]="boat.masts" name="masts" required placeholder="0-10">
+
+          <label for="masts">Type</label>
+          <select class="form-control"  id="type" required [(value)]="boat.type" name="type">
+              <option *ngFor="let type of types" [value]="type.value">{{type.viewValue}}</option>
+          </select>
+
+          <label for="boatRentSide">Link to the rent side</label>
+          <input type="text" class="form-control" id="BoatRentSide" [(ngModel)]="boat.linkToRentSide" name="boatRentSide" required placeholder="https://exampleboat.com">
+        </div>
+
+        <div class="form-group">
+          <label for="vintage">Vintage</label>
+          <input type="number" class="form-control" id="vintage" [(ngModel)]="boat.vintage" name="vintage" required placeholder="1980 - 2020">
+
+          <label for="lessor">Lessor</label>
+          <input type="text" class="form-control" id="lessor" [(ngModel)]="boat.lessor" name="lessor" required placeholder="Must not be empty">
+
+          <label for="BoatCreatorEmail">Email of the creator</label>
+          <input type="text" class="form-control" id="BoatCreatorEmail" [(ngModel)]="boat.creatorEmail" name="BoatCreatorEmail" required placeholder="max.mustermann@gmail.com">
+        </div>
+
+        <div class="form-group">
+          <label for="brand">Brand</label>
+          <input type="number" class="form-control" id="brand" [(ngModel)]="boat.brand" name="brand" required placeholder="Must not be empty">
+
+          <label for="length">Length</label>
+          <input type="number" class="form-control" id="length" [(ngModel)]="boat.length" name="length" required placeholder="0m-40m">
+        </div>
+
+
+
+
+
+        <form>
         <form>
           <form method="post" enctype="multipart/form-data">
 
