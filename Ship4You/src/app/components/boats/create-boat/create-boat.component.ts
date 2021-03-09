@@ -215,6 +215,16 @@ validateDocument(name: String) {
 
   detectFiles(event) {
     this.selectedFile = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = (event.target as FileReader).result;  //event.target.result.toString();
+      }
+    }
+
     this.uploadFile();
   }
 
@@ -229,7 +239,7 @@ validateDocument(name: String) {
     console.log("FileNAME: " + this.fileName)
 
     var ext = this.fileName.substring(this.fileName.lastIndexOf('.') + 1);
-    
+
     	if (ext.toLowerCase() == 'txt' || ext.toLowerCase() == 'pdf' || ext.toLowerCase() == 'xlsx') {
         this.fileEnd = ext.toLowerCase();
         console.log("FILEEND: " + this.fileEnd);
@@ -263,8 +273,8 @@ validateDocument(name: String) {
             myId : myTest.id
           })
 
-          
-          
+
+
         }).catch(err=> { console.log(err) });
       })
     )
@@ -276,12 +286,11 @@ validateDocument(name: String) {
   }
 
   uploadUrlArray: Observable<String>[] = [];
-
+url;
   uploadFile() {
 
     const myTest = this.afs.collection("test76").ref.doc();
     //console.log(myTest.id)
-
     const file = this.selectedFile
     const filePath = `${myTest.id}/name1`;
     const fileRef = this.storage.ref(filePath);
@@ -301,8 +310,8 @@ validateDocument(name: String) {
             myId : myTest.id
           })
 
-          
-          
+
+
         }).catch(err=> { console.log(err) });
       })
     )
