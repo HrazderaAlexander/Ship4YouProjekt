@@ -24,4 +24,9 @@ export class FirebaseService {
     this.tests = this.afs.collection("test76").valueChanges();
     return this.tests;
   }
+
+  getDocumentsCreate(){
+    this.tests = this.afs.collection("documentUpload").valueChanges();
+    return this.tests;
+  }
 }

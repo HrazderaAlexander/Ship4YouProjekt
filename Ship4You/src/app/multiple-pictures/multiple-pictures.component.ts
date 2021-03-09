@@ -51,6 +51,7 @@ export class MultiplePicturesComponent implements OnInit {
     //this.customer.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ship4you-36b43.appspot.com/o/1600897207082_Retana24.jpeg?alt=media&token=bc63b384-7b18-437e-bd86-9b4e13dd05ae";
     this.newBoat.imageUrl = localStorage.getItem('downloadUrl');
     this.newBoat.documentUrl = localStorage.getItem('downloadDocumentUrl');
+    console.log("DocumentURL: " + this.newBoat.documentUrl);
     //this.newBoat.picturesUrl = JSON.parse(localStorage.getItem("downloadMultiPictures"));
     localStorage.removeItem("downloadMultiPictures");
     localStorage.removeItem("downloadDocumentUrl");

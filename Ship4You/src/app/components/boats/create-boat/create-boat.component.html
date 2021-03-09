@@ -155,34 +155,29 @@
           <div *ngFor="let image of uploadUrlArray; let i = index">
             <img *ngIf="i == uploadUrlArray.length-1" class="myImg" src="{{image}}">
             <div *ngIf="i == uploadUrlArray.length-1">
-              <input class="myImg" [(ngModel)]="description" placeholder="What can you see?">
+              <input class="myImg" [(ngModel)]="description" name="description" placeholder="What can you see?">
             </div>
           </div>
-  
-          
-          <!--<div class="dropzone"
-          dropzone required
-          (hovered)="toggleHover($event)"
-          (dropped)="onDrop($event)"
-          [class.hovering]="isHovering">
-          <h3>Upload title picture</h3>
-          <p>Drag and Drop a File</p>
-          </div>
-          <div *ngFor="let file of files">
-            <upload-task [file]="file"></upload-task>
-          </div>-->
 
-          <div class="dropzone-document"
-          dropzone
-          (hovered)="toggleHover($event)"
-          (dropped)="onDropDocument($event)"
-          [class.hovering]="isHovering">
-          <h3>Upload document</h3>
-          <p>Drag and Drop a File</p>
-          </div>
-          <div *ngFor="let file of filesDocuments">
-            <app-upload-task-document [file]="file"></app-upload-task-document>
-            </div>
+        <!--Document-->
+        <form method="post" enctype="multipart/form-data">
+
+          <label for="document_uploads">
+            <mat-icon appMaterialElevation [defaultElevation]="0" raisedElevation="20" title="PNG, JPG" style="font-size: 30px; cursor: pointer;"> photo_library</mat-icon>
+            <input style="position: absolute;" type="file" id="document_uploads" name="document_uploads" accept=".txt, .pdf, .xlsx" onselect (change)="detectFilesDocuments($event)">
+          </label>
+          <label style="margin-top: -2.5%; margin-left: 3%;">
+            Choose documents to upload (txt, xlsx, pdf)
+          </label>
+        </form>
+
+        <div [hidden]="uploadPercentDocument==null">{{ uploadPercentDocument | async }}%</div>
+
+        <div *ngFor="let document of uploadUrlArrayDocuments; let i = index">
+          <img *ngIf="i == uploadUrlArrayDocuments.length-1 && fileEnd == 'pdf' " class="myImg" src="../../../../assets/pdf.png">
+          <img *ngIf="i == uploadUrlArrayDocuments.length-1 && fileEnd == 'txt' " class="myImg" src="../../../../assets/txt.png">
+          <img *ngIf="i == uploadUrlArrayDocuments.length-1 && fileEnd == 'xlsx' " class="myImg" src="../../../../assets/xlsx.png">
+        </div>
 
         </form>
         <div>

@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormGroup } from '@angular/forms';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
-import { stringify } from '@angular/compiler/src/util';
 
 interface Types {
   value: string;
@@ -34,9 +33,12 @@ export class CreateBoatComponent implements OnInit {
 
   selectedFile: FileList | null;
   uploadPercent: Observable<number>;
+  uploadPercentDocument: Observable<number>;
   downloadURLObservable: Observable<string>;
+  downloadURLObservableDocument: Observable<string>;
   forma: FormGroup;
   tests: Observable<any[]>;
+
   description: string;
 
   constructor(private boatService: BoatService, private router: Router, public authService: AuthService,
@@ -47,6 +49,7 @@ export class CreateBoatComponent implements OnInit {
   ngOnInit() {
     this.getBoat();
     this.mostrarImagenes();
+    this.mostrarDocuments();
   }
 
   isHovering: boolean;
@@ -157,12 +160,12 @@ validateDocument(name: String) {
       this.IDCounter = 0;
       for(let i = 0; i < this.boats.length; i++)
       {
-        console.log(this.boats[i].brand+this.boats[i].name);
+        //console.log(this.boats[i].brand+this.boats[i].name);
         this.ID[this.IDCounter] = this.boats[i].brand+this.boats[i].name;
-        console.log(localStorage.getItem("createBoatId"));
+        //console.log(localStorage.getItem("createBoatId"));
         this.IDCounter++;
       }
-      console.log(this.IDCounter);
+      //console.log(this.IDCounter);
 
     for(var i = 0; i< this.IDCounter; i++){
       if(this.ID[i] === this.boat.brand+this.boat.name){
@@ -215,12 +218,69 @@ validateDocument(name: String) {
     this.uploadFile();
   }
 
+  fileName: string;
+  fileEnd: string;
+
+  detectFilesDocuments(event) {
+    this.selectedFile = event.target.files[0];
+
+    this.fileName = event.target.files[0].name;
+
+    console.log("FileNAME: " + this.fileName)
+
+    var ext = this.fileName.substring(this.fileName.lastIndexOf('.') + 1);
+    
+    	if (ext.toLowerCase() == 'txt' || ext.toLowerCase() == 'pdf' || ext.toLowerCase() == 'xlsx') {
+        this.fileEnd = ext.toLowerCase();
+        console.log("FILEEND: " + this.fileEnd);
+      }
+
+    this.uploadFileDocuments();
+  }
+  uploadUrlArrayDocuments: Observable<String>[] = [];
+
+  uploadFileDocuments() {
+
+    const myTest = this.afs.collection("documentUpload").ref.doc();
+    //console.log(myTest.id)
+
+    const file = this.selectedFile
+    const filePath = `${myTest.id}/name1`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    this.uploadPercentDocument = task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().toPromise().then( (url) => {
+          this.downloadURLObservableDocument = url;
+          this.uploadUrlArrayDocuments.push(this.downloadURLObservable);
+          localStorage.setItem("downloadDocumentUrl", url);
+
+          myTest.set({
+            documents : this.downloadURLObservable,
+            myId : myTest.id
+          })
+
+          
+          
+        }).catch(err=> { console.log(err) });
+      })
+    )
+    .subscribe()
+  }
+
+  mostrarDocuments() {
+    this.tests = this.fs.getDocumentsCreate();
+  }
+
   uploadUrlArray: Observable<String>[] = [];
 
   uploadFile() {
 
     const myTest = this.afs.collection("test76").ref.doc();
-    console.log(myTest.id)
+    //console.log(myTest.id)
 
     const file = this.selectedFile
     const filePath = `${myTest.id}/name1`;
