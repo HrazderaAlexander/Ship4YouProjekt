@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
@@ -10,7 +11,7 @@ import { AuthService } from "../../shared/services/auth.service";
 export class ForgotPasswordComponent implements OnInit {
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService, private router: Router
   ) { }
 
   ngOnInit() {
@@ -18,6 +19,10 @@ export class ForgotPasswordComponent implements OnInit {
 
   onSubmit(passwordResetEmail:string):void{
     this.authService.ForgotPassword(passwordResetEmail);
+  }
+
+  goToDashboard(){
+    this.router.navigateByUrl("/dashboard");
   }
 
 }
