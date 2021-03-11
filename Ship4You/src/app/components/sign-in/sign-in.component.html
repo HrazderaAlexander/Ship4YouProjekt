@@ -1,14 +1,14 @@
 <div class="displayTable">
   <div class="displayTableCell">
     <h1 mat-dialog-title>Sign In</h1>
-    <div mat-dialog-content>
     <div class="authBlock">
+      
       <div class="formGroup">
         <input type="text" class="formControl" placeholder="Email Address" #userName required>
       </div>
 
       <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPassword required>
+        <input type="password" class="formControl" id="blockBreak" placeholder="Password" #userPassword required>
       </div>
 
       <!--  SignIn Api von AuthService wird aufgerufen -->
@@ -31,7 +31,7 @@
         </div>
 
       <!--<div class="forgotPassword"> --> <!--Wenn man sein Passwort vergessen hat, route zu forgot-password-->
-          <button mat-button color="primary" (click)="onForgotPassword()">Forgot Password?</button>
+          <button mat-button class="forgotPassword" style="color: black;" (click)="onForgotPassword()" >Forgot Password?</button>
       <!--</div>-->
 
 

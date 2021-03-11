@@ -87,7 +87,7 @@ h3 {
   margin: 0 auto;
   max-width: 400px;
   background: white;
-  padding: 30px 40px 10px;
+  padding: 1px 40px 10px;
   overflow: hidden;
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
@@ -194,15 +194,6 @@ input:-moz-placeholder {
   margin: -12px 0 15px 0;
   float: left;
   width: 100%;
-}
-
-.forgotPassword span {
-  color: #3C89EF;
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-  display: inline-block;
-  padding-top: 20px;
 }
 
 .redirectToLogin {

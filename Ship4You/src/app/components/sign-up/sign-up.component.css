@@ -25,3 +25,12 @@
 .redirect{
     color:black;
 }
+
+
+#blockBreak{
+    margin-bottom: 3vh !important;
+}
+
+.formControl{
+    margin-bottom: 1vh;
+}
