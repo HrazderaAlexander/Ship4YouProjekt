@@ -7,4 +7,6 @@ export class Rating{
     date:string;
     ratingStars:number;
     picturesId:Observable<String>[];
+    userImage:string;
+    userId:string;
 }

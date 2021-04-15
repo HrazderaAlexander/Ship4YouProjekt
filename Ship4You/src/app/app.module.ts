@@ -75,6 +75,8 @@ import { FirebaseService } from '../app/shared/services/firebase.service';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ImageSliderComponent } from './image-slider/image-slider.component';
+import { EditFeedbackComponent } from './edit-feedback/edit-feedback.component';
+import { EditBoatComponent } from './edit-boat/edit-boat.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { ImageSliderComponent } from './image-slider/image-slider.component';
     ContactUsComponent,
     AboutUsComponent,
     ImageSliderComponent,
-    ],
+    EditFeedbackComponent,
+    EditBoatComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

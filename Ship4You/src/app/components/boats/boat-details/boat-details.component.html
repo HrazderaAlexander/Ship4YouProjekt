@@ -1,10 +1,10 @@
 <div *ngIf="boat">
   <mat-accordion class="example-headers-align">
     <div >
-      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="!favButtonPressed" mat-mini-fab color="" title="Add to Favourite" (click)="clickFavButton(boat, true)">
+      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="!favButtonPressed && !showButtons" mat-mini-fab color="" title="Add to Favourite" (click)="clickFavButton(boat, true)">
         <mat-icon>favorite</mat-icon>
       </button>
-      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="favButtonPressed" mat-mini-fab color="warn" title="Remove from Favourites" (click)="clickFavButton(boat, false)">
+      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="favButtonPressed && !showButtons" mat-mini-fab color="warn" title="Remove from Favourites" (click)="clickFavButton(boat, false)">
         <mat-icon>favorite</mat-icon>
       </button>
         <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" matBadge="{{feedbackLength}}" [matBadgeHidden]="!authService.isLoggedIn" matBadgeColor="accent" matBadgeSize="medium" title="Feedback" mat-fab color="accent" (click)="clickRating(boat.brand, boat.name)">
@@ -13,9 +13,13 @@
         <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">
           <mat-icon>edit</mat-icon>
         </button>
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Edit Picture" mat-fab color="primary" (click)="editPhotoBoat((boat.brand + boat.name), boat.key)">
+          <mat-icon>photo</mat-icon>
+        </button>
         <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
           <mat-icon>delete</mat-icon>
         </button>
+
       </div>
 
   <mat-expansion-panel appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20">

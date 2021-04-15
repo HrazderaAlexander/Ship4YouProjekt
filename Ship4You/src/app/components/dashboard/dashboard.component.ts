@@ -227,6 +227,7 @@ showFav: boolean = false;
     else{
       this.showFav = false;
       this.favCustomer= [];
+      this.favCustomerSort=[];
       this.favModel = null;
       this.countFav = 0;
     }

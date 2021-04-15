@@ -25,7 +25,6 @@
 </mat-toolbar>
 
 <main role="main">
-
   <div class="inner-adjust">
     <mat-progress-spinner [hidden]="!check" title="Saving" class="spinner-location"
     [color]="color"
@@ -43,6 +42,8 @@
         <br/>
         <input id="fileInput" type='file' (change)="onSelectFile($event)">
       </div>
+      <button style="margin-left: 20%; margin-top: 7%;" name="save" class="example-margin" mat-button color="brown" (click)="onSave()">Save Changes</button>
+
       <div [hidden]="googleSignIn=='true'">
         <br>
         <br>
@@ -62,10 +63,10 @@
           <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-hint *ngIf="!newPassword">Enter your new password</mat-hint>
         </mat-form-field>
-        <button name="save" class="example-margin" mat-button color="primary" (click)="onSave()">Save Changes</button>
         <br>
         <br>
       </div>
+
     </div>
     <div >
       <ul *ngFor="let boat of userCustomers" style="width: 300px; margin-left: 20%;">

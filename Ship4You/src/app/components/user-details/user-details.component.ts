@@ -68,8 +68,10 @@ export class UserDetailsComponent implements OnInit {
 
   onSave(){
     this.startLoading();
-    if(this.oldUserpassword || this.newPassword)
+    if(!this.googleSignIn){
+      if(this.oldUserpassword || this.newPassword)
       this.authService.ChangePassword(this.oldUserpassword,this.newPassword,this.user.email)
+    }
 
     const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
 

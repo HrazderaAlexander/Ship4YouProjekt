@@ -45,6 +45,24 @@ progress::-webkit-progress-value {
   transition: width 0.1s ease;
 }
 
+.left-side {
+  width: 95%;
+  margin-right: 3%;
+  font-weight: 300;
+}
+
+.right-side {
+  font-weight: 700;
+  font-size: medium;
+  width: 13.7%;
+}
+
+.right-side2 {
+  font-size: medium;
+  margin-left: 90%;
+  margin-top: 5%;
+}
+
 .uploadView{
   display: flex;
   align-items: center;
@@ -344,29 +362,29 @@ b, strong {
   padding: 1%
 }
 
+.button-right-side{
+  margin-left: 30%;
+  background-color: #8d7260;
+}
+
 .active {
   color: #f6f7f9;
   background-color: #8d7260;
   border-radius: 10%;
 }
 
-.right-side{
-  position: absolute;
-  right: 10vh;
-  font-weight: 300;
-  font-size: 1.5rem;
-}
 .right-side-stars{
   position: absolute;
   right: 10vh;
   font-weight: 300;
   font-size: 2rem;
 }
-
-.left-side{
-  margin-right: 15vh;
-  font-weight: 300;
+.card-content-div {
+  width: 100%;
+  display: flex;
 }
+
+
 
 .arrows{
   background-color: Transparent;

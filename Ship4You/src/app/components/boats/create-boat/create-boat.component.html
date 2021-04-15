@@ -68,7 +68,7 @@
           <input style="margin-left: 36%;" type="number" class="form-control" id="masts" [(ngModel)]="boat.masts" name="masts" required placeholder="0-10">
 
           <label style="margin-left: 17.3%;" for="masts">Type</label>
-          <select style="margin-left: 54%;" class="form-control"  id="type" required [(value)]="boat.type" name="type">
+          <select style="margin-left: 54%;" class="form-control"  id="type" required [(ngModel)]="boat.type" name="type">
               <option *ngFor="let type of types" [value]="type.value">{{type.viewValue}}</option>
           </select>
 

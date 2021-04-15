@@ -10,6 +10,9 @@ import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dial
 import { SignInComponent } from '../../sign-in/sign-in.component';
 import { map } from 'rxjs/internal/operators/map';
 import * as $ from 'jquery';
+import { Rating } from '../../bewertung/rating';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { EditBoatComponent } from 'src/app/edit-boat/edit-boat.component';
 
 @Component({
   selector: 'app-boat-details',
@@ -27,14 +30,21 @@ export class BoatDetailsComponent implements OnInit {
   userIds : string[] = JSON.parse(localStorage.getItem('userIds'));
   feedbackLength = 0;
 
+  dbPath = '/customers';
+  boatsRef: AngularFireList<BoatDTO> = null;
+
   //defaultElevation
   defaultElevation = 2;
 
-  constructor(public dialog: MatDialog, public authService: AuthService, private boatService: BoatService, private router: Router, private afs: AngularFirestore)
+  constructor(public dialog: MatDialog, public authService: AuthService, private boatService: BoatService, public db: AngularFireDatabase, private router: Router, private afs: AngularFirestore)
   {
+    this.boatsRef = db.list(this.dbPath);
   }
 
   ngOnInit() {
+
+    console.log("INIIIIIIIIIIIIIIIIIIIIIT")
+    this.getCustomersList();
     for(let i =0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
     {
       this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.boat.brand + this.boat.name}`);
@@ -59,6 +69,32 @@ export class BoatDetailsComponent implements OnInit {
     ).subscribe(boats => {
       this.boats = boats;
       this.getSingleBoat();
+    });
+  }
+
+  getCustomersList() {
+    this.boatService.getBoatsList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(customers => {
+
+      this.boats = customers.sort((n1, n2)=>
+      {
+        if (n1.rating < n2.rating) {
+          return 1;
+        }
+
+        if (n1.rating > n2.rating) {
+          return -1;
+        }
+
+        return 0;
+      });
+      localStorage.setItem('numberOfBoats', this.boats.length);
+      localStorage.setItem('customerArray', JSON.stringify(this.boats));
     });
   }
 
@@ -126,6 +162,35 @@ export class BoatDetailsComponent implements OnInit {
       this.isEdit = false;
     else
       this.isEdit = true;
+  }
+
+  confirmEditBoatDialog(): void {
+    const dialogRef = this.dialog.open(EditBoatComponent, {
+      maxWidth: "400px"
+    });
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if(!dialogResult){
+       //this.getFeedbackData();
+      }
+      //this.showNoResult = false;
+    });
+  }
+
+  boatDTO : BoatDTO = null;
+  editPhotoBoat(boatId: string, boatKey: string){
+     this.boatsRef.valueChanges().subscribe(test => {
+      test.forEach(item => {
+       
+        if ((item.brand + item.name) == boatId){
+          item.key = boatKey; 
+          this.boatDTO = item;
+          
+          setTimeout(() => {localStorage.setItem('BoatToEdit', JSON.stringify(item));}, 5)
+        }
+      })
+    });
+
+    setTimeout(() => {this.confirmEditBoatDialog();}, 50)
   }
 
   saveUpdateList(cus:BoatDTO) {

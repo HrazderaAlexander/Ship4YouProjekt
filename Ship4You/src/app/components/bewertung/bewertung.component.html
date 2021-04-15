@@ -27,7 +27,7 @@
       <span>About us</span>
     </button>
   </mat-menu>
-  
+
 </mat-toolbar>
 
 <div class="label-middle" [hidden]="showNoResult" *ngIf="feedbackDb.length == 0">
@@ -37,6 +37,14 @@
     <mat-icon>add</mat-icon>
   </button>
 </div>
+
+<div class="label-middle" [hidden]="showNoResult" *ngIf="feedbackDb.length > 0">
+  <br>
+  <button class="button-right-side" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" title="Add Feedback" mat-fab color="primary" (click)="confirmDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
  <!--<div *ngIf="pageIsLoaded" id="content">-->
   <!--<mat-paginator [length]="100" [pageSize]="8" [pageSizeOptions]="[2, 4, 6, 8, 10, 100]" (page)="pageEvent = $event; onPaginateChange($event)"></mat-paginator>-->
   <div *ngIf="feedbackDb.length != 0" id="pagination-content">
@@ -65,7 +73,12 @@
       </li>
       <li *ngIf="nextPage == false" class="last" (click)="changeToLastPage()">Last</li>
       <li *ngIf="nextPage == true" class="disabled">Last</li>
+
+      <button class="button-right-side" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" title="Add Feedback" mat-fab color="primary" (click)="confirmDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
     </ul>
+
   </div>
 <br><br>
  <div id="matCardList" class="scroll" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="15px">
@@ -74,7 +87,8 @@
       <mat-card appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" class="example-card" matTooltip="View arguments or create one" *ngIf="feedbackDb.length>(currentPage-1)*feedbackArraySize+i">
         <mat-card-header>
           <div mat-card-avatar class="header-image">
-            <img width="50" height="50" [src]="'https://www.w3schools.com/howto/img_avatar.png'">
+            <img *ngIf="feedbackDb[(currentPage-1)*feedbackArraySize+i].userImage != null" width="50" height="50" [src]="feedbackDb[(currentPage-1)*feedbackArraySize+i].userImage">
+            <img *ngIf="feedbackDb[(currentPage-1)*feedbackArraySize+i].userImage == null" width="50" height="50" src="../../../assets/dummy-user.png">
           </div>
 
           <mat-card-title>
@@ -95,19 +109,24 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
+          <div class="card-content-div">
+            <div class ="left-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].text}}</div>
           <div class ="right-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].date}}</div>
 
-          <div class ="left-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].text}}</div>
+          </div>
+          <div class="right-side2" *ngIf="feedbackDb[(currentPage-1)*feedbackArraySize+i].userId == userId">
+            <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="editFeedback(feedbackDb[(currentPage-1)*feedbackArraySize+i].idRating)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" title="Delete Boat" mat-fab color="warn" (click)="deleteFeedback(feedbackDb[(currentPage-1)*feedbackArraySize+i].idRating)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
 
-            <span *ngFor="let image of feedbackDb[(currentPage-1)*feedbackArraySize+i].picturesId">
-              <img class="myImg" src="{{image}}">
-            </span>
-            <!--
 
-
-            <img class="card-img-top" src="{{(fs.getTestFeedback(feedbackDb[(currentPage-1)*feedbackArraySize+i].username))}}" width="20%">
--->
-
+          <span *ngFor="let image of feedbackDb[(currentPage-1)*feedbackArraySize+i].picturesId">
+            <img class="myImg" src="{{image}}">
+          </span>
 
         </mat-card-content>
         <mat-card-footer>

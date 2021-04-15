@@ -116,6 +116,7 @@ export class MultiplePicturesComponent implements OnInit {
 
   mostrarImagenes() {
     this.tests = this.fs.getTests();
+    console.log('TESTS: ', this.tests);
   }
 
 }

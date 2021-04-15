@@ -21,6 +21,11 @@ export class ImageSliderComponent implements OnInit {
     this.ratingId = localStorage.getItem('boatForShowPicturesBrand')+localStorage.getItem('boatForShowPicturesName');
    }
 
+   openPopup(){
+     console.log("test");
+     alert("Test")
+   }
+
   ngOnInit() {
     this.imageObject = [{
       image: this.boat.imageUrl,
@@ -35,7 +40,7 @@ export class ImageSliderComponent implements OnInit {
           image: this.boat.picturesUrl[i],
           thumbImage: this.boat.picturesUrl[i],
           alt: this.boat.pictureDescriptionArray[i],
-          title: this.boat.pictureDescriptionArray[i]
+          title: this.boat.pictureDescriptionArray[i],
         }
         this.imageObject.push(img);
       }

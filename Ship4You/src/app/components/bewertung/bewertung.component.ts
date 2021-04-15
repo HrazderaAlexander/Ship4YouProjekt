@@ -1,5 +1,6 @@
+import { Rating } from './rating';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { count, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BoatDTO } from '../boats/boat';
 import { BoatService } from '../boats/boat.service';
@@ -12,6 +13,7 @@ import { finalize, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { CreateFeedbackComponent } from 'src/app/create-feedback/create-feedback.component';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
+import { EditFeedbackComponent } from 'src/app/edit-feedback/edit-feedback.component';
 
 @Component({
   selector: 'app-bewertung',
@@ -25,24 +27,23 @@ export class BewertungComponent implements OnInit {
   boat: any = new BoatDTO;
   id:string = localStorage.getItem('boatForRating');
   feedback:string="";
+  userId:string = localStorage.getItem('userUid');
   isChosen:boolean = false;
   isHovering: boolean;
   ratingId:string="";
   feedbackDb:any[] = [];
+  feedbackByid:any = new Rating   ;
   feedbackRef: AngularFirestoreDocument<any>[] = [];
+  feedbackRefById: AngularFirestoreDocument<any>;
   ratingBoat: number[];
 
   dataLoaded: boolean = false;
 
   clicks: number = 0;
-
-  //@Input() customer: Customer;
+  
   boatKey: string="";
 
   feedbackButtonPressed = false;
-
-  //UploadTask
-  //@Input() file: File;
 
   task: AngularFireUploadTask;
 
@@ -88,6 +89,17 @@ export class BewertungComponent implements OnInit {
 
   confirmDialog(): void {
     const dialogRef = this.dialog.open(CreateFeedbackComponent, {
+      maxWidth: "400px"
+    });
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if(!dialogResult){
+       this.getFeedbackData();
+      }
+      this.showNoResult = false;
+    });
+  }
+  confirmEditFeedbackDialog(): void {
+    const dialogRef = this.dialog.open(EditFeedbackComponent, {
       maxWidth: "400px"
     });
     dialogRef.afterClosed().subscribe(dialogResult => {
@@ -279,6 +291,18 @@ export class BewertungComponent implements OnInit {
     this.pageIsLoaded = true; //set to true if page is loaded
   }
 
+  getFeedbackDataById(id:string){
+    this.feedbackRefById = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${id}`);
+    this.feedbackRefById.valueChanges().subscribe(item => {
+      this.feedbackByid = item;
+      localStorage.setItem('FeedbackByIdData', JSON.stringify(item));
+      
+    })
+
+    setTimeout(() => {this.confirmEditFeedbackDialog();}, 5)
+
+  }
+
   updateRatingArray(ratingBoat: any) {
     this.boatService
       .updateBoat(this.boatKey, { allReatings: ratingBoat })
@@ -310,4 +334,11 @@ export class BewertungComponent implements OnInit {
     this.router.navigateByUrl("/dashboard");
   }
 
+  editFeedback(ratingId:string){
+    this.getFeedbackDataById(ratingId);
+  }
+
+  deleteFeedback(ratingId:string){
+    console.log('Ratingid to delete: ', ratingId);
+  }
 }

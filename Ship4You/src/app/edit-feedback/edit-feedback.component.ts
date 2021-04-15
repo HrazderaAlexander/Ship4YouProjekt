@@ -1,27 +1,26 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize, map, tap } from 'rxjs/operators';
+import { finalize, tap, map } from 'rxjs/operators';
 import { Rating } from '../components/bewertung/rating';
 import { BoatDTO } from '../components/boats/boat';
 import { BoatService } from '../components/boats/boat.service';
+import { CreateFeedbackComponent } from '../create-feedback/create-feedback.component';
 import { FirebaseService } from '../shared/services/firebase.service';
 
-export interface Test {
-  imagenDestacada: string;
-}
-
 @Component({
-  selector: 'app-create-feedback',
-  templateUrl: './create-feedback.component.html',
-  styleUrls: ['./create-feedback.component.scss']
+  selector: 'app-edit-feedback',
+  templateUrl: './edit-feedback.component.html',
+  styleUrls: ['./edit-feedback.component.scss']
 })
-export class CreateFeedbackComponent implements OnInit {
+export class EditFeedbackComponent implements OnInit {
+
+  rating:Rating = null;
 
   boat: any = new BoatDTO;
   isHovering: boolean;
@@ -71,18 +70,8 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   ngOnInit() {
-    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
-
-    feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
-    feedbackRef.valueChanges().subscribe(x => this.displayName = x.displayName);
-    feedbackRef.valueChanges().subscribe(x => this.userImageDb = x.userImage);
-    this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
-    localStorage.setItem("feedbackBoatId", localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName'));
-    this.getCustomersList();
-
-    this.newBoat = this.boatService.tmpBoat;
-    console.log("NewBoatInit " + this.newBoat);
-    this.mostrarImagenes();
+    this.rating = JSON.parse(localStorage.getItem('FeedbackByIdData'));
+    this.uploadUrlArray = this.rating.picturesId;
   }
 
   //
@@ -215,22 +204,20 @@ export class CreateFeedbackComponent implements OnInit {
 
   SetFeedbackData() {
     console.log('USERIMAGE: ', this.userImageDb);
-    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${this.ratingId}`);
+    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${this.rating.idRating}`);
 
     const feedbackData: Rating = {
-      idRating: this.ratingId.toLocaleString(),
-      username: this.displayName,
+      idRating: this.rating.idRating,
+      username: this.rating.username,
       date: this.mydate,
-      ratingStars: this.currentRate,
-      text: this.feedback,
+      ratingStars: this.rating.ratingStars,
+      text: this.rating.text,
       picturesId: this.uploadUrlArray,
-      userImage: this.url,
-      userId: localStorage.getItem('userUid')
+      userImage: this.rating.userImage,
+      userId: this.rating.userId
     }
     this.uploadUrlArray = [];
-    return feedbackRef.set(feedbackData, {
-      merge: true
-    })
+    return feedbackRef.update(feedbackData)
   }
 
   updateBoatStats(){
@@ -262,14 +249,17 @@ export class CreateFeedbackComponent implements OnInit {
 
   addFeedback(){
     this.dialogRef.close(false);
-    this.updateBoatStats();
+    //this.updateBoatStats();
     this.SetFeedbackData();
     this.router.navigateByUrl('/bewertung')
     //this.setAllRatingsToBoat();
   }
 
-}
-
-export class ConfirmDialogModel {
-  constructor(public title: string, public message: string) {}
+  deleteImage(image:Observable<string>){
+    this.uploadUrlArray.forEach(img => {
+      if(img == image){
+        this.uploadUrlArray.splice(this.uploadUrlArray.indexOf(image),1);
+      }
+    })
+  }
 }
