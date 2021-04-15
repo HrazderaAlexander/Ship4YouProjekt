@@ -114,6 +114,13 @@
           <div class ="right-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].date}}</div>
 
           </div>
+
+          <span *ngFor="let image of feedbackDb[(currentPage-1)*feedbackArraySize+i].picturesId">
+            <img class="myImg" src="{{image}}">
+          </span>
+
+        </mat-card-content>
+        <mat-card-footer>
           <div class="right-side2" *ngIf="feedbackDb[(currentPage-1)*feedbackArraySize+i].userId == userId">
             <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="editFeedback(feedbackDb[(currentPage-1)*feedbackArraySize+i].idRating)">
               <mat-icon>edit</mat-icon>
@@ -122,15 +129,6 @@
               <mat-icon>delete</mat-icon>
             </button>
           </div>
-
-
-          <span *ngFor="let image of feedbackDb[(currentPage-1)*feedbackArraySize+i].picturesId">
-            <img class="myImg" src="{{image}}">
-          </span>
-
-        </mat-card-content>
-        <mat-card-footer>
-          <div class ="middle-side">{{feedbackDb[(currentPage-1)*feedbackArraySize+i].followingArgumentCount}}</div>
         </mat-card-footer>
       </mat-card>
     </div>
