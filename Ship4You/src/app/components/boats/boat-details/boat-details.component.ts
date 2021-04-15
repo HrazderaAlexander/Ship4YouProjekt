@@ -166,7 +166,7 @@ export class BoatDetailsComponent implements OnInit {
 
   confirmEditBoatDialog(): void {
     const dialogRef = this.dialog.open(EditBoatComponent, {
-      maxWidth: "400px"
+      maxWidth: "900px"
     });
     dialogRef.afterClosed().subscribe(dialogResult => {
       if(!dialogResult){
