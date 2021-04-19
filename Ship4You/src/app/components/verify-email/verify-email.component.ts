@@ -8,6 +8,10 @@ import { AuthService } from "../../shared/services/auth.service";
 })
 export class VerifyEmailComponent implements OnInit {
 
+  /**
+   * 
+   * @param authService -> to user authUser functions
+   */
   constructor(
     public authService: AuthService
   ) { }

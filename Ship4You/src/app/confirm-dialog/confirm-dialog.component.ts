@@ -9,25 +9,61 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 export class ConfirmDialogComponent {
+
+  /**
+   * Variable to save title
+   */
   title: string;
+
+  /**
+   * Variable to save message
+   */
   message: string;
  
-  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    // Update view with given values
+  /**
+   * 
+   * @param dialogRef 
+   * @param data
+   */
+  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    
+    /**
+     * Update view with given values
+     */
     this.title = data.title;
     this.message = data.message;
   }
   
+  /**
+   * Methode which will be called if user click confirm button
+   */
   onConfirm(): void {
+    /**
+     * Dialog will be closed
+     */
     this.dialogRef.close(true);
   }
  
+  /**
+   * Methode will be called if user cancel dialog
+   */
   onDismiss(): void {
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(false);
   }
 }
 
+/**
+ * ConfirmDialogModel
+ */
 export class ConfirmDialogModel {
+  
+  /**
+   * 
+   * @param title -> data
+   * @param message -> data
+   */
   constructor(public title: string, public message: string) {}
 }
