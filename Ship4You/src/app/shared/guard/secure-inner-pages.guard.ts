@@ -9,6 +9,11 @@ import { Observable } from 'rxjs';
 
 export class SecureInnerPagesGuard implements CanActivate {
 
+  /**
+   * 
+   * @param authService -> Auth methods
+   * @param router -> to navigate
+   */
   constructor(
     public authService: AuthService,
     public router: Router
@@ -17,7 +22,13 @@ export class SecureInnerPagesGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if(this.authService.isLoggedIn) { //Wenn man eingeloggt ist und Per-Browser Pfeile die Seite verlassen möchte
+    
+    /**
+     * When you are logged in and want to leave the page via browser arrows
+     * 
+     * Check if user logged in
+     */
+    if(this.authService.isLoggedIn) { 
        window.alert("You are not allowed to access this URL!");
        this.router.navigate(['dashboard'])
     }

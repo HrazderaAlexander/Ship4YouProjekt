@@ -9,19 +9,25 @@ import { Observable } from 'rxjs';
 
 export class AuthGuard implements CanActivate {
   
+  /**
+   * 
+   * @param authService -> Auth methods
+   * @param router -> To navigate
+   */
   constructor(
     public authService: AuthService,
     public router: Router
   ){ }
 
-  //Wenn man nicht eingeloggt ist kommt man zu sign-in
+  /**
+   * If someone is logged in you will get to sign in
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if(!this.authService.isLoggedIn) {
       this.router.navigate(['dashboard']);
     }
-
     return true;
   }
 
