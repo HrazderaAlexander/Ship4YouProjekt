@@ -1,5 +1,8 @@
 import { Observable } from "rxjs";
 
+/**
+ * Class to save rating details
+ */
 export class Rating{
     idRating:string;
     username:string;
