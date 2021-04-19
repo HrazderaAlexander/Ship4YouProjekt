@@ -45,7 +45,7 @@ export class AboutUsComponent implements OnInit {
   /**
    * Methode to switch to Dashboard side
    */
-  protected goToDashboard(){
+  public goToDashboard(){
     /**
      * Router Methode to switch to dashboard
      */
