@@ -6,7 +6,6 @@ import {map} from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import {Observable} from 'rxjs'
-import { ImageService } from 'src/app/shared/image.service';
 import { BoatService } from '../boats/boat.service';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -112,7 +111,7 @@ export class DashboardComponent implements OnInit {
    * @param boatService 
    * @param datePipe 
    */
-  constructor(public dialog: MatDialog, public authService: AuthService, public router: Router, public ngZone: NgZone,private afs: AngularFirestore, private service: ImageService, private boatService: BoatService, private datePipe:DatePipe)
+  constructor(public dialog: MatDialog, public authService: AuthService, public router: Router, public ngZone: NgZone,private afs: AngularFirestore, private boatService: BoatService, private datePipe:DatePipe)
   {
   }
 

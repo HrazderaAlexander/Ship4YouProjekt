@@ -25,7 +25,6 @@ import { environment } from '../environments/environment';
 
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
-import { DropzoneDirective } from './dropzone.directive';
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
@@ -81,7 +80,6 @@ import { EditBoatComponent } from './edit-boat/edit-boat.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     UserDetailsComponent,
-    DropzoneDirective,
     BoatDetailsComponent,
     CreateBoatComponent,
     BewertungComponent,
