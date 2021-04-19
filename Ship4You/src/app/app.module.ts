@@ -35,9 +35,6 @@ import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteMo
 // Create Boad
 import { HttpClientModule } from '@angular/common/http';
 
-//import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
-import {ShowUpload} from './components/newboat/showUpload';
-
 //FileUpload
 //import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
 
@@ -65,8 +62,6 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import {MatBadgeModule} from '@angular/material/badge';
-import { UploadTaskDocumentComponent } from './components/newboat/upload-task-document/upload-task-document.component';
-import { UploadTaskMultiplePicturesComponent } from './components/newboat/upload-task-multiple-pictures/upload-task-multiple-pictures.component';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
 import { MultiplePicturesComponent } from './multiple-pictures/multiple-pictures.component';
 
@@ -86,14 +81,11 @@ import { EditBoatComponent } from './edit-boat/edit-boat.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     UserDetailsComponent,
-    ShowUpload,
     DropzoneDirective,
     BoatDetailsComponent,
     CreateBoatComponent,
     BewertungComponent,
     ConfirmDialogComponent,
-    UploadTaskDocumentComponent,
-    UploadTaskMultiplePicturesComponent,
     MaterialElevationDirective,
     CreateFeedbackComponent,
     MultiplePicturesComponent,
