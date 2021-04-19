@@ -63,6 +63,13 @@
             <code>src/app/confirm-dialog/confirm-dialog.component.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>ConfirmDialogModel</p>
+
+            </p>
 
 
 
@@ -111,7 +118,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/confirm-dialog/confirm-dialog.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/confirm-dialog/confirm-dialog.component.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -125,6 +132,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -139,6 +147,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>-&gt; data</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>message</td>
@@ -151,6 +163,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>-&gt; data</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -187,10 +203,15 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/confirm-dialog/confirm-dialog.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/confirm-dialog/confirm-dialog.component.ts:68</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">-> data</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -215,10 +236,15 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/confirm-dialog/confirm-dialog.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/confirm-dialog/confirm-dialog.component.ts:68</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">-> data</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -245,26 +271,62 @@ import { MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material&#x27;;
 
 
 export class ConfirmDialogComponent {
+
+  /**
+   * Variable to save title
+   */
   title: string;
+
+  /**
+   * Variable to save message
+   */
   message: string;
  
-  constructor(public dialogRef: MatDialogRef&lt;ConfirmDialogComponent&gt;,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    // Update view with given values
+  /**
+   * 
+   * @param dialogRef 
+   * @param data
+   */
+  constructor(public dialogRef: MatDialogRef&lt;ConfirmDialogComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any) {
+    
+    /**
+     * Update view with given values
+     */
     this.title &#x3D; data.title;
     this.message &#x3D; data.message;
   }
   
+  /**
+   * Methode which will be called if user click confirm button
+   */
   onConfirm(): void {
+    /**
+     * Dialog will be closed
+     */
     this.dialogRef.close(true);
   }
  
+  /**
+   * Methode will be called if user cancel dialog
+   */
   onDismiss(): void {
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(false);
   }
 }
 
+/**
+ * ConfirmDialogModel
+ */
 export class ConfirmDialogModel {
+  
+  /**
+   * 
+   * @param title -&gt; data
+   * @param message -&gt; data
+   */
   constructor(public title: string, public message: string) {}
 }</code></pre>
     </div>

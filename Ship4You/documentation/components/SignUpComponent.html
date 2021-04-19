@@ -269,14 +269,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/app/components/sign-up/sign-up.component.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/components/sign-up/sign-up.component.ts:20</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Close dialog</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -308,14 +310,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/components/sign-up/sign-up.component.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/components/sign-up/sign-up.component.ts:39</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Methode to signUp</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -325,6 +329,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -339,6 +344,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>-&gt; of the suer</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>password</td>
@@ -351,6 +360,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>-&gt; of the user</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>username</td>
@@ -363,6 +376,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>-&gt; of the user</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -444,7 +461,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/sign-up/sign-up.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/sign-up/sign-up.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -498,17 +515,40 @@ import { AuthService } from &quot;../../shared/services/auth.service&quot;;
 export class SignUpComponent {
 
   constructor(
-    public authService: AuthService, public dialogRef: MatDialogRef&lt;SignUpComponent&gt;,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public authService: AuthService, public dialogRef: MatDialogRef&lt;SignUpComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  /**
+   * Close dialog
+   */
   onDismiss(): void {
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(true);
+
+    /**
+     * sign up with google
+     */
     this.authService.GoogleAuth();
   }
 
+  /**
+   * Methode to signUp
+   * 
+   * @param email -&gt; of the suer
+   * @param password -&gt; of the user
+   * @param username -&gt; of the user
+   */
   onSignUp(email:string, password:string, username:string): void{
+    /**
+     * Calls authService.SignUp methode
+     */
     this.authService.SignUp(email, password, username);
+
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(true);
   }
 }
@@ -623,8 +663,8 @@ export class SignUpComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="displayTable">  <div class="displayTableCell">    <div class="authBlock">      <h3>Sign Up</h3>      <div class="formGroup">        <input type="text" class="formControl" placeholder="Username" #userName required>      </div>      <div class="formGroup">        <input type="email" class="formControl" placeholder="Email Address" #userEmail required>      </div>      <div class="formGroup">        <input type="password" class="formControl" id="blockBreak" placeholder="Password" #userPwd required>      </div>      <!--btn btnPrimary sind die Buttons von Bootstrap-->      <div class="formGroup">        <input type="button" class="btn btnPrimary" value="Sign Up" style="background-color: grey;" (click)="onSignUp(userEmail.value, userPwd.value, userName.value)">      </div>      <div class="formGroup">        <span class="or"><span class="orInner">Or</span></span>      </div>      <!-- Registrieren mit Google -->      <div class="formGroup">        <button type="button" class="btn googleBtn" (click)="onDismiss()">          <i class="fab fa-google-plus-g"></i>          Continue with Google        </button>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'ShowUpload', 'selector': 'app-showUpload'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UploadTaskComponent', 'selector': 'upload-task'},{'name': 'UploadTaskDocumentComponent', 'selector': 'app-upload-task-document'},{'name': 'UploadTaskMultiplePicturesComponent', 'selector': 'app-upload-task-multiple-pictures'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
-    var DIRECTIVES = [{'name': 'DropzoneDirective', 'selector': '[dropzone]'},{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+    var DIRECTIVES = [{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
     var ACTUAL_COMPONENT = {'name': 'SignUpComponent'};
 </script>
 <script src="../js/tree.js"></script>

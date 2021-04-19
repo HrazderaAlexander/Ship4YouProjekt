@@ -146,7 +146,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Public</span>
                                 <a href="#goToDashboard">goToDashboard</a>
                             </li>
                             <li>
@@ -250,7 +250,7 @@
                     <a name="goToDashboard"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Protected</span>
+                            <span class="modifier">Public</span>
                             goToDashboard
                         </b>
                         <a href="#goToDashboard"><span class="icon ion-ios-link"></span></a>
@@ -419,7 +419,7 @@ export class AboutUsComponent implements OnInit {
   /**
    * Methode to switch to Dashboard side
    */
-  protected goToDashboard(){
+  public goToDashboard(){
     /**
      * Router Methode to switch to dashboard
      */
@@ -587,8 +587,8 @@ path{
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><mat-toolbar class="mat-toolbar">    <img (click)="goToDashboard()" class="pointer" height="70px" src="../../../assets/img/ship4youWeiss.png">    <span class="example-spacer"></span>    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">        <mat-icon>more_vert</mat-icon>      </button>      <mat-menu #menu="matMenu">        <button style="outline:none !important" *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl(\'/user-details\')" mat-menu-item>          <mat-icon>person</mat-icon>          <span>User profil</span>        </button>        <button (click)="authService.router.navigateByUrl(\'/dashboard\')" mat-menu-item>          <mat-icon>home</mat-icon>          <span>Dashboard</span>        </button>        <button *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl(\'/add\')" mat-menu-item>            <mat-icon>add</mat-icon>            <span>Add new Boat</span>          </button>                <button (click)="authService.router.navigateByUrl(\'/contact-us\')" mat-menu-item>          <mat-icon>contacts</mat-icon>          <span>Support</span>        </button>      </mat-menu>    </mat-toolbar><div class="wave-container">    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">        <path fill="#8d7260" fill-opacity="1" d="M0,224L60,224C120,224,240,224,360,218.7C480,213,600,203,720,176C840,149,960,107,1080,101.3C1200,96,1320,128,1380,144L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>      </svg></div><div class="center-content"><div class="maindiv">  <div class="element"><img src="../../../assets/team/paul.jpg"></div>  <div class="element-two">Wir sind 2 Schüler der HTL Leonding und haben es uns zur Aufgabe gemacht die offene Schnittstelle in der Schiff-Vermietungsbranche zu füllen.<span class="after"></span>    <span class="after"></span>    Unsere Website beinhaltet die Bewertungen von Booten.<span class="after"></span>    Des Weiteren kann nach einzelnen Booten gefiltert werden um sich einen Überblick über die einzelnen Urlaubsorte und deren Boote zu machen.    <span class="after"></span><span class="after"></span>    Eine Mietfunktion gibt es nicht, jedoch können Sie sich automatisch von unserer Website auf die des Vermieters weiterleiten lassen.    <span class="after"></span><span class="after"></span>    Bei etwaigen Fragen kontaktieren Sie uns bitte unter dem Reiter „Contact-us“.  </div>  <div class="element-three"><img src="../../../assets/team/alexander.jpg"></div></div></div></div>'
-    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'ShowUpload', 'selector': 'app-showUpload'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UploadTaskComponent', 'selector': 'upload-task'},{'name': 'UploadTaskDocumentComponent', 'selector': 'app-upload-task-document'},{'name': 'UploadTaskMultiplePicturesComponent', 'selector': 'app-upload-task-multiple-pictures'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
-    var DIRECTIVES = [{'name': 'DropzoneDirective', 'selector': '[dropzone]'},{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+    var DIRECTIVES = [{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
     var ACTUAL_COMPONENT = {'name': 'AboutUsComponent'};
 </script>
 <script src="../js/tree.js"></script>

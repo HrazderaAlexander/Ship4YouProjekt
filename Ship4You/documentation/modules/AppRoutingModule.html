@@ -86,7 +86,6 @@ import { CreateBoatComponent } from &#x27;../../components/boats/create-boat/cre
 import { AuthGuard } from &quot;../../shared/guard/auth.guard&quot;;
 import { SecureInnerPagesGuard } from &quot;../../shared/guard/secure-inner-pages.guard&quot;;
 import { UserDetailsComponent } from &#x27;src/app/components/user-details/user-details.component&#x27;;
-import {ShowUpload} from &#x27;src/app/components/newboat/showUpload&#x27;
 import { BewertungComponent } from &#x27;src/app/components/bewertung/bewertung.component&#x27;;
 import { CreateFeedbackComponent } from &#x27;src/app/create-feedback/create-feedback.component&#x27;;
 import { MultiplePicturesComponent } from &#x27;src/app/multiple-pictures/multiple-pictures.component&#x27;;
@@ -104,7 +103,6 @@ const routes: Routes &#x3D; [
   { path: &#x27;verify-email-address&#x27;, component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: &#x27;user-details&#x27;, component: UserDetailsComponent, canActivate: [AuthGuard]},
   { path: &#x27;add&#x27;, component: CreateBoatComponent, canActivate: [AuthGuard]},
-  {path: &#x27;showUpload&#x27;, component: ShowUpload},
   {path: &#x27;bewertung&#x27;, component: BewertungComponent, runGuardsAndResolvers: &#x27;always&#x27;},
   {path: &#x27;create-feedback&#x27;, component: CreateFeedbackComponent},
   {path: &#x27;multiple-upload&#x27;, component: MultiplePicturesComponent},

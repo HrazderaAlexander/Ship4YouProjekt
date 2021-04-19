@@ -285,14 +285,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:28</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Close dialog</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -324,14 +326,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Methode onForgotPassword()</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -368,7 +372,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -405,7 +409,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -433,7 +437,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -461,7 +465,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/sign-in/sign-in.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -487,18 +491,43 @@ import { AuthService } from &quot;../../shared/services/auth.service&quot;;
 
 export class SignInComponent {
 
+  /**
+   * 
+   * @param authService 
+   * @param router 
+   * @param dialogRef 
+   * @param data 
+   */
   constructor(
-    public authService: AuthService, public router:Router, public dialogRef: MatDialogRef&lt;SignInComponent&gt;,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public authService: AuthService, public router:Router, public dialogRef: MatDialogRef&lt;SignInComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  /**
+   * Close dialog
+   */
   onDismiss(): void {
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(true);
+    /**
+     * Login
+     */
     this.authService.GoogleAuth();
   }
 
+  /**
+   * Methode onForgotPassword()
+   */
   onForgotPassword():void{
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(true);
+
+    /**
+     * Navigate to forgot password page
+     */
     this.router.navigateByUrl(&#x27;/forgot-password&#x27;);
   }
 }</code></pre>
@@ -619,8 +648,8 @@ export class SignInComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="displayTable">  <div class="displayTableCell">    <h1 mat-dialog-title>Sign In</h1>    <div class="authBlock">            <div class="formGroup">        <input type="text" class="formControl" placeholder="Email Address" #userName required>      </div>      <div class="formGroup">        <input type="password" class="formControl" id="blockBreak" placeholder="Password" #userPassword required>      </div>      <!--  SignIn Api von AuthService wird aufgerufen -->        <div class="formGroup">          <input type="button" class="btn btnPrimary" style="background-color: grey;" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">        </div>      <div class="formGroup">        <span class="or"><span class="orInner">Or</span></span>      </div>      <!-- GoogleAuth Api von AuthService word aufgerufen -->        <div class="formGroup">          <div mat-dialog-actions>            <button type="button" class="btn googleBtn" (click)="onDismiss()">              <i class="fab fa-google-plus-g"></i>              Continue with Google            </button>            </div>        </div>      <!--<div class="forgotPassword"> --> <!--Wenn man sein Passwort vergessen hat, route zu forgot-password-->          <button mat-button class="forgotPassword" style="color: black;" (click)="onForgotPassword()" >Forgot Password?</button>      <!--</div>--></div></div></div>'
-    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'ShowUpload', 'selector': 'app-showUpload'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UploadTaskComponent', 'selector': 'upload-task'},{'name': 'UploadTaskDocumentComponent', 'selector': 'app-upload-task-document'},{'name': 'UploadTaskMultiplePicturesComponent', 'selector': 'app-upload-task-multiple-pictures'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
-    var DIRECTIVES = [{'name': 'DropzoneDirective', 'selector': '[dropzone]'},{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+    var DIRECTIVES = [{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
     var ACTUAL_COMPONENT = {'name': 'SignInComponent'};
 </script>
 <script src="../js/tree.js"></script>

@@ -140,10 +140,13 @@
                                 <a href="#boatKey">boatKey</a>
                             </li>
                             <li>
+                                <a href="#boats">boats</a>
+                            </li>
+                            <li>
                                 <a href="#currentRate">currentRate</a>
                             </li>
                             <li>
-                                <a href="#customers">customers</a>
+                                <a href="#currentRatingBoat">currentRatingBoat</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -169,28 +172,13 @@
                                 <a href="#feedback">feedback</a>
                             </li>
                             <li>
-                                <a href="#files">files</a>
-                            </li>
-                            <li>
-                                <a href="#forma">forma</a>
-                            </li>
-                            <li>
                                 <a href="#id">id</a>
                             </li>
                             <li>
                                 <a href="#isHovering">isHovering</a>
                             </li>
                             <li>
-                                <a href="#message">message</a>
-                            </li>
-                            <li>
                                 <a href="#mydate">mydate</a>
-                            </li>
-                            <li>
-                                <a href="#newBoat">newBoat</a>
-                            </li>
-                            <li>
-                                <a href="#percentage">percentage</a>
                             </li>
                             <li>
                                 <a href="#ratingBoat">ratingBoat</a>
@@ -202,19 +190,7 @@
                                 <a href="#selectedFile">selectedFile</a>
                             </li>
                             <li>
-                                <a href="#snapshot">snapshot</a>
-                            </li>
-                            <li>
-                                <a href="#task">task</a>
-                            </li>
-                            <li>
                                 <a href="#tests">tests</a>
-                            </li>
-                            <li>
-                                <a href="#title">title</a>
-                            </li>
-                            <li>
-                                <a href="#tmp">tmp</a>
                             </li>
                             <li>
                                 <a href="#uploadPercent">uploadPercent</a>
@@ -224,9 +200,6 @@
                             </li>
                             <li>
                                 <a href="#url">url</a>
-                            </li>
-                            <li>
-                                <a href="#userImageDb">userImageDb</a>
                             </li>
                         </ul>
                     </td>
@@ -247,34 +220,22 @@
                                 <a href="#detectFiles">detectFiles</a>
                             </li>
                             <li>
-                                <a href="#getCustomersList">getCustomersList</a>
+                                <a href="#getBoatsList">getBoatsList</a>
                             </li>
                             <li>
                                 <a href="#getSingleBoat">getSingleBoat</a>
                             </li>
                             <li>
-                                <a href="#isActive">isActive</a>
-                            </li>
-                            <li>
-                                <a href="#mostrarImagenes">mostrarImagenes</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#onConfirm">onConfirm</a>
                             </li>
                             <li>
                                 <a href="#onDismiss">onDismiss</a>
                             </li>
                             <li>
-                                <a href="#onDrop">onDrop</a>
-                            </li>
-                            <li>
                                 <a href="#SetFeedbackData">SetFeedbackData</a>
                             </li>
                             <li>
-                                <a href="#startUpload">startUpload</a>
+                                <a href="#showImagenes">showImagenes</a>
                             </li>
                             <li>
                                 <a href="#toggleHover">toggleHover</a>
@@ -309,12 +270,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, boatService: <a href="../injectables/BoatService.html">BoatService</a>, fs: <a href="../injectables/FirebaseService.html">FirebaseService</a>, dialogRef: <a href="../components/CreateFeedbackComponent.html">MatDialogRef<CreateFeedbackComponent></a>, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, afs: AngularFirestore, datePipe: <a href="https://angular.io/api/common/DatePipe" target="_blank">DatePipe</a>, storage: AngularFireStorage)</code>
+<code>constructor(boatService: <a href="../injectables/BoatService.html">BoatService</a>, fs: <a href="../injectables/FirebaseService.html">FirebaseService</a>, dialogRef: <a href="../components/CreateFeedbackComponent.html">MatDialogRef<CreateFeedbackComponent></a>, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, afs: AngularFirestore, datePipe: <a href="https://angular.io/api/common/DatePipe" target="_blank">DatePipe</a>, storage: AngularFireStorage)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -331,18 +292,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>fb</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                                 <tr>
                                                         <td>boatService</td>
                                                   
@@ -479,8 +428,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="263"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:263</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="415"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:415</a></div>
                 </td>
             </tr>
 
@@ -518,8 +467,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:152</a></div>
                 </td>
             </tr>
 
@@ -566,26 +515,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getCustomersList"></a>
+                    <a name="getBoatsList"></a>
                     <span class="name">
                         <b>
-                            getCustomersList
+                            getBoatsList
                         </b>
-                        <a href="#getCustomersList"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getBoatsList"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getCustomersList()</code>
+<code>getBoatsList()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="200"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:200</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="303"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:303</a></div>
                 </td>
             </tr>
 
@@ -623,8 +572,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:178</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="253"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:253</a></div>
                 </td>
             </tr>
 
@@ -634,111 +583,6 @@
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="isActive"></a>
-                    <span class="name">
-                        <b>
-                            isActive
-                        </b>
-                        <a href="#isActive"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>isActive(snapshot)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:173</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>snapshot</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mostrarImagenes"></a>
-                    <span class="name">
-                        <b>
-                            mostrarImagenes
-                        </b>
-                        <a href="#mostrarImagenes"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>mostrarImagenes()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:126</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                 </td>
@@ -767,53 +611,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:112</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onConfirm"></a>
-                    <span class="name">
-                        <b>
-                            onConfirm
-                        </b>
-                        <a href="#onConfirm"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onConfirm()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:65</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
+                    <div class="io-description"><p>Will be called at first</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -845,8 +652,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:102</a></div>
                 </td>
             </tr>
 
@@ -857,76 +664,6 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onDrop"></a>
-                    <span class="name">
-                        <b>
-                            onDrop
-                        </b>
-                        <a href="#onDrop"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onDrop(files: FileList)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="137"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:137</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>files</td>
-                                    <td>
-                                            <code>FileList</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -954,8 +691,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="216"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:216</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="332"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:332</a></div>
                 </td>
             </tr>
 
@@ -975,26 +712,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="startUpload"></a>
+                    <a name="showImagenes"></a>
                     <span class="name">
                         <b>
-                            startUpload
+                            showImagenes
                         </b>
-                        <a href="#startUpload"><span class="icon ion-ios-link"></span></a>
+                        <a href="#showImagenes"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>startUpload(file)</code>
+<code>showImagenes()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="148"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:148</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:232</a></div>
                 </td>
             </tr>
 
@@ -1002,36 +739,9 @@
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>file</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -1059,8 +769,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="133"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:133</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="244"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:244</a></div>
                 </td>
             </tr>
 
@@ -1076,6 +786,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1090,6 +801,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>-&gt; true or false</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1129,8 +844,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="236"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:236</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="365"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:365</a></div>
                 </td>
             </tr>
 
@@ -1168,8 +883,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="250"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:250</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="393"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:393</a></div>
                 </td>
             </tr>
 
@@ -1238,8 +953,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="256"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:256</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="404"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:404</a></div>
                 </td>
             </tr>
 
@@ -1308,8 +1023,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:169</a></div>
                 </td>
             </tr>
 
@@ -1352,7 +1067,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -1416,7 +1131,39 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boats"></a>
+                        <span class="name">
+                            <b>
+                            boats</b>
+                            <a href="#boats"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -1448,7 +1195,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -1459,28 +1206,28 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="customers"></a>
+                        <a name="currentRatingBoat"></a>
                         <span class="name">
                             <b>
-                            customers</b>
-                            <a href="#customers"><span class="icon ion-ios-link"></span></a>
+                            currentRatingBoat</b>
+                            <a href="#currentRatingBoat"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <i>Type : </i>        <code><a href="../classes/BoatDTO.html" target="_self" >BoatDTO</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>[]</code>
+                            <i>Default value : </i><code>new BoatDTO()</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -1517,7 +1264,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -1549,7 +1296,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -1577,7 +1324,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -1609,7 +1356,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -1636,7 +1383,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -1663,7 +1410,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -1695,66 +1442,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:39</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="files"></a>
-                        <span class="name">
-                            <b>
-                            files</b>
-                            <a href="#files"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>File[]</code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:131</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="forma"></a>
-                        <span class="name">
-                            <b>
-                            forma</b>
-                            <a href="#forma"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -1786,7 +1474,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -1813,34 +1501,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:27</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="message"></a>
-                        <span class="name">
-                            <b>
-                            message</b>
-                            <a href="#message"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -1872,66 +1533,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:29</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="newBoat"></a>
-                        <span class="name">
-                            <b>
-                            newBoat</b>
-                            <a href="#newBoat"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../interfaces/Boat.html" target="_self" >BoatDTO</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BoatDTO()</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:56</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="percentage"></a>
-                        <span class="name">
-                            <b>
-                            percentage</b>
-                            <a href="#percentage"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>Observable&lt;number&gt;</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -1958,7 +1560,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -1990,7 +1592,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -2017,61 +1619,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:52</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="snapshot"></a>
-                        <span class="name">
-                            <b>
-                            snapshot</b>
-                            <a href="#snapshot"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>Observable&lt;any&gt;</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:32</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="task"></a>
-                        <span class="name">
-                            <b>
-                            task</b>
-                            <a href="#task"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>AngularFireUploadTask</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -2098,66 +1646,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:54</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="title"></a>
-                        <span class="name">
-                            <b>
-                            title</b>
-                            <a href="#title"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:42</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="tmp"></a>
-                        <span class="name">
-                            <b>
-                            tmp</b>
-                            <a href="#tmp"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;&quot;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -2184,7 +1673,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -2216,7 +1705,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:166</a></div>
                             </td>
                         </tr>
 
@@ -2248,39 +1737,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:45</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="userImageDb"></a>
-                        <span class="name">
-                            <b>
-                            userImageDb</b>
-                            <a href="#userImageDb"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;&quot;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/create-feedback/create-feedback.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -2297,7 +1754,6 @@
 import { Component, Inject, OnInit } from &#x27;@angular/core&#x27;;
 import { AngularFirestore, AngularFirestoreDocument } from &#x27;@angular/fire/firestore&#x27;;
 import { AngularFireStorage, AngularFireUploadTask } from &#x27;@angular/fire/storage&#x27;;
-import { FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
 import { MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
@@ -2318,200 +1774,323 @@ export interface Test {
 })
 export class CreateFeedbackComponent implements OnInit {
 
+  //Boat which you want to rate
   boat: any &#x3D; new BoatDTO;
+
+  //Small animation for uploading a picture
   isHovering: boolean;
+
+  //The id for a rating
   ratingId:string&#x3D;&quot;&quot;;
+
+  //The date when the feedback was written
   mydate:string&#x3D;&quot;&quot;;
-  task: AngularFireUploadTask;
-  percentage: Observable&lt;number&gt;;
-  snapshot: Observable&lt;any&gt;;
-  customers: any &#x3D; [];
+
+  //All boats from db
+  boats: any &#x3D; [];
+
+  //The download url from the uploaded image
   downloadURL: string;
+
+  //The key from the boat (Firebase Realtime database boat id)
   boatKey: string&#x3D;&quot;&quot;;
+
+  //Boat id (Brand+Name)
   id:string &#x3D; localStorage.getItem(&#x27;boatForRating&#x27;);
+
+  //Array of the current rates (counted stars)
   ratingBoat: number[];
+
+  //Checks if the whole data is already loaded for the page
   dataLoaded: boolean &#x3D; false;
+
+  //Saving the feedback text
   feedback:string&#x3D;&quot;&quot;;
+
+  //Saving the current star rating
   currentRate &#x3D; 2;
 
-  title: string;
-  message: string;
-
+  //The url of the current user profil picture
   url:string &#x3D; &quot;&quot;;
-  displayName:string &#x3D;&quot;&quot;;
-  userImageDb:string&#x3D;&quot;&quot;;
 
-  //
+  //The username of the current user
+  displayName:string &#x3D;&quot;&quot;;
+
+  //The upload process of an image in percent
   uploadPercent: Observable&lt;number&gt;;
+
+  //The download url of the current uploaded image
   downloadURLObservable: Observable&lt;string&gt;;
+
+  //Selected file to upload
   selectedFile: FileList | null;
-  forma: FormGroup;
+
+  //Saving all uploaded images to that rating
   tests: Observable&lt;any[]&gt;;
 
-  newBoat: BoatDTO &#x3D; new BoatDTO();
+  //The current boat to rate
+  currentRatingBoat: BoatDTO &#x3D; new BoatDTO();
 
-  tmp: string &#x3D; &quot;&quot;;
-  //
-
-  constructor(fb: FormBuilder, private boatService: BoatService, private fs: FirebaseService, public dialogRef: MatDialogRef&lt;CreateFeedbackComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
+  /**
+   * 
+   * @param boatService 
+   * @param fs 
+   * @param dialogRef 
+   * @param data 
+   * @param router 
+   * @param afs 
+   * @param datePipe 
+   * @param storage 
+   */
+  constructor(private boatService: BoatService, private fs: FirebaseService, public dialogRef: MatDialogRef&lt;CreateFeedbackComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
+    
+    /**
+     * Set current date
+     */
     this.mydate &#x3D; this.datePipe.transform(Date.now(), &#x27;dd.MM.yyyy&#x27;);
   }
 
-  onConfirm(): void {
-    this.dialogRef.close(false);
-  }
-
+  //To close the popup window (clicking cancel)
   onDismiss(): void {
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(false);
   }
 
+  /**
+   * Will be called at first
+   */
   ngOnInit() {
+    /**
+     * Get doc ref
+     */
     const feedbackRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;users/${localStorage.getItem(&#x27;userUid&#x27;)}&#x60;);
 
+    /**
+     * Set url
+     */
     feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.url &#x3D; x.photoURL);
-    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.displayName &#x3D; x.displayName);
-    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.userImageDb &#x3D; x.userImage);
-    this.afs.collection(localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;)).valueChanges().subscribe(v &#x3D;&gt; this.ratingId &#x3D; &#x60;${v.length}&#x60;);
-    localStorage.setItem(&quot;feedbackBoatId&quot;, localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;));
-    this.getCustomersList();
 
-    this.newBoat &#x3D; this.boatService.tmpBoat;
-    console.log(&quot;NewBoatInit &quot; + this.newBoat);
-    this.mostrarImagenes();
+    /**
+     * Set displayName
+     */
+    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.displayName &#x3D; x.displayName);
+
+    this.afs.collection(localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;)).valueChanges().subscribe(v &#x3D;&gt; this.ratingId &#x3D; &#x60;${v.length}&#x60;);
+    
+    /**
+     * Set boat id to localStorage
+     */
+    localStorage.setItem(&quot;feedbackBoatId&quot;, localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;));
+    
+    /**
+     * Call boatList
+     */
+    this.getBoatsList();
+
+    /**
+     * Set boat
+     */
+    this.currentRatingBoat &#x3D; this.boatService.tmpBoat;
+    
+    /**
+     * Call showImagenes() methode
+     */
+    this.showImagenes();
   }
 
-  //
+  //Upload the selected file
   detectFiles(event) {
+
+    /**
+     * Set selected File
+     */
     this.selectedFile &#x3D; event.target.files[0];
+    
+    /**
+     * Call uploadFile() methode
+     */
     this.uploadFile();
   }
 
+  //Saving the url of all uploaded images
   uploadUrlArray: Observable&lt;String&gt;[] &#x3D; [];
 
+  //Upload Image to db
   uploadFile() {
-    console.log(&#x27;TEST createBoatId: &#x27;, localStorage.getItem(&quot;feedbackBoatId&quot;));
-    const myTest &#x3D; this.afs.collection(localStorage.getItem(&quot;feedbackBoatId&quot;)+&quot;MultFeedback&quot; + this.displayName).ref.doc();
-    console.log(myTest.id)
 
+    /**
+     * Get ref doc of feedbackboat
+     */
+    const myTest &#x3D; this.afs.collection(localStorage.getItem(&quot;feedbackBoatId&quot;)+&quot;MultFeedback&quot; + this.displayName).ref.doc();
+    
+    /**
+     * Set file
+     */
     const file &#x3D; this.selectedFile
+
+    /**
+     * Set filePath
+     */
     const filePath &#x3D; &#x60;${myTest.id}/name1&#x60;;
+
+    /**
+     * Set fileRef
+     */
     const fileRef &#x3D; this.storage.ref(filePath);
+
+    /**
+     * Set upload task
+     */
     const task &#x3D; this.storage.upload(filePath, file);
 
+    /**
+     * Set percent from upload
+     */
     this.uploadPercent &#x3D; task.percentageChanges();
 
+    /**
+     * Save file
+     */
     task.snapshotChanges().pipe(
       finalize(() &#x3D;&gt; {
         fileRef.getDownloadURL().toPromise().then( (url) &#x3D;&gt; {
+
+          /**
+           * Set downloadUrl
+           */
           this.downloadURLObservable &#x3D; url;
+
+          /**
+           * Push download url to array
+           */
           this.uploadUrlArray.push(this.downloadURLObservable);
 
+          /**
+           * Set data
+           */
           myTest.set({
             imagenes : this.downloadURLObservable,
             myId : myTest.id
           })
-
-          console.log( this.downloadURLObservable )
         }).catch(err&#x3D;&gt; { console.log(err) });
       })
     )
     .subscribe()
   }
 
-  mostrarImagenes() {
+  //Show all images from db
+  showImagenes() {
+
+    /**
+     * Call getTestFeedback()
+     */
     this.tests &#x3D; this.fs.getTestFeedback(this.displayName);
   }
-  //
 
-  files: File[] &#x3D; [];
-
+  /**
+   * 
+   * @param event -&gt; true or false
+   */
   toggleHover(event: boolean) {
+
+    /**
+     * Set hovering to true or false
+     */
     this.isHovering &#x3D; event;
   }
 
-  onDrop(files: FileList) {
-    for (let i &#x3D; 0; i &lt; files.length; i++) {
-      this.files.push(files.item(i));
-      //this.file &#x3D; files.item(i);
-      this.startUpload(files.item(i))
-    }
-    //if (this.file !&#x3D; null){
-      //this.startUpload(file);
-    //}
-  }
-
-  startUpload(file) {
-
-    // The storage path
-    const path &#x3D; &#x60;test/${Date.now()}_${file.name}&#x60;;
-
-    // Reference to storage bucket
-    const ref &#x3D; this.storage.ref(path);
-
-    // The main task
-    this.task &#x3D; this.storage.upload(path, file);
-
-    // Progress monitoring
-    this.percentage &#x3D; this.task.percentageChanges();
-
-    this.snapshot   &#x3D; this.task.snapshotChanges().pipe(
-      tap(console.log),
-      // The file&#x27;s download URL
-      finalize( async() &#x3D;&gt;  {
-        this.downloadURL &#x3D; await ref.getDownloadURL().toPromise();
-
-        this.afs.collection(&#x27;files&#x27;).add( { downloadURL: this.downloadURL, path });
-      }),
-    );
-  }
-
-  isActive(snapshot) {
-    return snapshot.state &#x3D;&#x3D;&#x3D; &#x27;running&#x27; &amp;&amp; snapshot.bytesTransferred &lt; snapshot.totalBytes;
-  }
-
-
-  getSingleBoat(): any{               //SingleCustomer
-
+  //Get the actual boat states
+  getSingleBoat(): any{
+    /**
+     * Set counter from localstorage
+     */
     var c &#x3D; localStorage.getItem(&#x27;numberOfBoats&#x27;);
+
+    /**
+     * Check if counter is not null
+     */
     if(!isNaN(Number(c))){
+
+      /**
+       * set counter
+       */
       var counter &#x3D; Number(c);
+
+      /**
+       * Go through all boats
+       */
       for(let i &#x3D; 0; i &lt; counter;i++){
-        if(this.id &#x3D;&#x3D; this.customers[i].key){
-          this.boat &#x3D; this.customers[i];
-          console.log(&quot;BoatWithRating &quot; + this.boat.allReatings);
+
+        /**
+         * Check if Ids are equal
+         */
+        if(this.id &#x3D;&#x3D; this.boats[i].key){
+
+          /**
+           * Set boat
+           */
+          this.boat &#x3D; this.boats[i];
+
+          /**
+           * Set ratingBoat
+           */
           this.ratingBoat &#x3D; this.boat.allReatings;
+
+          /**
+           * Set boat-key
+           */
           this.boatKey &#x3D; this.boat.key;
-          console.log(&quot;BoatKey &quot; + this.boatKey);
         }
       }
       return this.boat;
     }
     else{
-      console.log(&quot;Not a number!&quot;);
       return null;
     }
   }
 
-  getCustomersList() {
+  //Get all boats from db
+  getBoatsList() {
+    /**
+     * Call getBoatsList()
+     */
     this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes &#x3D;&gt;
         changes.map(c &#x3D;&gt;
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(customers &#x3D;&gt; {
-      this.customers &#x3D; customers;
+    ).subscribe(boats &#x3D;&gt; {
+      /**
+       * Set boats
+       */
+      this.boats &#x3D; boats;
+
+      /**
+       * Calls getSingleBoat() methode
+       */
       this.getSingleBoat();
     });
 
+    /**
+     * Set loaded data to true
+     */
     this.dataLoaded &#x3D; true;
-    console.log(&quot;Data&quot; + this.dataLoaded);
   }
 
+  //Set feedback data to create a new rating in db
   SetFeedbackData() {
-    console.log(&#x27;USERIMAGE: &#x27;, this.userImageDb);
+
+    /**
+     * Get feedback Ref
+     */
     const feedbackRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;${localStorage.getItem(&#x27;boatForRatingBrand&#x27;) + localStorage.getItem(&#x27;boatForRatingName&#x27;)}/${this.ratingId}&#x60;);
 
+    /**
+     * Set feedBack data
+     */
     const feedbackData: Rating &#x3D; {
       idRating: this.ratingId.toLocaleString(),
       username: this.displayName,
@@ -2522,51 +2101,91 @@ export class CreateFeedbackComponent implements OnInit {
       userImage: this.url,
       userId: localStorage.getItem(&#x27;userUid&#x27;)
     }
+    /**
+     * Clear uploadUrlArray 
+     */
     this.uploadUrlArray &#x3D; [];
+    /**
+     * Merge data
+     */
     return feedbackRef.set(feedbackData, {
       merge: true
     })
   }
 
+  //Updates the current boat rating states
   updateBoatStats(){
+    /**
+     * Add current rate to array
+     */
     this.ratingBoat.push(this.currentRate);
+
+    /**
+     * Call updateRatingArray()
+     */
     this.updateRatingArray(this.ratingBoat);
 
+    /**
+     * Set sum
+     */
     var sum &#x3D; this.ratingBoat.reduce((acc, cur) &#x3D;&gt; acc + cur, 0);
-    console.log(&quot;Sum: &quot; + sum);
 
+    /**
+     * Set div
+     */
     var div &#x3D; sum/ (this.ratingBoat.length - 1);
-    console.log(&quot;Div &quot; + div);
 
-
+    /**
+     * Call methode
+     */
     this.updateRatingSum(div)
   }
 
+  //Updates the rating array in db
   updateRatingArray(ratingBoat: any) {
+
+    /**
+     * Call updateBoat() methode
+     */
     this.boatService
       .updateBoat(this.boatKey, { allReatings: ratingBoat })
       .catch(err &#x3D;&gt; console.log(err));
   }
 
+  //Updates the rating sum (sum of rating stars)
   updateRatingSum(ratingDiv: any)
   {
+    /**
+     * Call updateBoat() methode
+     */
     this.boatService
     .updateBoat(this.boatKey, { rating: ratingDiv })
     .catch(err &#x3D;&gt; console.log(err));
   }
 
+  //Adds the feedback to db and navigates to bewertung
   addFeedback(){
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(false);
+
+    /**
+     * Call methode
+     */
     this.updateBoatStats();
+
+    /**
+     * Call SetFeedbackData() methode
+     */
     this.SetFeedbackData();
+
+    /**
+     * Navigate to other page
+     */
     this.router.navigateByUrl(&#x27;/bewertung&#x27;)
-    //this.setAllRatingsToBoat();
   }
 
-}
-
-export class ConfirmDialogModel {
-  constructor(public title: string, public message: string) {}
 }
 </code></pre>
     </div>
@@ -2735,8 +2354,8 @@ input[type&#x3D;&quot;file&quot;] {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="displayTable">  <div class="displayTableCell">    <mat-card>      <mat-card-header>      <mat-card-title>        <h2 id="headline">Write a Feedback</h2>      </mat-card-title>      <mat-card-subtitle>        <ngb-rating style="outline:none !important" [(rate)]="currentRate" [max]="5">          <ng-template let-fill="fill" let-index="index">            <span class="star" [class.filled]="fill === 100">&#9733;</span>          </ng-template>        </ngb-rating>      </mat-card-subtitle>      </mat-card-header>      <mat-card-content>        <textarea type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>      </mat-card-content>      <mat-card-footer>        <form method="post" enctype="multipart/form-data">            <label for="image_uploads">              <mat-icon appMaterialElevation [defaultElevation]="0" raisedElevation="20" title="PNG, JPG" style="font-size: 30px; cursor: pointer;"> photo_library</mat-icon>              <input style="position: absolute;" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple (change)="detectFiles($event)">            </label>            <label style="margin-top: -15%; margin-left: 15%;">              Choose images to upload (PNG, JPG)            </label>        </form>        <div [hidden]="uploadPercent==null">{{ uploadPercent | async }}%</div>        <span *ngFor="let image of uploadUrlArray">          <img class="myImg" src="{{image}}">        </span>        <div style="margin-top: 15%;" class="form-footer" fxFlex="25%">          <span class="left-side">          <button mat-button (click)="onDismiss()">Cancel</button>          </span>        <span class="right-side">          <button mat-raised-button class="create-btn" (click)="addFeedback()">Create Feedback</button>        </span>        </div>      </mat-card-footer>    </mat-card>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'ShowUpload', 'selector': 'app-showUpload'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UploadTaskComponent', 'selector': 'upload-task'},{'name': 'UploadTaskDocumentComponent', 'selector': 'app-upload-task-document'},{'name': 'UploadTaskMultiplePicturesComponent', 'selector': 'app-upload-task-multiple-pictures'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
-    var DIRECTIVES = [{'name': 'DropzoneDirective', 'selector': '[dropzone]'},{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+    var DIRECTIVES = [{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
     var ACTUAL_COMPONENT = {'name': 'CreateFeedbackComponent'};
 </script>
 <script src="../js/tree.js"></script>

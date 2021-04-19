@@ -185,6 +185,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -199,6 +200,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>-&gt; to user authUser functions</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -240,8 +245,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/components/verify-email/verify-email.component.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/components/verify-email/verify-email.component.ts:19</a></div>
                 </td>
             </tr>
 
@@ -284,10 +289,15 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/verify-email/verify-email.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/verify-email/verify-email.component.ts:16</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">-> to user authUser functions</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -307,6 +317,10 @@ import { AuthService } from &quot;../../shared/services/auth.service&quot;;
 })
 export class VerifyEmailComponent implements OnInit {
 
+  /**
+   * 
+   * @param authService -&gt; to user authUser functions
+   */
   constructor(
     public authService: AuthService
   ) { }
@@ -381,8 +395,8 @@ export class VerifyEmailComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="displayTable">  <div class="displayTableCell">    <div class="authBlock">      <h3>Thank You for Registering</h3>      <div class="formGroup" *ngIf="authService.userData as user">        <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>        <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>      </div>      <!-- Methode SendVerificationMail() aufrufen, dazu wird die authService Api verwendet -->      <div class="formGroup">        <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">          <i class="fas fa-redo-alt"></i>          Resend Verification Email        </button>      </div>    </div>    <div class="redirectToLogin"> <!--Zurück zur Sign-In seite mit route mittels sign-in-->      <span>Go back to?<span class="redirect" routerLink="/dashboard"> Dashboard</span></span>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'ShowUpload', 'selector': 'app-showUpload'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UploadTaskComponent', 'selector': 'upload-task'},{'name': 'UploadTaskDocumentComponent', 'selector': 'app-upload-task-document'},{'name': 'UploadTaskMultiplePicturesComponent', 'selector': 'app-upload-task-multiple-pictures'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
-    var DIRECTIVES = [{'name': 'DropzoneDirective', 'selector': '[dropzone]'},{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+    var DIRECTIVES = [{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
     var ACTUAL_COMPONENT = {'name': 'VerifyEmailComponent'};
 </script>
 <script src="../js/tree.js"></script>

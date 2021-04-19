@@ -161,16 +161,15 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;;
 import { AngularFirestore } from &#x27;@angular/fire/firestore&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-import { ImageService } from &#x27;src/app/shared/image.service&#x27;;
 import { AuthService } from &#x27;src/app/shared/services/auth.service&#x27;;
 import { finalize, map } from &#x27;rxjs/operators&#x27;;
 import { BoatDTO } from &#x27;../boat&#x27;;
 import { BoatService } from &#x27;../boat.service&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { AngularFireStorage } from &#x27;@angular/fire/storage&#x27;;
-import { FormGroup } from &#x27;@angular/forms&#x27;;
 import { FirebaseService } from &#x27;src/app/shared/services/firebase.service&#x27;;
 
+//Interface for selecting boat types (Sailingboat, motorboat, ...)
 interface Types {
   value: string;
   viewValue: string;
@@ -183,126 +182,108 @@ interface Types {
 })
 export class CreateBoatComponent implements OnInit {
 
+  //Saving new boat states
   boat: BoatDTO &#x3D; new BoatDTO();
+
+  //Save button if every property is filled
   submitted &#x3D; false;
+
+  //Save all boats from db
   boats: BoatDTO[] &#x3D; [];
 
+  //Save all boat ids (Brand+Name)
   ID : string[] &#x3D; [];
+
+  //Id counter for all ids
   IDCounter : number &#x3D; 0;
+
+  //Checks if id already exists
   boolCheck : boolean &#x3D; false;
 
+  //Upload file
   selectedFile: FileList | null;
+
+  //The image upload speed in percent
   uploadPercent: Observable&lt;number&gt;;
+
+  //The document upload speed in percent
   uploadPercentDocument: Observable&lt;number&gt;;
+
+  //The image download url
   downloadURLObservable: Observable&lt;string&gt;;
+
+  //The document download url
   downloadURLObservableDocument: Observable&lt;string&gt;;
-  forma: FormGroup;
+
+  //Includes documents from db
   tests: Observable&lt;any[]&gt;;
 
+  //The description of the second uploaded picture
   description: string;
 
-  constructor(private boatService: BoatService, private router: Router, public authService: AuthService,
-    public ngZone: NgZone, private storage: AngularFireStorage, private fs: FirebaseService,
-    private afs: AngularFirestore, private service: ImageService
-) { }
+  /**
+   * 
+   * @param boatService 
+   * @param router 
+   * @param authService 
+   * @param ngZone 
+   * @param storage 
+   * @param fs 
+   * @param afs 
+   */
+  constructor(private boatService: BoatService, private router: Router, public authService: AuthService, public ngZone: NgZone, private storage: AngularFireStorage, private fs: FirebaseService, private afs: AngularFirestore) { }
 
+  /**
+   * Will be called at first
+   */
   ngOnInit() {
+
+    /**
+     * Call getBoat() methode
+     */
     this.getBoat();
-    this.mostrarImagenes();
-    this.mostrarDocuments();
+
+    /**
+     * Call showPicture() methode
+     */
+    this.showPictures();
+
+    /**
+     * Call showDocuments() methode
+     */
+    this.showDocuments();
   }
 
+  /**
+   * Variable for hovering state
+   */
   isHovering: boolean;
 
-  files: File[] &#x3D; [];
-  filesDocuments: File[] &#x3D; [];
-  filesPictures: File[] &#x3D; [];
-
+  /**
+   * Small animation for choosing an image
+   * 
+   * @param event -&gt; true or false
+   */
   toggleHover(event: boolean) {
+    /**
+     * Set hovering state
+     */
     this.isHovering &#x3D; event;
   }
 
+  //Saving all documents
+  filesDocuments: File[] &#x3D; [];
+
+  //Saving all images
+  filesPictures: File[] &#x3D; [];
+
+  //Saving boat types
   types: Types[] &#x3D; [
     {value: &#x27;Sailingboat&#x27;, viewValue: &#x27;Sailingboat&#x27;},
     {value: &#x27;Motorboat&#x27;, viewValue: &#x27;Motorboat&#x27;}
   ]
 
-  onDrop(files: FileList) {
-    for (let i &#x3D; 0; i &lt; files.length; i++) {
-      //Picture.saveFilePath &#x3D; this.boatBrand + this.boatName;
-      if (!this.validateFile(files[0].name)) {
-        console.log(&#x27;Selected file format is not supported&#x27;);
-        alert(&quot;Selected file format is not supported! (Allowed: .jpeg, .jpg, .png)&quot;);
-        return false;
-      }
-      else{
-        if(this.checkID() &#x3D;&#x3D; -1){
-          this.files.push(files.item(i));
-        }
-        else{
-          alert(&quot;All fields are required!&quot;);
-        }
-      }
-    }
-  }
-
-  onDropMult(files: FileList) {
-    for (let i &#x3D; 0; i &lt; files.length; i++) {
-      //Picture.saveFilePath &#x3D; this.boatBrand + this.boatName;
-      if (!this.validateFile(files[0].name)) {
-        console.log(&#x27;Selected file format is not supported&#x27;);
-        alert(&quot;Selected file format is not supported! (Allowed: .jpeg, .jpg, .png)&quot;);
-        return false;
-      }
-      else{
-        if(this.checkID() &#x3D;&#x3D; -1){
-          this.filesPictures.push(files.item(i));
-        }
-        else{
-          alert(&quot;All fields are required!&quot;);
-        }
-      }
-    }
-  }
-
-  onDropDocument(files: FileList) {
-    for (let i &#x3D; 0; i &lt; files.length; i++) {
-      //Picture.saveFilePath &#x3D; this.boatBrand + this.boatName;
-      if (!this.validateDocument(files[0].name)) {
-        console.log(&#x27;Selected file format is not supported&#x27;);
-        alert(&quot;Selected file format is not supported! (Allowed: .docx, .pdf, .xlsx, .txt)&quot;);
-        return false;
-      }
-      else{
-        if(this.checkID() &#x3D;&#x3D; -1){
-          this.filesDocuments.push(files.item(i));
-        }
-        else{
-          alert(&quot;All fields are required!&quot;);
-        }
-      }
-    }
-  }
-
-  validateFile(name: String) {
-    var ext &#x3D; name.substring(name.lastIndexOf(&#x27;.&#x27;) + 1);
-    if (ext.toLowerCase() &#x3D;&#x3D; &#x27;png&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;jpeg&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;jpg&#x27;) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-validateDocument(name: String) {
-  var ext &#x3D; name.substring(name.lastIndexOf(&#x27;.&#x27;) + 1);
-  if (ext.toLowerCase() &#x3D;&#x3D; &#x27;docx&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;pdf&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;xlsx&#x27;) {
-      return true;
-  }
-  else {
-      return false;
-  }
-}
-
+  //Get all boats from db
   getBoat(){
     this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes &#x3D;&gt;
@@ -312,173 +293,321 @@ validateDocument(name: String) {
       )
     ).subscribe(boats &#x3D;&gt; {
 
+      /**
+       * Set boats array to boats
+       */
       this.boats &#x3D; boats;
     });
   }
 
-    checkID() : number{
-      this.IDCounter &#x3D; 0;
-      for(let i &#x3D; 0; i &lt; this.boats.length; i++)
-      {
-        //console.log(this.boats[i].brand+this.boats[i].name);
-        this.ID[this.IDCounter] &#x3D; this.boats[i].brand+this.boats[i].name;
-        //console.log(localStorage.getItem(&quot;createBoatId&quot;));
-        this.IDCounter++;
-      }
-      //console.log(this.IDCounter);
+  //Checks if a boat id already exists (For example (Brand+Name): MaxusStern)
+  checkID() : number{
+    /**
+     * set counter to 0
+     */
+    this.IDCounter &#x3D; 0;
 
+    /**
+     * go through all boats
+     */
+    for(let i &#x3D; 0; i &lt; this.boats.length; i++)
+    {
+      /**
+       * Set id
+       */
+      this.ID[this.IDCounter] &#x3D; this.boats[i].brand+this.boats[i].name;
+      
+      /**
+       * Make it one higher
+       */
+      this.IDCounter++;
+    }
+
+    /**
+     * Go through all Ids
+     */
     for(var i &#x3D; 0; i&lt; this.IDCounter; i++){
       if(this.ID[i] &#x3D;&#x3D;&#x3D; this.boat.brand+this.boat.name){
+        
+        /**
+         * Set boolCheck to false
+         */
         this.boolCheck &#x3D; false;
         return 0;
       }
+      /**
+       * Check if brand and name are null
+       */
       else if(this.boat.brand &#x3D;&#x3D; &quot;&quot; ||  this.boat.name &#x3D;&#x3D; &quot;&quot;){
+        
+        /**
+         * Set boolCheck to false
+         */
         this.boolCheck &#x3D; false;
         return 1;
       }
       else
+        /**
+         * Set boolCheck to true
+         */
         this.boolCheck &#x3D; true;
     }
+    /**
+     * Check if some data are null
+     */
     if(this.boat.brand &#x3D;&#x3D; null ||  this.boat.name &#x3D;&#x3D; null || this.boat.cabins &#x3D;&#x3D; null ||this.boat.length &#x3D;&#x3D; null || this.boat.lessor &#x3D;&#x3D; null
       || this.boat.location &#x3D;&#x3D; null || this.boat.masts &#x3D;&#x3D; null || this.boat.numberOfPeople &#x3D;&#x3D; null || this.boat.vintage &#x3D;&#x3D; null || this.boat.sail &#x3D;&#x3D; null || this.boat.port &#x3D;&#x3D; null || this.boat.linkToRentSide &#x3D;&#x3D; null || this.boat.creatorEmail &#x3D;&#x3D; null){
         this.boolCheck &#x3D; false;
         return 2;
     }
 
+    /**
+     * Check if bool are true
+     */
     if(this.boolCheck)
       return -1;
     else
       this.IDCounter &#x3D; 0;
-
   }
 
+  //Save boat details and navigate to multiple upload site
   goToMultUpload(){
-    //
-    console.log(&quot;Desc &quot; + this.description);
+
+    /**
+     * Check if description are not null
+     */
     if (this.description !&#x3D; null){
+      /**
+       * Set description to localeStorage
+       */
       localStorage.setItem(&quot;titlePictureDescription&quot;, this.description);
     }
-    //
-
-
+    /**
+     * Set boat
+     */
     this.boatService.tmpBoat &#x3D; this.boat;
+
+    /**
+     * Set boat to localStorage
+     */
     localStorage.setItem(&#x27;tmpBoat&#x27;, JSON.stringify(this.boat));
-    console.log(&quot;TmpBoat &quot; + this.boatService.tmpBoat)
+
+    /**
+     * Save boatid to localstorage
+     */
     localStorage.setItem(&#x27;createBoatId&#x27;, this.boat.brand+this.boat.name);
-    console.log(localStorage.getItem(&quot;createBoatId&quot;));
+    
+    /**
+     * Navigate to mult-upload
+     */
     this.router.navigateByUrl(&quot;multiple-upload&quot;);
   }
 
+  //navigate to dashboard
   goToDashboard(){
     this.router.navigateByUrl(&quot;/dashboard&quot;);
   }
 
+  //Upload title image of a boat
   detectFiles(event) {
+    /**
+     * Set selectedFile
+     */
     this.selectedFile &#x3D; event.target.files[0];
+
+    /**
+     * Check if there is a file selected
+     */
     if (event.target.files &amp;&amp; event.target.files[0]) {
       var reader &#x3D; new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload &#x3D; (event) &#x3D;&gt; { // called once readAsDataURL is completed
-        this.url &#x3D; (event.target as FileReader).result;  //event.target.result.toString();
+        /**
+         * Set url
+         */
+        this.url &#x3D; (event.target as FileReader).result; 
       }
     }
 
     this.uploadFile();
   }
 
+  //Document name
   fileName: string;
+
+  //Document ending name (.pdf, .docx, ...)
   fileEnd: string;
 
+  //Upload a document
   detectFilesDocuments(event) {
+    /**
+     * Set selectedFile
+     */
     this.selectedFile &#x3D; event.target.files[0];
-
+    /**
+     * Set filename
+     */
     this.fileName &#x3D; event.target.files[0].name;
-
-    console.log(&quot;FileNAME: &quot; + this.fileName)
-
+    /**
+     * Extract name
+     */
     var ext &#x3D; this.fileName.substring(this.fileName.lastIndexOf(&#x27;.&#x27;) + 1);
-
-    	if (ext.toLowerCase() &#x3D;&#x3D; &#x27;txt&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;pdf&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;xlsx&#x27;) {
-        this.fileEnd &#x3D; ext.toLowerCase();
-        console.log(&quot;FILEEND: &quot; + this.fileEnd);
-      }
-
+    
+    /**
+      * Check if it is a txt or pdf or xlsx file
+      */
+    if (ext.toLowerCase() &#x3D;&#x3D; &#x27;txt&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;pdf&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;xlsx&#x27;) {
+      this.fileEnd &#x3D; ext.toLowerCase();
+    }
+    /**
+      * Calls uploadFileDocuments() methode
+      */
     this.uploadFileDocuments();
   }
+
+  //All uploaded documents
   uploadUrlArrayDocuments: Observable&lt;String&gt;[] &#x3D; [];
 
+  //Upload document to db
   uploadFileDocuments() {
-
+    /**
+     * Get the doc ref
+     */
     const myTest &#x3D; this.afs.collection(&quot;documentUpload&quot;).ref.doc();
-    //console.log(myTest.id)
 
+    /**
+     * Set selected file
+     */
     const file &#x3D; this.selectedFile
+    /**
+     * Set file Path
+     */
     const filePath &#x3D; &#x60;${myTest.id}/name1&#x60;;
+
+    /**
+     * Set fileRef
+     */
     const fileRef &#x3D; this.storage.ref(filePath);
+
+    /**
+     * Set task of file
+     */
     const task &#x3D; this.storage.upload(filePath, file);
 
+    /**
+     * Set current percent
+     */
     this.uploadPercentDocument &#x3D; task.percentageChanges();
 
+    /**
+     * Upload document
+     */
     task.snapshotChanges().pipe(
       finalize(() &#x3D;&gt; {
         fileRef.getDownloadURL().toPromise().then( (url) &#x3D;&gt; {
+          /**
+           * Set download url
+           */
           this.downloadURLObservableDocument &#x3D; url;
+
+          /**
+           * push document url to array
+           */
           this.uploadUrlArrayDocuments.push(this.downloadURLObservable);
+          /**
+           * Set localStorage
+           */
           localStorage.setItem(&quot;downloadDocumentUrl&quot;, url);
 
+          /**
+           * Set doc
+           */
           myTest.set({
             documents : this.downloadURLObservable,
             myId : myTest.id
           })
-
-
-
         }).catch(err&#x3D;&gt; { console.log(err) });
       })
     )
     .subscribe()
   }
 
-  mostrarDocuments() {
+  //Get all boat documents from db
+  showDocuments() {
     this.tests &#x3D; this.fs.getDocumentsCreate();
   }
 
+  //All uploaded images
   uploadUrlArray: Observable&lt;String&gt;[] &#x3D; [];
-url;
+
+  //URL of the current picture
+  url;
   uploadFile() {
 
+    /**
+     * Get the doc data
+     */
     const myTest &#x3D; this.afs.collection(&quot;test76&quot;).ref.doc();
-    //console.log(myTest.id)
+
+    /**
+     * Set file
+     */
     const file &#x3D; this.selectedFile
+
+    /**
+     * Set file path
+     */
     const filePath &#x3D; &#x60;${myTest.id}/name1&#x60;;
+
+    /**
+     * Set fileRef
+     */
     const fileRef &#x3D; this.storage.ref(filePath);
+
+    /**
+     * Set task
+     */
     const task &#x3D; this.storage.upload(filePath, file);
 
+    /**
+     * Set percent
+     */
     this.uploadPercent &#x3D; task.percentageChanges();
 
+    /**
+     * Uploade picture
+     */
     task.snapshotChanges().pipe(
       finalize(() &#x3D;&gt; {
         fileRef.getDownloadURL().toPromise().then( (url) &#x3D;&gt; {
+
+          /**
+           * Set download url
+           */
           this.downloadURLObservable &#x3D; url;
+          /**
+           * Add downloadurl to array
+           */
           this.uploadUrlArray.push(this.downloadURLObservable);
+          /**
+           * Set localstorage
+           */
           localStorage.setItem(&quot;downloadUrl&quot;, url);
 
           myTest.set({
             imagenes : this.downloadURLObservable,
             myId : myTest.id
           })
-
-
-
         }).catch(err&#x3D;&gt; { console.log(err) });
       })
     )
     .subscribe()
   }
-
-  mostrarImagenes() {
+  
+  //Get all boat pictures from db
+  showPictures() {
     this.tests &#x3D; this.fs.getTestCreate();
   }
 }

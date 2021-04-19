@@ -146,6 +146,9 @@
                                 <a href="#boatName">boatName</a>
                             </li>
                             <li>
+                                <a href="#boats">boats</a>
+                            </li>
+                            <li>
                                 <a href="#brandControl">brandControl</a>
                             </li>
                             <li>
@@ -156,9 +159,6 @@
                             </li>
                             <li>
                                 <a href="#countFav">countFav</a>
-                            </li>
-                            <li>
-                                <a href="#customers">customers</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -174,10 +174,10 @@
                                 <a href="#fav">fav</a>
                             </li>
                             <li>
-                                <a href="#favCustomer">favCustomer</a>
+                                <a href="#favBoats">favBoats</a>
                             </li>
                             <li>
-                                <a href="#favCustomerSort">favCustomerSort</a>
+                                <a href="#favBoatsSort">favBoatsSort</a>
                             </li>
                             <li>
                                 <a href="#favModel">favModel</a>
@@ -187,9 +187,6 @@
                             </li>
                             <li>
                                 <a href="#feedbackData">feedbackData</a>
-                            </li>
-                            <li>
-                                <a href="#files">files</a>
                             </li>
                             <li>
                                 <a href="#filteredBrand">filteredBrand</a>
@@ -216,16 +213,10 @@
                                 <a href="#isLoaded">isLoaded</a>
                             </li>
                             <li>
-                                <a href="#isUsedBoolean">isUsedBoolean</a>
-                            </li>
-                            <li>
                                 <a href="#lessorControl">lessorControl</a>
                             </li>
                             <li>
                                 <a href="#loc">loc</a>
-                            </li>
-                            <li>
-                                <a href="#locationButtonBool">locationButtonBool</a>
                             </li>
                             <li>
                                 <a href="#mastsHighValue">mastsHighValue</a>
@@ -240,13 +231,7 @@
                                 <a href="#myControl">myControl</a>
                             </li>
                             <li>
-                                <a href="#nameButtonBool">nameButtonBool</a>
-                            </li>
-                            <li>
                                 <a href="#namesControl">namesControl</a>
-                            </li>
-                            <li>
-                                <a href="#navigationSubscription">navigationSubscription</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -278,9 +263,6 @@
                                 <a href="#router">router</a>
                             </li>
                             <li>
-                                <a href="#rowIndexArray">rowIndexArray</a>
-                            </li>
-                            <li>
                                 <a href="#sailsHighValue">sailsHighValue</a>
                             </li>
                             <li>
@@ -302,13 +284,7 @@
                                 <a href="#searchPortString">searchPortString</a>
                             </li>
                             <li>
-                                <a href="#selected">selected</a>
-                            </li>
-                            <li>
                                 <a href="#showFav">showFav</a>
-                            </li>
-                            <li>
-                                <a href="#size">size</a>
                             </li>
                             <li>
                                 <a href="#startAt">startAt</a>
@@ -353,10 +329,7 @@
                                 <a href="#getAllFavBoats">getAllFavBoats</a>
                             </li>
                             <li>
-                                <a href="#getCustomersList">getCustomersList</a>
-                            </li>
-                            <li>
-                                <a href="#getValues">getValues</a>
+                                <a href="#getBoatList">getBoatList</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
@@ -382,12 +355,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dialog: MatDialog, authService: <a href="../injectables/AuthService.html">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, afs: AngularFirestore, service: <a href="../injectables/ImageService.html">ImageService</a>, boatService: <a href="../injectables/BoatService.html">BoatService</a>)</code>
+<code>constructor(dialog: MatDialog, authService: <a href="../injectables/AuthService.html">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, afs: AngularFirestore, boatService: <a href="../injectables/BoatService.html">BoatService</a>, datePipe: <a href="https://angular.io/api/common/DatePipe" target="_blank">DatePipe</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -465,10 +438,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>service</td>
+                                                        <td>boatService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ImageService.html" target="_self" >ImageService</a></code>
+                                                                        <code><a href="../injectables/BoatService.html" target="_self" >BoatService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -477,10 +450,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>boatService</td>
+                                                        <td>datePipe</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/BoatService.html" target="_self" >BoatService</a></code>
+                                                                        <code><a href="https://angular.io/api/common/DatePipe" target="_blank" >DatePipe</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -528,14 +501,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="225"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:225</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="372"
+                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:372</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Open logion dialog</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -567,14 +542,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="242"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:242</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="412"
+                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:412</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Calls signIn component popup</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -606,14 +583,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="251"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:251</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="432"
+                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:432</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Calls sign up popup</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -645,14 +624,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="284"
+                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:284</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Methode to get all favourite boats</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -666,111 +647,38 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getCustomersList"></a>
+                    <a name="getBoatList"></a>
                     <span class="name">
                         <b>
-                            getCustomersList
+                            getBoatList
                         </b>
-                        <a href="#getCustomersList"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getBoatList"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getCustomersList()</code>
+<code>getBoatList()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:159</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:245</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Methode to get all boats</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getValues"></a>
-                    <span class="name">
-                        <b>
-                            getValues
-                        </b>
-                        <a href="#getValues"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getValues(value, highValue)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:124</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>highValue</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -798,14 +706,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:209</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Will be called at first</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -837,14 +747,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="261"
-                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:261</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="452"
+                            class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:452</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Methode to open and close menu</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -885,10 +797,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:181</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save all userIds</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -917,7 +835,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:172</a></div>
                             </td>
                         </tr>
 
@@ -949,7 +867,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:171</a></div>
                             </td>
                         </tr>
 
@@ -977,7 +895,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -1009,10 +927,49 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:52</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to save name</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boats"></a>
+                        <span class="name">
+                            <b>
+                            boats</b>
+                            <a href="#boats"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save all boats</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1035,7 +992,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:194</a></div>
                             </td>
                         </tr>
 
@@ -1067,7 +1024,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:156</a></div>
                             </td>
                         </tr>
 
@@ -1099,7 +1056,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:155</a></div>
                             </td>
                         </tr>
 
@@ -1131,37 +1088,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:96</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="customers"></a>
-                        <span class="name">
-                            <b>
-                            customers</b>
-                            <a href="#customers"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <div class="io-description"><p>Save the count of favourite boats</p>
+</div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:25</a></div>
-                            </td>
-                        </tr>
-
 
             </tbody>
         </table>
@@ -1186,7 +1122,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -1212,7 +1148,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -1238,7 +1174,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -1270,10 +1206,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:126</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save all favourite booleans</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1281,11 +1223,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="favCustomer"></a>
+                        <a name="favBoats"></a>
                         <span class="name">
                             <b>
-                            favCustomer</b>
-                            <a href="#favCustomer"><span class="icon ion-ios-link"></span></a>
+                            favBoats</b>
+                            <a href="#favBoats"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -1302,10 +1244,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:86</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to save all favourite boats</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1313,11 +1261,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="favCustomerSort"></a>
+                        <a name="favBoatsSort"></a>
                         <span class="name">
                             <b>
-                            favCustomerSort</b>
-                            <a href="#favCustomerSort"><span class="icon ion-ios-link"></span></a>
+                            favBoatsSort</b>
+                            <a href="#favBoatsSort"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -1334,10 +1282,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:91</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to save sorted favourite boats</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1361,10 +1315,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:70</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>FavModel to save favourite boat</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1388,10 +1348,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:37</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to save all favourites from db</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1415,42 +1381,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:81</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="files"></a>
-                        <span class="name">
-                            <b>
-                            files</b>
-                            <a href="#files"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <div class="io-description"><p>Variable to save feedback data</p>
+</div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>[]</code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:157</a></div>
-                            </td>
-                        </tr>
-
 
             </tbody>
         </table>
@@ -1474,7 +1414,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:203</a></div>
                             </td>
                         </tr>
 
@@ -1501,7 +1441,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:202</a></div>
                             </td>
                         </tr>
 
@@ -1528,7 +1468,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:201</a></div>
                             </td>
                         </tr>
 
@@ -1555,10 +1495,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:200</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save filtering options</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1582,7 +1528,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:204</a></div>
                             </td>
                         </tr>
 
@@ -1614,7 +1560,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:132</a></div>
                             </td>
                         </tr>
 
@@ -1641,10 +1587,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:121</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save all images</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1673,42 +1625,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:56</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isUsedBoolean"></a>
-                        <span class="name">
-                            <b>
-                            isUsedBoolean</b>
-                            <a href="#isUsedBoolean"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <div class="io-description"><p>Variable to check if page is loaded</p>
+</div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" target="_blank" >Boolean</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:48</a></div>
-                            </td>
-                        </tr>
-
 
             </tbody>
         </table>
@@ -1731,7 +1657,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:193</a></div>
                             </td>
                         </tr>
 
@@ -1763,42 +1689,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:48</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="locationButtonBool"></a>
-                        <span class="name">
-                            <b>
-                            locationButtonBool</b>
-                            <a href="#locationButtonBool"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <div class="io-description"><p>Variable to save location</p>
+</div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>true</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:38</a></div>
-                            </td>
-                        </tr>
-
 
             </tbody>
         </table>
@@ -1827,7 +1727,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:148</a></div>
                             </td>
                         </tr>
 
@@ -1859,7 +1759,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:147</a></div>
                             </td>
                         </tr>
 
@@ -1891,10 +1791,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:27</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save state if menu is open or not</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1917,42 +1823,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:191</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="nameButtonBool"></a>
-                        <span class="name">
-                            <b>
-                            nameButtonBool</b>
-                            <a href="#nameButtonBool"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <div class="io-description"><p>Controls of the data fiels</p>
+</div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>true</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:39</a></div>
-                            </td>
-                        </tr>
-
 
             </tbody>
         </table>
@@ -1975,28 +1855,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:132</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="navigationSubscription"></a>
-                        <span class="name">
-                            <b>
-                            navigationSubscription</b>
-                            <a href="#navigationSubscription"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:192</a></div>
                             </td>
                         </tr>
 
@@ -2024,7 +1883,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -2059,7 +1918,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:133</a></div>
                             </td>
                         </tr>
 
@@ -2094,7 +1953,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:173</a></div>
                             </td>
                         </tr>
 
@@ -2129,7 +1988,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:157</a></div>
                             </td>
                         </tr>
 
@@ -2164,7 +2023,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:149</a></div>
                             </td>
                         </tr>
 
@@ -2199,7 +2058,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:141</a></div>
                             </td>
                         </tr>
 
@@ -2228,13 +2087,13 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
     floor: 1800,
-    ceil: 2030
+    ceil: parseInt(this.datePipe.transform(Date.now(), &#x27;yyyy&#x27;))
   }</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:165</a></div>
                             </td>
                         </tr>
 
@@ -2260,7 +2119,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:195</a></div>
                             </td>
                         </tr>
 
@@ -2288,34 +2147,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:67</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="rowIndexArray"></a>
-                        <span class="name">
-                            <b>
-                            rowIndexArray</b>
-                            <a href="#rowIndexArray"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>any[]</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -2347,7 +2179,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:140</a></div>
                             </td>
                         </tr>
 
@@ -2379,7 +2211,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:139</a></div>
                             </td>
                         </tr>
 
@@ -2411,7 +2243,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -2443,7 +2275,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -2475,7 +2307,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -2507,10 +2339,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:61</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variables for filtering</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2539,39 +2377,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:46</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="selected"></a>
-                        <span class="name">
-                            <b>
-                            selected</b>
-                            <a href="#selected"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;option2&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -2603,42 +2409,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:101</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="size"></a>
-                        <span class="name">
-                            <b>
-                            size</b>
-                            <a href="#size"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <div class="io-description"><p>Visible or disable favourite boats</p>
+</div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>0</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:80</a></div>
-                            </td>
-                        </tr>
-
 
             </tbody>
         </table>
@@ -2661,10 +2441,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:42</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>For searching</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2687,10 +2473,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:75</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Searching</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2719,10 +2511,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:186</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the userId count</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2751,10 +2549,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:131</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Options for the filtering items</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2778,12 +2582,12 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>2030</code>
+                            <i>Default value : </i><code>parseInt(this.datePipe.transform(Date.now(), &#x27;yyyy&#x27;))</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:164</a></div>
                             </td>
                         </tr>
 
@@ -2815,7 +2619,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:163</a></div>
                             </td>
                         </tr>
 
@@ -2836,13 +2640,13 @@ import {map} from &#x27;rxjs/operators&#x27;;
 import { Router } from &quot;@angular/router&quot;;
 import { AngularFirestore, AngularFirestoreDocument } from &#x27;@angular/fire/firestore&#x27;;
 import {Observable} from &#x27;rxjs&#x27;
-import { ImageService } from &#x27;src/app/shared/image.service&#x27;;
 import { BoatService } from &#x27;../boats/boat.service&#x27;;
 import { ConfirmDialogModel, ConfirmDialogComponent } from &#x27;src/app/confirm-dialog/confirm-dialog.component&#x27;;
 import { MatDialog } from &#x27;@angular/material&#x27;;
 import { Options } from &#x27;@angular-slider/ngx-slider&#x27;;
 import { SignInComponent } from &#x27;../sign-in/sign-in.component&#x27;;
 import { SignUpComponent } from &#x27;../sign-up/sign-up.component&#x27;;
+import { DatePipe } from &#x27;@angular/common&#x27;;
 
 @Component({
   selector: &#x27;app-dashboard&#x27;,
@@ -2851,71 +2655,120 @@ import { SignUpComponent } from &#x27;../sign-up/sign-up.component&#x27;;
 })
 export class DashboardComponent implements OnInit {
 
+  /**
+   * Save state if menu is open or not
+   */
   menuOpen:boolean &#x3D; false;
-  customers: any;
-  selected &#x3D; &#x27;option2&#x27;;
 
+  /**
+   * Save all boats
+   */
+  boats: any;
+
+  /**
+   * Variable to save all favourites from db
+   */
   favRef: AngularFirestoreDocument&lt;any&gt;;
 
+  /**
+   * For searching
+   */
   startAt &#x3D; new Subject();
   endAt &#x3D; new Subject();
 
+  /**
+   * Variable to save location
+   */
   loc&#x3D; &quot;&quot;
+  /**
+   * Variable to save name
+   */
   boatName&#x3D;&quot;&quot;
+  /**
+   * Variable to check if page is loaded
+   */
   isLoaded: boolean &#x3D; false;
-
-  //Button
-  locationButtonBool: boolean &#x3D; true;
-  nameButtonBool: boolean &#x3D; true;
-
-  //////
+  
+  /**
+   * Variables for filtering
+   */
   searchLocationString:string&#x3D;&quot;&quot;;
   searchBoatNameString:string&#x3D;&quot;&quot;;
   searchLessorString:string&#x3D;&quot;&quot;;
   searchBrandString:string&#x3D;&quot;&quot;;
   searchPortString:string&#x3D;&quot;&quot;;
 
-  isUsedBoolean:Boolean &#x3D; false;
-
+  /**
+   * FavModel to save favourite boat
+   */
   favModel: any;
 
+  /**
+   * Searching
+   */
   startobs &#x3D; this.startAt.asObservable();
   endobs &#x3D; this.endAt.asObservable();
-//////////
-navigationSubscription;
 
-feedbackData : any;
-favCustomer: any[] &#x3D; [];
-favCustomerSort: any[] &#x3D; [];
-countFav &#x3D; 0;
+  /**
+   * Variable to save feedback data
+   */
+  feedbackData : any;
 
-showFav: boolean &#x3D; false;
+  /**
+   * Variable to save all favourite boats
+   */
+  favBoats: any[] &#x3D; [];
 
-  constructor(
-    public dialog: MatDialog,
-    public authService: AuthService,
-    public router: Router,
-    public ngZone: NgZone,
-    private afs: AngularFirestore, private service: ImageService, private boatService: BoatService
-  )
+  /**
+   * Variable to save sorted favourite boats
+   */
+  favBoatsSort: any[] &#x3D; [];
+
+  /**
+   * Save the count of favourite boats
+   */
+  countFav &#x3D; 0;
+
+  /**
+   * Visible or disable favourite boats
+   */
+  showFav: boolean &#x3D; false;
+
+  /**
+   * 
+   * @param dialog 
+   * @param authService 
+   * @param router 
+   * @param ngZone 
+   * @param afs 
+   * @param service 
+   * @param boatService 
+   * @param datePipe 
+   */
+  constructor(public dialog: MatDialog, public authService: AuthService, public router: Router, public ngZone: NgZone,private afs: AngularFirestore, private boatService: BoatService, private datePipe:DatePipe)
   {
-
   }
 
+  /**
+   * Save all images
+   */
   imageList: any[];
-  rowIndexArray: any[];
 
+  /**
+   * Save all favourite booleans
+   */
   fav:boolean[]&#x3D;[];
 
-  size &#x3D; 0;
-
-  //length-Slider
+  /**
+   * Options for the filtering items
+   */
   value: number &#x3D; 0;
   highValue: number &#x3D; 100;
   options: Options &#x3D; {
     floor: 0,
     ceil: 100
   };
+
   //sails-Slider
   sailsValue: number &#x3D; 0;
   sailsHighValue: number &#x3D; 10;
@@ -2923,6 +2776,7 @@ showFav: boolean &#x3D; false;
     floor: 0,
     ceil: 10
   };
+
   //masts-Slider
   mastsValue: number &#x3D; 0;
   mastsHighValue: number &#x3D; 10;
@@ -2930,6 +2784,7 @@ showFav: boolean &#x3D; false;
     floor: 0,
     ceil: 10
   };
+
   //cabins-Slider
   cabinsValue: number &#x3D; 0;
   cabinsHighValue: number &#x3D; 100;
@@ -2937,13 +2792,15 @@ showFav: boolean &#x3D; false;
     floor: 0,
     ceil: 100
   };
+
   //year-Slider
   yearValue: number &#x3D; 1800;
-  yearHighValue: number &#x3D; 2030;
+  yearHighValue: number &#x3D; parseInt(this.datePipe.transform(Date.now(), &#x27;yyyy&#x27;));
   optionsYear: Options &#x3D; {
     floor: 1800,
-    ceil: 2030
+    ceil: parseInt(this.datePipe.transform(Date.now(), &#x27;yyyy&#x27;))
   }
+
   //amountPeople-Slider
   amountPeopleValue: number &#x3D; 1;
   amountPeopleHighValue: number &#x3D; 100;
@@ -2951,51 +2808,87 @@ showFav: boolean &#x3D; false;
     floor: 1,
     ceil: 100
   };
-  getValues(value, highValue){
-    console.log(value);
-    console.log(highValue);
-  }
+
+  /**
+   * Save all userIds
+   */
   allUserIds : string[] &#x3D; [];
+  
+  /**
+   * Save the userId count
+   */
   userIdCounter &#x3D; 0;
 
+  /**
+   * Controls of the data fiels
+   */
   myControl &#x3D; new FormControl();
   namesControl &#x3D; new FormControl();
   lessorControl &#x3D; new FormControl();
   brandControl &#x3D; new FormControl();
   portControl &#x3D; new FormControl();
-  //optionsArray: string[] &#x3D; this.allLocations;
+  
+  /**
+   * Save filtering options
+   */
   filteredOptions: Observable&lt;string[]&gt;;
   filteredLocations: Observable&lt;string[]&gt;;
   filteredLessors: Observable&lt;string[]&gt;;
   filteredBrand: Observable&lt;string[]&gt;;
   filteredPort: Observable&lt;string[]&gt;;
 
+  /**
+   * Will be called at first
+   */
   ngOnInit() {
-    this.getCustomersList();
+
+    /**
+     * Get all boats
+     */
+    this.getBoatList();
+
+    /**
+     * Set localstorage
+     */
     this.afs.collection(&#x27;users&#x27;).valueChanges().subscribe(s &#x3D;&gt; localStorage.setItem(&#x27;size&#x27;, &#x60;${s.length}&#x60;));
 
+    /**
+     * Set ref collection
+     */
     const ref &#x3D; this.afs.collection(&#x27;users&#x27;);
     const snapshot &#x3D; ref.get();
+
+    /**
+     * Set user data
+     */
     snapshot.forEach(doc &#x3D;&gt; {
       doc.forEach(d &#x3D;&gt; {
         this.allUserIds[this.userIdCounter] &#x3D; d.id;
         this.userIdCounter++;
       })
+      /**
+       * Set all user to localstorage
+       */
       localStorage.setItem(&#x27;userIds&#x27;, JSON.stringify(this.allUserIds));
     });
   }
-  files &#x3D; [];
 
-  getCustomersList() {
+  /**
+   * Methode to get all boats
+   */
+  getBoatList() {
     this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes &#x3D;&gt;
         changes.map(c &#x3D;&gt;
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(customers &#x3D;&gt; {
+    ).subscribe(boats &#x3D;&gt; {
 
-      this.customers &#x3D; customers.sort((n1, n2)&#x3D;&gt;
+      /**
+       * Set all boats sorted
+       */
+      this.boats &#x3D; boats.sort((n1, n2)&#x3D;&gt;
       {
         if (n1.rating &lt; n2.rating) {
           return 1;
@@ -3007,91 +2900,202 @@ showFav: boolean &#x3D; false;
 
         return 0;
       });
-      localStorage.setItem(&#x27;numberOfBoats&#x27;, this.customers.length);
-      localStorage.setItem(&#x27;customerArray&#x27;, JSON.stringify(this.customers));
-      console.log(&#x27;size: &#x27;, this.customers.length);
-      console.log(&#x27;customers: &#x27;, this.customers);
+      /**
+       * Set number of boats to localstorage
+       */
+      localStorage.setItem(&#x27;numberOfBoats&#x27;, this.boats.length);
+
+      /**
+       * Set all boats to localstorage
+       */
+      localStorage.setItem(&#x27;customerArray&#x27;, JSON.stringify(this.boats));
     });
   }
 
+  /**
+   * Methode to get all favourite boats
+   */
   getAllFavBoats(){
+
+    /**
+     * Check the state of favourites
+     */
     if(!this.showFav)
     {
+      /**
+       * Set showFav to true
+       */
       this.showFav &#x3D; true;
+
+      /**
+       * Go through all boats
+       */
       for(let i &#x3D; 0; i &lt; parseInt(localStorage.getItem(&#x27;numberOfBoats&#x27;)); i++)
       {
-        this.favRef &#x3D; this.afs.doc(&#x60;${localStorage.getItem(&#x27;userUid&#x27;)}/${this.customers[i].brand + this.customers[i].name}&#x60;);
+        /**
+         * Get the favourite boats
+         */
+        this.favRef &#x3D; this.afs.doc(&#x60;${localStorage.getItem(&#x27;userUid&#x27;)}/${this.boats[i].brand + this.boats[i].name}&#x60;);
+        
         this.favRef.valueChanges().subscribe(item &#x3D;&gt;
           {
             this.favModel &#x3D; item;
-              if(!this.favCustomer.includes(this.customers[i]) &amp;&amp; this.favModel.boatId &#x3D;&#x3D; this.customers[i].key &amp;&amp; this.favModel.favourite){
-                this.favCustomer[this.countFav] &#x3D; this.customers[i];
-                this.countFav++;
-                this.favCustomerSort &#x3D; this.favCustomer.sort((n1,n2) &#x3D;&gt; {
-                  if (n1.rating &lt; n2.rating) {
-                      return 1;
-                  }
+            /**
+             * Check if id is euqal
+             */
+            if(!this.favBoats.includes(this.boats[i]) &amp;&amp; this.favModel.boatId &#x3D;&#x3D; this.boats[i].key &amp;&amp; this.favModel.favourite){
+              
+              /**
+               * Set favboats to this.boats
+               */
+              this.favBoats[this.countFav] &#x3D; this.boats[i];
+              
+              /**
+               * Set count one higher
+               */
+              this.countFav++;
+              /**
+               * Sort boats
+               */
+              this.favBoatsSort &#x3D; this.favBoats.sort((n1,n2) &#x3D;&gt; {
+                if (n1.rating &lt; n2.rating) {
+                    return 1;
+                }
 
-                  if (n1.rating &gt; n2.rating) {
-                      return -1;
-                  }
+                if (n1.rating &gt; n2.rating) {
+                    return -1;
+                }
 
-                  return 0;
-                });
-
-              }
+                return 0;
+              });
+            }
           });
       }
     }
     else{
+      /**
+       * Set showFav to false
+       */
       this.showFav &#x3D; false;
-      this.favCustomer&#x3D; [];
-      this.favCustomerSort&#x3D;[];
+
+      /**
+       * Clear array of favourite boats
+       */
+      this.favBoats&#x3D; [];
+
+      /**
+       * Clear array of sorted favourite boats
+       */
+      this.favBoatsSort&#x3D;[];
+
+      /**
+       * Set favModel to null
+       */
       this.favModel &#x3D; null;
+
+      /**
+       * Set the favourite boat count to 0
+       */
       this.countFav &#x3D; 0;
     }
   }
 
+  /**
+   * Open logion dialog
+   */
   confirmDialog(): void {
+    /**
+     * Message of the dialog
+     */
     const message &#x3D; &#x60;Do you wanna login now?&#x60;;
 
+    /**
+     * Data of the dialog
+     */
     const dialogData &#x3D; new ConfirmDialogModel(&quot;Not logged in!&quot;, message);
 
+    /**
+     * Open dialog
+     */
     const dialogRef &#x3D; this.dialog.open(ConfirmDialogComponent, {
       maxWidth: &quot;400px&quot;,
       data: dialogData
     });
 
+    /**
+     * Will be called after closing dialog
+     */
     dialogRef.afterClosed().subscribe(dialogResult &#x3D;&gt; {
+
+      /**
+       * Check if there is a result
+       */
       if(dialogResult){
+
+        /**
+         * Switch to sign in page
+         */
         this.router.navigateByUrl(&#x27;sign-in&#x27;);
       }
     });
   }
 
+  /**
+   * Calls signIn component popup
+   */
   confirmSignIn(): void{
     const dialogRef &#x3D; this.dialog.open(SignInComponent, {
       maxWidth: &quot;400px&quot;,
     });
+
+    /**
+     * Will be called after closing dialog
+     */
     dialogRef.afterClosed().subscribe(x &#x3D;&gt; {
+      /**
+       * After closing and user is logged in reload page
+       */
       if(!x &amp;&amp; this.authService.isLoggedIn)
         location.reload();
     })
   }
+
+  /**
+   * Calls sign up popup
+   */
   confirmSignUp():void {
     const dialogRef &#x3D; this.dialog.open(SignUpComponent, {
       maxWidth: &quot;400px&quot;,
     });
+
+    /**
+     * Will be called after closing dialog
+     */
     dialogRef.afterClosed().subscribe(x &#x3D;&gt; {
+      /**
+       * After closing and user is logged in reload page
+       */
       if(!x &amp;&amp; !this.authService.isLoggedIn)
         location.reload();
     })
   }
 
+  /**
+   * Methode to open and close menu
+   */
   openMenu(){
+    /**
+     * Check is menu is not open
+     */
     if(!this.menuOpen)
+      /**
+       * Set menuOpen to true
+       */
       this.menuOpen &#x3D; true;
     else
+      /**
+       * Set menu open to false
+       */
       this.menuOpen &#x3D; false;
   }
 }
@@ -3158,32 +3162,32 @@ showFav: boolean &#x3D; false;
              &lt;br&gt;
                &lt;label class&#x3D;&quot;labelSize&quot;&gt;&lt;strong&gt;Boat length&lt;/strong&gt;&lt;/label&gt;
                &lt;div class&#x3D;&quot;custom-slider&quot;&gt;
-                 &lt;ngx-slider [(value)]&#x3D;&quot;value&quot; [(highValue)]&#x3D;&quot;highValue&quot; [options]&#x3D;&quot;options&quot; (click)&#x3D;&quot;getValues(value, highValue)&quot;&gt;&lt;/ngx-slider&gt;
+                 &lt;ngx-slider [(value)]&#x3D;&quot;value&quot; [(highValue)]&#x3D;&quot;highValue&quot; [options]&#x3D;&quot;options&quot;&gt;&lt;/ngx-slider&gt;
                &lt;/div&gt;
              &lt;hr&gt;
                &lt;label class&#x3D;&quot;labelSize&quot;&gt;&lt;strong&gt;Boat sails&lt;/strong&gt;&lt;/label&gt;
                &lt;div class&#x3D;&quot;custom-slider&quot;&gt;
-                 &lt;ngx-slider [(value)]&#x3D;&quot;sailsValue&quot; [(highValue)]&#x3D;&quot;sailsHighValue&quot; [options]&#x3D;&quot;optionsSails&quot; (click)&#x3D;&quot;getValues(sailsValue, sailsHighValue)&quot;&gt;&lt;/ngx-slider&gt;
+                 &lt;ngx-slider [(value)]&#x3D;&quot;sailsValue&quot; [(highValue)]&#x3D;&quot;sailsHighValue&quot; [options]&#x3D;&quot;optionsSails&quot;&gt;&lt;/ngx-slider&gt;
                &lt;/div&gt;
              &lt;hr&gt;
                &lt;label class&#x3D;&quot;labelSize&quot;&gt;&lt;strong&gt;Boat masts&lt;/strong&gt;&lt;/label&gt;
                &lt;div class&#x3D;&quot;custom-slider&quot;&gt;
-                 &lt;ngx-slider [(value)]&#x3D;&quot;mastsValue&quot; [(highValue)]&#x3D;&quot;mastsHighValue&quot; [options]&#x3D;&quot;optionsMasts&quot; (click)&#x3D;&quot;getValues(mastsValue, mastsHighValue)&quot;&gt;&lt;/ngx-slider&gt;
+                 &lt;ngx-slider [(value)]&#x3D;&quot;mastsValue&quot; [(highValue)]&#x3D;&quot;mastsHighValue&quot; [options]&#x3D;&quot;optionsMasts&quot;&gt;&lt;/ngx-slider&gt;
              &lt;/div&gt;
              &lt;hr&gt;
                &lt;label class&#x3D;&quot;labelSize&quot;&gt;&lt;strong&gt;Boat cabins&lt;/strong&gt;&lt;/label&gt;
                &lt;div class&#x3D;&quot;custom-slider&quot;&gt;
-                 &lt;ngx-slider [(value)]&#x3D;&quot;cabinsValue&quot; [(highValue)]&#x3D;&quot;cabinsHighValue&quot; [options]&#x3D;&quot;optionsCabins&quot; (click)&#x3D;&quot;getValues(cabinsValue, cabinsHighValue)&quot;&gt;&lt;/ngx-slider&gt;
+                 &lt;ngx-slider [(value)]&#x3D;&quot;cabinsValue&quot; [(highValue)]&#x3D;&quot;cabinsHighValue&quot; [options]&#x3D;&quot;optionsCabins&quot; &gt;&lt;/ngx-slider&gt;
              &lt;/div&gt;
              &lt;hr&gt;
                &lt;label class&#x3D;&quot;labelSize&quot;&gt;&lt;strong&gt;Boat year&lt;/strong&gt;&lt;/label&gt;
                &lt;div class&#x3D;&quot;custom-slider&quot;&gt;
-                 &lt;ngx-slider [(value)]&#x3D;&quot;yearValue&quot; [(highValue)]&#x3D;&quot;yearHighValue&quot; [options]&#x3D;&quot;optionsYear&quot; (click)&#x3D;&quot;getValues(yearValue, yearHighValue)&quot;&gt;&lt;/ngx-slider&gt;
+                 &lt;ngx-slider [(value)]&#x3D;&quot;yearValue&quot; [(highValue)]&#x3D;&quot;yearHighValue&quot; [options]&#x3D;&quot;optionsYear&quot;&gt;&lt;/ngx-slider&gt;
              &lt;/div&gt;
              &lt;hr&gt;
                &lt;label class&#x3D;&quot;labelSize&quot;&gt;&lt;strong&gt;Max. People&lt;/strong&gt;&lt;/label&gt;
                &lt;div class&#x3D;&quot;custom-slider&quot;&gt;
-                 &lt;ngx-slider [(value)]&#x3D;&quot;amountPeopleValue&quot; [(highValue)]&#x3D;&quot;amountPeopleHighValue&quot; [options]&#x3D;&quot;optionsAmountPeople&quot; (click)&#x3D;&quot;getValues(amountPeopleValue, amountPeopleHighValue)&quot;&gt;&lt;/ngx-slider&gt;
+                 &lt;ngx-slider [(value)]&#x3D;&quot;amountPeopleValue&quot; [(highValue)]&#x3D;&quot;amountPeopleHighValue&quot; [options]&#x3D;&quot;optionsAmountPeople&quot;&gt;&lt;/ngx-slider&gt;
              &lt;/div&gt;
        &lt;/mat-expansion-panel&gt;
      &lt;br&gt;
@@ -3235,7 +3239,7 @@ showFav: boolean &#x3D; false;
 &lt;br&gt;
 &lt;br&gt;
        &lt;div *ngIf&#x3D;&quot;!showFav&quot;&gt;
-        &lt;ul *ngFor&#x3D;&quot;let c of customers&quot; style&#x3D;&quot;width: 300px;&quot;&gt;
+        &lt;ul *ngFor&#x3D;&quot;let c of boats&quot; style&#x3D;&quot;width: 300px;&quot;&gt;
           &lt;mat-accordion *ngIf&#x3D;&quot;c.location.toUpperCase().includes(searchLocationString.toUpperCase()) &amp;&amp; c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) &amp;&amp; c.port.toUpperCase().includes(searchPortString.toUpperCase()) &amp;&amp; c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) &amp;&amp; c.length &gt; value-1 &amp;&amp; c.length &lt; highValue+1 &amp;&amp; c.sail &gt; sailsValue-1 &amp;&amp; c.sail &lt; sailsHighValue+1 &amp;&amp; c.masts &gt; mastsValue-1 &amp;&amp; c.masts &lt; mastsHighValue+1 &amp;&amp; c.cabins &gt; cabinsValue-1 &amp;&amp; c.cabins &lt; cabinsHighValue+1 &amp;&amp; c.vintage &gt; yearValue-1 &amp;&amp; c.vintage &lt; yearHighValue+1 &amp;&amp; c.numberOfPeople &gt; amountPeopleValue-1 &amp;&amp; c.numberOfPeople &lt; amountPeopleHighValue+1&quot;&gt;
             &lt;app-boat-details [boat]&#x3D;&#x27;c&#x27; [showButtons]&#x3D;&#x27;false&#x27;&gt;&lt;/app-boat-details&gt;
             &lt;br&gt;
@@ -3244,7 +3248,7 @@ showFav: boolean &#x3D; false;
         &lt;/ul&gt;
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;showFav&quot;&gt;
-        &lt;ul *ngFor&#x3D;&quot;let c of favCustomerSort&quot; style&#x3D;&quot;width: 300px;&quot;&gt;
+        &lt;ul *ngFor&#x3D;&quot;let c of favBoatsSort&quot; style&#x3D;&quot;width: 300px;&quot;&gt;
           &lt;mat-accordion *ngIf&#x3D;&quot;c.location.toUpperCase().includes(searchLocationString.toUpperCase()) &amp;&amp; c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) &amp;&amp; c.port.toUpperCase().includes(searchPortString.toUpperCase()) &amp;&amp; c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) &amp;&amp; c.length &gt; value-1 &amp;&amp; c.length &lt; highValue+1 &amp;&amp; c.sail &gt; sailsValue-1 &amp;&amp; c.sail &lt; sailsHighValue+1 &amp;&amp; c.masts &gt; mastsValue-1 &amp;&amp; c.masts &lt; mastsHighValue+1 &amp;&amp; c.cabins &gt; cabinsValue-1 &amp;&amp; c.cabins &lt; cabinsHighValue+1 &amp;&amp; c.vintage &gt; yearValue-1 &amp;&amp; c.vintage &lt; yearHighValue+1 &amp;&amp; c.numberOfPeople &gt; amountPeopleValue-1 &amp;&amp; c.numberOfPeople &lt; amountPeopleHighValue+1&quot;&gt;
               &lt;app-boat-details [boat]&#x3D;&#x27;c&#x27;&gt;&lt;/app-boat-details&gt;
               &lt;br&gt;
@@ -3500,9 +3504,9 @@ body {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><mat-toolbar class="mat-toolbar"> <img height="70px" src="../../../assets/img/ship4youWeiss.png"> <span class="example-spacer"></span> <a class="tool-but2" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl(\'/dashboard\')">Dashboard</a> <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">  <mat-icon>more_vert</mat-icon></button><mat-menu #menu="matMenu">  <button style="outline:none !important" *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl(\'/user-details\')" mat-menu-item>    <mat-icon>person</mat-icon>    <span>User profil</span>  </button>  <button *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl(\'/add\')" mat-menu-item>    <mat-icon>add</mat-icon>    <span>Add new Boat</span>  </button>  <button (click)="getAllFavBoats()" mat-menu-item>    <mat-icon [style.color]="showFav ? \'red\' : \'gray\'">favorite</mat-icon>    <span>Show Favorites</span>  </button>  <button (click)="authService.router.navigateByUrl(\'/contact-us\')" mat-menu-item>    <mat-icon>contacts</mat-icon>    <span>Support</span>  </button>  <button (click)="authService.router.navigateByUrl(\'/about-us\')" mat-menu-item>    <mat-icon>group</mat-icon>    <span>About us</span>  </button>  <button *ngIf="authService.isLoggedIn" (click)="authService.SignOut()" mat-menu-item>    <mat-icon>logout</mat-icon>    <span>Logout</span>  </button>  <button *ngIf="!authService.isLoggedIn" (click)="confirmSignIn()" mat-menu-item>    <mat-icon>login</mat-icon>    <span>Login</span>  </button>  <button *ngIf="!authService.isLoggedIn" (click)="confirmSignUp()" mat-menu-item>    <mat-icon>how_to_reg</mat-icon>    <span>Sign Up</span>  </button></mat-menu></mat-toolbar><div class="container-fluid"> <div class="row">     <div class="sidebar-sticky">           <mat-expansion-panel>             <mat-expansion-panel-header class="disable_ripple">               <mat-panel-title>                 <h6>Filter:</h6>               </mat-panel-title>             </mat-expansion-panel-header>             <br>               <label class="labelSize"><strong>Boat length</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" (click)="getValues(value, highValue)"></ngx-slider>               </div>             <hr>               <label class="labelSize"><strong>Boat sails</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="sailsValue" [(highValue)]="sailsHighValue" [options]="optionsSails" (click)="getValues(sailsValue, sailsHighValue)"></ngx-slider>               </div>             <hr>               <label class="labelSize"><strong>Boat masts</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="mastsValue" [(highValue)]="mastsHighValue" [options]="optionsMasts" (click)="getValues(mastsValue, mastsHighValue)"></ngx-slider>             </div>             <hr>               <label class="labelSize"><strong>Boat cabins</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="cabinsValue" [(highValue)]="cabinsHighValue" [options]="optionsCabins" (click)="getValues(cabinsValue, cabinsHighValue)"></ngx-slider>             </div>             <hr>               <label class="labelSize"><strong>Boat year</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="yearValue" [(highValue)]="yearHighValue" [options]="optionsYear" (click)="getValues(yearValue, yearHighValue)"></ngx-slider>             </div>             <hr>               <label class="labelSize"><strong>Max. People</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="amountPeopleValue" [(highValue)]="amountPeopleHighValue" [options]="optionsAmountPeople" (click)="getValues(amountPeopleValue, amountPeopleHighValue)"></ngx-slider>             </div>       </mat-expansion-panel>     <br>     </div>   <!-- Main content -->   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">    <form class="form-center">      <mat-icon>search</mat-icon>      <mat-form-field class="break-between">        <input type="text" placeholder="Boatname" aria-label="Boatname" [(ngModel)]="searchBoatNameString" matInput [formControl]="myControl" [matAutocomplete]="auto">        <mat-autocomplete #auto="matAutocomplete">          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">            {{option}}          </mat-option>        </mat-autocomplete>      </mat-form-field>      <mat-form-field class="break-between">        <input type="text" placeholder="Locations" aria-label="Locations" [(ngModel)]="searchLocationString" matInput [formControl]="namesControl" [matAutocomplete]="auto1">        <mat-autocomplete #auto1="matAutocomplete">          <mat-option *ngFor="let option of filteredLocations | async" [value]="option">            {{option}}          </mat-option>        </mat-autocomplete>      </mat-form-field>    <mat-form-field class="break-between">      <input type="text" placeholder="Brand" aria-label="Brand" [(ngModel)]="searchBrandString" matInput [formControl]="brandControl" [matAutocomplete]="auto3">      <mat-autocomplete #auto3="matAutocomplete">        <mat-option *ngFor="let option of filteredBrand | async" [value]="option">          {{option}}        </mat-option>      </mat-autocomplete>    </mat-form-field>    <mat-form-field class="break-between">      <input type="text" placeholder="Port" aria-label="Brand" [(ngModel)]="searchPortString" matInput [formControl]="portControl" [matAutocomplete]="auto4">      <mat-autocomplete #auto4="matAutocomplete">        <mat-option *ngFor="let option of filteredPort | async" [value]="option">          {{option}}        </mat-option>      </mat-autocomplete>    </mat-form-field>    <!--<mat-slide-toggle title="Show All Favorites" class="mat-slide-toggle-thumb" (click)="getAllFavBoats()"></mat-slide-toggle>-->  </form><br><br>       <div *ngIf="!showFav">        <ul *ngFor="let c of customers" style="width: 300px;">          <mat-accordion *ngIf="c.location.toUpperCase().includes(searchLocationString.toUpperCase()) && c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && c.port.toUpperCase().includes(searchPortString.toUpperCase()) && c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && c.length > value-1 && c.length < highValue+1 && c.sail > sailsValue-1 && c.sail < sailsHighValue+1 && c.masts > mastsValue-1 && c.masts < mastsHighValue+1 && c.cabins > cabinsValue-1 && c.cabins < cabinsHighValue+1 && c.vintage > yearValue-1 && c.vintage < yearHighValue+1 && c.numberOfPeople > amountPeopleValue-1 && c.numberOfPeople < amountPeopleHighValue+1">            <app-boat-details [boat]=\'c\' [showButtons]=\'false\'></app-boat-details>            <br>            <br>          </mat-accordion>        </ul>      </div>      <div *ngIf="showFav">        <ul *ngFor="let c of favCustomerSort" style="width: 300px;">          <mat-accordion *ngIf="c.location.toUpperCase().includes(searchLocationString.toUpperCase()) && c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && c.port.toUpperCase().includes(searchPortString.toUpperCase()) && c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && c.length > value-1 && c.length < highValue+1 && c.sail > sailsValue-1 && c.sail < sailsHighValue+1 && c.masts > mastsValue-1 && c.masts < mastsHighValue+1 && c.cabins > cabinsValue-1 && c.cabins < cabinsHighValue+1 && c.vintage > yearValue-1 && c.vintage < yearHighValue+1 && c.numberOfPeople > amountPeopleValue-1 && c.numberOfPeople < amountPeopleHighValue+1">              <app-boat-details [boat]=\'c\'></app-boat-details>              <br>              <br>          </mat-accordion>        </ul>      </div>   </main> </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'ShowUpload', 'selector': 'app-showUpload'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UploadTaskComponent', 'selector': 'upload-task'},{'name': 'UploadTaskDocumentComponent', 'selector': 'app-upload-task-document'},{'name': 'UploadTaskMultiplePicturesComponent', 'selector': 'app-upload-task-multiple-pictures'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
-    var DIRECTIVES = [{'name': 'DropzoneDirective', 'selector': '[dropzone]'},{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Top navigation --><mat-toolbar class="mat-toolbar"> <img height="70px" src="../../../assets/img/ship4youWeiss.png"> <span class="example-spacer"></span> <a class="tool-but2" type="button" *ngIf="!authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl(\'/dashboard\')">Dashboard</a> <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">  <mat-icon>more_vert</mat-icon></button><mat-menu #menu="matMenu">  <button style="outline:none !important" *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl(\'/user-details\')" mat-menu-item>    <mat-icon>person</mat-icon>    <span>User profil</span>  </button>  <button *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl(\'/add\')" mat-menu-item>    <mat-icon>add</mat-icon>    <span>Add new Boat</span>  </button>  <button (click)="getAllFavBoats()" mat-menu-item>    <mat-icon [style.color]="showFav ? \'red\' : \'gray\'">favorite</mat-icon>    <span>Show Favorites</span>  </button>  <button (click)="authService.router.navigateByUrl(\'/contact-us\')" mat-menu-item>    <mat-icon>contacts</mat-icon>    <span>Support</span>  </button>  <button (click)="authService.router.navigateByUrl(\'/about-us\')" mat-menu-item>    <mat-icon>group</mat-icon>    <span>About us</span>  </button>  <button *ngIf="authService.isLoggedIn" (click)="authService.SignOut()" mat-menu-item>    <mat-icon>logout</mat-icon>    <span>Logout</span>  </button>  <button *ngIf="!authService.isLoggedIn" (click)="confirmSignIn()" mat-menu-item>    <mat-icon>login</mat-icon>    <span>Login</span>  </button>  <button *ngIf="!authService.isLoggedIn" (click)="confirmSignUp()" mat-menu-item>    <mat-icon>how_to_reg</mat-icon>    <span>Sign Up</span>  </button></mat-menu></mat-toolbar><div class="container-fluid"> <div class="row">     <div class="sidebar-sticky">           <mat-expansion-panel>             <mat-expansion-panel-header class="disable_ripple">               <mat-panel-title>                 <h6>Filter:</h6>               </mat-panel-title>             </mat-expansion-panel-header>             <br>               <label class="labelSize"><strong>Boat length</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>               </div>             <hr>               <label class="labelSize"><strong>Boat sails</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="sailsValue" [(highValue)]="sailsHighValue" [options]="optionsSails"></ngx-slider>               </div>             <hr>               <label class="labelSize"><strong>Boat masts</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="mastsValue" [(highValue)]="mastsHighValue" [options]="optionsMasts"></ngx-slider>             </div>             <hr>               <label class="labelSize"><strong>Boat cabins</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="cabinsValue" [(highValue)]="cabinsHighValue" [options]="optionsCabins" ></ngx-slider>             </div>             <hr>               <label class="labelSize"><strong>Boat year</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="yearValue" [(highValue)]="yearHighValue" [options]="optionsYear"></ngx-slider>             </div>             <hr>               <label class="labelSize"><strong>Max. People</strong></label>               <div class="custom-slider">                 <ngx-slider [(value)]="amountPeopleValue" [(highValue)]="amountPeopleHighValue" [options]="optionsAmountPeople"></ngx-slider>             </div>       </mat-expansion-panel>     <br>     </div>   <!-- Main content -->   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">    <form class="form-center">      <mat-icon>search</mat-icon>      <mat-form-field class="break-between">        <input type="text" placeholder="Boatname" aria-label="Boatname" [(ngModel)]="searchBoatNameString" matInput [formControl]="myControl" [matAutocomplete]="auto">        <mat-autocomplete #auto="matAutocomplete">          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">            {{option}}          </mat-option>        </mat-autocomplete>      </mat-form-field>      <mat-form-field class="break-between">        <input type="text" placeholder="Locations" aria-label="Locations" [(ngModel)]="searchLocationString" matInput [formControl]="namesControl" [matAutocomplete]="auto1">        <mat-autocomplete #auto1="matAutocomplete">          <mat-option *ngFor="let option of filteredLocations | async" [value]="option">            {{option}}          </mat-option>        </mat-autocomplete>      </mat-form-field>    <mat-form-field class="break-between">      <input type="text" placeholder="Brand" aria-label="Brand" [(ngModel)]="searchBrandString" matInput [formControl]="brandControl" [matAutocomplete]="auto3">      <mat-autocomplete #auto3="matAutocomplete">        <mat-option *ngFor="let option of filteredBrand | async" [value]="option">          {{option}}        </mat-option>      </mat-autocomplete>    </mat-form-field>    <mat-form-field class="break-between">      <input type="text" placeholder="Port" aria-label="Brand" [(ngModel)]="searchPortString" matInput [formControl]="portControl" [matAutocomplete]="auto4">      <mat-autocomplete #auto4="matAutocomplete">        <mat-option *ngFor="let option of filteredPort | async" [value]="option">          {{option}}        </mat-option>      </mat-autocomplete>    </mat-form-field>    <!--<mat-slide-toggle title="Show All Favorites" class="mat-slide-toggle-thumb" (click)="getAllFavBoats()"></mat-slide-toggle>-->  </form><br><br>       <div *ngIf="!showFav">        <ul *ngFor="let c of boats" style="width: 300px;">          <mat-accordion *ngIf="c.location.toUpperCase().includes(searchLocationString.toUpperCase()) && c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && c.port.toUpperCase().includes(searchPortString.toUpperCase()) && c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && c.length > value-1 && c.length < highValue+1 && c.sail > sailsValue-1 && c.sail < sailsHighValue+1 && c.masts > mastsValue-1 && c.masts < mastsHighValue+1 && c.cabins > cabinsValue-1 && c.cabins < cabinsHighValue+1 && c.vintage > yearValue-1 && c.vintage < yearHighValue+1 && c.numberOfPeople > amountPeopleValue-1 && c.numberOfPeople < amountPeopleHighValue+1">            <app-boat-details [boat]=\'c\' [showButtons]=\'false\'></app-boat-details>            <br>            <br>          </mat-accordion>        </ul>      </div>      <div *ngIf="showFav">        <ul *ngFor="let c of favBoatsSort" style="width: 300px;">          <mat-accordion *ngIf="c.location.toUpperCase().includes(searchLocationString.toUpperCase()) && c.name.toUpperCase().includes(searchBoatNameString.toUpperCase()) && c.port.toUpperCase().includes(searchPortString.toUpperCase()) && c.brand.toUpperCase().includes(searchBrandString.toUpperCase()) && c.length > value-1 && c.length < highValue+1 && c.sail > sailsValue-1 && c.sail < sailsHighValue+1 && c.masts > mastsValue-1 && c.masts < mastsHighValue+1 && c.cabins > cabinsValue-1 && c.cabins < cabinsHighValue+1 && c.vintage > yearValue-1 && c.vintage < yearHighValue+1 && c.numberOfPeople > amountPeopleValue-1 && c.numberOfPeople < amountPeopleHighValue+1">              <app-boat-details [boat]=\'c\'></app-boat-details>              <br>              <br>          </mat-accordion>        </ul>      </div>   </main> </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+    var DIRECTIVES = [{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
     var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
 </script>
 <script src="../js/tree.js"></script>

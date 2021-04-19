@@ -137,6 +137,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -151,6 +152,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>-&gt; Auth methods</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>router</td>
@@ -163,6 +168,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>-&gt; To navigate</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -200,14 +209,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/app/shared/guard/auth.guard.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/shared/guard/auth.guard.ts:25</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>If someone is logged in you will get to sign in</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -276,19 +287,25 @@ import { Observable } from &#x27;rxjs&#x27;;
 
 export class AuthGuard implements CanActivate {
   
+  /**
+   * 
+   * @param authService -&gt; Auth methods
+   * @param router -&gt; To navigate
+   */
   constructor(
     public authService: AuthService,
     public router: Router
   ){ }
 
-  //Wenn man nicht eingeloggt ist kommt man zu sign-in
+  /**
+   * If someone is logged in you will get to sign in
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable&lt;boolean&gt; | Promise&lt;boolean&gt; | boolean {
     if(!this.authService.isLoggedIn) {
       this.router.navigate([&#x27;dashboard&#x27;]);
     }
-
     return true;
   }
 

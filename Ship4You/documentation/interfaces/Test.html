@@ -130,7 +130,6 @@
 import { Component, Inject, OnInit } from &#x27;@angular/core&#x27;;
 import { AngularFirestore, AngularFirestoreDocument } from &#x27;@angular/fire/firestore&#x27;;
 import { AngularFireStorage, AngularFireUploadTask } from &#x27;@angular/fire/storage&#x27;;
-import { FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
 import { MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
@@ -151,200 +150,323 @@ export interface Test {
 })
 export class CreateFeedbackComponent implements OnInit {
 
+  //Boat which you want to rate
   boat: any &#x3D; new BoatDTO;
+
+  //Small animation for uploading a picture
   isHovering: boolean;
+
+  //The id for a rating
   ratingId:string&#x3D;&quot;&quot;;
+
+  //The date when the feedback was written
   mydate:string&#x3D;&quot;&quot;;
-  task: AngularFireUploadTask;
-  percentage: Observable&lt;number&gt;;
-  snapshot: Observable&lt;any&gt;;
-  customers: any &#x3D; [];
+
+  //All boats from db
+  boats: any &#x3D; [];
+
+  //The download url from the uploaded image
   downloadURL: string;
+
+  //The key from the boat (Firebase Realtime database boat id)
   boatKey: string&#x3D;&quot;&quot;;
+
+  //Boat id (Brand+Name)
   id:string &#x3D; localStorage.getItem(&#x27;boatForRating&#x27;);
+
+  //Array of the current rates (counted stars)
   ratingBoat: number[];
+
+  //Checks if the whole data is already loaded for the page
   dataLoaded: boolean &#x3D; false;
+
+  //Saving the feedback text
   feedback:string&#x3D;&quot;&quot;;
+
+  //Saving the current star rating
   currentRate &#x3D; 2;
 
-  title: string;
-  message: string;
-
+  //The url of the current user profil picture
   url:string &#x3D; &quot;&quot;;
-  displayName:string &#x3D;&quot;&quot;;
-  userImageDb:string&#x3D;&quot;&quot;;
 
-  //
+  //The username of the current user
+  displayName:string &#x3D;&quot;&quot;;
+
+  //The upload process of an image in percent
   uploadPercent: Observable&lt;number&gt;;
+
+  //The download url of the current uploaded image
   downloadURLObservable: Observable&lt;string&gt;;
+
+  //Selected file to upload
   selectedFile: FileList | null;
-  forma: FormGroup;
+
+  //Saving all uploaded images to that rating
   tests: Observable&lt;any[]&gt;;
 
-  newBoat: BoatDTO &#x3D; new BoatDTO();
+  //The current boat to rate
+  currentRatingBoat: BoatDTO &#x3D; new BoatDTO();
 
-  tmp: string &#x3D; &quot;&quot;;
-  //
-
-  constructor(fb: FormBuilder, private boatService: BoatService, private fs: FirebaseService, public dialogRef: MatDialogRef&lt;CreateFeedbackComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
+  /**
+   * 
+   * @param boatService 
+   * @param fs 
+   * @param dialogRef 
+   * @param data 
+   * @param router 
+   * @param afs 
+   * @param datePipe 
+   * @param storage 
+   */
+  constructor(private boatService: BoatService, private fs: FirebaseService, public dialogRef: MatDialogRef&lt;CreateFeedbackComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
+    
+    /**
+     * Set current date
+     */
     this.mydate &#x3D; this.datePipe.transform(Date.now(), &#x27;dd.MM.yyyy&#x27;);
   }
 
-  onConfirm(): void {
-    this.dialogRef.close(false);
-  }
-
+  //To close the popup window (clicking cancel)
   onDismiss(): void {
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(false);
   }
 
+  /**
+   * Will be called at first
+   */
   ngOnInit() {
+    /**
+     * Get doc ref
+     */
     const feedbackRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;users/${localStorage.getItem(&#x27;userUid&#x27;)}&#x60;);
 
+    /**
+     * Set url
+     */
     feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.url &#x3D; x.photoURL);
-    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.displayName &#x3D; x.displayName);
-    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.userImageDb &#x3D; x.userImage);
-    this.afs.collection(localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;)).valueChanges().subscribe(v &#x3D;&gt; this.ratingId &#x3D; &#x60;${v.length}&#x60;);
-    localStorage.setItem(&quot;feedbackBoatId&quot;, localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;));
-    this.getCustomersList();
 
-    this.newBoat &#x3D; this.boatService.tmpBoat;
-    console.log(&quot;NewBoatInit &quot; + this.newBoat);
-    this.mostrarImagenes();
+    /**
+     * Set displayName
+     */
+    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.displayName &#x3D; x.displayName);
+
+    this.afs.collection(localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;)).valueChanges().subscribe(v &#x3D;&gt; this.ratingId &#x3D; &#x60;${v.length}&#x60;);
+    
+    /**
+     * Set boat id to localStorage
+     */
+    localStorage.setItem(&quot;feedbackBoatId&quot;, localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;));
+    
+    /**
+     * Call boatList
+     */
+    this.getBoatsList();
+
+    /**
+     * Set boat
+     */
+    this.currentRatingBoat &#x3D; this.boatService.tmpBoat;
+    
+    /**
+     * Call showImagenes() methode
+     */
+    this.showImagenes();
   }
 
-  //
+  //Upload the selected file
   detectFiles(event) {
+
+    /**
+     * Set selected File
+     */
     this.selectedFile &#x3D; event.target.files[0];
+    
+    /**
+     * Call uploadFile() methode
+     */
     this.uploadFile();
   }
 
+  //Saving the url of all uploaded images
   uploadUrlArray: Observable&lt;String&gt;[] &#x3D; [];
 
+  //Upload Image to db
   uploadFile() {
-    console.log(&#x27;TEST createBoatId: &#x27;, localStorage.getItem(&quot;feedbackBoatId&quot;));
-    const myTest &#x3D; this.afs.collection(localStorage.getItem(&quot;feedbackBoatId&quot;)+&quot;MultFeedback&quot; + this.displayName).ref.doc();
-    console.log(myTest.id)
 
+    /**
+     * Get ref doc of feedbackboat
+     */
+    const myTest &#x3D; this.afs.collection(localStorage.getItem(&quot;feedbackBoatId&quot;)+&quot;MultFeedback&quot; + this.displayName).ref.doc();
+    
+    /**
+     * Set file
+     */
     const file &#x3D; this.selectedFile
+
+    /**
+     * Set filePath
+     */
     const filePath &#x3D; &#x60;${myTest.id}/name1&#x60;;
+
+    /**
+     * Set fileRef
+     */
     const fileRef &#x3D; this.storage.ref(filePath);
+
+    /**
+     * Set upload task
+     */
     const task &#x3D; this.storage.upload(filePath, file);
 
+    /**
+     * Set percent from upload
+     */
     this.uploadPercent &#x3D; task.percentageChanges();
 
+    /**
+     * Save file
+     */
     task.snapshotChanges().pipe(
       finalize(() &#x3D;&gt; {
         fileRef.getDownloadURL().toPromise().then( (url) &#x3D;&gt; {
+
+          /**
+           * Set downloadUrl
+           */
           this.downloadURLObservable &#x3D; url;
+
+          /**
+           * Push download url to array
+           */
           this.uploadUrlArray.push(this.downloadURLObservable);
 
+          /**
+           * Set data
+           */
           myTest.set({
             imagenes : this.downloadURLObservable,
             myId : myTest.id
           })
-
-          console.log( this.downloadURLObservable )
         }).catch(err&#x3D;&gt; { console.log(err) });
       })
     )
     .subscribe()
   }
 
-  mostrarImagenes() {
+  //Show all images from db
+  showImagenes() {
+
+    /**
+     * Call getTestFeedback()
+     */
     this.tests &#x3D; this.fs.getTestFeedback(this.displayName);
   }
-  //
 
-  files: File[] &#x3D; [];
-
+  /**
+   * 
+   * @param event -&gt; true or false
+   */
   toggleHover(event: boolean) {
+
+    /**
+     * Set hovering to true or false
+     */
     this.isHovering &#x3D; event;
   }
 
-  onDrop(files: FileList) {
-    for (let i &#x3D; 0; i &lt; files.length; i++) {
-      this.files.push(files.item(i));
-      //this.file &#x3D; files.item(i);
-      this.startUpload(files.item(i))
-    }
-    //if (this.file !&#x3D; null){
-      //this.startUpload(file);
-    //}
-  }
-
-  startUpload(file) {
-
-    // The storage path
-    const path &#x3D; &#x60;test/${Date.now()}_${file.name}&#x60;;
-
-    // Reference to storage bucket
-    const ref &#x3D; this.storage.ref(path);
-
-    // The main task
-    this.task &#x3D; this.storage.upload(path, file);
-
-    // Progress monitoring
-    this.percentage &#x3D; this.task.percentageChanges();
-
-    this.snapshot   &#x3D; this.task.snapshotChanges().pipe(
-      tap(console.log),
-      // The file&#x27;s download URL
-      finalize( async() &#x3D;&gt;  {
-        this.downloadURL &#x3D; await ref.getDownloadURL().toPromise();
-
-        this.afs.collection(&#x27;files&#x27;).add( { downloadURL: this.downloadURL, path });
-      }),
-    );
-  }
-
-  isActive(snapshot) {
-    return snapshot.state &#x3D;&#x3D;&#x3D; &#x27;running&#x27; &amp;&amp; snapshot.bytesTransferred &lt; snapshot.totalBytes;
-  }
-
-
-  getSingleBoat(): any{               //SingleCustomer
-
+  //Get the actual boat states
+  getSingleBoat(): any{
+    /**
+     * Set counter from localstorage
+     */
     var c &#x3D; localStorage.getItem(&#x27;numberOfBoats&#x27;);
+
+    /**
+     * Check if counter is not null
+     */
     if(!isNaN(Number(c))){
+
+      /**
+       * set counter
+       */
       var counter &#x3D; Number(c);
+
+      /**
+       * Go through all boats
+       */
       for(let i &#x3D; 0; i &lt; counter;i++){
-        if(this.id &#x3D;&#x3D; this.customers[i].key){
-          this.boat &#x3D; this.customers[i];
-          console.log(&quot;BoatWithRating &quot; + this.boat.allReatings);
+
+        /**
+         * Check if Ids are equal
+         */
+        if(this.id &#x3D;&#x3D; this.boats[i].key){
+
+          /**
+           * Set boat
+           */
+          this.boat &#x3D; this.boats[i];
+
+          /**
+           * Set ratingBoat
+           */
           this.ratingBoat &#x3D; this.boat.allReatings;
+
+          /**
+           * Set boat-key
+           */
           this.boatKey &#x3D; this.boat.key;
-          console.log(&quot;BoatKey &quot; + this.boatKey);
         }
       }
       return this.boat;
     }
     else{
-      console.log(&quot;Not a number!&quot;);
       return null;
     }
   }
 
-  getCustomersList() {
+  //Get all boats from db
+  getBoatsList() {
+    /**
+     * Call getBoatsList()
+     */
     this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes &#x3D;&gt;
         changes.map(c &#x3D;&gt;
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(customers &#x3D;&gt; {
-      this.customers &#x3D; customers;
+    ).subscribe(boats &#x3D;&gt; {
+      /**
+       * Set boats
+       */
+      this.boats &#x3D; boats;
+
+      /**
+       * Calls getSingleBoat() methode
+       */
       this.getSingleBoat();
     });
 
+    /**
+     * Set loaded data to true
+     */
     this.dataLoaded &#x3D; true;
-    console.log(&quot;Data&quot; + this.dataLoaded);
   }
 
+  //Set feedback data to create a new rating in db
   SetFeedbackData() {
-    console.log(&#x27;USERIMAGE: &#x27;, this.userImageDb);
+
+    /**
+     * Get feedback Ref
+     */
     const feedbackRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;${localStorage.getItem(&#x27;boatForRatingBrand&#x27;) + localStorage.getItem(&#x27;boatForRatingName&#x27;)}/${this.ratingId}&#x60;);
 
+    /**
+     * Set feedBack data
+     */
     const feedbackData: Rating &#x3D; {
       idRating: this.ratingId.toLocaleString(),
       username: this.displayName,
@@ -355,51 +477,91 @@ export class CreateFeedbackComponent implements OnInit {
       userImage: this.url,
       userId: localStorage.getItem(&#x27;userUid&#x27;)
     }
+    /**
+     * Clear uploadUrlArray 
+     */
     this.uploadUrlArray &#x3D; [];
+    /**
+     * Merge data
+     */
     return feedbackRef.set(feedbackData, {
       merge: true
     })
   }
 
+  //Updates the current boat rating states
   updateBoatStats(){
+    /**
+     * Add current rate to array
+     */
     this.ratingBoat.push(this.currentRate);
+
+    /**
+     * Call updateRatingArray()
+     */
     this.updateRatingArray(this.ratingBoat);
 
+    /**
+     * Set sum
+     */
     var sum &#x3D; this.ratingBoat.reduce((acc, cur) &#x3D;&gt; acc + cur, 0);
-    console.log(&quot;Sum: &quot; + sum);
 
+    /**
+     * Set div
+     */
     var div &#x3D; sum/ (this.ratingBoat.length - 1);
-    console.log(&quot;Div &quot; + div);
 
-
+    /**
+     * Call methode
+     */
     this.updateRatingSum(div)
   }
 
+  //Updates the rating array in db
   updateRatingArray(ratingBoat: any) {
+
+    /**
+     * Call updateBoat() methode
+     */
     this.boatService
       .updateBoat(this.boatKey, { allReatings: ratingBoat })
       .catch(err &#x3D;&gt; console.log(err));
   }
 
+  //Updates the rating sum (sum of rating stars)
   updateRatingSum(ratingDiv: any)
   {
+    /**
+     * Call updateBoat() methode
+     */
     this.boatService
     .updateBoat(this.boatKey, { rating: ratingDiv })
     .catch(err &#x3D;&gt; console.log(err));
   }
 
+  //Adds the feedback to db and navigates to bewertung
   addFeedback(){
+    /**
+     * Close dialog
+     */
     this.dialogRef.close(false);
+
+    /**
+     * Call methode
+     */
     this.updateBoatStats();
+
+    /**
+     * Call SetFeedbackData() methode
+     */
     this.SetFeedbackData();
+
+    /**
+     * Navigate to other page
+     */
     this.router.navigateByUrl(&#x27;/bewertung&#x27;)
-    //this.setAllRatingsToBoat();
   }
 
-}
-
-export class ConfirmDialogModel {
-  constructor(public title: string, public message: string) {}
 }
 </code></pre>
     </div>

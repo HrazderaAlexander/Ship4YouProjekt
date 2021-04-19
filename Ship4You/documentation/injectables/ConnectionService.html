@@ -115,7 +115,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/shared/services/connection.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/services/connection.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -129,6 +129,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -143,6 +144,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>-&gt; Use Http</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -180,14 +185,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/app/shared/services/connection.service.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/shared/services/connection.service.ts:24</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Is used for contact us</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -197,6 +204,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -211,6 +219,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>-&gt; text from message</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -259,10 +271,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/shared/services/connection.service.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/services/connection.service.ts:11</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Url string</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -279,10 +297,26 @@ import { Injectable } from &#x27;@angular/core&#x27;;
   providedIn: &#x27;root&#x27;
 })
 export class ConnectionService {
+  /**
+   * Url string
+   */
   url: string &#x3D; &#x27;http://localhost:3000/send&#x27;;
+
+  /**
+   * 
+   * @param http -&gt; Use Http
+   */
   constructor(private http: HttpClient) { }
 
+  /**
+   * Is used for contact us
+   * 
+   * @param messageContent -&gt; text from message
+   */
   sendMessage(messageContent: any) {
+    /**
+     * Http-Post
+     */
     return this.http.post(this.url,
     JSON.stringify(messageContent),
     { headers: new HttpHeaders({ &#x27;Content-Type&#x27;: &#x27;application/json&#x27; }), responseType: &#x27;text&#x27; });
