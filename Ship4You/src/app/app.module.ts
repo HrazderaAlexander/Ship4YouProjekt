@@ -61,7 +61,6 @@ import { BewertungComponent } from './components/bewertung/bewertung.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
-import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -92,7 +91,6 @@ import { EditBoatComponent } from './edit-boat/edit-boat.component';
     BoatDetailsComponent,
     CreateBoatComponent,
     BewertungComponent,
-    UploadTaskComponent,
     ConfirmDialogComponent,
     UploadTaskDocumentComponent,
     UploadTaskMultiplePicturesComponent,
