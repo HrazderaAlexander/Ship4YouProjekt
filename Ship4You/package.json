@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "compodoc -p src/tsconfig.compodoc.json -s -w"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/platform-browser": "^11.2.1",
     "@angular/platform-browser-dynamic": "^11.2.1",
     "@angular/router": "^11.2.1",
+    "@compodoc/compodoc": "^1.1.11",
     "@ng-bootstrap/ng-bootstrap": "^5.3.1",
     "angular-modal-gallery": "^5.7.1",
     "angularfire2": "^5.4.2",

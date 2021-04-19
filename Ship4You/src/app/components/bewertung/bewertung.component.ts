@@ -21,195 +21,489 @@ import { EditFeedbackComponent } from 'src/app/edit-feedback/edit-feedback.compo
   styleUrls: ['./bewertung.component.scss']
 })
 export class BewertungComponent implements OnInit {
-  currentRate = 6;
+
+  /**
+   * Variable to save the current rate of the feedback
+   */
+  protected currentRate = 6;
+
+  /**
+   * Variable to save the current date of the feedback
+   */
   mydate:string="";
-  boats: any = [];
+
+  /**
+   * Array variable to save all boats
+   */
+  private boats: any = [];
+
+  /**
+   * Variable to save a single boat
+   */
   boat: any = new BoatDTO;
+
+  /**
+   * Variable for the id of the singleBoat
+   */
   id:string = localStorage.getItem('boatForRating');
+  
+  /**
+   * Variable to save the feedback text
+   */
   feedback:string="";
-  userId:string = localStorage.getItem('userUid');
-  isChosen:boolean = false;
+
+  /**
+   * Toogle state if user is hovering about something
+   */
   isHovering: boolean;
+
+  /**
+   * Save the Id of the rating
+   */
   ratingId:string="";
+
+  /**
+   * All feedbacks in db
+   */
   feedbackDb:any[] = [];
-  feedbackByid:any = new Rating   ;
+
+  /**
+   * Save the new rating
+   */
+  feedbackByid:any = new Rating;
+  
+  /**
+   * Save all feedback datas from db
+   */
   feedbackRef: AngularFirestoreDocument<any>[] = [];
+
+  /**
+   * Save feedback by Id
+   */
   feedbackRefById: AngularFirestoreDocument<any>;
+
+  /**
+   * Save all rating numbers [6,7,4,3,..]
+   */
   ratingBoat: number[];
 
+  /**
+   * Save the state if data was loaded or not
+   */
   dataLoaded: boolean = false;
 
-  clicks: number = 0;
-  
+  /**
+   * Save the key of the boat
+   */
   boatKey: string="";
 
-  feedbackButtonPressed = false;
-
+  /**
+   * Show the task data for uploading pictures
+   */
   task: AngularFireUploadTask;
 
+  /**
+   * Save the percentage for uploading pictures
+   */
   percentage: Observable<number>;
+
+  /**
+   * Save the snapshot changes for uploading pictures
+   */
   snapshot: Observable<any>;
+
+  /**
+   * Save the downloadUrl for uploading pictures
+   */
   downloadURL: string;
-  //------------------
+  
+  /**
+   * Save the current default elevation
+   */
   defaultElevation = 2;
 
+
+  /** 
+   * Save all feedbacks in array to split them on different sides
+  */
   feedbackArray=[];
-  currentPage = 1
-  pageSizes = [4,10,50,100]
+
+  /**
+   * Number of the current page
+   */
+  currentPage = 1;
+
+  /**
+   * Save the avaiable numbers of page sizes
+   */
+  pageSizes = [4,10,50,100];
+
+  /**
+   * Set the current pageSize
+   */
   feedbackArraySize = this.pageSizes[0];
 
+  /**
+   * Save the state if page is loaded or not
+   */
   pageIsLoaded: boolean = false; //boolean if page is loaded
+  
+  /**
+   * Save the state if there is a next page
+   */
   nextPage: boolean = false; //is there a next Page
+
+  /**
+   * Save the state if there is a behind page
+   */
   behindPage: boolean = false; //is there a Page behind
 
+  /**
+   * Save the url of the picture
+   */
   url:string = "";
+
+  /**
+   * Save the displayname
+   */
   displayName:string ="";
 
-  tests: Observable<any[]>;
-
+  /**
+   * Save the state if there is no result
+   */
   showNoResult:boolean=true;
-  //------------------
 
+  /**
+   * 
+   * @param dialog 
+   * @param boatService 
+   * @param fs 
+   * @param storage 
+   * @param authService 
+   * @param datePipe 
+   * @param afs 
+   * @param router 
+   */
   constructor(public dialog: MatDialog,private boatService: BoatService, public fs: FirebaseService, private storage: AngularFireStorage, public authService: AuthService, private datePipe:DatePipe, public afs: AngularFirestore, private router: Router ) {
+    
+    /**
+     * Set the date time
+     */
     this.mydate = this.datePipe.transform(Date.now(), 'dd.MM.yyyy');
   }
 
+  /**
+   * Push all feedbacks for a side
+   */
   feedbackFunct(){
     this.feedbackArray = [];
     for (let i = 0; i < this.feedbackArraySize; i++){
       this.feedbackArray.push(i);
     }
-
   }
 
-  mostrarImagenes(username:string) {
-    this.tests = this.fs.getTestFeedback(username);
-    console.log('tests: ', this.tests);
-  }
-
+  /**
+   * Methode will be called if the user confirm the create feedback dialog
+   */
   confirmDialog(): void {
     const dialogRef = this.dialog.open(CreateFeedbackComponent, {
       maxWidth: "400px"
     });
+    /**
+     * This section will be called after closing the dialog
+     */
     dialogRef.afterClosed().subscribe(dialogResult => {
+      
+      /**
+       * Check if there are no results
+       */
       if(!dialogResult){
-       this.getFeedbackData();
+
+        /**
+         * Call the getFeedbackData() methode
+         */
+        this.getFeedbackData();
       }
       this.showNoResult = false;
     });
   }
+
+  /**
+   * Methode will be called if the user confirm the edit feedback dialog
+   */
   confirmEditFeedbackDialog(): void {
     const dialogRef = this.dialog.open(EditFeedbackComponent, {
       maxWidth: "400px"
     });
+
+    /**
+     * This section will be called after closing the dialog
+     */
     dialogRef.afterClosed().subscribe(dialogResult => {
+      
+      /**
+       * Check if there are no results
+       */
       if(!dialogResult){
+
+        /**
+         * Call the getFeedbackData() methode
+         */
        this.getFeedbackData();
       }
       this.showNoResult = false;
     });
   }
 
+  /**
+   * Methode to switch the pages
+   * 
+   * @param pageNum -> to wich page will you go
+   */
   changePage(pageNum){
+    
+    /**
+     * Check if the page is aviable
+     */
     if(pageNum>=1 && (this.feedbackDb.length-1)/this.feedbackArraySize) {
+      
+      /**
+       * Set the currentPage 
+      */
       this.currentPage = pageNum;
 
+      /**
+       * Check if pageNum is 1
+       */
       if (pageNum == 1){
-        this.behindPage = true;
 
+        /**
+          * Set the behindPage to true
+          */
+        this.behindPage = true;
       }
 
+      /**
+       * Check if nextPage is true
+       */
       if (this.nextPage == true){
+
+        /**
+         * Set nextPage to false
+         */
         this.nextPage = false;
       }
-
     }
-
   }
 
+  /**
+   * Methode which returns the max page
+   */
   getMaxPage(){
     return Math.ceil((this.feedbackDb.length-1)/this.feedbackArraySize);
   }
 
+  /**
+   * Methode to go to last aviable page
+   */
   changeToLastPage(){
+
+    /**
+     * Set the current page
+     * 
+     * Calls the getMaxPage() methode
+     */
     this.currentPage =  this.getMaxPage()//Get Max
+    
+    /**
+     * Set nextPage to true
+     */
     this.nextPage = true;
 
+    /**
+     * Check if there is a behindPage
+     */
     if (this.behindPage == true){
+      /**
+       * Set behindPage to false
+       */
       this.behindPage = false;
     }
   }
 
+  /**
+   * 
+   * @param minus -> how much pages minus
+   */
   minusPage(minus) {
+    /**
+     * Check if page is aviable
+     */
     if(this.currentPage-minus>=1 && this.currentPage-minus<=(this.feedbackDb.length-1)/this.feedbackArraySize) {
+      
+      /**
+       * Set current aviable page
+       */
       this.currentPage = this.currentPage-minus
 
+      /**
+       * Check if page is 1
+       */
       if (this.currentPage == 1){ //currentPage = 1
+        
+        /**
+         * Set behind page to true
+         */
         this.behindPage = true;
       }
 
+      /**
+       * Check if nextPage is true
+       */
       if (this.nextPage == true){
+
+        /**
+         * Set nextPage to false
+         */
         this.nextPage = false;
       }
-
     }
   }
 
+  /**
+   * 
+   * @param plus -> how much pages plus
+   */
   plusPage(plus) {
+
+    /**
+     * Check if page is aviable
+     */
     if(this.currentPage+plus>=1 && this.currentPage+plus<=Math.ceil((this.feedbackDb.length)/this.feedbackArraySize)) {
+      
+      /**
+       * Set current page
+       */
       this.currentPage = this.currentPage+plus;
 
+      /**
+       * Check if currentPage is the max page
+       */
       if (this.currentPage == this.getMaxPage()){
+        /**
+         * Set nextPage to true
+         */
         this.nextPage = true;
       }
 
+      /**
+       * Check if behind page is true
+       */
       if (this.behindPage == true){
+
+        /**
+         * Set behind page to false
+         */
         this.behindPage = false;
       }
     }
   }
 
-
-  // Simulate click function
-   clickButton() {
-    document.getElementById('btn1').click();
-
-  }
-
-  //reload page
-
-  files: File[] = [];
-
+  /**
+   * 
+   * @param event -> is there an event true or false
+   */
   toggleHover(event: boolean) {
+
+    /**
+     * Set hovering to the event state
+     */
     this.isHovering = event;
   }
 
-  onDrop(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      this.files.push(files.item(i));
-      //this.file = files.item(i);
-      this.startUpload(files.item(i))
-    }
-    //if (this.file != null){
-      //this.startUpload(file);
-    //}
-  }
 
+  /**
+   * Will be called at first
+   */
   ngOnInit() {
+    /**
+     * Get the current feedback
+     */
     this.afs.collection(localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName')).valueChanges().subscribe(v => this.ratingId = `${v.length}`);
+    
+    /**
+     * Set feedbackBoatId to localstorage
+     */
     localStorage.setItem("feedbackBoatId", localStorage.getItem('boatForRatingBrand')+localStorage.getItem('boatForRatingName'));
-    console.log("FeedbackBoatId " + localStorage.getItem("feedbackBoatId"));
+    
+    /**
+     * Get all boats
+     */
     this.getBoatsList();
+    
+    /**
+     * Get the currentUser
+     */
     const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
 
+    /**
+     * Set picture url
+     */
     feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
+    
+    /**
+     * Set the displayName
+     */
     feedbackRef.valueChanges().subscribe(x => this.displayName = x.displayName);
 
+    /**
+     * Calls feedback function
+     */
     this.feedbackFunct();
+
+    /**
+     * Set the behindpage to true
+     */
     this.behindPage = true;
+
+    /**
+     * Calls the confirm dialog methode
+     */
     this.confirmDialog();
   }
 
+  /**
+   * Save all pictures
+   */
+  files: File[] = [];
+
+  /**
+   * 
+   * @param files -> the current pictures
+   */
+  onDrop(files: FileList) {
+
+    /**
+     * Go through the current pictures
+     */
+    for (let i = 0; i < files.length; i++) {
+      
+      /**
+       * Push it to array
+       */
+      this.files.push(files.item(i));
+
+      /**
+       * Calls other mmethode
+       */
+      this.startUpload(files.item(i))
+    }
+  }
+
+  /**
+   * 
+   * @param file get the current file
+   */
   startUpload(file) {
 
     // The storage path
@@ -228,17 +522,32 @@ export class BewertungComponent implements OnInit {
       tap(console.log),
       // The file's download URL
       finalize( async() =>  {
+
+        /**
+         * Set download url
+         */
         this.downloadURL = await ref.getDownloadURL().toPromise();
 
+        /**
+         * Set downloadUrl to collection
+         */
         this.afs.collection('files').add( { downloadURL: this.downloadURL, path });
       }),
     );
   }
 
+  /**
+   * 
+   * @param snapshot -> the current snapshot
+   * @returns the state
+   */
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
+  /**
+   * Get all boats
+   */
   getBoatsList() {
     this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
@@ -248,25 +557,62 @@ export class BewertungComponent implements OnInit {
       )
     ).subscribe(boats => {
       this.boats = boats;
+      /**
+       * Calls the singleBoat
+       */
       this.getSingleBoat();
     });
 
+    /**
+     * Set all data loaded to true
+     */
     this.dataLoaded = true;
-    console.log("Data" + this.dataLoaded);
   }
 
-  getSingleBoat(): any{               //SingleCustomer
+  /**
+   * 
+   * @returns a single boat or null
+   */
+  getSingleBoat(): any{         
 
+    /**
+     * Get the whole number of boats
+     */
     var c = localStorage.getItem('numberOfBoats');
+    
+    /**
+     * Check if there are more then null boats
+     */
     if(!isNaN(Number(c))){
+      /**
+       * Set the counter variable
+       */
       var counter = Number(c);
+
+      /**
+       * Go through the boats
+       */
       for(let i = 0; i < counter;i++){
+
+        /**
+         * Check if id is the same
+         */
         if(this.id == this.boats[i].key){
+          
+          /**
+           * Set the boat dto to the single boat
+           */
           this.boat = this.boats[i];
-          console.log("BoatWithRating " + this.boat.allReatings);
+          
+          /**
+           * Set all reatings
+           */
           this.ratingBoat = this.boat.allReatings;
+          
+          /**
+           * Set the key
+           */
           this.boatKey = this.boat.key;
-          console.log("BoatKey " + this.boatKey);
         }
       }
       return this.boat;
@@ -277,38 +623,79 @@ export class BewertungComponent implements OnInit {
     }
   }
 
-  tmp:number = 0;
 
+  /**
+   * Methode which save the feedbacks of the boat to array
+   */
   getFeedbackData() {
+    /**
+     * Go trough array
+     */
     for(let i =0; i < parseInt(this.ratingId); i++){
+      /**
+       * Get current feedback
+       */
       this.feedbackRef[i] = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${i}`);
       this.feedbackRef[i].valueChanges().subscribe(item =>
-        {
-          this.feedbackDb[i] = item
-        });
+      {
+        /**
+         * Set feedback
+         */
+        this.feedbackDb[i] = item
+      });
     }
-    //this.feedbackButtonPressed = true;
-    this.pageIsLoaded = true; //set to true if page is loaded
+    /**
+     * Set to true if page is loaded
+     */
+    this.pageIsLoaded = true;
   }
 
+  /**
+   * For edit
+   * @param id -> id of the feedback
+   */
   getFeedbackDataById(id:string){
+
+    /**
+     * Get the current feedback
+     */
     this.feedbackRefById = this.afs.doc(`${localStorage.getItem('boatForRatingBrand') + localStorage.getItem('boatForRatingName')}/${id}`);
     this.feedbackRefById.valueChanges().subscribe(item => {
-      this.feedbackByid = item;
-      localStorage.setItem('FeedbackByIdData', JSON.stringify(item));
       
+      /**
+       * Save the current feedback
+       */
+      this.feedbackByid = item;
+      
+      /**
+       * Save the current feedback to localstorage
+       */
+      localStorage.setItem('FeedbackByIdData', JSON.stringify(item));
     })
 
+    /**
+     * Make a timeout to get the feedback data
+     * Calls edit dialog
+     */
     setTimeout(() => {this.confirmEditFeedbackDialog();}, 5)
-
   }
 
+  /**
+   * Updates the rating of the boat
+   * 
+   * @param ratingBoat -> current rating
+   */
   updateRatingArray(ratingBoat: any) {
     this.boatService
       .updateBoat(this.boatKey, { allReatings: ratingBoat })
       .catch(err => console.log(err));
   }
 
+  /**
+   * Update the rating sum
+   * 
+   * @param ratingDiv div of the ratings
+   */
   updateRatingSum(ratingDiv: any)
   {
     this.boatService
@@ -316,29 +703,51 @@ export class BewertungComponent implements OnInit {
     .catch(err => console.log(err));
   }
 
+  /**
+   * Update the Boat stats
+   */
   updateBoatStats(){
+    /**
+     * Save the current rate to array
+     */
     this.ratingBoat.push(this.currentRate);
+
+    /**
+     * Calls updateRating methode
+     */
     this.updateRatingArray(this.ratingBoat);
 
+    /**
+     * Sum of all reatings
+     */
     var sum = this.ratingBoat.reduce((acc, cur) => acc + cur, 0);
-    console.log("Sum: " + sum);
 
+    /**
+     * Div of all reatings
+     */
     var div = sum/ (this.ratingBoat.length - 1);
-    console.log("Div " + div);
 
-
+    /**
+     * Calls updateRatingSum() methode
+     */
     this.updateRatingSum(div)
   }
 
+  /**
+   * Methode to get back to dashboard
+   */
   goToDashboard(){
     this.router.navigateByUrl("/dashboard");
   }
 
+  /**
+   * 
+   * @param ratingId -> get the Feedback id for edit
+   */
   editFeedback(ratingId:string){
+    /**
+     * Calls the getFeedbackDataById() methode
+     */
     this.getFeedbackDataById(ratingId);
-  }
-
-  deleteFeedback(ratingId:string){
-    console.log('Ratingid to delete: ', ratingId);
   }
 }

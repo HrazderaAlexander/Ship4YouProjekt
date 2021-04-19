@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angularfirebase-authentication documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angularfirebase-authentication documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>Types</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/components/boats/create-boat/create-boat.component.ts</code>
+        </p>
+
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#value">value</a>
+                                </li>
+                                <li>
+                                        <a href="#viewValue">viewValue</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="value"></a>
+                                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>value:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="viewValue"></a>
+                                        <span class="name"><b>viewValue</b><a href="#viewValue"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>viewValue:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;;
+import { AngularFirestore } from &#x27;@angular/fire/firestore&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { ImageService } from &#x27;src/app/shared/image.service&#x27;;
+import { AuthService } from &#x27;src/app/shared/services/auth.service&#x27;;
+import { finalize, map } from &#x27;rxjs/operators&#x27;;
+import { BoatDTO } from &#x27;../boat&#x27;;
+import { BoatService } from &#x27;../boat.service&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { AngularFireStorage } from &#x27;@angular/fire/storage&#x27;;
+import { FormGroup } from &#x27;@angular/forms&#x27;;
+import { FirebaseService } from &#x27;src/app/shared/services/firebase.service&#x27;;
+
+interface Types {
+  value: string;
+  viewValue: string;
+}
+
+@Component({
+  selector: &#x27;app-create-boat&#x27;,
+  templateUrl: &#x27;./create-boat.component.html&#x27;,
+  styleUrls: [&#x27;./create-boat.component.scss&#x27;]
+})
+export class CreateBoatComponent implements OnInit {
+
+  boat: BoatDTO &#x3D; new BoatDTO();
+  submitted &#x3D; false;
+  boats: BoatDTO[] &#x3D; [];
+
+  ID : string[] &#x3D; [];
+  IDCounter : number &#x3D; 0;
+  boolCheck : boolean &#x3D; false;
+
+  selectedFile: FileList | null;
+  uploadPercent: Observable&lt;number&gt;;
+  uploadPercentDocument: Observable&lt;number&gt;;
+  downloadURLObservable: Observable&lt;string&gt;;
+  downloadURLObservableDocument: Observable&lt;string&gt;;
+  forma: FormGroup;
+  tests: Observable&lt;any[]&gt;;
+
+  description: string;
+
+  constructor(private boatService: BoatService, private router: Router, public authService: AuthService,
+    public ngZone: NgZone, private storage: AngularFireStorage, private fs: FirebaseService,
+    private afs: AngularFirestore, private service: ImageService
+) { }
+
+  ngOnInit() {
+    this.getBoat();
+    this.mostrarImagenes();
+    this.mostrarDocuments();
+  }
+
+  isHovering: boolean;
+
+  files: File[] &#x3D; [];
+  filesDocuments: File[] &#x3D; [];
+  filesPictures: File[] &#x3D; [];
+
+  toggleHover(event: boolean) {
+    this.isHovering &#x3D; event;
+  }
+
+  types: Types[] &#x3D; [
+    {value: &#x27;Sailingboat&#x27;, viewValue: &#x27;Sailingboat&#x27;},
+    {value: &#x27;Motorboat&#x27;, viewValue: &#x27;Motorboat&#x27;}
+  ]
+
+  onDrop(files: FileList) {
+    for (let i &#x3D; 0; i &lt; files.length; i++) {
+      //Picture.saveFilePath &#x3D; this.boatBrand + this.boatName;
+      if (!this.validateFile(files[0].name)) {
+        console.log(&#x27;Selected file format is not supported&#x27;);
+        alert(&quot;Selected file format is not supported! (Allowed: .jpeg, .jpg, .png)&quot;);
+        return false;
+      }
+      else{
+        if(this.checkID() &#x3D;&#x3D; -1){
+          this.files.push(files.item(i));
+        }
+        else{
+          alert(&quot;All fields are required!&quot;);
+        }
+      }
+    }
+  }
+
+  onDropMult(files: FileList) {
+    for (let i &#x3D; 0; i &lt; files.length; i++) {
+      //Picture.saveFilePath &#x3D; this.boatBrand + this.boatName;
+      if (!this.validateFile(files[0].name)) {
+        console.log(&#x27;Selected file format is not supported&#x27;);
+        alert(&quot;Selected file format is not supported! (Allowed: .jpeg, .jpg, .png)&quot;);
+        return false;
+      }
+      else{
+        if(this.checkID() &#x3D;&#x3D; -1){
+          this.filesPictures.push(files.item(i));
+        }
+        else{
+          alert(&quot;All fields are required!&quot;);
+        }
+      }
+    }
+  }
+
+  onDropDocument(files: FileList) {
+    for (let i &#x3D; 0; i &lt; files.length; i++) {
+      //Picture.saveFilePath &#x3D; this.boatBrand + this.boatName;
+      if (!this.validateDocument(files[0].name)) {
+        console.log(&#x27;Selected file format is not supported&#x27;);
+        alert(&quot;Selected file format is not supported! (Allowed: .docx, .pdf, .xlsx, .txt)&quot;);
+        return false;
+      }
+      else{
+        if(this.checkID() &#x3D;&#x3D; -1){
+          this.filesDocuments.push(files.item(i));
+        }
+        else{
+          alert(&quot;All fields are required!&quot;);
+        }
+      }
+    }
+  }
+
+  validateFile(name: String) {
+    var ext &#x3D; name.substring(name.lastIndexOf(&#x27;.&#x27;) + 1);
+    if (ext.toLowerCase() &#x3D;&#x3D; &#x27;png&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;jpeg&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;jpg&#x27;) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+validateDocument(name: String) {
+  var ext &#x3D; name.substring(name.lastIndexOf(&#x27;.&#x27;) + 1);
+  if (ext.toLowerCase() &#x3D;&#x3D; &#x27;docx&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;pdf&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;xlsx&#x27;) {
+      return true;
+  }
+  else {
+      return false;
+  }
+}
+
+  getBoat(){
+    this.boatService.getBoatsList().snapshotChanges().pipe(
+      map(changes &#x3D;&gt;
+        changes.map(c &#x3D;&gt;
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(boats &#x3D;&gt; {
+
+      this.boats &#x3D; boats;
+    });
+  }
+
+    checkID() : number{
+      this.IDCounter &#x3D; 0;
+      for(let i &#x3D; 0; i &lt; this.boats.length; i++)
+      {
+        //console.log(this.boats[i].brand+this.boats[i].name);
+        this.ID[this.IDCounter] &#x3D; this.boats[i].brand+this.boats[i].name;
+        //console.log(localStorage.getItem(&quot;createBoatId&quot;));
+        this.IDCounter++;
+      }
+      //console.log(this.IDCounter);
+
+    for(var i &#x3D; 0; i&lt; this.IDCounter; i++){
+      if(this.ID[i] &#x3D;&#x3D;&#x3D; this.boat.brand+this.boat.name){
+        this.boolCheck &#x3D; false;
+        return 0;
+      }
+      else if(this.boat.brand &#x3D;&#x3D; &quot;&quot; ||  this.boat.name &#x3D;&#x3D; &quot;&quot;){
+        this.boolCheck &#x3D; false;
+        return 1;
+      }
+      else
+        this.boolCheck &#x3D; true;
+    }
+    if(this.boat.brand &#x3D;&#x3D; null ||  this.boat.name &#x3D;&#x3D; null || this.boat.cabins &#x3D;&#x3D; null ||this.boat.length &#x3D;&#x3D; null || this.boat.lessor &#x3D;&#x3D; null
+      || this.boat.location &#x3D;&#x3D; null || this.boat.masts &#x3D;&#x3D; null || this.boat.numberOfPeople &#x3D;&#x3D; null || this.boat.vintage &#x3D;&#x3D; null || this.boat.sail &#x3D;&#x3D; null || this.boat.port &#x3D;&#x3D; null || this.boat.linkToRentSide &#x3D;&#x3D; null || this.boat.creatorEmail &#x3D;&#x3D; null){
+        this.boolCheck &#x3D; false;
+        return 2;
+    }
+
+    if(this.boolCheck)
+      return -1;
+    else
+      this.IDCounter &#x3D; 0;
+
+  }
+
+  goToMultUpload(){
+    //
+    console.log(&quot;Desc &quot; + this.description);
+    if (this.description !&#x3D; null){
+      localStorage.setItem(&quot;titlePictureDescription&quot;, this.description);
+    }
+    //
+
+
+    this.boatService.tmpBoat &#x3D; this.boat;
+    localStorage.setItem(&#x27;tmpBoat&#x27;, JSON.stringify(this.boat));
+    console.log(&quot;TmpBoat &quot; + this.boatService.tmpBoat)
+    localStorage.setItem(&#x27;createBoatId&#x27;, this.boat.brand+this.boat.name);
+    console.log(localStorage.getItem(&quot;createBoatId&quot;));
+    this.router.navigateByUrl(&quot;multiple-upload&quot;);
+  }
+
+  goToDashboard(){
+    this.router.navigateByUrl(&quot;/dashboard&quot;);
+  }
+
+  detectFiles(event) {
+    this.selectedFile &#x3D; event.target.files[0];
+    if (event.target.files &amp;&amp; event.target.files[0]) {
+      var reader &#x3D; new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload &#x3D; (event) &#x3D;&gt; { // called once readAsDataURL is completed
+        this.url &#x3D; (event.target as FileReader).result;  //event.target.result.toString();
+      }
+    }
+
+    this.uploadFile();
+  }
+
+  fileName: string;
+  fileEnd: string;
+
+  detectFilesDocuments(event) {
+    this.selectedFile &#x3D; event.target.files[0];
+
+    this.fileName &#x3D; event.target.files[0].name;
+
+    console.log(&quot;FileNAME: &quot; + this.fileName)
+
+    var ext &#x3D; this.fileName.substring(this.fileName.lastIndexOf(&#x27;.&#x27;) + 1);
+
+    	if (ext.toLowerCase() &#x3D;&#x3D; &#x27;txt&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;pdf&#x27; || ext.toLowerCase() &#x3D;&#x3D; &#x27;xlsx&#x27;) {
+        this.fileEnd &#x3D; ext.toLowerCase();
+        console.log(&quot;FILEEND: &quot; + this.fileEnd);
+      }
+
+    this.uploadFileDocuments();
+  }
+  uploadUrlArrayDocuments: Observable&lt;String&gt;[] &#x3D; [];
+
+  uploadFileDocuments() {
+
+    const myTest &#x3D; this.afs.collection(&quot;documentUpload&quot;).ref.doc();
+    //console.log(myTest.id)
+
+    const file &#x3D; this.selectedFile
+    const filePath &#x3D; &#x60;${myTest.id}/name1&#x60;;
+    const fileRef &#x3D; this.storage.ref(filePath);
+    const task &#x3D; this.storage.upload(filePath, file);
+
+    this.uploadPercentDocument &#x3D; task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() &#x3D;&gt; {
+        fileRef.getDownloadURL().toPromise().then( (url) &#x3D;&gt; {
+          this.downloadURLObservableDocument &#x3D; url;
+          this.uploadUrlArrayDocuments.push(this.downloadURLObservable);
+          localStorage.setItem(&quot;downloadDocumentUrl&quot;, url);
+
+          myTest.set({
+            documents : this.downloadURLObservable,
+            myId : myTest.id
+          })
+
+
+
+        }).catch(err&#x3D;&gt; { console.log(err) });
+      })
+    )
+    .subscribe()
+  }
+
+  mostrarDocuments() {
+    this.tests &#x3D; this.fs.getDocumentsCreate();
+  }
+
+  uploadUrlArray: Observable&lt;String&gt;[] &#x3D; [];
+url;
+  uploadFile() {
+
+    const myTest &#x3D; this.afs.collection(&quot;test76&quot;).ref.doc();
+    //console.log(myTest.id)
+    const file &#x3D; this.selectedFile
+    const filePath &#x3D; &#x60;${myTest.id}/name1&#x60;;
+    const fileRef &#x3D; this.storage.ref(filePath);
+    const task &#x3D; this.storage.upload(filePath, file);
+
+    this.uploadPercent &#x3D; task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() &#x3D;&gt; {
+        fileRef.getDownloadURL().toPromise().then( (url) &#x3D;&gt; {
+          this.downloadURLObservable &#x3D; url;
+          this.uploadUrlArray.push(this.downloadURLObservable);
+          localStorage.setItem(&quot;downloadUrl&quot;, url);
+
+          myTest.set({
+            imagenes : this.downloadURLObservable,
+            myId : myTest.id
+          })
+
+
+
+        }).catch(err&#x3D;&gt; { console.log(err) });
+      })
+    )
+    .subscribe()
+  }
+
+  mostrarImagenes() {
+    this.tests &#x3D; this.fs.getTestCreate();
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Types.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
