@@ -1,0 +1,32 @@
+<mat-toolbar class="mat-toolbar">
+  <img height="70px" src="../../../assets/img/ship4youWeiss.png">
+  <span class="example-spacer"></span>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/user-details')"><strong>User Profile</strong></a>
+  <a class="tool-but2" type="button" *ngIf="authService.isLoggedIn" mat-button color="accent" (click)="authService.router.navigateByUrl('/dashboard')">Dashboard</a>
+
+ </mat-toolbar>
+
+<div class="container py-4">
+
+    <input type="file" multiple (change)="detectFiles($event)">
+    <button (click)="uploadFile()" class="btn">UPLOAD</button>
+    <div>{{ uploadPercent | async }}</div>
+    <a [href]="downloadURL">{{ downloadURL }}</a>
+
+    <hr>
+    <div class="row">
+      <div class="col-lg-2 col-6" *ngFor="let test of downloadURL">
+        <div class="card">
+          <img class="card-img-top" src="{{ test }}" width="100%">
+        </div>
+      </div>
+    </div>
+    <div>
+      <input style="width:20%; margin-top: 2%;" [hidden]="downloadURL.length == 0" type="text" [(ngModel)]="description" class="form-control" id="sail" required placeholder="What can you see?">
+    </div>
+    <div>
+      <button class="btn" id="btn-submit" (click)="onSubmit()">Submit</button>
+
+    </div>
+
+  </div>

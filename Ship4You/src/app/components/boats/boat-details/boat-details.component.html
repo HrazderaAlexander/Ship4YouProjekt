@@ -1,0 +1,104 @@
+<div *ngIf="boat">
+  <mat-accordion class="example-headers-align">
+    <div >
+      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="!favButtonPressed && !showButtons" mat-mini-fab color="" title="Add to Favourite" (click)="clickFavButton(boat, true)">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="favButtonPressed && !showButtons" mat-mini-fab color="warn" title="Remove from Favourites" (click)="clickFavButton(boat, false)">
+        <mat-icon>favorite</mat-icon>
+      </button>
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" matBadge="{{feedbackLength}}" [matBadgeHidden]="!authService.isLoggedIn" matBadgeColor="accent" matBadgeSize="medium" title="Feedback" mat-fab color="accent" (click)="clickRating(boat.brand, boat.name)">
+          <mat-icon style="color:   accent">recommend</mat-icon>
+        </button>
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Edit Picture" mat-fab color="primary" (click)="editPhotoBoat((boat.brand + boat.name), boat.key)">
+          <mat-icon>photo</mat-icon>
+        </button>
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+  <mat-expansion-panel appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20">
+    <mat-expansion-panel-header class="disable_ripple">
+      <mat-panel-title>
+          <label class="hoverable" for="{{boat.key}}">
+            <app-image-slider [boat]='boat'></app-image-slider>
+            <div class="background"></div>
+          </label>
+          <br/>
+      </mat-panel-title>
+      <mat-panel-description>
+        <div>
+          <h5 class="boat-data">
+            Boat name: {{boat.name}}
+          </h5>
+          <h5 class="boat-data">
+            Location: {{boat.port}} - {{boat.location}}
+          </h5>
+          <br>
+          <p>
+            <ng-template #t let-fill="fill">
+              <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+              </span>
+            </ng-template>
+            
+            <ngb-rating style="outline:none !important" [(rate)]="boat.rating" [max]="5" title="{{boat.rating | number:'1.1'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>
+          </p>
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-card class="mat-card">
+      <table>
+        <tr>
+          <th>Brand</th>
+          <th>Type</th>
+          <th>Lessor</th>
+          <th>Cabins</th>
+          <th>Link to Boat</th>
+        </tr>
+
+        <tr>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.brand" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.type" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.lessor" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.cabins" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.linkToRentSide" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Length</th>
+          <th>Sails</th>
+          <th>Max. people</th>
+          <th>Masts</th>
+          <th>Uploader-Email</th>
+        </tr>
+        <tr>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.length" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.sail" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.numberOfPeople" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.masts" class="form-control"></td>
+          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.creatorEmail" class="form-control"></td>
+        </tr>
+      </table>
+      <br>
+      <button *ngIf="boat.userId == userId && showButtons" [disabled]="!isEdit" title="Save information" class="btn btn-success" type="submit" (click)="saveUpdateList(boat)">
+        Save Changes
+      </button>
+      <button *ngIf="boat.userId == userId && showButtons" [disabled]="!isEdit" title="Cancel" mat-button color="warn" (click)="cancelEdit()">
+        Cancel
+      </button>
+      <a class="downloadButton" *ngIf="boat.documentUrl != null && showButtons" href="{{boat.documentUrl}}" download>
+        <button mat-button>Show Document</button>
+      </a>
+      <a class="downloadButton2" *ngIf="boat.documentUrl != null && !showButtons" href="{{boat.documentUrl}}" download>
+        <button mat-button>Show Document</button>
+      </a>
+    </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>

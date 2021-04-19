@@ -1,0 +1,130 @@
+<mat-toolbar class="mat-toolbar">
+  <img (click)="goToDashboard()" class="pointer" height="70px" src="../../../assets/img/ship4youWeiss.png">
+  <span class="example-spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button style="outline:none !important" *ngIf="authService.isLoggedIn" (click)="authService.router.navigateByUrl('/user-details')" mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>User profil</span>
+    </button>
+    <button (click)="authService.router.navigateByUrl('/dashboard')" mat-menu-item>
+      <mat-icon>home</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button (click)="authService.router.navigateByUrl('/contact-us')" mat-menu-item>
+      <mat-icon>contacts</mat-icon>
+      <span>Support</span>
+    </button>
+    <button (click)="authService.router.navigateByUrl('/about-us')" mat-menu-item>
+      <mat-icon>group</mat-icon>
+      <span>About us</span>
+    </button>
+  </mat-menu>
+   </mat-toolbar>
+
+<main role="main" class="col-md-2 ml-sm-auto col-lg-11 px-4">
+
+<h1 style="margin-left: 2%;" class="title">Boat Infos</h1>
+<br>
+<label class="hoverable" for="image_uploads">
+  <img class="profile-img" [src]="url ? url : '../../../../assets/img/insert_photo.png'">
+  <div class="hover-text">Choose file</div>
+  <div class="background"></div>
+</label>
+<input style="position: absolute;" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" onselect (change)="detectFiles($event)">
+<!--<div [hidden]="submitted" style="width: 300px;">-->
+    <div class="form-group">
+      <div *ngIf="checkID()===0" class="alert alert-danger" role="alert">
+        Bootname oder Brand existiert bereits!
+      </div>
+      <div *ngIf="checkID()===1" class="alert alert-danger" role="alert">
+        Bootname oder Brand darf nicht leer sein!
+      </div>
+        <div class="form-group">
+          <label for="name" class ="labelSize">Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="boat.name" name="name" required placeholder="Must not be empty">
+
+          <label style="margin-left: 17.5%;" for="location" class ="labelSize">Location</label>
+          <input style="margin-left: 18%;" type="text" class="form-control" id="location" [(ngModel)]="boat.location" name="location" required placeholder="Must not be empty">
+
+          <label style="margin-left: 16.7%;" for="sail">Sails</label>
+          <input style="margin-left: 36%;" type="number" class="form-control" id="sail" [(ngModel)]="boat.sail" name="sail" required placeholder="0-10">
+
+          <label style="margin-left: 17.7%;" for="cabins">Cabins</label>
+          <input style="margin-left: 54%;" type="number" class="form-control" id="cabins" [(ngModel)]="boat.cabins" name="cabins" required placeholder="0-30">
+
+        </div>
+
+        <div class="form-group">
+          <label for="port">Port</label>
+          <input type="text" class="form-control" id="port" [(ngModel)]="boat.port" name="port" required placeholder="Must not be empty">
+
+          <label style="margin-left: 18%;" for="numberOfPeople">Number of people</label>
+          <input style="margin-left: 18%;" type="number" class="form-control" id="numberOfPeople" [(ngModel)]="boat.numberOfPeople" name="numberOfPeople" required placeholder="1-30">
+
+          <label style="margin-left: 14.2%;" for="masts">Masts</label>
+          <input style="margin-left: 36%;" type="number" class="form-control" id="masts" [(ngModel)]="boat.masts" name="masts" required placeholder="0-10">
+
+          <label style="margin-left: 17.3%;" for="masts">Type</label>
+          <select style="margin-left: 54%;" class="form-control"  id="type" required [(ngModel)]="boat.type" name="type">
+              <option *ngFor="let type of types" [value]="type.value">{{type.viewValue}}</option>
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <label for="vintage">Vintage</label>
+          <input type="number" class="form-control" id="vintage" [(ngModel)]="boat.vintage" name="vintage" required placeholder="1980 - 2020">
+
+          <label style="margin-left: 17.1%;" for="brand">Brand</label>
+          <input style="margin-left: 18%;" type="text" class="form-control" id="brand" [(ngModel)]="boat.brand" name="brand" required placeholder="Must not be empty">
+
+          <label style="margin-left: 17.5%;" for="length">Length</label>
+          <input style="margin-left: 36%;" type="number" class="form-control" id="length" [(ngModel)]="boat.length" name="length" required placeholder="0m-40m">
+        </div>
+
+        <form style="margin-top:10%; margin-left: 40%;" method="post" enctype="multipart/form-data">
+
+          <label for="document_uploads">
+            <mat-icon appMaterialElevation [defaultElevation]="0" raisedElevation="20" title="PNG, JPG" style="font-size: 50px; cursor: pointer;"> upload_file</mat-icon>
+            <input style="position: absolute;" type="file" id="document_uploads" name="document_uploads" accept=".txt, .pdf, .xlsx" onselect (change)="detectFilesDocuments($event)">
+          </label>
+          <label style=" margin-left: 4%; font-size: 14px;">
+            Choose documents to upload (txt, xlsx, pdf)
+          </label>
+        </form>
+
+        <div [hidden]="uploadPercentDocument==null">{{ uploadPercentDocument | async }}%</div>
+
+        <div *ngFor="let document of uploadUrlArrayDocuments; let i = index">
+          <img *ngIf="i == uploadUrlArrayDocuments.length-1 && fileEnd == 'pdf' " class="myImg" src="../../../../assets/pdf.png">
+          <img *ngIf="i == uploadUrlArrayDocuments.length-1 && fileEnd == 'txt' " class="myImg" src="../../../../assets/txt.png">
+          <img *ngIf="i == uploadUrlArrayDocuments.length-1 && fileEnd == 'xlsx' " class="myImg" src="../../../../assets/xlsx.png">
+        </div>
+
+
+        <h1 style="margin-top: 5%;" class="title">Lessor Infos</h1>
+        <div class="form-group">
+          <label for="lessor">Lessor name</label>
+          <input type="text" class="form-control" id="lessor" [(ngModel)]="boat.lessor" name="lessor" required placeholder="Must not be empty">
+
+          <label style="margin-left: 15.6%;" for="BoatCreatorEmail">Lessor Email</label>
+          <input style="margin-left: 18%;" type="text" class="form-control" id="BoatCreatorEmail" [(ngModel)]="boat.creatorEmail" name="BoatCreatorEmail" required placeholder="max.mustermann@gmail.com">
+
+          <label style="margin-left: 15.6%;" for="boatRentSide">Link to the rent side</label>
+          <input style="margin-left: 36%;" type="text" class="form-control" id="BoatRentSide" [(ngModel)]="boat.linkToRentSide" name="boatRentSide" required placeholder="https://exampleboat.com">
+
+          <div>
+            <button style="margin-left: 70%;" [disabled]="checkID()===2" mat-button (click)="goToMultUpload()" class="next-button" >Next</button>
+          </div>
+        </div>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </main>

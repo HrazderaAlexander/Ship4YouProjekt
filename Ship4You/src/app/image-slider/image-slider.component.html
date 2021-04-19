@@ -1,0 +1,7 @@
+<div *ngIf="boat">
+  <ng-image-slider *ngIf="boat.picturesUrl != undefined" [images]="imageObject" [animationSpeed]="2" [infinite]="true" [autoSlide]="{ interval: 5, stopOnHover: true }"
+  [imageSize]="{ width: '100%', height: '30%', space: 0 }"
+  slideImage="1" #nav></ng-image-slider>
+
+  <ng-image-slider *ngIf="boat.picturesUrl == undefined" [images]="imageObject" [imageSize]="{ width: '100%', height: '30%', space: 0 }" #nav></ng-image-slider>
+</div>

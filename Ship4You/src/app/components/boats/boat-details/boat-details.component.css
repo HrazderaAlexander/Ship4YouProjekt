@@ -1,0 +1,111 @@
+.mat-expansion-panel{
+  min-width: 1000px;
+  min-height: 160px;
+  background-color:#A19682;
+  padding-left: 0%;
+  padding-top: 28% !important;
+  padding-bottom: 28%;
+}
+
+.disable_ripple{
+  background: #A19682 !important;
+}
+
+.mat-card-content{
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.mat-card{
+  display:flex;
+  flex-direction: column;
+  margin-top: 20%;
+  background-color: #ffffff22;
+  color: white;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  overflow: hidden;
+  width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.boat-data{
+  color: white;
+}
+
+.full {
+  color: #ffd740;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffd740;
+}
+
+.downloadButton{
+  margin-left: 80%;
+  color: rgba(0,0,0,.26);
+}
+.downloadButton2{
+  margin-left: 80%;
+  color: rgba(0,0,0,.26);
+}
+
+.boat-img {
+  position: absolute;
+  left: 1px;
+  height: 110% !important;
+  width: 110% !important;
+  border-radius: 50% !important;
+}
+.boat-img2 {
+  position: absolute;
+  left: 1px;
+  height: 110% !important;
+  width: 110% !important;
+  border-radius: 50% !important;
+  display: block;
+  cursor: pointer;
+}
+.hoverable{
+  position: relative;
+  display: block;
+  cursor: pointer;
+  margin-top: 70%;
+  margin-bottom: 30%;
+  height: 100%;
+  width: 100%;
+}
+
+#fileInput2{
+  display: none;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}

@@ -1,0 +1,36 @@
+.displayTable{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: darken;
+    background-color: white;
+}
+
+.authBlock{
+    background: rgb(250, 200, 220);
+    background: rgba(300, 300, 300, 0.9);
+}
+
+.or{
+    background: rgb(250, 200, 220);
+    background: rgba(300, 300, 300, 0.9);
+}
+
+.redirectToLogin{
+    color:black;
+}
+.redirect{
+    color:black;
+}
+
+
+#blockBreak{
+    margin-bottom: 3vh !important;
+}
+
+.formControl{
+    margin-bottom: 1vh;
+}

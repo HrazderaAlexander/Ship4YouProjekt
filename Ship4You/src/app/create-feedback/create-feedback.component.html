@@ -1,0 +1,52 @@
+<div class="displayTable">
+  <div class="displayTableCell">
+    <mat-card>
+      <mat-card-header>
+      <mat-card-title>
+        <h2 id="headline">Write a Feedback</h2>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <ngb-rating style="outline:none !important" [(rate)]="currentRate" [max]="5">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+      </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <textarea type="text" [(ngModel)]="feedback" class="form-control" placeholder="Argument-Text"></textarea>
+      </mat-card-content>
+      <mat-card-footer>
+
+
+        <form method="post" enctype="multipart/form-data">
+
+            <label for="image_uploads">
+              <mat-icon appMaterialElevation [defaultElevation]="0" raisedElevation="20" title="PNG, JPG" style="font-size: 30px; cursor: pointer;"> photo_library</mat-icon>
+              <input style="position: absolute;" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple (change)="detectFiles($event)">
+            </label>
+            <label style="margin-top: -15%; margin-left: 15%;">
+              Choose images to upload (PNG, JPG)
+            </label>
+
+        </form>
+        <div [hidden]="uploadPercent==null">{{ uploadPercent | async }}%</div>
+
+        <span *ngFor="let image of uploadUrlArray">
+          <img class="myImg" src="{{image}}">
+        </span>
+
+        <div style="margin-top: 15%;" class="form-footer" fxFlex="25%">
+          <span class="left-side">
+          <button mat-button (click)="onDismiss()">Cancel</button>
+          </span>
+        <span class="right-side">
+          <button mat-raised-button class="create-btn" (click)="addFeedback()">Create Feedback</button>
+        </span>
+        </div>
+
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

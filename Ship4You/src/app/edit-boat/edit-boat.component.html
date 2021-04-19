@@ -1,0 +1,47 @@
+<div class="displayTable">
+  <div class="displayTableCell">
+    <mat-card>
+      <mat-card-header>
+      <mat-card-title>
+        <h2 id="headline">Add or Remove image</h2>
+      </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!--<mat-progress-spinner [hidden]="!check" title="Saving" class="spinner-location"
+        [color]="color"
+        [mode]="mode">
+        </mat-progress-spinner>-->
+      </mat-card-content>
+      <mat-card-footer>
+
+        <form method="post" enctype="multipart/form-data">
+
+            <label for="image_uploads">
+              <mat-icon appMaterialElevation [defaultElevation]="0" raisedElevation="20" title="PNG, JPG" style="font-size: 30px; cursor: pointer;"> photo_library</mat-icon>
+              <input style="position: absolute;" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple (change)="detectFiles($event)">
+            </label>
+            <label style="margin-top: -15%; margin-left: 15%;">
+              Choose images to upload (PNG, JPG)
+            </label>
+
+        </form>
+        <div [hidden]="uploadPercent==null">{{ uploadPercent | async }}%</div>
+
+        <span *ngFor="let image of newBoat.picturesUrl">
+          <img class="myImg" src="{{image}}">
+          <mat-icon class="click-button" (click)="deleteImage(image)">delete</mat-icon>
+        </span>
+
+        <div style="margin-top: 15%;" class="form-footer" fxFlex="25%">
+          <span class="left-side">
+          <button mat-button (click)="onDismiss()">Cancel</button>
+          </span>
+        <span class="right-side">
+          <button mat-raised-button class="create-btn" (click)="save()">Save Changes</button>
+        </span>
+        </div>
+
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

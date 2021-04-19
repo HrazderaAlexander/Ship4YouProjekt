@@ -1,0 +1,40 @@
+<div class="displayTable">
+  <div class="displayTableCell">
+    <h1 mat-dialog-title>Sign In</h1>
+    <div class="authBlock">
+      
+      <div class="formGroup">
+        <input type="text" class="formControl" placeholder="Email Address" #userName required>
+      </div>
+
+      <div class="formGroup">
+        <input type="password" class="formControl" id="blockBreak" placeholder="Password" #userPassword required>
+      </div>
+
+      <!--  SignIn Api von AuthService wird aufgerufen -->
+        <div class="formGroup">
+          <input type="button" class="btn btnPrimary" style="background-color: grey;" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+        </div>
+
+      <div class="formGroup">
+        <span class="or"><span class="orInner">Or</span></span>
+      </div>
+
+      <!-- GoogleAuth Api von AuthService word aufgerufen -->
+        <div class="formGroup">
+          <div mat-dialog-actions>
+            <button type="button" class="btn googleBtn" (click)="onDismiss()">
+              <i class="fab fa-google-plus-g"></i>
+              Continue with Google
+            </button>  
+          </div>
+        </div>
+
+      <!--<div class="forgotPassword"> --> <!--Wenn man sein Passwort vergessen hat, route zu forgot-password-->
+          <button mat-button class="forgotPassword" style="color: black;" (click)="onForgotPassword()" >Forgot Password?</button>
+      <!--</div>-->
+
+
+
+</div>
+</div>
