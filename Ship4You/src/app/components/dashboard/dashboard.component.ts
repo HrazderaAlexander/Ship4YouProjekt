@@ -1,22 +1,18 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import { AuthService } from "../../shared/services/auth.service";
 import {Subject} from 'rxjs';
-import {startWith, map, window} from 'rxjs/operators';
-import { NavigationEnd, Router } from "@angular/router";
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { BoatData } from 'src/app/BoatData';
-import { Picture } from 'src/app/Picture';
-import {Observable, combineLatest} from 'rxjs'
-import { ImageService } from 'src/app/shared/image.service';
+import {map} from 'rxjs/operators';
+import { Router } from "@angular/router";
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import {Observable} from 'rxjs'
 import { BoatService } from '../boats/boat.service';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Options } from '@angular-slider/ngx-slider';
-import { FavModel } from 'src/app/shared/services/favModel';
 import { SignInComponent } from '../sign-in/sign-in.component';
-import { auth } from 'firebase';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,78 +21,120 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 })
 export class DashboardComponent implements OnInit {
 
-  formatLabel(value: number) {
-    return value + 'm';
-  }
-  formatLabelYear(value: number) {
-    return value;
-  }
-
+  /**
+   * Save state if menu is open or not
+   */
   menuOpen:boolean = false;
-  customers: any;
-  selected = 'option2';
 
+  /**
+   * Save all boats
+   */
+  boats: any;
+
+  /**
+   * Variable to save all favourites from db
+   */
   favRef: AngularFirestoreDocument<any>;
 
+  /**
+   * For searching
+   */
   startAt = new Subject();
   endAt = new Subject();
 
+  /**
+   * Variable to save location
+   */
   loc= ""
+  /**
+   * Variable to save name
+   */
   boatName=""
+  /**
+   * Variable to check if page is loaded
+   */
   isLoaded: boolean = false;
-
-  //Button
-  locationButtonBool: boolean = true;
-  nameButtonBool: boolean = true;
-
-  //////
+  
+  /**
+   * Variables for filtering
+   */
   searchLocationString:string="";
   searchBoatNameString:string="";
   searchLessorString:string="";
   searchBrandString:string="";
   searchPortString:string="";
 
-  isUsedBoolean:Boolean = false;
-
+  /**
+   * FavModel to save favourite boat
+   */
   favModel: any;
 
+  /**
+   * Searching
+   */
   startobs = this.startAt.asObservable();
   endobs = this.endAt.asObservable();
-//////////
-navigationSubscription;
 
-feedbackData : any;
-favCustomer: any[] = [];
-favCustomerSort: any[] = [];
-countFav = 0;
+  /**
+   * Variable to save feedback data
+   */
+  feedbackData : any;
 
-showFav: boolean = false;
+  /**
+   * Variable to save all favourite boats
+   */
+  favBoats: any[] = [];
 
-  constructor(
-    public dialog: MatDialog,
-    public authService: AuthService,
-    public router: Router,
-    public ngZone: NgZone,
-    private afs: AngularFirestore, private service: ImageService, private boatService: BoatService
-  )
+  /**
+   * Variable to save sorted favourite boats
+   */
+  favBoatsSort: any[] = [];
+
+  /**
+   * Save the count of favourite boats
+   */
+  countFav = 0;
+
+  /**
+   * Visible or disable favourite boats
+   */
+  showFav: boolean = false;
+
+  /**
+   * 
+   * @param dialog 
+   * @param authService 
+   * @param router 
+   * @param ngZone 
+   * @param afs 
+   * @param service 
+   * @param boatService 
+   * @param datePipe 
+   */
+  constructor(public dialog: MatDialog, public authService: AuthService, public router: Router, public ngZone: NgZone,private afs: AngularFirestore, private boatService: BoatService, private datePipe:DatePipe)
   {
-
   }
 
+  /**
+   * Save all images
+   */
   imageList: any[];
-  rowIndexArray: any[];
 
+  /**
+   * Save all favourite booleans
+   */
   fav:boolean[]=[];
 
-  size = 0;
-
-  //length-Slider
+  /**
+   * Options for the filtering items
+   */
   value: number = 0;
   highValue: number = 100;
   options: Options = {
     floor: 0,
     ceil: 100
   };
+
   //sails-Slider
   sailsValue: number = 0;
   sailsHighValue: number = 10;
@@ -104,6 +142,7 @@ showFav: boolean = false;
     floor: 0,
     ceil: 10
   };
+
   //masts-Slider
   mastsValue: number = 0;
   mastsHighValue: number = 10;
@@ -111,6 +150,7 @@ showFav: boolean = false;
     floor: 0,
     ceil: 10
   };
+
   //cabins-Slider
   cabinsValue: number = 0;
   cabinsHighValue: number = 100;
@@ -118,13 +158,15 @@ showFav: boolean = false;
     floor: 0,
     ceil: 100
   };
+
   //year-Slider
   yearValue: number = 1800;
-  yearHighValue: number = 2030;
+  yearHighValue: number = parseInt(this.datePipe.transform(Date.now(), 'yyyy'));
   optionsYear: Options = {
     floor: 1800,
-    ceil: 2030
+    ceil: parseInt(this.datePipe.transform(Date.now(), 'yyyy'))
   }
+
   //amountPeople-Slider
   amountPeopleValue: number = 1;
   amountPeopleHighValue: number = 100;
@@ -132,51 +174,87 @@ showFav: boolean = false;
     floor: 1,
     ceil: 100
   };
-  getValues(value, highValue){
-    console.log(value);
-    console.log(highValue);
-  }
+
+  /**
+   * Save all userIds
+   */
   allUserIds : string[] = [];
+  
+  /**
+   * Save the userId count
+   */
   userIdCounter = 0;
 
+  /**
+   * Controls of the data fiels
+   */
   myControl = new FormControl();
   namesControl = new FormControl();
   lessorControl = new FormControl();
   brandControl = new FormControl();
   portControl = new FormControl();
-  //optionsArray: string[] = this.allLocations;
+  
+  /**
+   * Save filtering options
+   */
   filteredOptions: Observable<string[]>;
   filteredLocations: Observable<string[]>;
   filteredLessors: Observable<string[]>;
   filteredBrand: Observable<string[]>;
   filteredPort: Observable<string[]>;
 
+  /**
+   * Will be called at first
+   */
   ngOnInit() {
-    this.getCustomersList();
+
+    /**
+     * Get all boats
+     */
+    this.getBoatList();
+
+    /**
+     * Set localstorage
+     */
     this.afs.collection('users').valueChanges().subscribe(s => localStorage.setItem('size', `${s.length}`));
 
+    /**
+     * Set ref collection
+     */
     const ref = this.afs.collection('users');
     const snapshot = ref.get();
+
+    /**
+     * Set user data
+     */
     snapshot.forEach(doc => {
       doc.forEach(d => {
         this.allUserIds[this.userIdCounter] = d.id;
         this.userIdCounter++;
       })
+      /**
+       * Set all user to localstorage
+       */
       localStorage.setItem('userIds', JSON.stringify(this.allUserIds));
     });
   }
-  files = [];
 
-  getCustomersList() {
+  /**
+   * Methode to get all boats
+   */
+  getBoatList() {
     this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(customers => {
+    ).subscribe(boats => {
 
-      this.customers = customers.sort((n1, n2)=>
+      /**
+       * Set all boats sorted
+       */
+      this.boats = boats.sort((n1, n2)=>
       {
         if (n1.rating < n2.rating) {
           return 1;
@@ -188,91 +266,202 @@ showFav: boolean = false;
 
         return 0;
       });
-      localStorage.setItem('numberOfBoats', this.customers.length);
-      localStorage.setItem('customerArray', JSON.stringify(this.customers));
-      console.log('size: ', this.customers.length);
-      console.log('customers: ', this.customers);
+      /**
+       * Set number of boats to localstorage
+       */
+      localStorage.setItem('numberOfBoats', this.boats.length);
+
+      /**
+       * Set all boats to localstorage
+       */
+      localStorage.setItem('customerArray', JSON.stringify(this.boats));
     });
   }
 
+  /**
+   * Methode to get all favourite boats
+   */
   getAllFavBoats(){
+
+    /**
+     * Check the state of favourites
+     */
     if(!this.showFav)
     {
+      /**
+       * Set showFav to true
+       */
       this.showFav = true;
+
+      /**
+       * Go through all boats
+       */
       for(let i = 0; i < parseInt(localStorage.getItem('numberOfBoats')); i++)
       {
-        this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.customers[i].brand + this.customers[i].name}`);
+        /**
+         * Get the favourite boats
+         */
+        this.favRef = this.afs.doc(`${localStorage.getItem('userUid')}/${this.boats[i].brand + this.boats[i].name}`);
+        
         this.favRef.valueChanges().subscribe(item =>
           {
             this.favModel = item;
-              if(!this.favCustomer.includes(this.customers[i]) && this.favModel.boatId == this.customers[i].key && this.favModel.favourite){
-                this.favCustomer[this.countFav] = this.customers[i];
-                this.countFav++;
-                this.favCustomerSort = this.favCustomer.sort((n1,n2) => {
-                  if (n1.rating < n2.rating) {
-                      return 1;
-                  }
+            /**
+             * Check if id is euqal
+             */
+            if(!this.favBoats.includes(this.boats[i]) && this.favModel.boatId == this.boats[i].key && this.favModel.favourite){
+              
+              /**
+               * Set favboats to this.boats
+               */
+              this.favBoats[this.countFav] = this.boats[i];
+              
+              /**
+               * Set count one higher
+               */
+              this.countFav++;
+              /**
+               * Sort boats
+               */
+              this.favBoatsSort = this.favBoats.sort((n1,n2) => {
+                if (n1.rating < n2.rating) {
+                    return 1;
+                }
 
-                  if (n1.rating > n2.rating) {
-                      return -1;
-                  }
+                if (n1.rating > n2.rating) {
+                    return -1;
+                }
 
-                  return 0;
-                });
-
-              }
+                return 0;
+              });
+            }
           });
       }
     }
     else{
+      /**
+       * Set showFav to false
+       */
       this.showFav = false;
-      this.favCustomer= [];
-      this.favCustomerSort=[];
+
+      /**
+       * Clear array of favourite boats
+       */
+      this.favBoats= [];
+
+      /**
+       * Clear array of sorted favourite boats
+       */
+      this.favBoatsSort=[];
+
+      /**
+       * Set favModel to null
+       */
       this.favModel = null;
+
+      /**
+       * Set the favourite boat count to 0
+       */
       this.countFav = 0;
     }
   }
 
+  /**
+   * Open logion dialog
+   */
   confirmDialog(): void {
+    /**
+     * Message of the dialog
+     */
     const message = `Do you wanna login now?`;
 
+    /**
+     * Data of the dialog
+     */
     const dialogData = new ConfirmDialogModel("Not logged in!", message);
 
+    /**
+     * Open dialog
+     */
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: dialogData
     });
 
+    /**
+     * Will be called after closing dialog
+     */
     dialogRef.afterClosed().subscribe(dialogResult => {
+
+      /**
+       * Check if there is a result
+       */
       if(dialogResult){
+
+        /**
+         * Switch to sign in page
+         */
         this.router.navigateByUrl('sign-in');
       }
     });
   }
 
+  /**
+   * Calls signIn component popup
+   */
   confirmSignIn(): void{
     const dialogRef = this.dialog.open(SignInComponent, {
       maxWidth: "400px",
     });
+
+    /**
+     * Will be called after closing dialog
+     */
     dialogRef.afterClosed().subscribe(x => {
+      /**
+       * After closing and user is logged in reload page
+       */
       if(!x && this.authService.isLoggedIn)
         location.reload();
     })
   }
+
+  /**
+   * Calls sign up popup
+   */
   confirmSignUp():void {
     const dialogRef = this.dialog.open(SignUpComponent, {
       maxWidth: "400px",
     });
+
+    /**
+     * Will be called after closing dialog
+     */
     dialogRef.afterClosed().subscribe(x => {
+      /**
+       * After closing and user is logged in reload page
+       */
       if(!x && !this.authService.isLoggedIn)
         location.reload();
     })
   }
 
+  /**
+   * Methode to open and close menu
+   */
   openMenu(){
+    /**
+     * Check is menu is not open
+     */
     if(!this.menuOpen)
+      /**
+       * Set menuOpen to true
+       */
       this.menuOpen = true;
     else
+      /**
+       * Set menu open to false
+       */
       this.menuOpen = false;
   }
 }

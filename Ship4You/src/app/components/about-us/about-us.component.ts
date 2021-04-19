@@ -10,9 +10,21 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class AboutUsComponent implements OnInit {
 
+  /**
+   * 
+   * @param authService is used to check if user is logged in
+   * @param router is used to switch the page
+   */
   constructor(public authService: AuthService, private router: Router) { }
 
+  /**
+   * Will be called at first
+   */
   ngOnInit() {
+
+    /**
+     * Set the background wave
+     */
     $(document).ready(function(){
       var scroll_start = 0;
       var startchange = $('#startchange');
@@ -30,7 +42,13 @@ export class AboutUsComponent implements OnInit {
    });
   }
 
-  goToDashboard(){
+  /**
+   * Methode to switch to Dashboard side
+   */
+  public goToDashboard(){
+    /**
+     * Router Methode to switch to dashboard
+     */
     this.router.navigateByUrl("/dashboard");
   }
 

@@ -1,0 +1,625 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angularfirebase-authentication documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angularfirebase-authentication documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>Test</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/create-feedback/create-feedback.component.ts</code>
+        </p>
+
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#imagenDestacada">imagenDestacada</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="imagenDestacada"></a>
+                                        <span class="name"><b>imagenDestacada</b><a href="#imagenDestacada"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>imagenDestacada:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePipe } from &#x27;@angular/common&#x27;;
+import { Component, Inject, OnInit } from &#x27;@angular/core&#x27;;
+import { AngularFirestore, AngularFirestoreDocument } from &#x27;@angular/fire/firestore&#x27;;
+import { AngularFireStorage, AngularFireUploadTask } from &#x27;@angular/fire/storage&#x27;;
+import { MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { finalize, map, tap } from &#x27;rxjs/operators&#x27;;
+import { Rating } from &#x27;../components/bewertung/rating&#x27;;
+import { BoatDTO } from &#x27;../components/boats/boat&#x27;;
+import { BoatService } from &#x27;../components/boats/boat.service&#x27;;
+import { FirebaseService } from &#x27;../shared/services/firebase.service&#x27;;
+
+export interface Test {
+  imagenDestacada: string;
+}
+
+@Component({
+  selector: &#x27;app-create-feedback&#x27;,
+  templateUrl: &#x27;./create-feedback.component.html&#x27;,
+  styleUrls: [&#x27;./create-feedback.component.scss&#x27;]
+})
+export class CreateFeedbackComponent implements OnInit {
+
+  //Boat which you want to rate
+  boat: any &#x3D; new BoatDTO;
+
+  //Small animation for uploading a picture
+  isHovering: boolean;
+
+  //The id for a rating
+  ratingId:string&#x3D;&quot;&quot;;
+
+  //The date when the feedback was written
+  mydate:string&#x3D;&quot;&quot;;
+
+  //All boats from db
+  boats: any &#x3D; [];
+
+  //The download url from the uploaded image
+  downloadURL: string;
+
+  //The key from the boat (Firebase Realtime database boat id)
+  boatKey: string&#x3D;&quot;&quot;;
+
+  //Boat id (Brand+Name)
+  id:string &#x3D; localStorage.getItem(&#x27;boatForRating&#x27;);
+
+  //Array of the current rates (counted stars)
+  ratingBoat: number[];
+
+  //Checks if the whole data is already loaded for the page
+  dataLoaded: boolean &#x3D; false;
+
+  //Saving the feedback text
+  feedback:string&#x3D;&quot;&quot;;
+
+  //Saving the current star rating
+  currentRate &#x3D; 2;
+
+  //The url of the current user profil picture
+  url:string &#x3D; &quot;&quot;;
+
+  //The username of the current user
+  displayName:string &#x3D;&quot;&quot;;
+
+  //The upload process of an image in percent
+  uploadPercent: Observable&lt;number&gt;;
+
+  //The download url of the current uploaded image
+  downloadURLObservable: Observable&lt;string&gt;;
+
+  //Selected file to upload
+  selectedFile: FileList | null;
+
+  //Saving all uploaded images to that rating
+  tests: Observable&lt;any[]&gt;;
+
+  //The current boat to rate
+  currentRatingBoat: BoatDTO &#x3D; new BoatDTO();
+
+  /**
+   * 
+   * @param boatService 
+   * @param fs 
+   * @param dialogRef 
+   * @param data 
+   * @param router 
+   * @param afs 
+   * @param datePipe 
+   * @param storage 
+   */
+  constructor(private boatService: BoatService, private fs: FirebaseService, public dialogRef: MatDialogRef&lt;CreateFeedbackComponent&gt;, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public afs: AngularFirestore, private datePipe:DatePipe,private storage: AngularFireStorage) {
+    
+    /**
+     * Set current date
+     */
+    this.mydate &#x3D; this.datePipe.transform(Date.now(), &#x27;dd.MM.yyyy&#x27;);
+  }
+
+  //To close the popup window (clicking cancel)
+  onDismiss(): void {
+    /**
+     * Close dialog
+     */
+    this.dialogRef.close(false);
+  }
+
+  /**
+   * Will be called at first
+   */
+  ngOnInit() {
+    /**
+     * Get doc ref
+     */
+    const feedbackRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;users/${localStorage.getItem(&#x27;userUid&#x27;)}&#x60;);
+
+    /**
+     * Set url
+     */
+    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.url &#x3D; x.photoURL);
+
+    /**
+     * Set displayName
+     */
+    feedbackRef.valueChanges().subscribe(x &#x3D;&gt; this.displayName &#x3D; x.displayName);
+
+    this.afs.collection(localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;)).valueChanges().subscribe(v &#x3D;&gt; this.ratingId &#x3D; &#x60;${v.length}&#x60;);
+    
+    /**
+     * Set boat id to localStorage
+     */
+    localStorage.setItem(&quot;feedbackBoatId&quot;, localStorage.getItem(&#x27;boatForRatingBrand&#x27;)+localStorage.getItem(&#x27;boatForRatingName&#x27;));
+    
+    /**
+     * Call boatList
+     */
+    this.getBoatsList();
+
+    /**
+     * Set boat
+     */
+    this.currentRatingBoat &#x3D; this.boatService.tmpBoat;
+    
+    /**
+     * Call showImagenes() methode
+     */
+    this.showImagenes();
+  }
+
+  //Upload the selected file
+  detectFiles(event) {
+
+    /**
+     * Set selected File
+     */
+    this.selectedFile &#x3D; event.target.files[0];
+    
+    /**
+     * Call uploadFile() methode
+     */
+    this.uploadFile();
+  }
+
+  //Saving the url of all uploaded images
+  uploadUrlArray: Observable&lt;String&gt;[] &#x3D; [];
+
+  //Upload Image to db
+  uploadFile() {
+
+    /**
+     * Get ref doc of feedbackboat
+     */
+    const myTest &#x3D; this.afs.collection(localStorage.getItem(&quot;feedbackBoatId&quot;)+&quot;MultFeedback&quot; + this.displayName).ref.doc();
+    
+    /**
+     * Set file
+     */
+    const file &#x3D; this.selectedFile
+
+    /**
+     * Set filePath
+     */
+    const filePath &#x3D; &#x60;${myTest.id}/name1&#x60;;
+
+    /**
+     * Set fileRef
+     */
+    const fileRef &#x3D; this.storage.ref(filePath);
+
+    /**
+     * Set upload task
+     */
+    const task &#x3D; this.storage.upload(filePath, file);
+
+    /**
+     * Set percent from upload
+     */
+    this.uploadPercent &#x3D; task.percentageChanges();
+
+    /**
+     * Save file
+     */
+    task.snapshotChanges().pipe(
+      finalize(() &#x3D;&gt; {
+        fileRef.getDownloadURL().toPromise().then( (url) &#x3D;&gt; {
+
+          /**
+           * Set downloadUrl
+           */
+          this.downloadURLObservable &#x3D; url;
+
+          /**
+           * Push download url to array
+           */
+          this.uploadUrlArray.push(this.downloadURLObservable);
+
+          /**
+           * Set data
+           */
+          myTest.set({
+            imagenes : this.downloadURLObservable,
+            myId : myTest.id
+          })
+        }).catch(err&#x3D;&gt; { console.log(err) });
+      })
+    )
+    .subscribe()
+  }
+
+  //Show all images from db
+  showImagenes() {
+
+    /**
+     * Call getTestFeedback()
+     */
+    this.tests &#x3D; this.fs.getTestFeedback(this.displayName);
+  }
+
+  /**
+   * 
+   * @param event -&gt; true or false
+   */
+  toggleHover(event: boolean) {
+
+    /**
+     * Set hovering to true or false
+     */
+    this.isHovering &#x3D; event;
+  }
+
+  //Get the actual boat states
+  getSingleBoat(): any{
+    /**
+     * Set counter from localstorage
+     */
+    var c &#x3D; localStorage.getItem(&#x27;numberOfBoats&#x27;);
+
+    /**
+     * Check if counter is not null
+     */
+    if(!isNaN(Number(c))){
+
+      /**
+       * set counter
+       */
+      var counter &#x3D; Number(c);
+
+      /**
+       * Go through all boats
+       */
+      for(let i &#x3D; 0; i &lt; counter;i++){
+
+        /**
+         * Check if Ids are equal
+         */
+        if(this.id &#x3D;&#x3D; this.boats[i].key){
+
+          /**
+           * Set boat
+           */
+          this.boat &#x3D; this.boats[i];
+
+          /**
+           * Set ratingBoat
+           */
+          this.ratingBoat &#x3D; this.boat.allReatings;
+
+          /**
+           * Set boat-key
+           */
+          this.boatKey &#x3D; this.boat.key;
+        }
+      }
+      return this.boat;
+    }
+    else{
+      return null;
+    }
+  }
+
+  //Get all boats from db
+  getBoatsList() {
+    /**
+     * Call getBoatsList()
+     */
+    this.boatService.getBoatsList().snapshotChanges().pipe(
+      map(changes &#x3D;&gt;
+        changes.map(c &#x3D;&gt;
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(boats &#x3D;&gt; {
+      /**
+       * Set boats
+       */
+      this.boats &#x3D; boats;
+
+      /**
+       * Calls getSingleBoat() methode
+       */
+      this.getSingleBoat();
+    });
+
+    /**
+     * Set loaded data to true
+     */
+    this.dataLoaded &#x3D; true;
+  }
+
+  //Set feedback data to create a new rating in db
+  SetFeedbackData() {
+
+    /**
+     * Get feedback Ref
+     */
+    const feedbackRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;${localStorage.getItem(&#x27;boatForRatingBrand&#x27;) + localStorage.getItem(&#x27;boatForRatingName&#x27;)}/${this.ratingId}&#x60;);
+
+    /**
+     * Set feedBack data
+     */
+    const feedbackData: Rating &#x3D; {
+      idRating: this.ratingId.toLocaleString(),
+      username: this.displayName,
+      date: this.mydate,
+      ratingStars: this.currentRate,
+      text: this.feedback,
+      picturesId: this.uploadUrlArray,
+      userImage: this.url,
+      userId: localStorage.getItem(&#x27;userUid&#x27;)
+    }
+    /**
+     * Clear uploadUrlArray 
+     */
+    this.uploadUrlArray &#x3D; [];
+    /**
+     * Merge data
+     */
+    return feedbackRef.set(feedbackData, {
+      merge: true
+    })
+  }
+
+  //Updates the current boat rating states
+  updateBoatStats(){
+    /**
+     * Add current rate to array
+     */
+    this.ratingBoat.push(this.currentRate);
+
+    /**
+     * Call updateRatingArray()
+     */
+    this.updateRatingArray(this.ratingBoat);
+
+    /**
+     * Set sum
+     */
+    var sum &#x3D; this.ratingBoat.reduce((acc, cur) &#x3D;&gt; acc + cur, 0);
+
+    /**
+     * Set div
+     */
+    var div &#x3D; sum/ (this.ratingBoat.length - 1);
+
+    /**
+     * Call methode
+     */
+    this.updateRatingSum(div)
+  }
+
+  //Updates the rating array in db
+  updateRatingArray(ratingBoat: any) {
+
+    /**
+     * Call updateBoat() methode
+     */
+    this.boatService
+      .updateBoat(this.boatKey, { allReatings: ratingBoat })
+      .catch(err &#x3D;&gt; console.log(err));
+  }
+
+  //Updates the rating sum (sum of rating stars)
+  updateRatingSum(ratingDiv: any)
+  {
+    /**
+     * Call updateBoat() methode
+     */
+    this.boatService
+    .updateBoat(this.boatKey, { rating: ratingDiv })
+    .catch(err &#x3D;&gt; console.log(err));
+  }
+
+  //Adds the feedback to db and navigates to bewertung
+  addFeedback(){
+    /**
+     * Close dialog
+     */
+    this.dialogRef.close(false);
+
+    /**
+     * Call methode
+     */
+    this.updateBoatStats();
+
+    /**
+     * Call SetFeedbackData() methode
+     */
+    this.SetFeedbackData();
+
+    /**
+     * Navigate to other page
+     */
+    this.router.navigateByUrl(&#x27;/bewertung&#x27;)
+  }
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Test.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

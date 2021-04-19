@@ -16,7 +16,7 @@
         <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Edit Picture" mat-fab color="primary" (click)="editPhotoBoat((boat.brand + boat.name), boat.key)">
           <mat-icon>photo</mat-icon>
         </button>
-        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Delete Boat" mat-fab color="warn" (click)="deleteCustomer()">
+        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Delete Boat" mat-fab color="warn" (click)="deleteBoat()">
           <mat-icon>delete</mat-icon>
         </button>
 

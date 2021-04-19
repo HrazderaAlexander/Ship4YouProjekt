@@ -12,82 +12,189 @@ import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+  /**
+   * Set color for spinner
+   */
   color: ThemePalette = 'primary';
+
+  /**
+   * Mode for spinner
+   */
   mode: ProgressSpinnerMode = 'indeterminate';
+
+  /**
+   * Save the state of checking
+   */
   check = false;
 
-  constructor(
-    public authService: AuthService,
-    public router: Router,
-    public ngZone: NgZone,
-    public afs: AngularFirestore
-  ) {
-   }
-
-  userCustomers: BoatDTO[] = [];
-  googleSignIn = localStorage.getItem('googleSignIn');
-  user = JSON.parse(localStorage.getItem('user'));
-
-  hide = true;
-  hide2 = true;
-  displayName:string="";
-  oldUserpassword:string="";
-  newPassword:string = "";
-
-  ngOnInit()
-  {
-    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
-
-    feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
-    feedbackRef.valueChanges().subscribe(x => this.displayName = x.displayName);
-      for(let i = 0; i < JSON.parse(localStorage.getItem('customerArray')).length; i++){
-        console.log('customerArray: ' + JSON.parse(localStorage.getItem('customerArray'))[i]);
-
-        if(JSON.parse(localStorage.getItem('customerArray'))[i].userId == localStorage.getItem('userUid')){
-          this.userCustomers.push(JSON.parse(localStorage.getItem('customerArray'))[i]);
-        }
-      }
+  /**
+   * 
+   * @param authService 
+   * @param router 
+   * @param ngZone 
+   * @param afs 
+   */
+  constructor(public authService: AuthService, public router: Router, public ngZone: NgZone, public afs: AngularFirestore) {
   }
 
+  /**
+   * Save all userBoats 
+   */
+  userBoats: BoatDTO[] = [];
+
+  /**
+   * Save googleSign in from localstorage
+   */
+  googleSignIn = localStorage.getItem('googleSignIn');
+
+  /**
+   * Save user from localstorage
+   */
+  user = JSON.parse(localStorage.getItem('user'));
+
+  /**
+   * Set hide to true 
+   */
+  hide = true;
+
+  /**
+   * Set hide to false
+   */
+  hide2 = true;
+
+  /**
+   * Variable to save displayname
+   */
+  displayName:string="";
+
+  /**
+   * Variable to save old user pw
+   */
+  oldUserpassword:string="";
+
+  /**
+   * Variable to save new password
+   */
+  newPassword:string = "";
+
+  /**
+   * Will be called at first
+   */
+  ngOnInit()
+  {
+    /**
+     * Save feedbacks from user
+     */
+    const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
+
+    /**
+     * Set picture url
+     */
+    feedbackRef.valueChanges().subscribe(x => this.url = x.photoURL);
+
+    /**
+     * Set display name
+     */
+    feedbackRef.valueChanges().subscribe(x => this.displayName = x.displayName);
+
+    /**
+     * Go trough all boats
+     */
+    for(let i = 0; i < JSON.parse(localStorage.getItem('customerArray')).length; i++){
+
+      if(JSON.parse(localStorage.getItem('customerArray'))[i].userId == localStorage.getItem('userUid')){
+        this.userBoats.push(JSON.parse(localStorage.getItem('customerArray'))[i]);
+      }
+    }
+  }
+
+  /**
+   * Name of the file
+   */
   name = '';
+  /**
+   * Url of the file
+   */
   url;
+
+  /**
+   * 
+   * @param event -> which file 
+   */
   onSelectFile(event) {
+
+    /**
+     * Check if there are tarket files
+     */
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = (event.target as FileReader).result;  //event.target.result.toString();
+        /**
+         * Set url
+         */
+        this.url = (event.target as FileReader).result; 
       }
     }
   }
-  public delete(){
-    this.url = null;
-  }
 
+  /**
+   * Methode to save user stats
+   */
   onSave(){
+    /**
+     * Calls start methode
+     */
     this.startLoading();
+    
+    /**
+     * Check if user is not logged in with google
+     */
     if(!this.googleSignIn){
+      /**
+       * check if they are not null
+       */
       if(this.oldUserpassword || this.newPassword)
-      this.authService.ChangePassword(this.oldUserpassword,this.newPassword,this.user.email)
+      this.authService.ChangePassword(this.oldUserpassword,this.newPassword,this.user.email) // send to authService
     }
 
+    /**
+     * get all from userId
+     */
     const feedbackRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${localStorage.getItem('userUid')}`);
 
+    /**
+     * Update user picture
+     */
     feedbackRef.update({
       photoURL: this.url
     });
+    /**
+     * Waiting timer for saving in db
+     */
     setTimeout(()=>{
+      /**
+       * reload location
+       */
       location.reload();
     }, 4000);
   }
 
+  /**
+   * Should the circle start?
+   */
   startLoading(){
+    /**
+     * Check to true
+     */
     this.check=true;
-    console.log('check: ', this.check);
   }
 
+  /**
+   * Methode to navigate to dashboard
+   */
   goToDashboard(){
     this.router.navigateByUrl("/dashboard");
   }

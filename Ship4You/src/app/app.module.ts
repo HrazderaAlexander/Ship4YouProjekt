@@ -25,7 +25,6 @@ import { environment } from '../environments/environment';
 
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
-import { DropzoneDirective } from './dropzone.directive';
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
@@ -34,9 +33,6 @@ import { MatFormFieldModule,  MatInputModule, MatButtonModule, MatAutocompleteMo
 
 // Create Boad
 import { HttpClientModule } from '@angular/common/http';
-
-//import { CreateUserComponent } from './components/newboat/create-user/create-user.component';
-import {ShowUpload} from './components/newboat/showUpload';
 
 //FileUpload
 //import { FileDropDirective, FileSelectDirective} from 'ng2-file-upload';
@@ -61,13 +57,10 @@ import { BewertungComponent } from './components/bewertung/bewertung.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
-import {UploadTaskComponent} from './components/newboat/upload-task/upload-task.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import {MatBadgeModule} from '@angular/material/badge';
-import { UploadTaskDocumentComponent } from './components/newboat/upload-task-document/upload-task-document.component';
-import { UploadTaskMultiplePicturesComponent } from './components/newboat/upload-task-multiple-pictures/upload-task-multiple-pictures.component';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
 import { MultiplePicturesComponent } from './multiple-pictures/multiple-pictures.component';
 
@@ -87,15 +80,10 @@ import { EditBoatComponent } from './edit-boat/edit-boat.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     UserDetailsComponent,
-    ShowUpload,
-    DropzoneDirective,
     BoatDetailsComponent,
     CreateBoatComponent,
     BewertungComponent,
-    UploadTaskComponent,
     ConfirmDialogComponent,
-    UploadTaskDocumentComponent,
-    UploadTaskMultiplePicturesComponent,
     MaterialElevationDirective,
     CreateFeedbackComponent,
     MultiplePicturesComponent,

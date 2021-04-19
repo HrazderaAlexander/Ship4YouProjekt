@@ -1,0 +1,3149 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angularfirebase-authentication documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angularfirebase-authentication documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>BoatDetailsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/boats/boat-details/boat-details.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-boat-details</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./boat-details.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./boat-details.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#authService">authService</a>
+                            </li>
+                            <li>
+                                <a href="#boatDTO">boatDTO</a>
+                            </li>
+                            <li>
+                                <a href="#boatKey">boatKey</a>
+                            </li>
+                            <li>
+                                <a href="#boatNew">boatNew</a>
+                            </li>
+                            <li>
+                                <a href="#boats">boats</a>
+                            </li>
+                            <li>
+                                <a href="#boatsRef">boatsRef</a>
+                            </li>
+                            <li>
+                                <a href="#currentRate">currentRate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#db">db</a>
+                            </li>
+                            <li>
+                                <a href="#dbPath">dbPath</a>
+                            </li>
+                            <li>
+                                <a href="#defaultElevation">defaultElevation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog">dialog</a>
+                            </li>
+                            <li>
+                                <a href="#favButtonPressed">favButtonPressed</a>
+                            </li>
+                            <li>
+                                <a href="#favRef">favRef</a>
+                            </li>
+                            <li>
+                                <a href="#feedbackLength">feedbackLength</a>
+                            </li>
+                            <li>
+                                <a href="#id">id</a>
+                            </li>
+                            <li>
+                                <a href="#isEdit">isEdit</a>
+                            </li>
+                            <li>
+                                <a href="#ratingBoat">ratingBoat</a>
+                            </li>
+                            <li>
+                                <a href="#url">url</a>
+                            </li>
+                            <li>
+                                <a href="#userId">userId</a>
+                            </li>
+                            <li>
+                                <a href="#userIds">userIds</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelEdit">cancelEdit</a>
+                            </li>
+                            <li>
+                                <a href="#changeEditButton">changeEditButton</a>
+                            </li>
+                            <li>
+                                <a href="#clickFavButton">clickFavButton</a>
+                            </li>
+                            <li>
+                                <a href="#clickRating">clickRating</a>
+                            </li>
+                            <li>
+                                <a href="#confirmDialog">confirmDialog</a>
+                            </li>
+                            <li>
+                                <a href="#confirmEditBoatDialog">confirmEditBoatDialog</a>
+                            </li>
+                            <li>
+                                <a href="#confirmSignIn">confirmSignIn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteBoat">deleteBoat</a>
+                            </li>
+                            <li>
+                                <a href="#editPhotoBoat">editPhotoBoat</a>
+                            </li>
+                            <li>
+                                <a href="#getBoatList">getBoatList</a>
+                            </li>
+                            <li>
+                                <a href="#getBoatsFeedbackList">getBoatsFeedbackList</a>
+                            </li>
+                            <li>
+                                <a href="#getSingleBoat">getSingleBoat</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSelectFile">onSelectFile</a>
+                            </li>
+                            <li>
+                                <a href="#openImageSlider">openImageSlider</a>
+                            </li>
+                            <li>
+                                <a href="#refreshPage">refreshPage</a>
+                            </li>
+                            <li>
+                                <a href="#saveUpdateList">saveUpdateList</a>
+                            </li>
+                            <li>
+                                <a href="#updateActive">updateActive</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#boat">boat</a>
+                            </li>
+                            <li>
+                                <a href="#showButtons">showButtons</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialog: MatDialog, authService: <a href="../injectables/AuthService.html">AuthService</a>, boatService: <a href="../injectables/BoatService.html">BoatService</a>, db: AngularFireDatabase, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, afs: AngularFirestore)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:82</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>boatService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BoatService.html" target="_self" >BoatService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>db</td>
+                                                  
+                                                        <td>
+                                                                    <code>AngularFireDatabase</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>afs</td>
+                                                  
+                                                        <td>
+                                                                    <code>AngularFirestore</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boat"></a>
+                        <b>boat</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/BoatDTO.html" target="_self" >BoatDTO</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:37</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the current boat</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showButtons"></a>
+                        <b>showButtons</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:42</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the current button state</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelEdit"></a>
+                    <span class="name">
+                        <b>
+                            cancelEdit
+                        </b>
+                        <a href="#cancelEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelEdit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="459"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:459</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Methode to cancel Edit</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeEditButton"></a>
+                    <span class="name">
+                        <b>
+                            changeEditButton
+                        </b>
+                        <a href="#changeEditButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeEditButton()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="346"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:346</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Will be edited ?</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickFavButton"></a>
+                    <span class="name">
+                        <b>
+                            clickFavButton
+                        </b>
+                        <a href="#clickFavButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clickFavButton(c: <a href="../classes/BoatDTO.html">BoatDTO</a>, fav: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="560"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:560</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>c</td>
+                                    <td>
+                                                <code><a href="../classes/BoatDTO.html" target="_self" >BoatDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; current boat</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>fav</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; state of favourite</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickRating"></a>
+                    <span class="name">
+                        <b>
+                            clickRating
+                        </b>
+                        <a href="#clickRating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clickRating(brand, name)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="517"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:517</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>brand</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; of the boat</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; of the boat</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmDialog"></a>
+                    <span class="name">
+                        <b>
+                            confirmDialog
+                        </b>
+                        <a href="#confirmDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmDialog()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="290"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:290</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Open logion dialog</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmEditBoatDialog"></a>
+                    <span class="name">
+                        <b>
+                            confirmEditBoatDialog
+                        </b>
+                        <a href="#confirmEditBoatDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmEditBoatDialog()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="366"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:366</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Methode which opens the edit dialog</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmSignIn"></a>
+                    <span class="name">
+                        <b>
+                            confirmSignIn
+                        </b>
+                        <a href="#confirmSignIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmSignIn()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="337"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:337</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calls signIn component popup</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteBoat"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            deleteBoat
+                        </b>
+                        <a href="#deleteBoat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteBoat()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="474"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:474</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Async methode to delete a boat</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editPhotoBoat"></a>
+                    <span class="name">
+                        <b>
+                            editPhotoBoat
+                        </b>
+                        <a href="#editPhotoBoat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editPhotoBoat(boatId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, boatKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="393"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:393</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Methode to edit the photos of the boat</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>boatId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; id from the boat which will be edited</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>boatKey</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; key of the boat which will be edited</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBoatList"></a>
+                    <span class="name">
+                        <b>
+                            getBoatList
+                        </b>
+                        <a href="#getBoatList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBoatList()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get all boats and sort them</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBoatsFeedbackList"></a>
+                    <span class="name">
+                        <b>
+                            getBoatsFeedbackList
+                        </b>
+                        <a href="#getBoatsFeedbackList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBoatsFeedbackList()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:147</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets all Boats for feedback</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSingleBoat"></a>
+                    <span class="name">
+                        <b>
+                            getSingleBoat
+                        </b>
+                        <a href="#getSingleBoat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSingleBoat()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="231"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:231</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get a single boat</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>a boat or null</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:104</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Will be called at first</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSelectFile"></a>
+                    <span class="name">
+                        <b>
+                            onSelectFile
+                        </b>
+                        <a href="#onSelectFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSelectFile(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="607"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:607</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openImageSlider"></a>
+                    <span class="name">
+                        <b>
+                            openImageSlider
+                        </b>
+                        <a href="#openImageSlider"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openImageSlider()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:283</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Switch to image-slider page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refreshPage"></a>
+                    <span class="name">
+                        <b>
+                            refreshPage
+                        </b>
+                        <a href="#refreshPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refreshPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="452"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:452</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Methode to refresh the window</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveUpdateList"></a>
+                    <span class="name">
+                        <b>
+                            saveUpdateList
+                        </b>
+                        <a href="#saveUpdateList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveUpdateList(cus: <a href="../classes/BoatDTO.html">BoatDTO</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="434"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:434</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Update the boats in db</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cus</td>
+                                    <td>
+                                                <code><a href="../classes/BoatDTO.html" target="_self" >BoatDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; current boat</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateActive"></a>
+                    <span class="name">
+                        <b>
+                            updateActive
+                        </b>
+                        <a href="#updateActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateActive(isActive: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="328"
+                            class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:328</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the current state of the boat</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isActive</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>-&gt; state of the boat</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="authService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            authService</b>
+                            <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:93</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boatDTO"></a>
+                        <span class="name">
+                            <b>
+                            boatDTO</b>
+                            <a href="#boatDTO"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/BoatDTO.html" target="_self" >BoatDTO</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="385" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:385</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save boat which will be edited</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boatKey"></a>
+                        <span class="name">
+                            <b>
+                            boatKey</b>
+                            <a href="#boatKey"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:224</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the key of the boat</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boatNew"></a>
+                        <span class="name">
+                            <b>
+                            boatNew</b>
+                            <a href="#boatNew"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new BoatDTO</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:210</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the boat</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boats"></a>
+                        <span class="name">
+                            <b>
+                            boats</b>
+                            <a href="#boats"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:142</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array to save all boats</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="boatsRef"></a>
+                        <span class="name">
+                            <b>
+                            boatsRef</b>
+                            <a href="#boatsRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/BoatDTO.html" target="_self" >AngularFireList&lt;BoatDTO&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:77</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save all boats from db</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentRate"></a>
+                        <span class="name">
+                            <b>
+                            currentRate</b>
+                            <a href="#currentRate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the current rate</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="db"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            db</b>
+                            <a href="#db"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>AngularFireDatabase</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:93</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dbPath"></a>
+                        <span class="name">
+                            <b>
+                            dbPath</b>
+                            <a href="#dbPath"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;/customers&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:72</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Path of the boats</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="defaultElevation"></a>
+                        <span class="name">
+                            <b>
+                            defaultElevation</b>
+                            <a href="#defaultElevation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>2</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:82</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the default elevation</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialog"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dialog</b>
+                            <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatDialog</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:93</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="favButtonPressed"></a>
+                        <span class="name">
+                            <b>
+                            favButtonPressed</b>
+                            <a href="#favButtonPressed"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the state of the favourite button</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="favRef"></a>
+                        <span class="name">
+                            <b>
+                            favRef</b>
+                            <a href="#favRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>AngularFirestoreDocument&lt;any&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the favourite boats</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="feedbackLength"></a>
+                        <span class="name">
+                            <b>
+                            feedbackLength</b>
+                            <a href="#feedbackLength"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the length of the feedback</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name">
+                            <b>
+                            id</b>
+                            <a href="#id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>localStorage.getItem(&#x27;boatForRating&#x27;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:214</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the id of the boat</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isEdit"></a>
+                        <span class="name">
+                            <b>
+                            isEdit</b>
+                            <a href="#isEdit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the button if it is edited or not</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ratingBoat"></a>
+                        <span class="name">
+                            <b>
+                            ratingBoat</b>
+                            <a href="#ratingBoat"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>number[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:219</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the rating of the boat</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="url"></a>
+                        <span class="name">
+                            <b>
+                            url</b>
+                            <a href="#url"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="606" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:606</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>URL of the image</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                                <code><p>-&gt; current file</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userId"></a>
+                        <span class="name">
+                            <b>
+                            userId</b>
+                            <a href="#userId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the user id</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userIds"></a>
+                        <span class="name">
+                            <b>
+                            userIds</b>
+                            <a href="#userIds"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>JSON.parse(localStorage.getItem(&#x27;userIds&#x27;))</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/boats/boat-details/boat-details.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save the userIds</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, OnDestroy, Inject } from &#x27;@angular/core&#x27;;
+import { BoatService } from &#x27;../boat.service&#x27;;
+import { BoatDTO } from &#x27;../boat&#x27;;
+import { NavigationEnd, Router } from &#x27;@angular/router&#x27;;
+import { AngularFirestore, AngularFirestoreDocument } from &#x27;@angular/fire/firestore&#x27;;
+import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import { AuthService } from &#x27;src/app/shared/services/auth.service&#x27;;
+import { MatDialog } from &#x27;@angular/material&#x27;;
+import { ConfirmDialogModel, ConfirmDialogComponent } from &#x27;src/app/confirm-dialog/confirm-dialog.component&#x27;;
+import { SignInComponent } from &#x27;../../sign-in/sign-in.component&#x27;;
+import { map } from &#x27;rxjs/internal/operators/map&#x27;;
+import * as $ from &#x27;jquery&#x27;;
+import { Rating } from &#x27;../../bewertung/rating&#x27;;
+import { AngularFireDatabase, AngularFireList } from &#x27;@angular/fire/database&#x27;;
+import { EditBoatComponent } from &#x27;src/app/edit-boat/edit-boat.component&#x27;;
+
+@Component({
+  selector: &#x27;app-boat-details&#x27;,
+  templateUrl: &#x27;./boat-details.component.html&#x27;,
+  styleUrls: [&#x27;./boat-details.component.css&#x27;]
+})
+export class BoatDetailsComponent implements OnInit {
+
+  /**
+   * Save the user id
+   */
+  userId:string &#x3D; &quot;&quot;;
+
+  /**
+   * Save the button if it is edited or not
+   */
+  isEdit:boolean &#x3D; false;
+
+  /**
+   * Save the current boat
+   */
+  @Input() boat: BoatDTO;
+
+  /**
+   * Save the current button state
+   */
+  @Input() showButtons:string;
+
+  /**
+   * Save the state of the favourite button
+   */
+  favButtonPressed:boolean;
+
+  /**
+   * Save the favourite boats
+   */
+  favRef: AngularFirestoreDocument&lt;any&gt;;
+  
+  /**
+   * Save the current rate
+   */
+  currentRate &#x3D; 0;
+  
+  /**
+   * Save the userIds
+   */
+  userIds : string[] &#x3D; JSON.parse(localStorage.getItem(&#x27;userIds&#x27;));
+  
+  /**
+   * Save the length of the feedback
+   */
+  feedbackLength &#x3D; 0;
+
+  /**
+   * Path of the boats
+   */
+  dbPath &#x3D; &#x27;/customers&#x27;;
+
+  /**
+   * Save all boats from db
+   */
+  boatsRef: AngularFireList&lt;BoatDTO&gt; &#x3D; null;
+
+  /**
+   * Save the default elevation
+   */
+  defaultElevation &#x3D; 2;
+
+  /**
+   * 
+   * @param dialog 
+   * @param authService 
+   * @param boatService 
+   * @param db 
+   * @param router 
+   * @param afs 
+   */
+  constructor(public dialog: MatDialog, public authService: AuthService, private boatService: BoatService, public db: AngularFireDatabase, private router: Router, private afs: AngularFirestore)
+  {
+    /**
+     * Get all boats
+     */
+    this.boatsRef &#x3D; db.list(this.dbPath);
+  }
+
+  /**
+   * Will be called at first
+   */
+  ngOnInit() {
+    /**
+     * Get all Boats
+     */
+    this.getBoatList(); 
+
+    /**
+     * Go through all boats
+     */
+    for(let i &#x3D;0; i &lt; parseInt(localStorage.getItem(&#x27;numberOfBoats&#x27;)); i++)
+    {
+      this.favRef &#x3D; this.afs.doc(&#x60;${localStorage.getItem(&#x27;userUid&#x27;)}/${this.boat.brand + this.boat.name}&#x60;);
+      this.favRef.valueChanges().subscribe(item &#x3D;&gt; {
+        
+        /**
+         * Check if item is not null
+         */
+        if(item !&#x3D; null)
+        /**
+         * Set favButton pressed to true or false
+         */
+          this.favButtonPressed &#x3D; item.favourite
+      });
+    }
+    /**
+     * Set userId
+     */
+    this.userId &#x3D; localStorage.getItem(&#x27;userUid&#x27;);
+    /**
+     * set feedback length
+     */
+    this.afs.collection(&#x60;${this.boat.brand + this.boat.name}&#x60;).valueChanges().subscribe(s &#x3D;&gt; this.feedbackLength &#x3D; s.length);
+
+  }
+
+  /**
+   * Array to save all boats
+   */
+  boats: any &#x3D; [];
+
+  /**
+   * Gets all Boats for feedback
+   */
+  getBoatsFeedbackList() {
+    this.boatService.getBoatsList().snapshotChanges().pipe(
+      map(changes &#x3D;&gt;
+        changes.map(c &#x3D;&gt;
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(boats &#x3D;&gt; {
+
+      /**
+       * Save boats to boats array
+       */
+      this.boats &#x3D; boats;
+
+      /**
+       * Calls singleBoat
+       */
+      this.getSingleBoat();
+    });
+  }
+
+  /**
+   * Get all boats and sort them
+   */
+  getBoatList() {
+    this.boatService.getBoatsList().snapshotChanges().pipe(
+      map(changes &#x3D;&gt;
+        changes.map(c &#x3D;&gt;
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(boats &#x3D;&gt; {
+
+      /**
+       * Save to boats array and sort them
+       */
+      this.boats &#x3D; boats.sort((n1, n2)&#x3D;&gt;
+      {
+        if (n1.rating &lt; n2.rating) {
+          return 1;
+        }
+
+        if (n1.rating &gt; n2.rating) {
+          return -1;
+        }
+
+        return 0;
+      });
+      /**
+       * Set number of boats to localStorage
+       */
+      localStorage.setItem(&#x27;numberOfBoats&#x27;, this.boats.length);
+
+      /**
+       * Set all boats to localStorage()
+       */
+      localStorage.setItem(&#x27;customerArray&#x27;, JSON.stringify(this.boats));
+    });
+  }
+
+  /**
+   * Save the boat
+   */
+  boatNew: any &#x3D; new BoatDTO;
+  /**
+   * Save the id of the boat
+   */
+  id:string &#x3D; localStorage.getItem(&#x27;boatForRating&#x27;);
+  
+  /**
+   * Save the rating of the boat
+   */
+  ratingBoat: number[];
+
+  /**
+   * Save the key of the boat
+   */
+  boatKey: string&#x3D;&quot;&quot;;
+
+  /**
+   * Get a single boat
+   * 
+   * @returns a boat or null
+   */
+  getSingleBoat(): any{        
+
+    /**
+     * Set the number of boats
+     */
+    var c &#x3D; localStorage.getItem(&#x27;numberOfBoats&#x27;);
+
+    /**
+     * Check if there are more than null boats
+     */
+    if(!isNaN(Number(c))){
+      /**
+       * Set counter
+       */
+      var counter &#x3D; Number(c);
+
+      /**
+       * Go through the boat array
+       */
+      for(let i &#x3D; 0; i &lt; counter;i++){
+
+        /**
+         * Check if the boat has the same id
+         */
+        if(this.id &#x3D;&#x3D; this.boats[i].key){
+          /**
+           * Save the data of the boat
+           */
+          this.boatNew &#x3D; this.boats[i];
+
+          /**
+           * Save the ratings of the boat
+           */
+          this.ratingBoat &#x3D; this.boatNew.allReatings;
+
+          /**
+           * Save the key of the boat
+           */
+          this.boatKey &#x3D; this.boatNew.key;
+        }
+      }
+      return this.boatNew;
+    }
+    else{
+      console.log(&quot;Not a number!&quot;);
+      return null;
+    }
+  }
+
+  /**
+   * Switch to image-slider page
+   */
+  openImageSlider(){
+    this.router.navigateByUrl(&quot;/image-slider&quot;);
+  }
+
+  /**
+   * Open logion dialog
+   */
+  confirmDialog(): void {
+    /**
+     * Message of the dialog
+     */
+    const message &#x3D; &#x60;Do you wanna login now?&#x60;;
+
+    /**
+     * Data of the dialog
+     */
+    const dialogData &#x3D; new ConfirmDialogModel(&quot;Not logged in!&quot;, message);
+
+    /**
+     * Open dialog
+     */
+    const dialogRef &#x3D; this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: &quot;400px&quot;,
+      data: dialogData
+    });
+
+    /**
+     * Will be called after closing dialog
+     */
+    dialogRef.afterClosed().subscribe(dialogResult &#x3D;&gt; {
+
+      /**
+       * Check if there is a result
+       */
+      if(dialogResult){
+        this.confirmSignIn();
+      }
+    });
+  }
+
+  /**
+   * Set the current state of the boat
+   * 
+   * @param isActive -&gt; state of the boat
+   */
+  updateActive(isActive: boolean) {
+    this.boatService
+      .updateBoat(this.boat.key, { active: isActive })
+      .catch(err &#x3D;&gt; console.log(err));
+  }
+
+  /**
+   * Calls signIn component popup
+   */
+  confirmSignIn(): void{
+    const dialogRef &#x3D; this.dialog.open(SignInComponent, {
+      maxWidth: &quot;400px&quot;,
+    });
+  }
+
+  /**
+   * Will be edited ?
+   */
+  changeEditButton(){
+
+    /**
+     * Check if it is true
+     */
+    if(this.isEdit)
+      /**
+       * Set to false
+       */
+      this.isEdit &#x3D; false;
+    else
+      /**
+       * Set to true
+       */
+      this.isEdit &#x3D; true;
+  }
+
+  /**
+   * Methode which opens the edit dialog
+   */
+  confirmEditBoatDialog(): void {
+
+    /**
+     * Open edit dialog
+     */
+    const dialogRef &#x3D; this.dialog.open(EditBoatComponent, {
+      maxWidth: &quot;900px&quot;
+    });
+
+    /**
+     * Will be called after close
+     */
+    dialogRef.afterClosed().subscribe(dialogResult &#x3D;&gt; {
+    });
+  }
+
+  /**
+   * Save boat which will be edited
+   */
+  boatDTO : BoatDTO &#x3D; null;
+
+  /**
+   * Methode to edit the photos of the boat
+   * 
+   * @param boatId -&gt; id from the boat which will be edited
+   * @param boatKey -&gt; key of the boat which will be edited
+   */
+  editPhotoBoat(boatId: string, boatKey: string){
+     this.boatsRef.valueChanges().subscribe(test &#x3D;&gt; {
+      test.forEach(item &#x3D;&gt; {
+       
+        /**
+         * Check if id is equal
+         */
+        if ((item.brand + item.name) &#x3D;&#x3D; boatId){
+
+          /**
+           * Set key
+           */
+          item.key &#x3D; boatKey;
+          
+          /**
+           * Save the current boat
+           */
+          this.boatDTO &#x3D; item;
+          
+          /**
+           * Set data into localstorage
+           * Set timeout to load all data from db
+           */
+          setTimeout(() &#x3D;&gt; {localStorage.setItem(&#x27;BoatToEdit&#x27;, JSON.stringify(item));}, 5)
+        }
+      })
+    });
+
+    /**
+     * Set timeout to load all data from db
+     * 
+     * And then open edit boat dialog
+     */
+    setTimeout(() &#x3D;&gt; {this.confirmEditBoatDialog();}, 50)
+  }
+
+  /**
+   * Update the boats in db
+   * 
+   * @param cus -&gt; current boat
+   */
+  saveUpdateList(cus:BoatDTO) {
+    /**
+     * Check if userId is equal
+     */
+    if(this.boat.userId &#x3D;&#x3D; localStorage.getItem(&#x27;userUid&#x27;)){
+        this.boatService
+        .updateBoat(cus.key, cus)
+        .catch(err &#x3D;&gt; console.log(err));
+    }
+    /**
+     * Calls refresh methode
+     */
+    this.refreshPage();
+  }
+
+  /**
+   * Methode to refresh the window
+   */
+  refreshPage() {
+    window.location.reload();
+  }
+
+  /**
+   * Methode to cancel Edit
+   */
+  cancelEdit(){
+    /**
+     * Set edit state to false
+     */
+    this.isEdit &#x3D; false;
+
+    /**
+     * Refresh the page
+     */
+    this.refreshPage();
+  }
+
+  /**
+   * Async methode to delete a boat
+   */
+  async deleteBoat() {
+
+    /**
+     * Set the length 
+     */
+    const length &#x3D; this.feedbackLength;
+
+    /**
+     * Check if userId is equal
+     */
+    if(this.boat.userId &#x3D;&#x3D; localStorage.getItem(&#x27;userUid&#x27;))
+    {
+      /**
+       * Confirm it
+       */
+      if(confirm(&quot;Are you sure to delete &quot;+this.boat.name + &quot;?&quot;))
+      {
+        /**
+         * Go through the db and delete it
+         */
+        for(let i &#x3D; 0; i &lt; this.userIds.length; i++){
+          await this.afs.collection(this.userIds[i]).doc(&#x60;${this.boat.brand + this.boat.name}&#x60;).delete();
+        }
+        /**
+         * Go through the db and delete it
+         */
+        for(let i &#x3D; 0; i &lt; length; i++){
+          await this.afs.doc(&#x60;${this.boat.brand + this.boat.name}/${i}&#x60;).delete();
+        }
+        /**
+         * Go through the db and delete it
+         */
+        this.boatService
+        .deleteBoat(this.boat.key)
+        .catch(err &#x3D;&gt; console.log(err));
+      }
+    }
+  }
+  /**
+   * 
+   * @param brand -&gt; of the boat
+   * @param name -&gt; of the boat
+   */
+  clickRating(brand, name){
+
+    /**
+     * Check if user is logged in
+     */
+    if(this.authService.isLoggedIn){
+      /**
+       * Set boat key to localstorage
+       */
+      localStorage.setItem(&#x27;boatForRating&#x27;, this.boat.key);
+
+      /**
+       * Set name of the boat to localstorage
+       */
+      localStorage.setItem(&#x27;boatForRatingName&#x27;, name);
+
+      /**
+       * Set the brand of the boat to localstorage
+       */
+      localStorage.setItem(&#x27;boatForRatingBrand&#x27;, brand);
+
+      /**
+       * Calls the methode getBoatsFeedbackList()
+       */
+      this.getBoatsFeedbackList();
+
+      /**
+       * Navigate to feedback side
+       */
+      this.router.navigateByUrl(&#x27;/bewertung&#x27;);
+    }
+    else
+    /**
+     * Open sign in dialog
+     */
+    this.confirmDialog();
+  }
+
+  /**
+   * 
+   * @param c -&gt; current boat
+   * @param fav -&gt; state of favourite
+   */
+  clickFavButton(c:BoatDTO, fav:boolean){
+    
+    /**
+     * If user is not logged in
+     */
+    if(!this.authService.isLoggedIn){
+
+      /**
+       * open sign in dialog
+       */
+      this.confirmDialog();
+    }
+    else{
+      /**
+       * Get the current boat
+       */
+      const favRef: AngularFirestoreDocument&lt;any&gt; &#x3D; this.afs.doc(&#x60;${localStorage.getItem(&#x27;userUid&#x27;)}/${c.brand + c.name}&#x60;);
+      
+      /**
+       * Set data of current boat
+       */
+      const favouriteData: any &#x3D; {
+        favourite: fav,
+        boatId: c.key,
+        userId: localStorage.getItem(&#x27;userUid&#x27;)
+      };
+
+      /**
+       * Set fav state
+       */
+      this.favButtonPressed &#x3D; fav;
+
+      /**
+       * Set data to db
+       */
+      favRef.set(favouriteData, {
+        merge:true
+      });
+    }
+  }
+
+  /**
+   * URL of the image
+   * 
+   * @param event -&gt; current file
+   */
+  url;
+  onSelectFile(event) {
+
+    /**
+     * Check if file is selected
+     */
+    if (event.target.files &amp;&amp; event.target.files[0]) {
+      var reader &#x3D; new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload &#x3D; (event) &#x3D;&gt; { // called once readAsDataURL is completed
+         this.url&#x3D; (event.target as FileReader).result;  //event.target.result.toString();
+         
+         /**
+          * Set image url
+          */
+         this.boat.imageUrl &#x3D; this.url;
+
+         /**
+          * Update boat in db
+          */
+         this.boatService.updateBoat(this.boat.key, this.boat);
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;boat&quot;&gt;
+  &lt;mat-accordion class&#x3D;&quot;example-headers-align&quot;&gt;
+    &lt;div &gt;
+      &lt;button appMaterialElevation [defaultElevation]&#x3D;&quot;defaultElevation&quot; raisedElevation&#x3D;&quot;20&quot; *ngIf&#x3D;&quot;!favButtonPressed &amp;&amp; !showButtons&quot; mat-mini-fab color&#x3D;&quot;&quot; title&#x3D;&quot;Add to Favourite&quot; (click)&#x3D;&quot;clickFavButton(boat, true)&quot;&gt;
+        &lt;mat-icon&gt;favorite&lt;/mat-icon&gt;
+      &lt;/button&gt;
+      &lt;button appMaterialElevation [defaultElevation]&#x3D;&quot;defaultElevation&quot; raisedElevation&#x3D;&quot;20&quot; *ngIf&#x3D;&quot;favButtonPressed &amp;&amp; !showButtons&quot; mat-mini-fab color&#x3D;&quot;warn&quot; title&#x3D;&quot;Remove from Favourites&quot; (click)&#x3D;&quot;clickFavButton(boat, false)&quot;&gt;
+        &lt;mat-icon&gt;favorite&lt;/mat-icon&gt;
+      &lt;/button&gt;
+        &lt;button appMaterialElevation [defaultElevation]&#x3D;&quot;defaultElevation&quot; raisedElevation&#x3D;&quot;20&quot; matBadge&#x3D;&quot;{{feedbackLength}}&quot; [matBadgeHidden]&#x3D;&quot;!authService.isLoggedIn&quot; matBadgeColor&#x3D;&quot;accent&quot; matBadgeSize&#x3D;&quot;medium&quot; title&#x3D;&quot;Feedback&quot; mat-fab color&#x3D;&quot;accent&quot; (click)&#x3D;&quot;clickRating(boat.brand, boat.name)&quot;&gt;
+          &lt;mat-icon style&#x3D;&quot;color:   accent&quot;&gt;recommend&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button appMaterialElevation [defaultElevation]&#x3D;&quot;defaultElevation&quot; raisedElevation&#x3D;&quot;20&quot; *ngIf&#x3D;&quot;boat.userId &#x3D;&#x3D; userId &amp;&amp; showButtons&quot; [disabled]&#x3D;&quot;isEdit&quot; title&#x3D;&quot;Edit Boat information&quot; mat-fab color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;changeEditButton()&quot;&gt;
+          &lt;mat-icon&gt;edit&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button appMaterialElevation [defaultElevation]&#x3D;&quot;defaultElevation&quot; raisedElevation&#x3D;&quot;20&quot; *ngIf&#x3D;&quot;boat.userId &#x3D;&#x3D; userId &amp;&amp; showButtons&quot; title&#x3D;&quot;Edit Picture&quot; mat-fab color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;editPhotoBoat((boat.brand + boat.name), boat.key)&quot;&gt;
+          &lt;mat-icon&gt;photo&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button appMaterialElevation [defaultElevation]&#x3D;&quot;defaultElevation&quot; raisedElevation&#x3D;&quot;20&quot; *ngIf&#x3D;&quot;boat.userId &#x3D;&#x3D; userId &amp;&amp; showButtons&quot; title&#x3D;&quot;Delete Boat&quot; mat-fab color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;deleteBoat()&quot;&gt;
+          &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+        &lt;/button&gt;
+
+      &lt;/div&gt;
+
+  &lt;mat-expansion-panel appMaterialElevation [defaultElevation]&#x3D;&quot;defaultElevation&quot; raisedElevation&#x3D;&quot;20&quot;&gt;
+    &lt;mat-expansion-panel-header class&#x3D;&quot;disable_ripple&quot;&gt;
+      &lt;mat-panel-title&gt;
+          &lt;label class&#x3D;&quot;hoverable&quot; for&#x3D;&quot;{{boat.key}}&quot;&gt;
+            &lt;app-image-slider [boat]&#x3D;&#x27;boat&#x27;&gt;&lt;/app-image-slider&gt;
+            &lt;div class&#x3D;&quot;background&quot;&gt;&lt;/div&gt;
+          &lt;/label&gt;
+          &lt;br/&gt;
+      &lt;/mat-panel-title&gt;
+      &lt;mat-panel-description&gt;
+        &lt;div&gt;
+          &lt;h5 class&#x3D;&quot;boat-data&quot;&gt;
+            Boat name: {{boat.name}}
+          &lt;/h5&gt;
+          &lt;h5 class&#x3D;&quot;boat-data&quot;&gt;
+            Location: {{boat.port}} - {{boat.location}}
+          &lt;/h5&gt;
+          &lt;br&gt;
+          &lt;p&gt;
+            &lt;ng-template #t let-fill&#x3D;&quot;fill&quot;&gt;
+              &lt;span class&#x3D;&quot;star&quot; [class.full]&#x3D;&quot;fill &#x3D;&#x3D;&#x3D; 100&quot;&gt;
+                &lt;span class&#x3D;&quot;half&quot; [style.width.%]&#x3D;&quot;fill&quot;&gt;&amp;#9733;&lt;/span&gt;&amp;#9733;
+              &lt;/span&gt;
+            &lt;/ng-template&gt;
+            
+            &lt;ngb-rating style&#x3D;&quot;outline:none !important&quot; [(rate)]&#x3D;&quot;boat.rating&quot; [max]&#x3D;&quot;5&quot; title&#x3D;&quot;{{boat.rating | number:&#x27;1.1&#x27;}}&quot; [starTemplate]&#x3D;&quot;t&quot; [readonly]&#x3D;&quot;true&quot;&gt;&lt;/ngb-rating&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/mat-panel-description&gt;
+    &lt;/mat-expansion-panel-header&gt;
+
+    &lt;mat-card class&#x3D;&quot;mat-card&quot;&gt;
+      &lt;table&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Brand&lt;/th&gt;
+          &lt;th&gt;Type&lt;/th&gt;
+          &lt;th&gt;Lessor&lt;/th&gt;
+          &lt;th&gt;Cabins&lt;/th&gt;
+          &lt;th&gt;Link to Boat&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.brand&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.type&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.lessor&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.cabins&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.linkToRentSide&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Length&lt;/th&gt;
+          &lt;th&gt;Sails&lt;/th&gt;
+          &lt;th&gt;Max. people&lt;/th&gt;
+          &lt;th&gt;Masts&lt;/th&gt;
+          &lt;th&gt;Uploader-Email&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.length&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.sail&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.numberOfPeople&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.masts&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;input type&#x3D;&quot;text&quot; [disabled]&#x3D;&quot;!isEdit&quot; [(ngModel)]&#x3D;&quot;boat.creatorEmail&quot; class&#x3D;&quot;form-control&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+      &lt;br&gt;
+      &lt;button *ngIf&#x3D;&quot;boat.userId &#x3D;&#x3D; userId &amp;&amp; showButtons&quot; [disabled]&#x3D;&quot;!isEdit&quot; title&#x3D;&quot;Save information&quot; class&#x3D;&quot;btn btn-success&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;saveUpdateList(boat)&quot;&gt;
+        Save Changes
+      &lt;/button&gt;
+      &lt;button *ngIf&#x3D;&quot;boat.userId &#x3D;&#x3D; userId &amp;&amp; showButtons&quot; [disabled]&#x3D;&quot;!isEdit&quot; title&#x3D;&quot;Cancel&quot; mat-button color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;cancelEdit()&quot;&gt;
+        Cancel
+      &lt;/button&gt;
+      &lt;a class&#x3D;&quot;downloadButton&quot; *ngIf&#x3D;&quot;boat.documentUrl !&#x3D; null &amp;&amp; showButtons&quot; href&#x3D;&quot;{{boat.documentUrl}}&quot; download&gt;
+        &lt;button mat-button&gt;Show Document&lt;/button&gt;
+      &lt;/a&gt;
+      &lt;a class&#x3D;&quot;downloadButton2&quot; *ngIf&#x3D;&quot;boat.documentUrl !&#x3D; null &amp;&amp; !showButtons&quot; href&#x3D;&quot;{{boat.documentUrl}}&quot; download&gt;
+        &lt;button mat-button&gt;Show Document&lt;/button&gt;
+      &lt;/a&gt;
+    &lt;/mat-card&gt;
+  &lt;/mat-expansion-panel&gt;
+&lt;/mat-accordion&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./boat-details.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.mat-expansion-panel{
+  min-width: 1000px;
+  min-height: 160px;
+  background-color:#A19682;
+  padding-left: 0%;
+  padding-top: 28% !important;
+  padding-bottom: 28%;
+}
+
+.disable_ripple{
+  background: #A19682 !important;
+}
+
+.mat-card-content{
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.mat-card{
+  display:flex;
+  flex-direction: column;
+  margin-top: 20%;
+  background-color: #ffffff22;
+  color: white;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  overflow: hidden;
+  width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.boat-data{
+  color: white;
+}
+
+.full {
+  color: #ffd740;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffd740;
+}
+
+.downloadButton{
+  margin-left: 80%;
+  color: rgba(0,0,0,.26);
+}
+.downloadButton2{
+  margin-left: 80%;
+  color: rgba(0,0,0,.26);
+}
+
+.boat-img {
+  position: absolute;
+  left: 1px;
+  height: 110% !important;
+  width: 110% !important;
+  border-radius: 50% !important;
+}
+.boat-img2 {
+  position: absolute;
+  left: 1px;
+  height: 110% !important;
+  width: 110% !important;
+  border-radius: 50% !important;
+  display: block;
+  cursor: pointer;
+}
+.hoverable{
+  position: relative;
+  display: block;
+  cursor: pointer;
+  margin-top: 70%;
+  margin-bottom: 30%;
+  height: 100%;
+  width: 100%;
+}
+
+#fileInput2{
+  display: none;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="boat">  <mat-accordion class="example-headers-align">    <div >      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="!favButtonPressed && !showButtons" mat-mini-fab color="" title="Add to Favourite" (click)="clickFavButton(boat, true)">        <mat-icon>favorite</mat-icon>      </button>      <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="favButtonPressed && !showButtons" mat-mini-fab color="warn" title="Remove from Favourites" (click)="clickFavButton(boat, false)">        <mat-icon>favorite</mat-icon>      </button>        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" matBadge="{{feedbackLength}}" [matBadgeHidden]="!authService.isLoggedIn" matBadgeColor="accent" matBadgeSize="medium" title="Feedback" mat-fab color="accent" (click)="clickRating(boat.brand, boat.name)">          <mat-icon style="color:   accent">recommend</mat-icon>        </button>        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" [disabled]="isEdit" title="Edit Boat information" mat-fab color="primary" (click)="changeEditButton()">          <mat-icon>edit</mat-icon>        </button>        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Edit Picture" mat-fab color="primary" (click)="editPhotoBoat((boat.brand + boat.name), boat.key)">          <mat-icon>photo</mat-icon>        </button>        <button appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20" *ngIf="boat.userId == userId && showButtons" title="Delete Boat" mat-fab color="warn" (click)="deleteBoat()">          <mat-icon>delete</mat-icon>        </button>      </div>  <mat-expansion-panel appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="20">    <mat-expansion-panel-header class="disable_ripple">      <mat-panel-title>          <label class="hoverable" for="{{boat.key}}">            <app-image-slider [boat]=\'boat\'></app-image-slider>            <div class="background"></div>          </label>          <br/>      </mat-panel-title>      <mat-panel-description>        <div>          <h5 class="boat-data">            Boat name: {{boat.name}}          </h5>          <h5 class="boat-data">            Location: {{boat.port}} - {{boat.location}}          </h5>          <br>          <p>            <ng-template #t let-fill="fill">              <span class="star" [class.full]="fill === 100">                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;              </span>            </ng-template>                        <ngb-rating style="outline:none !important" [(rate)]="boat.rating" [max]="5" title="{{boat.rating | number:\'1.1\'}}" [starTemplate]="t" [readonly]="true"></ngb-rating>          </p>        </div>      </mat-panel-description>    </mat-expansion-panel-header>    <mat-card class="mat-card">      <table>        <tr>          <th>Brand</th>          <th>Type</th>          <th>Lessor</th>          <th>Cabins</th>          <th>Link to Boat</th>        </tr>        <tr>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.brand" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.type" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.lessor" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.cabins" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.linkToRentSide" class="form-control"></td>        </tr>        <tr>          <th>Length</th>          <th>Sails</th>          <th>Max. people</th>          <th>Masts</th>          <th>Uploader-Email</th>        </tr>        <tr>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.length" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.sail" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.numberOfPeople" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.masts" class="form-control"></td>          <td><input type="text" [disabled]="!isEdit" [(ngModel)]="boat.creatorEmail" class="form-control"></td>        </tr>      </table>      <br>      <button *ngIf="boat.userId == userId && showButtons" [disabled]="!isEdit" title="Save information" class="btn btn-success" type="submit" (click)="saveUpdateList(boat)">        Save Changes      </button>      <button *ngIf="boat.userId == userId && showButtons" [disabled]="!isEdit" title="Cancel" mat-button color="warn" (click)="cancelEdit()">        Cancel      </button>      <a class="downloadButton" *ngIf="boat.documentUrl != null && showButtons" href="{{boat.documentUrl}}" download>        <button mat-button>Show Document</button>      </a>      <a class="downloadButton2" *ngIf="boat.documentUrl != null && !showButtons" href="{{boat.documentUrl}}" download>        <button mat-button>Show Document</button>      </a>    </mat-card>  </mat-expansion-panel></mat-accordion></div></div>'
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BewertungComponent', 'selector': 'app-bewertung'},{'name': 'BoatDetailsComponent', 'selector': 'app-boat-details'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'CreateBoatComponent', 'selector': 'app-create-boat'},{'name': 'CreateFeedbackComponent', 'selector': 'app-create-feedback'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EditBoatComponent', 'selector': 'app-edit-boat'},{'name': 'EditFeedbackComponent', 'selector': 'app-edit-feedback'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'ImageSliderComponent', 'selector': 'app-image-slider'},{'name': 'MultiplePicturesComponent', 'selector': 'app-multiple-pictures'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'VerifyEmailComponent', 'selector': 'app-verify-email'}];
+    var DIRECTIVES = [{'name': 'MaterialElevationDirective', 'selector': '[appMaterialElevation]'}];
+    var ACTUAL_COMPONENT = {'name': 'BoatDetailsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BoatDetailsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,6 +1,8 @@
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { Observable } from 'rxjs';
 
+/**
+ * Class with all boat datas
+ */
 export class BoatDTO {
   key: string;
   name: string;
