@@ -1,4 +1,7 @@
-export interface User { //Daten des Users
+/**
+ * Daten des Users
+ */
+export interface User { 
    uid: string;
    email: string;
    displayName: string;
