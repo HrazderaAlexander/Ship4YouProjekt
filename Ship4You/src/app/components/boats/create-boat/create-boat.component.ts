@@ -1,16 +1,15 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { ImageService } from 'src/app/shared/image.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { finalize, map } from 'rxjs/operators';
 import { BoatDTO } from '../boat';
 import { BoatService } from '../boat.service';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { FormGroup } from '@angular/forms';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
 
+//Interface for selecting boat types (Sailingboat, motorboat, ...)
 interface Types {
   value: string;
   viewValue: string;
@@ -23,126 +22,75 @@ interface Types {
 })
 export class CreateBoatComponent implements OnInit {
 
+  //Saving new boat states
   boat: BoatDTO = new BoatDTO();
+
+  //Save button if every property is filled
   submitted = false;
+
+  //Save all boats from db
   boats: BoatDTO[] = [];
 
+  //Save all boat ids (Brand+Name)
   ID : string[] = [];
+
+  //Id counter for all ids
   IDCounter : number = 0;
+
+  //Checks if id already exists
   boolCheck : boolean = false;
 
+  //Upload file
   selectedFile: FileList | null;
+
+  //The image upload speed in percent
   uploadPercent: Observable<number>;
+
+  //The document upload speed in percent
   uploadPercentDocument: Observable<number>;
+
+  //The image download url
   downloadURLObservable: Observable<string>;
+
+  //The document download url
   downloadURLObservableDocument: Observable<string>;
-  forma: FormGroup;
+
+  //Includes documents from db
   tests: Observable<any[]>;
 
+  //The description of the second uploaded picture
   description: string;
 
   constructor(private boatService: BoatService, private router: Router, public authService: AuthService,
     public ngZone: NgZone, private storage: AngularFireStorage, private fs: FirebaseService,
-    private afs: AngularFirestore, private service: ImageService
+    private afs: AngularFirestore
 ) { }
 
   ngOnInit() {
     this.getBoat();
-    this.mostrarImagenes();
-    this.mostrarDocuments();
+    this.showPictures();
+    this.showDocuments();
   }
 
+  //Small animation for choosing an image
   isHovering: boolean;
-
-  files: File[] = [];
-  filesDocuments: File[] = [];
-  filesPictures: File[] = [];
-
   toggleHover(event: boolean) {
     this.isHovering = event;
   }
 
+  //Saving all documents
+  filesDocuments: File[] = [];
+
+  //Saving all images
+  filesPictures: File[] = [];
+
+  //Saving boat types
   types: Types[] = [
     {value: 'Sailingboat', viewValue: 'Sailingboat'},
     {value: 'Motorboat', viewValue: 'Motorboat'}
   ]
 
-  onDrop(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      //Picture.saveFilePath = this.boatBrand + this.boatName;
-      if (!this.validateFile(files[0].name)) {
-        console.log('Selected file format is not supported');
-        alert("Selected file format is not supported! (Allowed: .jpeg, .jpg, .png)");
-        return false;
-      }
-      else{
-        if(this.checkID() == -1){
-          this.files.push(files.item(i));
-        }
-        else{
-          alert("All fields are required!");
-        }
-      }
-    }
-  }
-
-  onDropMult(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      //Picture.saveFilePath = this.boatBrand + this.boatName;
-      if (!this.validateFile(files[0].name)) {
-        console.log('Selected file format is not supported');
-        alert("Selected file format is not supported! (Allowed: .jpeg, .jpg, .png)");
-        return false;
-      }
-      else{
-        if(this.checkID() == -1){
-          this.filesPictures.push(files.item(i));
-        }
-        else{
-          alert("All fields are required!");
-        }
-      }
-    }
-  }
-
-  onDropDocument(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      //Picture.saveFilePath = this.boatBrand + this.boatName;
-      if (!this.validateDocument(files[0].name)) {
-        console.log('Selected file format is not supported');
-        alert("Selected file format is not supported! (Allowed: .docx, .pdf, .xlsx, .txt)");
-        return false;
-      }
-      else{
-        if(this.checkID() == -1){
-          this.filesDocuments.push(files.item(i));
-        }
-        else{
-          alert("All fields are required!");
-        }
-      }
-    }
-  }
-
-  validateFile(name: String) {
-    var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpeg' || ext.toLowerCase() == 'jpg') {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-validateDocument(name: String) {
-  var ext = name.substring(name.lastIndexOf('.') + 1);
-  if (ext.toLowerCase() == 'docx' || ext.toLowerCase() == 'pdf' || ext.toLowerCase() == 'xlsx') {
-      return true;
-  }
-  else {
-      return false;
-  }
-}
-
+  //Get all boats from db
   getBoat(){
     this.boatService.getBoatsList().snapshotChanges().pipe(
       map(changes =>
@@ -156,16 +104,14 @@ validateDocument(name: String) {
     });
   }
 
-    checkID() : number{
-      this.IDCounter = 0;
-      for(let i = 0; i < this.boats.length; i++)
-      {
-        //console.log(this.boats[i].brand+this.boats[i].name);
-        this.ID[this.IDCounter] = this.boats[i].brand+this.boats[i].name;
-        //console.log(localStorage.getItem("createBoatId"));
-        this.IDCounter++;
-      }
-      //console.log(this.IDCounter);
+  //Checks if a boat id already exists (For example (Brand+Name): MaxusStern)
+  checkID() : number{
+    this.IDCounter = 0;
+    for(let i = 0; i < this.boats.length; i++)
+    {
+      this.ID[this.IDCounter] = this.boats[i].brand+this.boats[i].name;
+      this.IDCounter++;
+    }
 
     for(var i = 0; i< this.IDCounter; i++){
       if(this.ID[i] === this.boat.brand+this.boat.name){
@@ -189,30 +135,25 @@ validateDocument(name: String) {
       return -1;
     else
       this.IDCounter = 0;
-
   }
 
+  //Save boat details and navigate to multiple upload site
   goToMultUpload(){
-    //
-    console.log("Desc " + this.description);
     if (this.description != null){
       localStorage.setItem("titlePictureDescription", this.description);
     }
-    //
-
-
     this.boatService.tmpBoat = this.boat;
     localStorage.setItem('tmpBoat', JSON.stringify(this.boat));
-    console.log("TmpBoat " + this.boatService.tmpBoat)
     localStorage.setItem('createBoatId', this.boat.brand+this.boat.name);
-    console.log(localStorage.getItem("createBoatId"));
     this.router.navigateByUrl("multiple-upload");
   }
 
+  //navigate to dashboard
   goToDashboard(){
     this.router.navigateByUrl("/dashboard");
   }
 
+  //Upload title image of a boat
   detectFiles(event) {
     this.selectedFile = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -228,37 +169,33 @@ validateDocument(name: String) {
     this.uploadFile();
   }
 
+  //Document name
   fileName: string;
+
+  //Document ending name (.pdf, .docx, ...)
   fileEnd: string;
 
+  //Upload a document
   detectFilesDocuments(event) {
     this.selectedFile = event.target.files[0];
-
     this.fileName = event.target.files[0].name;
-
-    console.log("FileNAME: " + this.fileName)
-
     var ext = this.fileName.substring(this.fileName.lastIndexOf('.') + 1);
-
     	if (ext.toLowerCase() == 'txt' || ext.toLowerCase() == 'pdf' || ext.toLowerCase() == 'xlsx') {
         this.fileEnd = ext.toLowerCase();
-        console.log("FILEEND: " + this.fileEnd);
       }
-
     this.uploadFileDocuments();
   }
+
+  //All uploaded documents
   uploadUrlArrayDocuments: Observable<String>[] = [];
 
+  //Upload document to db
   uploadFileDocuments() {
-
     const myTest = this.afs.collection("documentUpload").ref.doc();
-    //console.log(myTest.id)
-
     const file = this.selectedFile
     const filePath = `${myTest.id}/name1`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
-
     this.uploadPercentDocument = task.percentageChanges();
 
     task.snapshotChanges().pipe(
@@ -267,30 +204,29 @@ validateDocument(name: String) {
           this.downloadURLObservableDocument = url;
           this.uploadUrlArrayDocuments.push(this.downloadURLObservable);
           localStorage.setItem("downloadDocumentUrl", url);
-
           myTest.set({
             documents : this.downloadURLObservable,
             myId : myTest.id
           })
-
-
-
         }).catch(err=> { console.log(err) });
       })
     )
     .subscribe()
   }
 
-  mostrarDocuments() {
+  //Get all boat documents from db
+  showDocuments() {
     this.tests = this.fs.getDocumentsCreate();
   }
 
+  //All uploaded images
   uploadUrlArray: Observable<String>[] = [];
-url;
+
+  //URL of the current picture
+  url;
   uploadFile() {
 
     const myTest = this.afs.collection("test76").ref.doc();
-    //console.log(myTest.id)
     const file = this.selectedFile
     const filePath = `${myTest.id}/name1`;
     const fileRef = this.storage.ref(filePath);
@@ -304,21 +240,17 @@ url;
           this.downloadURLObservable = url;
           this.uploadUrlArray.push(this.downloadURLObservable);
           localStorage.setItem("downloadUrl", url);
-
           myTest.set({
             imagenes : this.downloadURLObservable,
             myId : myTest.id
           })
-
-
-
         }).catch(err=> { console.log(err) });
       })
     )
     .subscribe()
   }
-
-  mostrarImagenes() {
+  //Get all boat pictures from db
+  showPictures() {
     this.tests = this.fs.getTestCreate();
   }
 }
