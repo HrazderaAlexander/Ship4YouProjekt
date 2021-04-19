@@ -1,6 +1,5 @@
-import { createOfflineCompileUrlResolver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { BoatDTO } from '../components/boats/boat';
 
 @Component({
