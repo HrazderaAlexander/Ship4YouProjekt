@@ -682,7 +682,7 @@ export class BewertungComponent implements OnInit {
      * Make a timeout to get the feedback data
      * Calls edit dialog
      */
-    setTimeout(() => {this.confirmEditFeedbackDialog();}, 5)
+    setTimeout(() => {this.confirmEditFeedbackDialog();}, 20)
   }
 
   /**
