@@ -23,6 +23,11 @@ import { EditFeedbackComponent } from 'src/app/edit-feedback/edit-feedback.compo
 export class BewertungComponent implements OnInit {
 
   /**
+   * Userid
+   */
+  userId:string = localStorage.getItem('userUid');
+
+  /**
    * Variable to save the current rate of the feedback
    */
   protected currentRate = 6;
@@ -751,3 +756,4 @@ export class BewertungComponent implements OnInit {
     this.getFeedbackDataById(ratingId);
   }
 }
+
